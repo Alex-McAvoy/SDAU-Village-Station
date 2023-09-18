@@ -6,7 +6,7 @@ module.exports = {
   appInfo: {
     // 应用名称  test
     name: "village-station-app",
-    // 应用版本
+    // 应用版本 type
     version: "1.0.0",
   }
 }
