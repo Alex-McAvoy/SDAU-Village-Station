@@ -2,9 +2,11 @@
 module.exports = {
   baseUrl: 'https://vue.ruoyi.vip/prod-api',
   // baseUrl: 'http://localhost:8080',
-  // 应用信息
-  appInfo: {
-    // 应用名称  测试名称
+  // 应用信息-----test
+    appInfo: {
+<<<<<<< master
+    // 应用名称 提交测试2
+>>>>>>> master
     name: "village-station-app",
     // 应用版本
     version: "1.0.0",
