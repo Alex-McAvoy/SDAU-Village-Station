@@ -4,7 +4,7 @@ module.exports = {
   // baseUrl: 'http://localhost:8080',
   // 应用信息
   appInfo: {
-    // 应用名称 test
+    // 应用名称  测试名称
     name: "village-station-app",
     // 应用版本
     version: "1.0.0",
