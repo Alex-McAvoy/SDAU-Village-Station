@@ -51,6 +51,16 @@
        "navigationBarTitleText": "王勇"
    }
    },{
+     "path": "pages/work/post/whg",
+     "style": {
+       "navigationBarTitleText": "王洪刚"
+   }
+   },{
+     "path": "pages/work/post/shr",
+     "style": {
+       "navigationBarTitleText": "束怀瑞"
+   }
+   },{
      "path": "pages/work/post/mine/mine",
      "style": {
        "navigationBarTitleText": "我的"
@@ -65,8 +75,12 @@
      "style": {
        "navigationBarTitleText": "编辑资料"
    }
-   },
-  {
+   },{
+     "path": "pages/work/post/mine/password",
+     "style": {
+       "navigationBarTitleText": "修改密码"
+   }
+   },{
     "path": "pages/mine/index",
     "style": {
       "navigationBarTitleText": "我的"
@@ -233,6 +247,24 @@
         }
         ,{
             "path" : "pages/work/post/mine/edit",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/work/post/whg",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/work/post/shr",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
