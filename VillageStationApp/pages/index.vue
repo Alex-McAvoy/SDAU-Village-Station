@@ -1,6 +1,6 @@
 <template>
   <view class="content">
-  <u-button type="primary" text="确定"></u-button>
+    <u-button type="primary" text="确定"></u-button>
   </view>
 </template>
 
