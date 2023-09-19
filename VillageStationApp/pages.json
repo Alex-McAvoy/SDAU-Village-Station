@@ -1,4 +1,13 @@
 {
+	"easycom": {
+		        "autoscan": true,
+		        "custom": {
+		        	// uview-ui
+					"^u-(.*)": "@/node_modules/uview-ui/components/u-$1/u-$1.vue",
+		            // @dcloudio
+		            "^uni-(.*)": "@dcloudio/uniui/lib/uni-$1/uni-$1.vue"
+		        }
+		    },
   "pages": [{
     "path": "pages/login",
     "style": {
@@ -21,6 +30,43 @@
       "navigationBarTitleText": "工作台"
     }
   }, {
+    "path": "pages/work/post/post",
+    "style": {
+      "navigationBarTitleText": "驿站"
+    }
+  },{
+    "path": "pages/work/post/goodProducts",
+    "style": {
+      "navigationBarTitleText": "优品"
+    }
+  },
+   {
+     "path": "pages/work/post/askExpert",
+     "style": {
+       "navigationBarTitleText": "问专家"
+   }
+   },{
+     "path": "pages/work/post/wy",
+     "style": {
+       "navigationBarTitleText": "王勇"
+   }
+   },{
+     "path": "pages/work/post/mine/mine",
+     "style": {
+       "navigationBarTitleText": "我的"
+   }
+   },{
+     "path": "pages/work/post/mine/setting",
+     "style": {
+       "navigationBarTitleText": "设置"
+   }
+   },{
+     "path": "pages/work/post/mine/edit",
+     "style": {
+       "navigationBarTitleText": "编辑资料"
+   }
+   },
+  {
     "path": "pages/mine/index",
     "style": {
       "navigationBarTitleText": "我的"
@@ -70,7 +116,131 @@
     "style": {
       "navigationBarTitleText": "浏览文本"
     }
-  }],
+  }    ,{
+            "path" : "pages/work/post/post",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/work/post/askExperts/askExperts",
+            "style" : {
+                "enablePullDownRefresh": true,
+                "navigationBarTitleText": "商品列表"
+            }
+            
+        }
+        ,{
+            "path" : "pages/work/post/askExperts/askExperts",
+            "style" : {
+                "enablePullDownRefresh": true,
+                "navigationBarTitleText": "商品列表"
+            }
+            
+        }
+        ,{
+            "path" : "pages/work/post/askExpert",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/work/post/askExperts/askExperts",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/work/post/askExpert",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/work/post/wy",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/work/post/goodProducts",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/work/post/tabBar",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/work/post/mine/mine",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/work/post/mine/setting",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/work/post/mine/password",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/work/post/mine/password",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/work/post/mine/edit",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
   "tabBar": {
     "color": "#000000",
     "selectedColor": "#000000",
