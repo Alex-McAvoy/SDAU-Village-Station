@@ -3,14 +3,13 @@
 	@import "@/node_modules/uview-ui/index.scss";
 	@import '@/static/scss/index.scss'
 </style>
+
 <script>
 	import config from './config'
 	import store from '@/store'
-	import {
-		getToken
-	} from '@/utils/auth'
+	import { getToken } from '@/utils/auth'
 
-	export default {
+export default {
 		onLaunch: function() {
 			this.initApp()
 		},

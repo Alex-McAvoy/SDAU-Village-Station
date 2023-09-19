@@ -64,6 +64,13 @@
         "router" : {
             "mode" : "hash",
             "base" : "./"
+        },
+        "sdkConfigs" : {
+            "maps" : {
+                "qqmap" : {
+                    "key" : "2WDBZ-UONKB-6RCUE-JQ5EC-G4I2Q-TUFGO"
+                }
+            }
         }
     }
 }
