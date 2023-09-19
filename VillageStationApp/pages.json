@@ -1,4 +1,11 @@
 {
+		"easycom": {
+				        "autoscan": true,
+				        "custom": {
+				        	// uview-ui
+							"^u-(.*)": "@/node_modules/uview-ui/components/u-$1/u-$1.vue"
+				        }
+				    },
   "pages": [{
     "path": "pages/login",
     "style": {
@@ -70,7 +77,33 @@
     "style": {
       "navigationBarTitleText": "浏览文本"
     }
-  }],
+  }    ,{
+            "path" : "pages/purchase_Farm",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "买农资"
+            }
+            
+        }
+        ,{
+            "path" : "pages/learning_Technology",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "学农技",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/free_Ask",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "随时问",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
   "tabBar": {
     "color": "#000000",
     "selectedColor": "#000000",

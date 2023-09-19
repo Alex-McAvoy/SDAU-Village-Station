@@ -1,3 +1,8 @@
+<style lang="scss">
+	/* 注意要写在第一行，同时给style标签加入lang="scss"属性 */
+	@import "@/node_modules/uview-ui/index.scss";
+	@import '@/static/scss/index.scss'
+</style>
 <script>
   import config from './config'
   import store from '@/store'
@@ -29,6 +34,3 @@
   }
 </script>
 
-<style lang="scss">
-  @import '@/static/scss/index.scss'
-</style>
