@@ -1,4 +1,10 @@
-{
+{	"easycom": {
+				        "autoscan": true,
+				        "custom": {
+				        	// uview-ui
+							"^u-(.*)": "@/node_modules/uview-ui/components/u-$1/u-$1.vue"
+				        }
+				    },
   "pages": [{
     "path": "pages/login",
     "style": {
@@ -70,6 +76,26 @@
     "style": {
       "navigationBarTitleText": "浏览文本"
     }
+	}, {
+	  "path": "pages/channel",
+	  "style": {
+	    "navigationBarTitleText": "找渠道"
+	  }
+    }, {
+	  "path": "pages/products",
+	  "style": {
+	    "navigationBarTitleText": "推优品"
+	}
+	}, {
+	  "path": "pages/newspecies",
+	  "style": {
+	    "navigationBarTitleText": "新品种"
+		}
+	}, {
+		  "path": "pages/onlinebase",
+		  "style": {
+		    "navigationBarTitleText": "在线基地"
+		}	
   }],
   "tabBar": {
     "color": "#000000",

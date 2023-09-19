@@ -1,7 +1,7 @@
 /**
  * uni-app内置的常用样式变量
  */
-
+@import '@/node_modules/uview-ui/theme.scss';
 /* 行为相关颜色 */
 $uni-color-primary: #007aff;
 $uni-color-success: #4cd964;
