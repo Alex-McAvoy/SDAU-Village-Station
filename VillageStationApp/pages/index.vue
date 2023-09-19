@@ -1,9 +1,6 @@
 <template>
   <view class="content">
-    <image class="logo" src="@/static/logo.png"></image>
-    <view class="text-area">
-      <text class="title">Hello RuoYi</text>
-    </view>
+    <u-button type="primary" text="确定"></u-button>
   </view>
 </template>
 
