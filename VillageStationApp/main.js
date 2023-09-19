@@ -6,7 +6,9 @@ import './permission' // permission
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import uView from "uview-ui";
+
 Vue.use(uView);
+Vue.use(plugins)
 
 Vue.use(plugins)
 Vue.use(ElementUI);
@@ -16,12 +18,7 @@ Vue.prototype.$store = store
 App.mpType = 'app'
 
 const app = new Vue({
-  ...App
+	...App
 })
 
 app.$mount()
-
-
-
-
-

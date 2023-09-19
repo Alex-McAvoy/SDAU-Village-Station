@@ -225,7 +225,22 @@
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false
 			}
-
+		}, {
+		"path": "pages/purchaseFarm",
+		"style": {
+			"navigationBarTitleText": "买农资"
+		}
+	}, {
+		"path": "pages/learningTechnology",
+		"style": {
+			"navigationBarTitleText": "学农技",
+			"enablePullDownRefresh": false
+		}
+	}, {
+		"path": "pages/freeAsk",
+		"style": {
+			"navigationBarTitleText": "随时问",
+			"enablePullDownRefresh": false
 		}
 	],
 	"tabBar": {
