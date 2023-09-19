@@ -235,25 +235,53 @@
 			"enablePullDownRefresh": false
 		}
 	}, {
-	  "path": "pages/channel",
-	  "style": {
-	    "navigationBarTitleText": "找渠道"
-	  }
-    }, {
-	  "path": "pages/products",
-	  "style": {
-	    "navigationBarTitleText": "推优品"
-	}
-	}, {
-	  "path": "pages/newspecies",
-	  "style": {
-	    "navigationBarTitleText": "新品种"
+		"path": "pages/channel",
+		"style": {
+			"navigationBarTitleText": "找渠道"
 		}
 	}, {
-		  "path": "pages/onlinebase",
-		  "style": {
-		    "navigationBarTitleText": "在线基地"
-		}	],
+		"path": "pages/products",
+		"style": {
+			"navigationBarTitleText": "推优品"
+		}
+	}, {
+		"path": "pages/newspecies",
+		"style": {
+			"navigationBarTitleText": "新品种"
+		}
+	}, {
+		"path": "pages/onlinebase",
+		"style": {
+			"navigationBarTitleText": "在线基地"
+		}
+	}, {
+		"path": "pages/education/education",
+		"style": {
+			"navigationBarTitleText": "培训",
+			"navigationStyle": "custom"
+		}
+	}, {
+		"path": "pages/finance/finance",
+		"style": {
+			"navigationBarTitleText": "金融",
+			"navigationStyle": "custom"
+		}
+	}, {
+		"path": "pages/station/station",
+		"style": {
+			"navigationBarTitleText": "驿站"
+		}
+	}, {
+		"path": "pages/expert/expert",
+		"style": {
+			"navigationBarTitleText": "专家"
+		}
+	}, {
+		"path": "pages/product/product",
+		"style": {
+			"navigationBarTitleText": "优品"
+		}
+	}],
 	"tabBar": {
 		"color": "#000000",
 		"selectedColor": "#000000",
@@ -265,10 +293,30 @@
 			"selectedIconPath": "static/images/tabbar/home_.png",
 			"text": "首页"
 		}, {
-			"pagePath": "pages/work/index",
+			"pagePath": "pages/education/education",
+			"iconPath": "static/images/tabbar/education.png",
+			"selectedIconPath": "static/images/tabbar/education_.png",
+			"text": "培训"
+		}, {
+			"pagePath": "pages/finance/finance",
+			"iconPath": "static/images/tabbar/finance.png",
+			"selectedIconPath": "static/images/tabbar/finance_.png",
+			"text": "金融"
+		}, {
+			"pagePath": "pages/station/station",
 			"iconPath": "static/images/tabbar/work.png",
 			"selectedIconPath": "static/images/tabbar/work_.png",
-			"text": "工作台"
+			"text": "驿站"
+		}, {
+			"pagePath": "pages/expert/expert",
+			"iconPath": "static/images/tabbar/work.png",
+			"selectedIconPath": "static/images/tabbar/work_.png",
+			"text": "专家"
+		}, {
+			"pagePath": "pages/product/product",
+			"iconPath": "static/images/tabbar/work.png",
+			"selectedIconPath": "static/images/tabbar/work_.png",
+			"text": "优品"
 		}, {
 			"pagePath": "pages/mine/index",
 			"iconPath": "static/images/tabbar/mine.png",
