@@ -1,7 +1,7 @@
 <template>
 	<view style="height: 100% ;margin: 10px;">
 		<view class="contain">
-			<!-- 1 -->
+			<!-- 1-->
 			<view class="container">
 				<u--text style="margin-top: 10px;" size="20" text="乡村驿站"></u--text>
 				<view class="search-bar">
