@@ -300,7 +300,7 @@
 				list: [{
 						name: 'chat-fill',
 						title: '问专家',
-						route: '/pages/work/post/askExpert'
+						route: '/pages/post/askExpert'
 					},
 					{
 						name: 'chat',

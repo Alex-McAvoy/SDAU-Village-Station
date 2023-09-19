@@ -8,24 +8,24 @@
 		</view>
 		<!-- 1 -->
 		<div class="content" @click="goToDetailPage1">
-		<view style="height: 20vh; width: 100%;  border-radius: 10px; background-color: white;  margin-top: 1vh;">
-			<view class="u-page">
-				<view class="u-demo-block">
-					<view class="album">
-						<view class="album__avatar">
-							<image src="/static/whg.png"
-								style="margin:10px; width: 100px; height: 120px;border-radius: 8px; overflow: hidden;">
-							</image>
-						</view>
-						<view class="album__content">
-							<u-text margin="20px 0 10px 0" text="王洪刚" bold size="25"></u-text>
-							<u-text margin="20px 0 8px 0" text="曾任山东农业大学农学系系主任、农学院院长，现为农学院教授委员会主任。"
-								color="rgb(169,169,169)" bold size="18"></u-text>
+			<view style="height: 20vh; width: 100%;  border-radius: 10px; background-color: white;  margin-top: 1vh;">
+				<view class="u-page">
+					<view class="u-demo-block">
+						<view class="album">
+							<view class="album__avatar">
+								<image src="/static/whg.png"
+									style="margin:10px; width: 100px; height: 120px;border-radius: 8px; overflow: hidden;">
+								</image>
+							</view>
+							<view class="album__content">
+								<u-text margin="20px 0 10px 0" text="王洪刚" bold size="25"></u-text>
+								<u-text margin="20px 0 8px 0" text="曾任山东农业大学农学系系主任、农学院院长，现为农学院教授委员会主任。"
+									color="rgb(169,169,169)" bold size="18"></u-text>
+							</view>
 						</view>
 					</view>
 				</view>
 			</view>
-		</view>
 		</div>
 		<!-- 2 -->
 		<div class="content" @click="goToDetailPage2">
@@ -82,13 +82,13 @@
 		},
 		methods: {
 			goToDetailPage1() {
-				this.$router.push('/pages/work/post/whg');
+				this.$router.push('/pages/post/whg');
 			},
 			goToDetailPage2() {
-				this.$router.push('/pages/work/post/shr');
+				this.$router.push('/pages/post/shr');
 			},
 			goToDetailPage3() {
-				this.$router.push('/pages/work/post/wy');
+				this.$router.push('/pages/post/wy');
 			}
 		}
 	}

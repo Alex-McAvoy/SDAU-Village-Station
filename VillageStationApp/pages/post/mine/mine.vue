@@ -100,10 +100,10 @@
 				this.$tab.navigateTo('/pages/mine/info/index')
 			},
 			handleToEditInfo() {
-				this.$tab.navigateTo('/pages/work/post/mine/edit')
+				this.$tab.navigateTo('/pages/post/mine/edit')
 			},
 			handleToSetting() {
-				this.$tab.navigateTo('/pages/work/post/mine/setting')
+				this.$tab.navigateTo('/pages/post/mine/setting')
 			},
 			handleToLogin() {
 				this.$tab.reLaunch('/pages/login')
