@@ -304,15 +304,18 @@
 					},
 					{
 						name: 'chat',
-						title: '随时问'
+						title: '随时问',
+						route: '/pages/station/freeAsk'
 					},
 					{
 						name: 'file-text-fill',
-						title: '学农技'
+						title: '学农技',
+						route: '/pages/station/learningTechnology'
 					},
 					{
 						name: 'shopping-cart',
-						title: '买农资'
+						title: '买农资',
+						route: '/pages/station/purchaseFarm'
 					},
 					{
 						name: 'car-fill',
