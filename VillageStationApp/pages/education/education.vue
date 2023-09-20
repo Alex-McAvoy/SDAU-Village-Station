@@ -11,7 +11,7 @@
 			</el-row>
 		</el-header>
 		
-		<el-main class="radius  new">
+		<el-main class="radius new" style="margin-top: -10px">
 			<el-row>
 				<el-menu :default-active="activeIndex" class="el-menu-demo flex_center"
 					style="height:auto;padding:5px;flex-wrap:nowrap;overflow-x: auto;margin:-10px 0px 10px 0px"
@@ -20,8 +20,8 @@
 					<el-menu-item index="3">园艺</el-menu-item>
 					<el-menu-item index="4">植保</el-menu-item>
 					<el-menu-item index="5">蔬菜</el-menu-item>
-					<el-menu-item index="5">家畜</el-menu-item>
-					<el-menu-item index="5">环境能源</el-menu-item>
+					<el-menu-item index="6">家畜</el-menu-item>
+					<el-menu-item index="7">环境能源</el-menu-item>
 				</el-menu>
 			</el-row>
 		</el-main>
@@ -31,13 +31,13 @@
 				<el-row style="text-align: center;">
 					<el-col :span="11" style="margin-right:10px;">
 						<el-row :span="18">
-							<img style="width: 100%;" src="../../static/images/index_video.jpg" />
+							<img style="width: 100%;" src="../../static/images/index/index_video.jpg" />
 						</el-row>
 						<el-row :span="6">扎费特旗农业技术推</el-row>
 					</el-col>
 					<el-col :span="11">
 						<el-row :span="18">
-							<img style="width: 100%;" src="../../static/images/index_video.jpg" />
+							<img style="width: 100%;" src="../../static/images/index/index_video.jpg" />
 						</el-row>
 						<el-row :span="6">扎费特旗农业技术推</el-row>
 					</el-col>

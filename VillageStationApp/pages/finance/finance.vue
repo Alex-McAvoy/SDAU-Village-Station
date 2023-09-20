@@ -13,19 +13,22 @@
 
 		<el-main class="load radius">
 			<el-row :gutter="20">
-				<el-col :span="8" style="background-color: #7bed9f;border-radius: 5px;">
-					<el-row style="padding:15px"><!-- 图标 -->
-						<svg t="1695194222329" class="icon" viewBox="0 0 1024 1024" version="1.1"
-							xmlns="http://www.w3.org/2000/svg" p-id="1970" width="32" height="32">
-							<path
-								d="M977.92 801.28c15.36 10.24 0 25.6 0 25.6L819.2 988.16s-15.36 20.48-43.52 0c-12.8-10.24-69.12-56.32-69.12-56.32s-17.92-15.36-46.08-17.92H307.2s-15.36 5.12-28.16-5.12-184.32-153.6-232.96-194.56c-10.24-12.8 0-33.28 0-33.28s33.28-58.88 122.88 0c53.76 38.4 138.24 97.28 138.24 97.28h204.8l58.88-38.4s15.36-10.24 0-10.24c-46.08-2.56-110.08-7.68-135.68-12.8-30.72-5.12-48.64-30.72-48.64-56.32 0-40.96 25.6-46.08 48.64-46.08h307.2s12.8 0 25.6 10.24c10.24 12.8 194.56 166.4 209.92 176.64zM250.88 0h473.6c25.6 0 46.08 20.48 46.08 46.08V384c0 15.36-7.68 30.72-20.48 38.4l-256 166.4L230.4 422.4c-17.92-7.68-25.6-23.04-25.6-38.4V46.08C204.8 20.48 225.28 0 250.88 0z m17.92 371.2l222.72 135.68 212.48-135.68V71.68h-435.2v299.52z m117.76-212.48c-5.12-10.24 0-20.48 10.24-28.16 12.8-5.12 23.04-2.56 30.72 10.24L486.4 232.96l61.44-92.16c7.68-10.24 17.92-15.36 28.16-10.24 12.8 5.12 15.36 15.36 10.24 28.16l-61.44 92.16h51.2c5.12 5.12 7.68 10.24 7.68 15.36s-2.56 12.8-7.68 15.36H512v25.6h64c5.12 5.12 7.68 10.24 7.68 15.36 0 7.68-2.56 12.8-7.68 15.36H512v66.56c0 17.92-7.68 28.16-23.04 28.16-17.92 0-25.6-10.24-25.6-28.16v-66.56h-64c-7.68-2.56-10.24-7.68-10.24-15.36s2.56-12.8 10.24-15.36H460.8v-25.6h-64c-7.68-5.12-10.24-10.24-10.24-15.36 0-5.12 2.56-12.8 10.24-15.36h48.64l-58.88-92.16z"
-								fill="#2ed573" p-id="1971" data-spm-anchor-id="a313x.search_index.0.i1.7dd63a81cWhV23"
-								class="selected"></path>
-						</svg>
-					</el-row>
-					<el-row style="color:#fff">小额农贷</el-row>
+				<el-col :span="8">
+					<div style="background-color: #7bed9f; border-radius: 5px;">
+						<el-row style="padding:15px"><!-- 图标 -->
+							<svg t="1695194222329" class="icon" viewBox="0 0 1024 1024" version="1.1"
+								xmlns="http://www.w3.org/2000/svg" p-id="1970" width="32" height="32">
+								<path
+									d="M977.92 801.28c15.36 10.24 0 25.6 0 25.6L819.2 988.16s-15.36 20.48-43.52 0c-12.8-10.24-69.12-56.32-69.12-56.32s-17.92-15.36-46.08-17.92H307.2s-15.36 5.12-28.16-5.12-184.32-153.6-232.96-194.56c-10.24-12.8 0-33.28 0-33.28s33.28-58.88 122.88 0c53.76 38.4 138.24 97.28 138.24 97.28h204.8l58.88-38.4s15.36-10.24 0-10.24c-46.08-2.56-110.08-7.68-135.68-12.8-30.72-5.12-48.64-30.72-48.64-56.32 0-40.96 25.6-46.08 48.64-46.08h307.2s12.8 0 25.6 10.24c10.24 12.8 194.56 166.4 209.92 176.64zM250.88 0h473.6c25.6 0 46.08 20.48 46.08 46.08V384c0 15.36-7.68 30.72-20.48 38.4l-256 166.4L230.4 422.4c-17.92-7.68-25.6-23.04-25.6-38.4V46.08C204.8 20.48 225.28 0 250.88 0z m17.92 371.2l222.72 135.68 212.48-135.68V71.68h-435.2v299.52z m117.76-212.48c-5.12-10.24 0-20.48 10.24-28.16 12.8-5.12 23.04-2.56 30.72 10.24L486.4 232.96l61.44-92.16c7.68-10.24 17.92-15.36 28.16-10.24 12.8 5.12 15.36 15.36 10.24 28.16l-61.44 92.16h51.2c5.12 5.12 7.68 10.24 7.68 15.36s-2.56 12.8-7.68 15.36H512v25.6h64c5.12 5.12 7.68 10.24 7.68 15.36 0 7.68-2.56 12.8-7.68 15.36H512v66.56c0 17.92-7.68 28.16-23.04 28.16-17.92 0-25.6-10.24-25.6-28.16v-66.56h-64c-7.68-2.56-10.24-7.68-10.24-15.36s2.56-12.8 10.24-15.36H460.8v-25.6h-64c-7.68-5.12-10.24-10.24-10.24-15.36 0-5.12 2.56-12.8 10.24-15.36h48.64l-58.88-92.16z"
+									fill="#2ed573" p-id="1971" data-spm-anchor-id="a313x.search_index.0.i1.7dd63a81cWhV23"
+									class="selected"></path>
+							</svg>
+						</el-row>
+						<el-row style="color:#fff">小额农贷</el-row>
+					</div>
 				</el-col>
-				<el-col :span="7" style="background-color: #7bed9f;margin-left:8px;border-radius: 5px;">
+				<el-col :span="8" >
+					<div style="background-color: #7bed9f; border-radius: 5px;">
 					<el-row style="padding:15px"><!-- 图标 -->
 						<svg t="1695196178745" class="icon" viewBox="0 0 1024 1024" version="1.1"
 							xmlns="http://www.w3.org/2000/svg" p-id="3547" width="32" height="32">
@@ -39,8 +42,10 @@
 						</svg>
 					</el-row>
 					<el-row style="color:#fff">合作社金融</el-row>
+					</div>
 				</el-col>
-				<el-col :span="8" style="background-color: #7bed9f;margin-left:8px; border-radius: 5px;">
+				<el-col :span="8" >
+					<div style="background-color: #7bed9f; border-radius: 5px;">
 					<el-row style="padding:15px"><!-- 图标 -->
 						<svg t="1695196223315" class="icon" viewBox="0 0 1024 1024" version="1.1"
 							xmlns="http://www.w3.org/2000/svg" p-id="5832"
@@ -51,6 +56,7 @@
 						</svg>
 					</el-row>
 					<el-row style="color:#fff">招商引资</el-row>
+					</div>
 				</el-col>
 			</el-row>
 		</el-main>
@@ -87,9 +93,7 @@
 				<el-row>
 					<el-col :span="8"><img style="width:100%;height:auto" src="../../static/images/finance/finance.png" /></el-col>
 					<el-col :span="16" style="padding:5px;font-size:14px">
-						<br>
-						<br>
-						<el-row :span="16">打造金融助农“1+5”运行体系 重庆金融助力农村致富带头人行动计划启动</el-row>
+						<el-row :span="16">打造金融助农“1+5”运行体系 <br> 重庆金融助力农村致富带头人行动计划启动</el-row>
 						<el-row :span="8" style="font-size: 10px;">
 							<br><br>
 							<el-col :span="8" style="color:#2ed573">政策法规</el-col>
@@ -125,13 +129,13 @@
 				<el-row style="text-align: center;">
 					<el-col :span="11" style="margin-right:10px;">
 						<el-row :span="18">
-							<img style="width: 100%;" src="../../static/images/finance/load1.jpg" />
+							<img style="width: 100%; height: 150px;" src="../../static/images/finance/load1.jpg" />
 						</el-row>
 						<el-row :span="6">金融活水润“三夏”</el-row>
 					</el-col>
 					<el-col :span="11">
 						<el-row :span="18">
-							<img style="width: 100%;" src="../../static/images/finance/load2.jpg" />
+							<img style="width: 100%; height: 150px;" src="../../static/images/finance/load2.jpg" />
 						</el-row>
 						<el-row :span="6"> 助农惠企保民生</el-row>
 					</el-col>

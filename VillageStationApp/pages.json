@@ -189,27 +189,27 @@
 			"iconPath": "static/images/tabbar/finance.png",
 			"selectedIconPath": "static/images/tabbar/finance_.png",
 			"text": "金融"
-		}, {
+		},{
 			"pagePath": "pages/station/station",
-			"iconPath": "static/images/tabbar/work.png",
-			"selectedIconPath": "static/images/tabbar/work_.png",
+			"iconPath": "static/images/tabbar/station_.png",
+			"selectedIconPath": "static/images/tabbar/station_.png",
 			"text": "驿站"
 		}, {
 			"pagePath": "pages/expert/expert",
-			"iconPath": "static/images/tabbar/work.png",
-			"selectedIconPath": "static/images/tabbar/work_.png",
+			"iconPath": "static/images/tabbar/expert.png",
+			"selectedIconPath": "static/images/tabbar/expert_.png",
 			"text": "专家"
 		}, {
 			"pagePath": "pages/product/product",
-			"iconPath": "static/images/tabbar/work.png",
-			"selectedIconPath": "static/images/tabbar/work_.png",
+			"iconPath": "static/images/tabbar/product.png",
+			"selectedIconPath": "static/images/tabbar/product_.png",
 			"text": "优品"
 		}, {
 			"pagePath": "pages/mine/index",
 			"iconPath": "static/images/tabbar/mine.png",
 			"selectedIconPath": "static/images/tabbar/mine_.png",
 			"text": "我的"
-		}]
+		}]		
 	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
