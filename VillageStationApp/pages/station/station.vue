@@ -33,7 +33,7 @@
 				<view class="u-demo-block">
 					<view class="album">
 						<view class="album__avatar">
-							<image src="/static/whg.png"
+							<image src="/static/images/station/askExperts/whg.png"
 								style="margin:8px; width: 70px; height: 80px;border-radius: 8px; overflow: hidden;">
 							</image>
 						</view>
@@ -49,7 +49,7 @@
 				<view class="u-demo-block">
 					<view class="album">
 						<view class="album__avatar">
-							<image src="/static/shr.png"
+							<image src="/static/images/station/askExperts/shr.png"
 								style="margin:8px; width: 70px; height: 80px;border-radius: 8px; overflow: hidden;">
 							</image>
 						</view>
