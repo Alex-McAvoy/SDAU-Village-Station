@@ -240,21 +240,6 @@
 			"navigationBarTitleText": "找渠道"
 		}
 	}, {
-		"path": "pages/products",
-		"style": {
-			"navigationBarTitleText": "推优品"
-		}
-	}, {
-		"path": "pages/newspecies",
-		"style": {
-			"navigationBarTitleText": "新品种"
-		}
-	}, {
-		"path": "pages/onlinebase",
-		"style": {
-			"navigationBarTitleText": "在线基地"
-		}
-	}, {
 		"path": "pages/education/education",
 		"style": {
 			"navigationBarTitleText": "培训",
@@ -280,6 +265,20 @@
 		"path": "pages/product/product",
 		"style": {
 			"navigationBarTitleText": "优品"
+	}, {
+		"path": "pages/products",
+		"style": {
+			"navigationBarTitleText": "推优品"
+		}
+	}, {
+		"path": "pages/newspecies",
+		"style": {
+			"navigationBarTitleText": "新品种"
+		}
+	}, {
+		"path": "pages/onlinebase",
+		"style": {
+			"navigationBarTitleText": "在线基地"
 		}
 	}],
 	"tabBar": {
