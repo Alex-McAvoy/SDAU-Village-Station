@@ -1,7 +1,14 @@
 <template>
 	<view class="container">
-		<u-text margin="20px 0 10px 0" text="个人简介" bold size="25"></u-text>
-		<view style="height: 100vh; width: 100%;  border-radius: 10px; background-color: white;  margin-top: 2vh;">
+		<u-text margin="20px 0 10px 0" text="束怀瑞--个人简介" bold size="25"></u-text>
+		<view class="album">
+		<view class="album__avatar">
+			<image src="/static/images/station/askExperts/shr.png"
+				style="margin:10px; width: 100px; height: 120px;border-radius: 8px; overflow: hidden;">
+			</image>
+		</view>
+		</view>
+		<view style="width: 100%;  border-radius: 10px;  margin-top: 2vh;">
 			<u-text style="font-weight: 5px;" margin="20px 10px 10px 10px" text="1.束怀瑞，1929年9月26日出生于山东淄博，果树学专家，中国工程院院士，山东农业大学教授、博士生导师。
 					2.1950年束怀瑞从山东农学院毕业后留校任教；
 					3.1953年加入中国共产党；
@@ -32,6 +39,21 @@
 
 <style lang="scss">
 	.container {
-		background-color: #cfeea3;
+		background: linear-gradient(#2ed573,#7bed9f,#f1f2f6);
+	}
+	.album {
+		@include flex;
+		align-items: flex-start;
+	
+		&__avatar {
+			background-color: $u-bg-color;
+			padding: 5px;
+			border-radius: 3px;
+		}
+	
+		&__content {
+			margin-left: 10px;
+			flex: 1;
+		}
 	}
 </style>

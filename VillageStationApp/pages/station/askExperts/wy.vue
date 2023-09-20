@@ -1,7 +1,14 @@
 <template>
 	<view class="container">
-		<u-text margin="20px 0 10px 0" text="个人简介" bold size="25"></u-text>
-		<view style="height: 100vh; width: 100%;  border-radius: 10px; background-color: white;  margin-top: 2vh;">
+		<u-text margin="20px 0 10px 0" text="王勇--个人简介" bold size="25"></u-text>
+		<view class="album">
+		<view class="album__avatar">
+			<image src="/static/images/station/askExperts/wy.png"
+				style="margin:10px; width: 100px; height: 120px;border-radius: 8px; overflow: hidden;">
+			</image>
+		</view>
+		</view>
+		<view style="width: 100%;  border-radius: 10px;  margin-top: 2vh;">
 			<u-text style="font-weight: 5px;" margin="20px 10px 10px 10px" text="1.王勇，博士，教授，博士生导师，山东省泰山学者海外特聘专家，现任生命科学学院院长。
 				2.在山东农业大学农学院先后获学士、硕士学位，毕业后留校在农学院从事小麦遗传育种工作；
 				3.1999年7月至9月在中国农科院品种资源研究所贾继增研究员实验室作访问学者；
@@ -28,6 +35,21 @@
 
 <style lang="scss">
 	.container {
-		background-color: #cfeea3;
+		background: linear-gradient(#2ed573,#7bed9f,#f1f2f6);
+	}
+	.album {
+		@include flex;
+		align-items: flex-start;
+	
+		&__avatar {
+			background-color: $u-bg-color;
+			padding: 5px;
+			border-radius: 3px;
+		}
+	
+		&__content {
+			margin-left: 10px;
+			flex: 1;
+		}
 	}
 </style>
