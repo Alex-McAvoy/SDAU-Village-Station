@@ -302,19 +302,23 @@
 					},
 					{
 						name: 'car-fill',
-						title: '找渠道'
+						title: '找渠道',
+						route: '/pages/station/channel'
 					},
 					{
 						name: 'order',
-						title: '推优品'
+						title: '推优品',
+						route: '/pages/station/products'
 					},
 					{
 						name: 'gift-fill',
-						title: '新品种'
+						title: '新品种',
+						route: '/pages/station/newspecies'
 					},
 					{
 						name: 'map',
-						title: '在线基地'
+						title: '在线基地',
+						route: '/pages/station/onlinebase'
 					},
 				],
 				expertsList: [],
