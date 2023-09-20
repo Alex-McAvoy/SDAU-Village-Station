@@ -142,10 +142,9 @@
     width: 100%;
     height: 100%;
 
-
     .header-section {
       padding: 15px 15px 45px 15px;
-      background-color: #3c96f3;
+      background:linear-gradient(#2ed573,#2ed573,#2ed573,#2ed573,#7bed9f,#f1f2f6);
       color: white;
 
       .login-tip {
