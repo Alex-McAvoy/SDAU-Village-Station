@@ -19,12 +19,12 @@
 </script>
 
 <style lang="scss" scoped>
-    .u-content {
-        padding: 24rpx;
-        font-size: 30rpx;
-        color: $u-content-color;
-        line-height: 1.6;
-		text-indent : 20px; //缩进了20px
-		letter-spacing:3px; //字体间距为8px
-    }
+	.u-content {
+		padding: 24rpx;
+		font-size: 30rpx;
+		color: $u-content-color;
+		line-height: 1.6;
+		text-indent: 20px; //缩进了20px
+		letter-spacing: 3px; //字体间距为8px
+	}
 </style>

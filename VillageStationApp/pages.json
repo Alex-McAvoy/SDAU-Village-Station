@@ -116,11 +116,6 @@
 				"enablePullDownRefresh": false
 			}
 		}, {
-			"path": "pages/channel",
-			"style": {
-				"navigationBarTitleText": "找渠道"
-			}
-		}, {
 			"path": "pages/education/education",
 			"style": {
 				"navigationBarTitleText": "培训",
@@ -151,21 +146,26 @@
 			}
 		},
 		{
-			"path": "pages/products",
+			"path": "pages/station/products",
 			"style": {
 				"navigationBarTitleText": "推优品"
 			}
 		},
 		{
-			"path": "pages/newspecies",
+			"path": "pages/station/newspecies",
 			"style": {
 				"navigationBarTitleText": "新品种"
 			}
 		},
 		{
-			"path": "pages/onlinebase",
+			"path": "pages/station/onlinebase",
 			"style": {
 				"navigationBarTitleText": "在线基地"
+			}
+		}, {
+			"path": "pages/station/channel",
+			"style": {
+				"navigationBarTitleText": "找渠道"
 			}
 		}
 	],
