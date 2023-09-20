@@ -5,7 +5,7 @@
 			style=" display: flex; align-items: center; margin: 5px; border-radius: 5px; overflow: hidden; background-color: white; justify-content: space-between;">
 			<!-- 定位 -->
 			<view style="margin-left: 1vh;">
-				<u-icon name="home-fill" color="#3f8a45" size="20" label="泰安" labelSize="10px"></u-icon>
+				<u-icon name="home-fill" color="#2ed573" size="20" label="泰安" labelSize="10px"></u-icon>
 			</view>
 			<!-- 搜索框 -->
 			<view style="width: 80%;">
@@ -85,13 +85,13 @@
 			return {
 				keyword: '',
 				list1: [
-					'/static/images/orange.jpg',
-					'/static/images/pitaya.jpg',
-					'/static/images/banana.png',
+					'../../static/images/station/freeAsk/orange.jpg',
+					'../../static/images/station/freeAsk/pitaya.jpg',
+					'../../static/images/station/freeAsk/banana.png',
 				],
 				albumWidth: 0,
 				urls1: [{
-					src2: '/static/images/apple.jpg',
+					src2: '../../static/images/station/freeAsk/apple.jpg',
 				}],
 			}
 		},
