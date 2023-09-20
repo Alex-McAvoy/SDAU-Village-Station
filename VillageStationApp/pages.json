@@ -17,7 +17,7 @@
 				"navigationBarTitleText": "注册"
 			}
 		}, {
-			"path": "pages/index",
+			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "若依移动端框架",
 				"navigationStyle": "custom"
@@ -175,7 +175,7 @@
 		"borderStyle": "white",
 		"backgroundColor": "#ffffff",
 		"list": [{
-			"pagePath": "pages/index",
+			"pagePath": "pages/index/index",
 			"iconPath": "static/images/tabbar/home.png",
 			"selectedIconPath": "static/images/tabbar/home_.png",
 			"text": "首页"
