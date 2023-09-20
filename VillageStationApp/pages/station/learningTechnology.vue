@@ -5,7 +5,7 @@
 			<u-grid :border="false" col="4">
 				<u-grid-item v-for="(listItem,listIndex) in list" :key="listIndex">
 					<u-icon :customStyle="{paddingTop:20+'rpx'}" :name="listItem.name" :size="22"
-						color="#387e3a"></u-icon>
+						color="#2ed573"></u-icon>
 					<text class="grid-text">{{listItem.title}}</text>
 				</u-grid-item>
 			</u-grid>
@@ -13,7 +13,7 @@
 		</view>
 		<!-- 内容一 -->
 		<view style="display: flex;  background-color: white;margin: 5px; border-radius: 10px; overflow: hidden; ">
-			<image src="/static/images/melon.jpg"
+			<image src="../../static/images/station/learningTechnology/melon.jpg"
 				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
 			</image>
 			<view style="margin-left: 1vh;">
@@ -26,7 +26,7 @@
 		</view>
 		<!-- 内容二 -->
 		<view style="display: flex;  background-color: white;margin: 5px; border-radius: 10px; overflow: hidden; ">
-			<image src="/static/images/melon.jpg"
+			<image src="../../static/images/station/learningTechnology/melon.jpg"
 				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
 			</image>
 			<view style="margin-left: 1vh;">
@@ -39,7 +39,7 @@
 		</view>
 		<!-- 内容三 -->
 		<view style="display: flex;  background-color: white;margin: 5px; border-radius: 10px; overflow: hidden; ">
-			<image src="/static/images/melon.jpg"
+			<image src="../../static/images/station/learningTechnology/melon.jpg"
 				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
 			</image>
 			<view style="margin-left: 1vh;">
@@ -52,7 +52,7 @@
 		</view>
 		<!-- 内容四 -->
 		<view style="display: flex;  background-color: white;margin: 5px; border-radius: 10px; overflow: hidden; ">
-			<image src="/static/images/melon.jpg"
+			<image src="../../static/images/station/learningTechnology/melon.jpg"
 				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
 			</image>
 			<view style="margin-left: 1vh;">
@@ -65,7 +65,7 @@
 		</view>
 		<!-- 内容五 -->
 		<view style="display: flex;  background-color: white;margin: 5px; border-radius: 10px; overflow: hidden; ">
-			<image src="/static/images/melon.jpg"
+			<image src="../../static/images/station/learningTechnology/melon.jpg"
 				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
 			</image>
 			<view style="margin-left: 1vh;">
@@ -78,7 +78,7 @@
 		</view>
 		<!-- 内容六 -->
 		<view style="display: flex;  background-color: white;margin: 5px; border-radius: 10px; overflow: hidden; ">
-			<image src="/static/images/melon.jpg"
+			<image src="../../static/images/station/learningTechnology/melon.jpg"
 				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
 			</image>
 			<view style="margin-left: 1vh;">
@@ -91,7 +91,7 @@
 		</view>
 		<!-- 内容七 -->
 		<view style="display: flex;  background-color: white;margin: 5px; border-radius: 10px; overflow: hidden; ">
-			<image src="/static/images/melon.jpg"
+			<image src="../../static/images/station/learningTechnology/melon.jpg"
 				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
 			</image>
 			<view style="margin-left: 1vh;">

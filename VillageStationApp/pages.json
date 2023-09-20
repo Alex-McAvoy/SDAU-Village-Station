@@ -99,18 +99,18 @@
 				"navigationBarTitleText": "浏览文本"
 			}
 		},{
-			"path": "pages/purchaseFarm",
+			"path": "pages/station/purchaseFarm",
 			"style": {
 				"navigationBarTitleText": "买农资"
 			}
 		}, {
-			"path": "pages/learningTechnology",
+			"path": "pages/station/learningTechnology",
 			"style": {
 				"navigationBarTitleText": "学农技",
 				"enablePullDownRefresh": false
 			}
 		}, {
-			"path": "pages/freeAsk",
+			"path": "pages/station/freeAsk",
 			"style": {
 				"navigationBarTitleText": "随时问",
 				"enablePullDownRefresh": false

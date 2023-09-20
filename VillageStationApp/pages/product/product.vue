@@ -2,7 +2,7 @@
 	<view>
 		<view class="content" style="background: linear-gradient(#2ed573,#2ed573,#2ed573,#2ed573,#7bed9f,#f1f2f6);">
 			<view class="contain">
-				<u--text style="margin-top: 20px;" size="20" color="#fff" text="乡村驿站"></u--text>
+				<u--text style="margin-top: 20px; margin-left: 2vh;" size="25" color="#fff" text="推优品"></u--text>
 				<view class="search-bar">
 					<u-search style="margin-top: 20px;" shape="round" height="40" placeholder=""
 						:clearabled="true"></u-search>
