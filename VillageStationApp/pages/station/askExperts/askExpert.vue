@@ -2,18 +2,18 @@
 	<view>
 		<view class="container">
 			<view class="module">
-				<u-icon size="40" color="#25a52d" name="chat-fill"></u-icon>
+				<u-icon size="40" color="#1b7e42" name="chat-fill"></u-icon>
 				<u-text margin="10px 0px 10px 0" text="问专家" bold size="30"></u-text>
 			</view>
 		</view>
 		<!-- 1 -->
 		<div class="content" @click="goToDetailPage1">
-			<view style="height: 20vh; width: 100%;  border-radius: 10px; background-color: white;  margin-top: 1vh;">
+			<view style=" border-radius: 10px; background-color: white;  margin-top: 1vh;">
 				<view class="u-page">
 					<view class="u-demo-block">
 						<view class="album">
 							<view class="album__avatar">
-								<image src="/static/whg.png"
+								<image src="/static/images/station/askExperts/whg.png"
 									style="margin:10px; width: 100px; height: 120px;border-radius: 8px; overflow: hidden;">
 								</image>
 							</view>
@@ -29,12 +29,12 @@
 		</div>
 		<!-- 2 -->
 		<div class="content" @click="goToDetailPage2">
-			<view style="height: 20vh; width: 100%;  border-radius: 10px; background-color: white;  margin-top: 2vh;">
+			<view style=" border-radius: 10px; background-color: white;  margin-top: 2vh;">
 				<view class="u-page">
 					<view class="u-demo-block">
 						<view class="album">
 							<view class="album__avatar">
-								<image src="/static/shr.png"
+								<image src="/static/images/station/askExperts/shr.png"
 									style="margin:10px; width: 100px; height: 120px;border-radius: 8px; overflow: hidden;">
 								</image>
 							</view>
@@ -50,12 +50,12 @@
 		</div>
 		<!-- 3 -->
 		<div class="content" @click="goToDetailPage3">
-			<view style="height: 20vh; width: 100%;  border-radius: 10px; background-color: white;  margin-top: 2vh;">
+			<view style=" border-radius: 10px; background-color: white;  margin-top: 2vh;">
 				<view class="u-page">
 					<view class="u-demo-block">
 						<view class="album">
 							<view class="album__avatar">
-								<image src="/static/wy.png"
+								<image src="/static/images/station/askExperts/wy.png"
 									style="margin:10px; width: 100px; height: 120px;border-radius: 8px; overflow: hidden;">
 								</image>
 							</view>
@@ -77,18 +77,17 @@
 	export default {
 		data() {
 			return {
-
 			}
 		},
 		methods: {
 			goToDetailPage1() {
-				this.$router.push('/pages/post/whg');
+				this.$router.push('/pages/station/askExperts/whg');
 			},
 			goToDetailPage2() {
-				this.$router.push('/pages/post/shr');
+				this.$router.push('/pages/station/askExperts/shr');
 			},
 			goToDetailPage3() {
-				this.$router.push('/pages/post/wy');
+				this.$router.push('/pages/station/askExperts/wy');
 			}
 		}
 	}
@@ -105,7 +104,7 @@
 		/* 将容器设置为弹性布局 */
 		align-items: center;
 		/* 垂直居中对齐图标和文本 */
-		background-color: #cfeea3;
+		background: linear-gradient(#2ed573,#2ed573,#2ed573,#2ed573,#7bed9f,#f1f2f6);
 	}
 
 	.module {
