@@ -46,7 +46,7 @@
 				}, ],
 
 				fileList3: [{
-					url: '/static/images/demand.jpg',
+					url: '../../static/images/station/channel/demand.jpg',
 				}],
 
 				indexList: ["叶菜类", "豆菜类", "食用菌"],
