@@ -31,7 +31,7 @@
 
 <style lang="scss">
 	.container {
-		background: linear-gradient(#2ed573,#7bed9f,#f1f2f6);
+		background: linear-gradient(#ededed,#f1f2f6);
 	}
 	.album {
 		@include flex;

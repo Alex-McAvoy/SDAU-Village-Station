@@ -1,21 +1,21 @@
 <template>
 	<view>
-		<view class="content" style="background: linear-gradient(#2ed573,#2ed573,#2ed573,#2ed573,#7bed9f,#f1f2f6);">
+		<view class="content" style="height:100px;background: linear-gradient(#2ed573,#2ed573,#2ed573,#2ed573,#7bed9f,#f1f2f6);">
 			<view class="contain">
-				<u--text style="margin-top: 20px; margin-left: 2vh;" size="25" color="#fff" text="推优品"></u--text>
+				<u--text style="margin-top: 5px; margin-left: 2vh;" size="25" color="#fff" text="推优品"></u--text>
 				<view class="search-bar">
-					<u-search style="margin-top: 20px;" shape="round" height="40" placeholder=""
-						:clearabled="true"></u-search>
+					<u-search style="margin: 20px;" shape="round" height="40" placeholder=""
+						:clearabled="true" :show-action="false"></u-search>
 				</view>
 			</view>
-			<u-swiper style="margin-top: 20px;" height="180" :list="list" previousMargin="30" nextMargin="30" circular
-				:autoplay="false" radius="5" bgColor="#ffffff"></u-swiper>
 		</view>
+		<u-swiper style="margin:-10px 15px 0px 15px;border-radius: 10px;" height="180" :list="list" previousMargin="30" nextMargin="30" circular
+			:autoplay="false" radius="5" ></u-swiper>
 		<view class="module">
 			<u-icon size="30" color="#2ed573" name="thumb-up"></u-icon>
 			<u-text style="font-weight: 20px;" margin="8px 0px 0px 10px" text="农产品展示" bold size="20"></u-text>
 		</view>
-		<view style=" width: 100%;  border-radius: 10px; background-color: white;  margin-top: 1vh;">
+		<view style=" border-radius: 10px; background-color: white;  margin:15px">
 			<view class="u-page">
 				<view class="u-demo-block">
 					<view class="album">
@@ -33,7 +33,7 @@
 				</view>
 			</view>
 		</view>
-		<view style="width: 100%;  border-radius: 10px; background-color: white;  margin-top: 1vh;">
+		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="u-page">
 				<view class="u-demo-block">
 					<view class="album">
@@ -51,7 +51,7 @@
 				</view>
 			</view>
 		</view>
-		<view style="width: 100%;  border-radius: 10px; background-color: white;  margin-top: 1vh;">
+		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="u-page">
 				<view class="u-demo-block">
 					<view class="album">
@@ -73,7 +73,7 @@
 			<u-icon size="25" color="#2ed573" name="clock"></u-icon>
 			<u-text style="font-weight: 20px;" margin="6px 0px 0px 10px" text="优品动态" bold size="20"></u-text>
 		</view>
-		<view style="width: 100%;  border-radius: 10px; background-color: white;  margin-top: 1vh;">
+		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="u-page">
 				<view class="u-demo-block">
 					<view class="album">
@@ -91,7 +91,7 @@
 				</view>
 			</view>
 		</view>
-		<view style="width: 100%;  border-radius: 10px; background-color: white;  margin-top: 1vh;">
+		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="u-page">
 				<view class="u-demo-block">
 					<view class="album">
@@ -109,7 +109,7 @@
 				</view>
 			</view>
 		</view>
-		<view style="width: 100%;  border-radius: 10px; background-color: white;  margin-top: 1vh;">
+		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="u-page">
 				<view class="u-demo-block">
 					<view class="album">
@@ -128,7 +128,7 @@
 				</view>
 			</view>
 		</view>
-		<view style="width: 100%;  border-radius: 10px; background-color: white;  margin-top: 1vh;">
+		<view style="border-radius: 10px; background-color: white;  margin:15px">
 		</view>
 	</view>
 </template>

@@ -3,14 +3,14 @@
 		<view class="contain">
 			<!-- 1-->
 			<view class="container">
-				<u--text style="margin-top:30px;" size="20" color="#fff"  text="乡村驿站"></u--text>
+				<u--text style="margin-top:2px; margin-left: 2vh;" size="25" color="#fff"  text="乡村驿站"></u--text>
 				<view class="search-bar">
-					<u-search style="margin-top: 30px;" shape="round" height="40" placeholder=""
-						:clearabled="true"></u-search>
+					<u-search style="margin:22px;" shape="round" height="40" placeholder=""
+						:clearabled="true" :show-action="false"></u-search>
 				</view>
 			</view>
 			<!-- 2 九宫格 -->
-			<view style="width: 100%;  border-radius: 10px;margin-top: 2vh;">
+			<view style="border-radius: 10px;margin:15px">
 				<u-grid :border="false" col="4">
 					<u-grid-item v-for="(listItem,listIndex) in list" :key="listIndex">
 						<view @click="redirectTo(listItem.route)">
@@ -24,7 +24,7 @@
 			</view>
 		</view>
 		<!-- 3 问专家 -->
-		<view style="width: 100%;  border-radius: 10px; background-color: white;  margin-top: 2vh;">
+		<view style="border-radius: 10px; background-color: white;margin:15px">
 			<view class="askexperts-bar" style="font-size: 100px;">
 				<u-icon size="30" color="#2ed573" name="chat-fill"></u-icon>
 				<u-text margin="8px 0 4px 0" size="20" text="问专家"></u-text>
@@ -78,7 +78,7 @@
 			</u-list> -->
 		</view>
 		<!-- 4 随时问 -->
-		<view style="width: 100%;  border-radius: 10px; background-color: white;  margin-top: 2vh;">
+		<view style="border-radius: 10px; background-color: white;  margin:15px;">
 			<view class="askexperts-bar"><u-icon size="30" color="#2ed573" name="chat">
 				</u-icon><u-text margin="8px 0 8px 0" size="20" text="随时问"></u-text>
 			</view>
@@ -102,7 +102,7 @@
 			</view>
 		</view>
 		<!-- 5 学农技 -->
-		<view style="width: 100%;  border-radius: 10px; background-color: white;  margin-top: 2vh;">
+		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="askexperts-bar"><u-icon size="30" color="#2ed573" name="file-text-fill">
 				</u-icon><u-text margin="8px 0 8px 0" size="20" text="学农技"></u-text>
 			</view>
@@ -139,7 +139,7 @@
 			</view>
 		</view>
 		<!-- 6 -->
-		<view style="width: 100%;  border-radius: 10px; background-color: white;  margin-top: 2vh;">
+		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="askexperts-bar"><u-icon size="30" color="#2ed573" name="shopping-cart">
 				</u-icon><u-text margin="8px 0 2px 0" size="20" text="买农资"></u-text>
 			</view>
@@ -155,7 +155,7 @@
 
 		</view>
 		<!-- 7 -->
-		<view style="width: 100%;  border-radius: 10px; background-color: white;  margin-top: 2vh;">
+		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="askexperts-bar" style="font-size: 100px;">
 				<u-icon size="30" color="#2ed573" name="car-fill"></u-icon>
 				<u-text margin="8px 0 4px 0" size="20" text="找渠道"></u-text>
@@ -176,7 +176,7 @@
 			</u-scroll-list>
 		</view>
 		<!-- 8 -->
-		<view style="width: 100%;  border-radius: 10px; background-color: white;  margin-top: 2vh;">
+		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="askexperts-bar" style="font-size: 100px;">
 				<u-icon size="30" color="#2ed573" name="order"></u-icon>
 				<u-text margin="8px 0 4px 0" size="20" text="推优品"></u-text>
@@ -205,7 +205,7 @@
 			</view>
 		</view>
 		<!-- 9 -->
-		<view style="width: 100%;  border-radius: 10px; background-color: white;  margin-top: 2vh;">
+		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="askexperts-bar" style="font-size: 100px;">
 				<u-icon size="30" color="#2ed573" name="gift-fill"></u-icon>
 				<u-text margin="8px 0 4px 0" size="20" text="新品种"></u-text>
@@ -227,7 +227,7 @@
 			</view>
 		</view>
 		<!-- 10 -->
-		<view style="width: 100%;  border-radius: 10px; background-color: white;  margin-top: 2vh;">
+		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="askexperts-bar" style="font-size: 100px;">
 				<u-icon size="30" color="#2ed573" name="map"></u-icon>
 				<u-text margin="8px 0 4px 0" size="20" text="在线基地"></u-text>
