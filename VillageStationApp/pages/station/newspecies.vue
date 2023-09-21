@@ -1,5 +1,16 @@
 <template>
 	<view>
+		<view
+			style=" display: flex; align-items: center; margin: 5px; border-radius: 5px; overflow: hidden; background-color: white; justify-content: space-between;">
+			<!-- 定位 -->
+			<view style="margin-left: 1vh;">
+				<u-icon name="home-fill" color="#2ed573" size="20" label="泰安" labelSize="10px"></u-icon>
+			</view>
+			<!-- 搜索框 -->
+			<view style="width: 80%;">
+				<u-search placeholder="点我进行搜索" v-model="keyword"></u-search>
+			</view>
+		</view>
 
 
 		<!-- 新品种 绿色超级稻-->
@@ -57,10 +68,10 @@
 </script>
 <style lang="scss">
 	.album__content {
-		margin-top: 2vh;
+		margin-top: 1vh;
 		border-bottom: 1px solid #979797;
-		text-indent: 20px; //缩进了20px
-		letter-spacing: 3px; //字体间距为8px
+		border-radius: 5px;
+		background-color: white;
 	}
 
 	.u-page {
@@ -97,7 +108,7 @@
 		font-size: 19px !important;
 	}
 
-	::v-deep .u-text__value--primary {
-		color: #2ed573 !important;
-	}
+	// ::v-deep .u-text__value--primary {
+	// 	color: #2ed573 !important;
+	// }
 </style>

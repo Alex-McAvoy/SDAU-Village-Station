@@ -1,7 +1,65 @@
 <template>
-	<view class="u-content">
-		<u-parse :content="content"></u-parse>
+	<view>
+		<view class="u-content">
+			<u-parse :content="content"></u-parse>
+		</view>
+		<!-- 内容1 -->
+		<view class="album__content" style="background-color: white; display:flex;">
+			<!-- 左 -->
+			<view style="margin-left: 1vh;">
+				<!-- 左上 -->
+				<view>
+					<u--text text="江苏(姜堰)现代农业 (稻麦) 科技综合示范基地"  bold size="1"></u--text>
+				</view>
+				<!-- 左下 -->
+				<view style="margin-top: 3vh;">
+					<u--text text="泰州市农业开发区江苏红旗种业"  size="1" ></u--text>
+				</view>
+			</view>
+			<!-- 右 -->
+			<view style=" margin-left: auto;">
+				<!-- 右上 -->
+				<view>
+					<button  style="font-size: 4px;background-color: #2ed573;color: white;">查看详情</button>
+				</view>
+				<!-- 右下 -->
+				<view>
+					<button type="primary" style="font-size: 5px; margin-top: 4px;">去这里</button>
+				</view>
+			</view>
+
+
+		</view>
+		<!-- 内容2 -->
+		<view class="album__content" style="background-color: white; display:flex;margin-top: 20px;">
+			<!-- 左 -->
+			<view style="margin-left: 1vh;">
+				<!-- 左上 -->
+				<view>
+					<u--text text="江苏(姜堰)现代农业 (稻麦) 科技综合示范基地"  bold size="1"></u--text>
+				</view>
+				<!-- 左下 -->
+				<view style="margin-top: 3vh;">
+					<u--text text="泰州市农业开发区江苏红旗种业"  size="1" ></u--text>
+				</view>
+			</view>
+			<!-- 右 -->
+			<view style=" margin-left: auto;">
+				<!-- 右上 -->
+				<view>
+					<button  style="font-size: 4px;background-color: #2ed573;color: white;">查看详情</button>
+				</view>
+				<!-- 右下 -->
+				<view>
+					<button type="primary" style="font-size: 5px; margin-top: 4px;">去这里</button>
+				</view>
+			</view>
+		
+		
+		</view>
+
 	</view>
+	 
 </template>
 
 <script>
@@ -10,7 +68,8 @@
 			return {
 				content: `
 				<img src="../../static/images/station/onlinebase/map.jpg" />
-					<p>山东省农业科学院综合试验示范基地（济阳）位于济南市济阳县太平镇，距离济南院本部37公里。现有土地面积1778.07亩，于2013年11月立项建设，投资概算3.9亿元。基地突出农作物综合性科技创新和集成示范功能，以新品种创制、新技术研究和新成果新技术集成示范为核心，服务山东乃至黄淮海区域农业发展。经过几年的规划建设，初步建成设施先进、生态良好、环境优美的综合性农业科技创新示范园区。</p>
+				
+
 					
 				`
 			}

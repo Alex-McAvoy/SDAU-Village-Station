@@ -5,15 +5,26 @@
 			<u-tabs :list="list1" @click="click" class="tabs" style="align-items: center;" lineColor="#2ed573"
 				lineWidth="50"> </u-tabs>
 		</view>
-		<!-- 上传图片 -->
-		<view>
-			<u-upload :fileList="fileList3" @afterRead="afterRead" @delete="deletePic" name="3" multiple :maxCount="10"
-				:previewFullImage="true"></u-upload>
-		</view>
+		
 		<!-- 搜索框 -->
-		<view>
-			<u--input placeholder="请输入关键词,查看供求信息" prefixIcon="search"
-				prefixIconStyle="font-size: 22px;color: #909399"></u--input>
+		<view
+			style=" display: flex; align-items: center; margin: 5px; border-radius: 5px; overflow: hidden; background-color: white; justify-content: space-between;">
+			<!-- 定位 -->
+			<view style="margin-left: 1vh;">
+				<u-icon name="home-fill" color="#2ed573" size="20" label="泰安" labelSize="10px"></u-icon>
+			</view>
+			<!-- 搜索框 -->
+			<view style="width: 80%;">
+				<u-search placeholder="点我进行搜索" v-model="keyword"></u-search>
+			</view>
+		</view>
+		<!-- 上传图片 -->
+		<view style="  margin-top: 1vh;
+		border-bottom: 1px solid #979797;
+		border-radius: 5px;
+		background-color: white;">
+			<u-upload :fileList="fileList3" @afterRead="afterRead" @delete="deletePic " name="3" multiple :maxCount="10"
+				:previewFullImage="true"></u-upload>
 		</view>
 		<!-- 列表栏 -->
 		<view style="background-color: green;"><u-index-list :index-list="indexList">
