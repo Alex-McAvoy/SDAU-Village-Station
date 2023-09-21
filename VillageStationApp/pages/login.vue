@@ -60,7 +60,7 @@
 			}
 		},
 		created() {
-			this.$tab.redirectTo('/pages/index/index')
+			//this.$tab.redirectTo('/pages/index/index')
 			this.getCode()
 		},
 		methods: {
