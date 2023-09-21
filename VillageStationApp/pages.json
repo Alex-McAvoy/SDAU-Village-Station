@@ -136,7 +136,8 @@
 		}, {
 			"path": "pages/expert/expert",
 			"style": {
-				"navigationBarTitleText": "专家"
+				"navigationBarTitleText": "专家",
+				"navigationStyle": "custom"
 			}
 		}, {
 			"path": "pages/product/product",
