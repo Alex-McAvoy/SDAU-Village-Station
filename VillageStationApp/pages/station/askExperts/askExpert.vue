@@ -104,7 +104,6 @@
 		/* 将容器设置为弹性布局 */
 		align-items: center;
 		/* 垂直居中对齐图标和文本 */
-		background: linear-gradient(#2ed573,#2ed573,#2ed573,#2ed573,#7bed9f,#f1f2f6);
 	}
 
 	.module {
