@@ -1,11 +1,11 @@
 <template>
 	<view class="u-page">
 		<!-- 导航栏 -->
-		<view style="border-radius: 5px; margin-bottom: 2vh; ">
+		<view style="border-radius: 5px;background-color: white;  ">
 			<u-tabs :list="list1" @click="click" class="tabs" style="align-items: center;" lineColor="#2ed573"
 				lineWidth="50"> </u-tabs>
 		</view>
-		
+
 		<!-- 搜索框 -->
 		<view
 			style=" display: flex; align-items: center; margin: 5px; border-radius: 5px; overflow: hidden; background-color: white; justify-content: space-between;">
@@ -14,35 +14,116 @@
 				<u-icon name="home-fill" color="#2ed573" size="20" label="泰安" labelSize="10px"></u-icon>
 			</view>
 			<!-- 搜索框 -->
-			<view style="width: 80%;">
+			<view style="width: 80%; height: 31px; margin: 6px;">
 				<u-search placeholder="点我进行搜索" v-model="keyword"></u-search>
 			</view>
 		</view>
-		<!-- 上传图片 -->
-		<view style="  margin-top: 1vh;
-		border-bottom: 1px solid #979797;
-		border-radius: 5px;
-		background-color: white;">
-			<u-upload :fileList="fileList3" @afterRead="afterRead" @delete="deletePic " name="3" multiple :maxCount="10"
-				:previewFullImage="true"></u-upload>
-		</view>
-		<!-- 列表栏 -->
-		<view style="background-color: green;"><u-index-list :index-list="indexList">
-				<template v-for="(item, index) in itemArr">
-					<!-- #ifdef APP-NVUE -->
-					<u-index-anchor :text="indexList[index]"></u-index-anchor>
 
-					<!-- #endif -->
-					<u-index-item>
-						<!-- #ifndef APP-NVUE -->
-						<u-index-anchor :text="indexList[index]"></u-index-anchor>
-						<!-- #endif -->
-						<view class="list-cell" v-for="(cell, index) in item">
-							{{cell}}
-						</view>
-					</u-index-item>
-				</template>
-			</u-index-list></view>
+		
+		<!-- 内容1 -->
+		<view style="display: flex;  background-color: white;margin: 5px; border-radius: 10px; overflow: hidden;display:flex; ">
+			<image src="../../static/images/station/channel/cornharvester.jpg"
+				style="width: 450px;height: 350px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
+			</image>
+			<!-- 左上 -->
+			<view style="margin-left: 2vh;">
+				<u--text text="玉米收割机" bold size="17"></u--text>
+				<u--text color="#909090 " text="春种秋收一条龙,实现高收益的高性能机器 " size="9"></u--text>
+			</view>
+			<!-- 时间 -->
+			<!-- <view style=" margin-top: 7vh;margin-left: 10px;;">
+				<u--text color="#909090 " margin="5px" text="2023-09-15 16:00"></u--text>
+			</view> -->
+		</view>
+
+		<!--内容2 -->
+
+		<view style="display: flex;  background-color: white;margin: 5px; border-radius: 10px; overflow: hidden; display:flex;">
+			<image src="../../static/images/station/channel/Fragrans.jpg"
+				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
+			</image>
+			<!-- 左上 -->
+			<view style="margin-left: 2vh;">
+				<u--text text="桂花,桂花蜜" bold size="17"></u--text>
+				<u--text color="#909090 " text="桂花具有杀菌美容功效" size="7"></u--text>
+			</view>
+			<!-- 时间 -->
+			<!-- <view style=" margin-top: 7vh;margin-left: 10px;">
+				<u--text color="#909090 " margin="5px" text="2023-09-15 16:00"></u--text>
+			</view> -->
+		</view>
+		<!-- 内容3 -->
+		<view style="display: flex;  background-color: white;margin: 5px; border-radius: 10px; overflow: hidden; ">
+			<image src="../../static/images/station/channel/Goose.jpg"
+				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
+			</image>
+			<!-- 左上 -->
+			<view style="margin-left: 2vh;">
+				<u--text text="大白鹅" bold size="17"></u--text>
+				<u--text color="#909090 " text="散养河道大白鹅" size="7"></u--text>
+			</view>
+			<!-- 时间 -->
+			<!-- <view style=" margin-top: 7vh;margin-right: 1px;">
+				<u--text color="#909090 " margin="5px" text="2023-07-14 14:00"></u--text>
+			</view> -->
+		</view>
+		
+		<!-- 内容4 -->
+		<view style="display: flex;  background-color: white;margin: 5px; border-radius: 10px; overflow: hidden; ">
+			<image src="../../static/images/station/channel/sheep.jpg"
+				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
+			</image>
+			<!-- 左上 -->
+			<view style="margin-left: 2vh;">
+				<u--text text="黑山羊" bold size="17"></u--text>
+				<u--text color="#909090 " text="本地黑山羊膻味少" size="7"></u--text>
+			</view>
+			<!-- 时间 -->
+			<!-- <view style=" margin-top: 7vh;margin-right: 1px;">
+				<u--text color="#909090 " margin="5px" text="2023-07-14 14:00"></u--text>
+			</view> -->
+		</view>
+		
+		<!-- 内容5 -->
+		<view style="display: flex;  background-color: white;margin: 5px; border-radius: 10px; overflow: hidden; ">
+			<image src="../../static/images/station/channel/tomato.jpg"
+				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
+			</image>
+			<!-- 左上 -->
+			<view style="margin-left: 2vh;">
+				<u--text text="小番茄" bold size="17"></u--text>
+				<u--text color="#909090 " text="优质圣女果肉软，水分足" size="7"></u--text>
+			</view>
+			<!-- 时间 -->
+			<!-- <view style=" margin-top: 7vh;margin-right: 1px;">
+				<u--text color="#909090 " margin="5px" text="2023-07-14 14:00"></u--text>
+			</view> -->
+		</view>
+		
+		<view style="display: flex;  background-color: white;margin: 5px; border-radius: 10px; overflow: hidden; ">
+			<image src="../../static/images/station/learningTechnology/melon.jpg"
+				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
+			</image>
+			<!-- 左上 -->
+			<view style="margin-left: 2vh;">
+				<u--text text="黄杨木" bold size="17"></u--text>
+				<u--text color="#909090 " text="耐晒耐阴,耐寒耐热" size="7"></u--text>
+			</view>
+			<!-- 时间 -->
+			<!-- <view style=" margin-top: 7vh;margin-right: 1px;">
+				<u--text color="#909090 " margin="5px" text="2023-07-14 14:00"></u--text>
+			</view> -->
+		</view>
+		<!-- 悬浮框 -->
+		<u-button class="custom-style"
+		color="#2ed573" 
+		type="primary" 
+		shape="circle" 
+		text="点击上传" 
+		style="  width: 100px; height: 100px; position: fixed;bottom: 50px;right: 30px;"
+		>
+		</u-button>
+		
 	</view>
 </template>
 
@@ -55,17 +136,7 @@
 				}, {
 					name: '求购 ',
 				}, ],
-
-				fileList3: [{
-					url: '../../static/images/station/channel/demand.jpg',
-				}],
-
-				indexList: ["叶菜类", "豆菜类", "食用菌"],
-				itemArr: [
-					['精品黄心大白菜', '生菜', '苋菜', '香菜', '卷心菜'],
-					['毛豆', '四季豆', '豆角', '扁豆'],
-					['松菇菌', '鹿茸菇', '荷灵菇', '灵芝菇']
-				]
+			
 			}
 		},
 		methods: {
@@ -73,9 +144,7 @@
 				console.log('item', item);
 			},
 
-			scrolltolower() {
-				this.loadmore()
-			},
+
 		}
 	}
 </script>
@@ -91,6 +160,11 @@
 		font-size: 14px;
 		line-height: 24px;
 		background-color: #fff;
-
-	}
+		}
+		// 悬浮框强制按钮
+		::v-deep.u-tabs__wrapper__nav__item__text {
+			font-size: 39px !important;
+		}
+		
+  
 </style>
