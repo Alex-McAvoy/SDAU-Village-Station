@@ -1,20 +1,30 @@
 <template>
 	<view>
-		<view class="content" style="height:100px;background: linear-gradient(#2ed573,#2ed573,#2ed573,#2ed573,#7bed9f,#f1f2f6);">
+		<view class="content"
+			style="height:100px;background: linear-gradient(#2ed573,#2ed573,#2ed573,#2ed573,#7bed9f,#f1f2f6);">
+			<!-- 标题 -->
 			<view class="contain">
-				<u--text style="margin-top: 5px; margin-left: 2vh;" size="25" color="#fff" text="推优品"></u--text>
+				<u--text style="margin-top: 20px; margin-left:1vh;" size="20" color="#fff" text="推优品"></u--text>
+				<!-- 搜索框 -->
 				<view class="search-bar">
-					<u-search style="margin: 20px;" shape="round" height="40" placeholder=""
-						:clearabled="true" :show-action="false"></u-search>
+					<u-search style="margin-top: 20px;margin-left:1vh;width: 180px;"shape="round" height="40" placeholder="" :clearabled="true"
+						:show-action="false"></u-search>
 				</view>
+				<u--text style="margin-top: 20px; margin-left: 2vh;" size="15" color="#fff" text="天气"></u--text>
 			</view>
 		</view>
-		<u-swiper style="margin:-10px 15px 0px 15px;border-radius: 10px;" height="180" :list="list" previousMargin="30" nextMargin="30" circular
-			:autoplay="false" radius="5" ></u-swiper>
-		<view class="module">
-			<u-icon size="30" color="#2ed573" name="thumb-up"></u-icon>
-			<u-text style="font-weight: 20px;" margin="8px 0px 0px 10px" text="农产品展示" bold size="20"></u-text>
+		<!-- 轮播图 -->
+		<view style="margin: 5px;border-radius: 5px; overflow: hidden;">
+			<u-swiper :list="list" height="180px"></u-swiper>
 		</view>
+		<!-- 农产品展示 -->
+		<view class="module">
+			<image src="/static/images/station/station/农林.png"
+				style="margin:8px 8px 0px 8px; width: 20px; height: 20px;">
+			</image>
+			<u-text style="font-weight: 20px;" margin="8px 0px 0px 0px" text="热销农产" bold size="20"></u-text>
+		</view>
+		<!-- 鲁花 -->
 		<view style=" border-radius: 10px; background-color: white;  margin:15px">
 			<view class="u-page">
 				<view class="u-demo-block">
@@ -25,14 +35,21 @@
 							</image>
 						</view>
 						<view class="album__content">
-							<u-text margin="20px 0 10px 0" text="鲁花（山东春兴粮油集团有限公司）" bold size="18"></u-text>
-							<u-text margin="20px 0 8px 0" text="鲁花是中国知名的食用油品牌，其产品包括花生油、豆油、调和油等。"
-								color="rgb(169,169,169)" bold size="16"></u-text>
+							<div>
+								<span style="margin:20px 0 10px 0; font-size:20px;font-weight: 500px;">
+									鲁花（山东春兴粮油集团有限公司）</span>
+							</div>
+							<div>
+								<span
+									style="margin:20px 0 8px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
+									鲁花是中国知名的食用油品牌，其产品包括花生油、豆油、调和油等。</span>
+							</div>
 						</view>
 					</view>
 				</view>
 			</view>
 		</view>
+		<!-- 泰山 -->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="u-page">
 				<view class="u-demo-block">
@@ -43,14 +60,22 @@
 							</image>
 						</view>
 						<view class="album__content">
-							<u-text margin="20px 0 10px 0" text="泰山（泰山集团）" bold size="20"></u-text>
-							<u-text margin="20px 0 8px 0" text="泰山是中国著名的茶叶品牌，主要生产各类优质茶叶，如绿茶、红茶、乌龙茶等。"
-								color="rgb(169,169,169)" bold size="16"></u-text>
+							<div>
+								<span style="margin:20px 0 10px 0; font-size:20px;font-weight: 500px;">
+									泰山（泰山集团）</span>
+							</div>
+							<br/>
+							<div>
+								<span
+									style="margin:30px 0 8px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
+									泰山是中国著名的茶叶品牌，主要生产各类优质茶叶，如绿茶、红茶、乌龙茶等。</span>
+							</div>
 						</view>
 					</view>
 				</view>
 			</view>
 		</view>
+		<!-- 蓝湾 -->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="u-page">
 				<view class="u-demo-block">
@@ -61,18 +86,29 @@
 							</image>
 						</view>
 						<view class="album__content">
-							<u-text margin="20px 0 10px 0" text="蓝湾（山东蓝湾集团）" bold size="20"></u-text>
-							<u-text margin="20px 0 8px 0" text="蓝湾是中国知名的水果品牌，其产品主要包括苹果、樱桃、葡萄等。" color="rgb(169,169,169)"
-								bold size="16"></u-text>
+							<div>
+								<span style="margin:20px 0 10px 0; font-size:20px;font-weight: 500px;">
+									蓝湾（山东蓝湾集团）</span>
+							</div>
+							<br/>
+							<div>
+								<span
+									style="margin:30px 0 8px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
+									蓝湾是中国知名的水果品牌，其产品主要包括苹果、樱桃、葡萄等。</span>
+							</div>
 						</view>
 					</view>
 				</view>
 			</view>
 		</view>
+		<!-- 优品动态 -->
 		<view class="module">
-			<u-icon size="25" color="#2ed573" name="clock"></u-icon>
-			<u-text style="font-weight: 20px;" margin="6px 0px 0px 10px" text="优品动态" bold size="20"></u-text>
+			<image src="/static/images/station/station/农林.png"
+				style="margin:8px 8px 0px 8px; width: 20px; height: 20px;">
+			</image>
+			<u-text style="font-weight: 20px;" margin="6px 0px 0px 0px" text="优品动态" bold size="20"></u-text>
 		</view>
+		<!-- 泰山茶 -->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="u-page">
 				<view class="u-demo-block">
@@ -83,14 +119,22 @@
 							</image>
 						</view>
 						<view class="album__content">
-							<u-text margin="8px 0 10px 0" text="泰山茶" bold size="20"></u-text>
-							<u-text margin="10px 0 8px 0" text="到2018年泰安市茶园面积4.5万亩，产量1770吨，产值达11亿，位列山东省的第三位。"
-								color="rgb(169,169,169)" bold size="16"></u-text>
+							<div>
+								<span style="margin:30px 0 10px 0; font-size:20px;font-weight: 500px;">
+									泰山茶</span>
+							</div>
+							<br/>
+							<div>
+								<span
+									style="margin:30px 0 8px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
+									到2018年泰安市茶园面积4.5万亩，产量1770吨，产值达11亿，位列山东省的第三位。</span>
+							</div>
 						</view>
 					</view>
 				</view>
 			</view>
 		</view>
+		<!-- 荣成海带 -->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="u-page">
 				<view class="u-demo-block">
@@ -101,14 +145,22 @@
 							</image>
 						</view>
 						<view class="album__content">
-							<u-text margin="8px 0 10px 0" text="荣成海带" bold size="20"></u-text>
-							<u-text margin="10px 0 8px 0" text="山东省威海市特产，中国国家地理标志产品。" color="rgb(169,169,169)" bold
-								size="16"></u-text>
+							<div>
+								<span style="margin:30px 0 10px 0; font-size:20px;font-weight: 500px;">
+									荣成海带</span>
+							</div>
+							<br/>
+							<div>
+								<span
+									style="margin:30px 0 8px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
+									山东省威海市特产，中国国家地理标志产品。</span>
+							</div>
 						</view>
 					</view>
 				</view>
 			</view>
 		</view>
+		<!-- 新城细毛山药 -->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="u-page">
 				<view class="u-demo-block">
@@ -119,10 +171,16 @@
 							</image>
 						</view>
 						<view class="album__content">
-							<u-text margin="8px 0 10px 0" text="新城细毛山药" bold size="20"></u-text>
-							<u-text margin="10px 0 8px 0"
-								text="新城细毛山药栽培历史悠久，早在明清年间就享有盛誉。因其特殊的水土生长条件，成为山药家族中的上乘之品，并成为宫廷贡品。"
-								color="rgb(169,169,169)" bold size="16"></u-text>
+							<div>
+								<span style="margin:30px 0 10px 0; font-size:20px;font-weight: 500px;">
+									新城细毛山药</span>
+							</div>
+							<br/>
+							<div>
+								<span
+									style="margin:30px 0 8px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
+									新城细毛山药栽培历史悠久，早在明清年间就享有盛誉。因其特殊的水土生长条件，成为山药家族中的上乘之品，并成为宫廷贡品。</span>
+							</div>
 						</view>
 					</view>
 				</view>
@@ -139,9 +197,9 @@
 			return {
 				value1: 0,
 				list: [
-					'https://cdn.uviewui.com/uview/swiper/swiper3.png',
-					'https://cdn.uviewui.com/uview/swiper/swiper2.png',
-					'https://cdn.uviewui.com/uview/swiper/swiper1.png',
+					'../../static/images/station/freeAsk/orange.jpg',
+					'../../static/images/station/freeAsk/pitaya.jpg',
+					'../../static/images/station/freeAsk/banana.png',
 				],
 			}
 		},

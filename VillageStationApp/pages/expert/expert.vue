@@ -28,18 +28,22 @@
 		<el-main class="radius  video ">
 			<el-row>
 				<el-row style="text-align: center;">
+					<div class="content" @click="goToDetailPage1">
 					<el-col :span="11" style="margin-right:10px;">
 						<el-row :span="18">
 							<img style="width: 100%; height: 180px;" src="../../static/images/station/askExperts/shr.png" />
 						</el-row>
 						<el-row :span="6">束怀瑞</el-row>
 					</el-col>
+					</div>
+					<div class="content" @click="goToDetailPage2">
 					<el-col :span="11">
 						<el-row :span="18">
 							<img style="width: 100%; height: 180px;" src="../../static/images/station/askExperts/whg.png" />
 						</el-row>
 						<el-row :span="6">王洪刚</el-row>
 					</el-col>
+					</div>
 				</el-row>
 			</el-row>
 		</el-main>
@@ -61,7 +65,13 @@
 		methods: {
 			handleSelect(key, keyPath) {
 				console.log(key, keyPath);
-			}
+			},
+			goToDetailPage1() {
+				this.$router.push('/pages/station/askExperts/shr');
+			},
+			goToDetailPage2() {
+				this.$router.push('/pages/station/askExperts/whg');
+			},
 		}
 	}
 </script>
