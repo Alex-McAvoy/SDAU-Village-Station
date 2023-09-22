@@ -1,22 +1,23 @@
 <template>
 	<view style="">
 		<view class="contain">
-			<!-- 1-->
+			<!-- 1 标题-->
 			<view class="container">
 				<u--text style="margin-top:2px; margin-left: 2vh;" size="25" color="#fff"  text="乡村驿站"></u--text>
+				<!-- 搜索框 -->
 				<view class="search-bar">
 					<u-search style="margin:22px;" shape="round" height="40" placeholder=""
 						:clearabled="true" :show-action="false"></u-search>
 				</view>
 			</view>
 			<!-- 2 九宫格 -->
-			<view style="border-radius: 10px;margin:15px">
+			<view style="border-radius: 10px; background-color: white;margin:15px">
 				<u-grid :border="false" col="4">
-					<u-grid-item v-for="(listItem,listIndex) in list" :key="listIndex">
+					<u-grid-item  v-for="(listItem,listIndex) in list" :key="listIndex">
 						<view @click="redirectTo(listItem.route)">
-							<u-icon  color="#1b7d42" :customStyle="{paddingTop:20+'rpx'}" :name="listItem.name"
-								:size="30"></u-icon>
-							<text class="grid-text">{{listItem.title}}</text>
+							<u-image  :customStyle="{paddingTop:20+'rpx'}" :src="listItem.src"
+								:height="40" :width="25" style="display: flex;justify-content: center;align-items: center;"></u-image>
+							<span class="grid-text" style="color:#9f9f9f;font-size: 15px; margin:15px">{{listItem.title}}</span>
 						</view>
 					</u-grid-item>
 				</u-grid>
@@ -26,7 +27,9 @@
 		<!-- 3 问专家 -->
 		<view style="border-radius: 10px; background-color: white;margin:15px">
 			<view class="askexperts-bar" style="font-size: 100px;">
-				<u-icon size="30" color="#2ed573" name="chat-fill"></u-icon>
+				<image src="/static/images/station/station/问答.png"
+					style="margin:8px; width:30px; height: 25px;">
+				</image>
 				<u-text margin="8px 0 4px 0" size="20" text="问专家"></u-text>
 			</view>
 			<view class="u-page">
@@ -34,13 +37,16 @@
 					<view class="album">
 						<view class="album__avatar">
 							<image src="/static/images/station/askExperts/whg.png"
-								style="margin:8px; width: 70px; height: 80px;border-radius: 8px; overflow: hidden;">
+								style="margin:8px; width:100px; height: 100px;border-radius: 100%;">
 							</image>
 						</view>
 						<view class="album__content">
 							<u-text margin="10px 0 10px 0" text="王洪刚" bold size="20"></u-text>
-							<u-text margin="10px 0 8px 0" text="曾任山东农业大学农学系系主任、农学院院长，现为农学院教授委员会主任。"
-								color="rgb(169,169,169)" bold size="15"></u-text>
+							<div>
+								<span
+									style="margin:20px 0 8px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
+									曾任山东农业大学农学系系主任、农学院院长，现为农学院教授委员会主任。</span>
+							</div>
 						</view>
 					</view>
 				</view>
@@ -50,45 +56,40 @@
 					<view class="album">
 						<view class="album__avatar">
 							<image src="/static/images/station/askExperts/shr.png"
-								style="margin:8px; width: 70px; height: 80px;border-radius: 8px; overflow: hidden;">
+								style="margin:8px;width:100px; height: 100px;border-radius: 100%;">
 							</image>
 						</view>
 						<view class="album__content">
 							<u-text margin="10px 0 10px 0" text="束怀瑞" bold size="20"></u-text>
-							<u-text margin="10px 0 8px 0" text="中国工程院院士，博士生导师，中国园艺学会常务理事" color="rgb(169,169,169)" bold
-								size="15"></u-text>
+							<div>
+								<span
+									style="margin:20px 0 8px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
+									中国工程院院士，博士生导师，中国园艺学会常务理事</span>
+							</div>
 						</view>
 					</view>
 				</view>
 			</view>
-			<!-- <u-list @scrolltolower="scrolltolower">
-					<u-list-item
-						v-for="(item, index) in expertsList"
-						:key="index"
-					>
-						<u-cell :title="`列表长度-${index + 1}`">
-							<u-avatar
-								slot="icon"
-								shape="square"
-								size="50"
-								:src="item.url"
-								customStyle="margin: -3px 5px -3px 0"></u-avatar>
-						</u-cell>
-					</u-list-item>
-			</u-list> -->
 		</view>
 		<!-- 4 随时问 -->
 		<view style="border-radius: 10px; background-color: white;  margin:15px;">
-			<view class="askexperts-bar"><u-icon size="30" color="#2ed573" name="chat">
-				</u-icon><u-text margin="8px 0 8px 0" size="20" text="随时问"></u-text>
+			<view class="askexperts-bar">
+				<image src="/static/images/station/station/常见问题.png"
+					style="margin:8px; width:30px; height: 25px;">
+				</image>
+				<u-text margin="8px 0 8px 0" size="20" text="随时问"></u-text>
 			</view>
 			<u-gap height="10"></u-gap>
 			<view class="u-page">
 				<view class="album">
 					<view class="album__content">
 						<u--text size="18" margin="0 0 8px 0" text="秋季苹果花芽分化期管理"></u--text>
-						<u-album :urls="urls2" size="50"></u-album>
-						<u-text margin="4px 0 8px 0" text="惠农网用户投稿 19553人阅读" color="rgb(169,169,169)"></u-text>
+						<u-album :urls="urls2" size="50" style="border-radius: 8px; overflow: hidden;"></u-album>
+						<div>
+							<span
+								style="margin:20px 0 30px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
+								惠农网用户投稿 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;19553人阅读</span>
+						</div>
 					</view>
 				</view>
 			</view>
@@ -96,28 +97,34 @@
 				<view class="album">
 					<view class="album__content">
 						<u--text size="18" margin="0 0 8px 0" text="秋花生怎么种植高产"></u--text>
-						<u-album width="100px" height="80px" :urls="urls2" size="50" ></u-album>
+						<u-album width="100px" height="80px" :urls="urls2" size="50" style="border-radius: 8px; overflow: hidden;"></u-album>
 					</view>
 				</view>
 			</view>
 		</view>
 		<!-- 5 学农技 -->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
-			<view class="askexperts-bar"><u-icon size="30" color="#2ed573" name="file-text-fill">
-				</u-icon><u-text margin="8px 0 8px 0" size="20" text="学农技"></u-text>
+			<view class="askexperts-bar">
+				<image src="/static/images/station/station/农村幸福院.png"
+					style="margin:8px; width:30px; height: 25px;">
+				</image>
+				<u-text margin="8px 0 8px 0" size="20" text="学农技"></u-text>
 			</view>
 			<u-tabs :list="list1" @click="click"></u-tabs>
 			<view class="u-page">
 				<view class="u-demo-block">
 					<view class="album">
 						<view class="album__avatar">
-							<image src="https://cdn.uviewui.com/uview/album/1.jpg" style="width: 80px;height: 70px;">
+							<image src="/static/images/station/station/sg.png" style="border-radius: 8px; overflow: hidden;width: 80px;height: 70px;">
 							</image>
 						</view>
 						<view class="album__content">
 							<u-text margin="20px 0 8px 0" text="标题学农技标题学农标题学农技" bold size="17"></u-text>
-							<u-text margin="10px 0 8px 0" text="中国政府网 256人阅读" color="rgb(169,169,169)" bold
-								size="15"></u-text>
+							<div>
+								<span
+									style="margin:20px 0 30px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
+									中国政府网 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp 256人阅读</span>
+							</div>
 						</view>
 					</view>
 				</view>
@@ -126,22 +133,28 @@
 				<view class="u-demo-block">
 					<view class="album">
 						<view class="album__avatar">
-							<image src="https://cdn.uviewui.com/uview/album/1.jpg" style="width: 80px;height: 70px;">
+							<image src="/static/images/station/station/gl.png" style="border-radius: 8px; overflow: hidden;width: 80px;height: 70px;">
 							</image>
 						</view>
 						<view class="album__content">
 							<u-text margin="20px 0 8px 0" text="标题学农技标题学农标题学农技" bold size="17"></u-text>
-							<u-text margin="10px 0 8px 0" text="中国政府网 256人阅读" color="rgb(169,169,169)" bold
-								size="15"></u-text>
+							<div>
+								<span
+									style="margin:20px 0 30px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
+									中国政府网 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp 256人阅读</span>
+							</div>
 						</view>
 					</view>
 				</view>
 			</view>
 		</view>
-		<!-- 6 -->
+		<!-- 6 买农资-->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
-			<view class="askexperts-bar"><u-icon size="30" color="#2ed573" name="shopping-cart">
-				</u-icon><u-text margin="8px 0 2px 0" size="20" text="买农资"></u-text>
+			<view class="askexperts-bar">
+				<image src="/static/images/station/station/农产品.png"
+					style="margin:8px; width:30px; height: 25px;">
+				</image>
+				<u-text margin="8px 0 2px 0" size="20" text="买农资"></u-text>
 			</view>
 			<u-tabs :list="list2" @click="click" size="20"></u-tabs>
 			<div style="display: flex; ">
@@ -154,10 +167,12 @@
 			</div>
 
 		</view>
-		<!-- 7 -->
+		<!-- 7 找渠道-->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="askexperts-bar" style="font-size: 100px;">
-				<u-icon size="30" color="#2ed573" name="car-fill"></u-icon>
+				<image src="/static/images/station/station/渠道管理_面.png"
+					style="margin:8px; width:30px; height: 25px;">
+				</image>
 				<u-text margin="8px 0 4px 0" size="20" text="找渠道"></u-text>
 			</view>
 			<u-tabs :list="list3" @click="click" size="20"></u-tabs>
@@ -175,10 +190,12 @@
 				</view>
 			</u-scroll-list>
 		</view>
-		<!-- 8 -->
+		<!-- 8 推优品-->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="askexperts-bar" style="font-size: 100px;">
-				<u-icon size="30" color="#2ed573" name="order"></u-icon>
+				<image src="/static/images/station/station/农林.png"
+					style="margin:8px; width:30px; height: 25px;">
+				</image>
 				<u-text margin="8px 0 4px 0" size="20" text="推优品"></u-text>
 			</view>
 			<div style="display: flex; ">
@@ -192,44 +209,54 @@
 				<view class="u-demo-block">
 					<view class="album">
 						<view class="album__avatar">
-							<image src="https://cdn.uviewui.com/uview/album/3.jpg"
+							<image src="/static/images/station/station/sg.png"
 								style="width: 100px; height: 100px;border-radius: 8px; overflow: hidden;"></image>
 						</view>
 						<view class="album__content">
 							<u-text margin="20px 0 10px 0" text="农业品牌农业品牌" bold size="20"></u-text>
-							<u-text margin="20px 0 8px 0" text="惠农121   36人购买" color="rgb(169,169,169)" bold
-								size="18"></u-text>
+							<div>
+								<span
+									style="margin:20px 0 30px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
+									惠农121 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 36人购买</span>
+							</div>
 						</view>
 					</view>
 				</view>
 			</view>
 		</view>
-		<!-- 9 -->
+		<!-- 9 新品种-->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="askexperts-bar" style="font-size: 100px;">
-				<u-icon size="30" color="#2ed573" name="gift-fill"></u-icon>
+				<image src="/static/images/station/station/种植品种.png"
+					style="margin:8px; width:30px; height: 25px;">
+				</image>
 				<u-text margin="8px 0 4px 0" size="20" text="新品种"></u-text>
 			</view>
 			<view class="u-page">
 				<view class="u-demo-block">
 					<view class="album">
 						<view class="album__avatar">
-							<image src="https://cdn.uviewui.com/uview/album/2.jpg"
+							<image src="/static/images/station/station/gl.png"
 								style="width: 100px; height: 100px;border-radius: 8px; overflow: hidden;"></image>
 						</view>
 						<view class="album__content">
 							<u-text margin="10px 0 6px 0" text="显示驿站以及邻近地区涉及领域的新品种" bold size="20"></u-text>
-							<u-text margin="10px 0 8px 0" text="咨询单位名称及联系人" color="rgb(169,169,169)" bold
-								size="18"></u-text>
+							<div>
+								<span
+									style="margin:30px 0 30px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
+									咨询单位名称及联系人</span>
+							</div>
 						</view>
 					</view>
 				</view>
 			</view>
 		</view>
-		<!-- 10 -->
+		<!-- 10 在线基地-->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="askexperts-bar" style="font-size: 100px;">
-				<u-icon size="30" color="#2ed573" name="map"></u-icon>
+				<image src="/static/images/station/station/地图-旗.png"
+					style="margin:8px; width:30px; height: 25px;">
+				</image>
 				<u-text margin="8px 0 4px 0" size="20" text="在线基地"></u-text>
 			</view>
 			<!-- 			<view>
@@ -266,60 +293,48 @@
 		},
 		data() {
 			return {
-				// latitude: 117.117673,// 设置地图的纬度
-				// longitude:36.19451 ,// 设置地图的经度
-				// scale: 14, // 设置地图的缩放级别
-				//       markers: [ // 设置标记点
-				//         {
-				//           latitude: 117.117673,
-				//           longitude:36.19451,
-				//           title: '山东农业大学（岱宗校区）',
-				//           iconPath: '/static/images/R-C.jpg',
-				// 		  iconSize: [10, 10], // 设置标记点图片的宽度和高度
-				//         },
-				//       ],
 				value1: 0,
-				src: "https://cdn.uviewui.com/uview/album/1.jpg",
-				src1: "https://cdn.uviewui.com/uview/album/2.jpg",
-				src2: "https://cdn.uviewui.com/uview/album/3.jpg",
-				src3: "/static/images/station/station/R-C.jpg",
+				src: "/static/images/station/station/sg.png",
+				src1: "/static/images/station/station/gl.png",
+				src2: "/static/images/station/station/sg.png",
+				src3: "/static/images/station/station/gl.png",
 				list: [{
-						name: 'chat-fill',
+						src:"/static/images/station/station/问答.png",
 						title: '问专家',
 						route: '/pages/station/askExperts/askExpert'
 					},
 					{
-						name: 'chat',
+						src:"/static/images/station/station/常见问题.png",
 						title: '随时问',
 						route: '/pages/station/freeAsk'
 					},
 					{
-						name: 'file-text-fill',
+						src:"/static/images/station/station/农村幸福院.png",
 						title: '学农技',
 						route: '/pages/station/learningTechnology'
 					},
 					{
-						name: 'shopping-cart',
+						src:"/static/images/station/station/农产品.png",
 						title: '买农资',
 						route: '/pages/station/purchaseFarm'
 					},
 					{
-						name: 'car-fill',
+						src:"/static/images/station/station/渠道管理_面.png",
 						title: '找渠道',
 						route: '/pages/station/channel'
 					},
 					{
-						name: 'order',
+						src:"/static/images/station/station/农林.png",
 						title: '推优品',
 						route: '/pages/station/products'
 					},
 					{
-						name: 'gift-fill',
+						src:"/static/images/station/station/种植品种.png",
 						title: '新品种',
 						route: '/pages/station/newspecies'
 					},
 					{
-						name: 'map',
+						src:"/static/images/station/station/地图-旗.png",
 						title: '在线基地',
 						route: '/pages/station/onlinebase'
 					},
@@ -356,28 +371,19 @@
 				}],
 				list4: [{
 					price: '230.5',
-					thumb: 'https://cdn.uviewui.com/uview/goods/1.jpg'
+					thumb: '/static/images/station/station/sg.png'
 				}, {
 					price: '74.1',
-					thumb: 'https://cdn.uviewui.com/uview/goods/2.jpg'
+					thumb: '/static/images/station/station/gl.png'
 				}, {
 					price: '8457',
-					thumb: 'https://cdn.uviewui.com/uview/goods/6.jpg'
+					thumb: '/static/images/station/station/sg.png'
 				}, {
 					price: '1442',
-					thumb: 'https://cdn.uviewui.com/uview/goods/5.jpg'
+					thumb: '/static/images/station/station/gl.png'
 				}, {
 					price: '541',
-					thumb: 'https://cdn.uviewui.com/uview/goods/2.jpg'
-				}, {
-					price: '234',
-					thumb: 'https://cdn.uviewui.com/uview/goods/3.jpg'
-				}, {
-					price: '562',
-					thumb: 'https://cdn.uviewui.com/uview/goods/4.jpg'
-				}, {
-					price: '251.5',
-					thumb: 'https://cdn.uviewui.com/uview/goods/1.jpg'
+					thumb: '/static/images/station/station/sg.png'
 				}],
 				list5: [{
 					name: '我的优品',
@@ -390,9 +396,9 @@
 				],
 				albumWidth: 0,
 				urls2: [
-					'https://cdn.uviewui.com/uview/album/1.jpg',
-					'https://cdn.uviewui.com/uview/album/2.jpg',
-					'https://cdn.uviewui.com/uview/album/3.jpg',
+					'/static/images/station/station/sg.png',
+					'/static/images/station/station/gl.png',
+					'/static/images/station/station/sg.png',
 				],
 			}
 		},
