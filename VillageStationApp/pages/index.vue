@@ -115,8 +115,8 @@
 						<el-row :span="17">
 							<img style="width: 100%;" src="../static/images/index_goods.jpg" />
 						</el-row>
-						<el-row :span="3">土豆</el-row>
-						<el-row :span="4" style="color: #2ed573;">1800/吨</el-row>
+						<el-row :span="3" class="common_text_size">土豆</el-row>
+						<el-row :span="4" style="color: #2ed573;" class="common_text_size">1800/吨</el-row>
 					</el-col>
 				</el-row>
 			</el-row>

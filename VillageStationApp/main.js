@@ -2,16 +2,13 @@ import Vue from 'vue'
 import App from './App'
 import store from './store' // store
 import plugins from './plugins' // plugins
-import './permission' // permission
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
+import './permission' // permission 
 import uView from "uview-ui";
 
 Vue.use(uView);
 Vue.use(plugins)
 
 Vue.use(plugins)
-Vue.use(ElementUI);
 Vue.config.productionTip = false
 Vue.prototype.$store = store
 

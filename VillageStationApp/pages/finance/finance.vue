@@ -1,35 +1,33 @@
 <template>
-	<el-container>
-		<el-header style="height:100px;padding:0px 0px 0px 0px">
-			<el-row style="background: linear-gradient(#2ed573,#2ed573,#2ed573,#2ed573,#7bed9f,#f1f2f6);">
-				<el-col :span="5" class="font_white">金融&nbsp;</div></el-col>
-				<el-col :span="15">
-					<el-input placeholder="请输入内容" prefix-icon="el-icon-search" v-model="input2">
-					</el-input>
-				</el-col>
-				<el-col :span="4" class="font_white">天气</div></el-col>
-			</el-row>
-		</el-header>
-
-		<el-main class="load radius">
-			<el-row :gutter="20">
-				<el-col :span="8">
-					<div style="background-color: #7bed9f; border-radius: 5px;">
-						<el-row style="padding:15px"><!-- 图标 -->
-							<svg t="1695194222329" class="icon" viewBox="0 0 1024 1024" version="1.1"
-								xmlns="http://www.w3.org/2000/svg" p-id="1970" width="32" height="32">
-								<path
-									d="M977.92 801.28c15.36 10.24 0 25.6 0 25.6L819.2 988.16s-15.36 20.48-43.52 0c-12.8-10.24-69.12-56.32-69.12-56.32s-17.92-15.36-46.08-17.92H307.2s-15.36 5.12-28.16-5.12-184.32-153.6-232.96-194.56c-10.24-12.8 0-33.28 0-33.28s33.28-58.88 122.88 0c53.76 38.4 138.24 97.28 138.24 97.28h204.8l58.88-38.4s15.36-10.24 0-10.24c-46.08-2.56-110.08-7.68-135.68-12.8-30.72-5.12-48.64-30.72-48.64-56.32 0-40.96 25.6-46.08 48.64-46.08h307.2s12.8 0 25.6 10.24c10.24 12.8 194.56 166.4 209.92 176.64zM250.88 0h473.6c25.6 0 46.08 20.48 46.08 46.08V384c0 15.36-7.68 30.72-20.48 38.4l-256 166.4L230.4 422.4c-17.92-7.68-25.6-23.04-25.6-38.4V46.08C204.8 20.48 225.28 0 250.88 0z m17.92 371.2l222.72 135.68 212.48-135.68V71.68h-435.2v299.52z m117.76-212.48c-5.12-10.24 0-20.48 10.24-28.16 12.8-5.12 23.04-2.56 30.72 10.24L486.4 232.96l61.44-92.16c7.68-10.24 17.92-15.36 28.16-10.24 12.8 5.12 15.36 15.36 10.24 28.16l-61.44 92.16h51.2c5.12 5.12 7.68 10.24 7.68 15.36s-2.56 12.8-7.68 15.36H512v25.6h64c5.12 5.12 7.68 10.24 7.68 15.36 0 7.68-2.56 12.8-7.68 15.36H512v66.56c0 17.92-7.68 28.16-23.04 28.16-17.92 0-25.6-10.24-25.6-28.16v-66.56h-64c-7.68-2.56-10.24-7.68-10.24-15.36s2.56-12.8 10.24-15.36H460.8v-25.6h-64c-7.68-5.12-10.24-10.24-10.24-15.36 0-5.12 2.56-12.8 10.24-15.36h48.64l-58.88-92.16z"
-									fill="#2ed573" p-id="1971" data-spm-anchor-id="a313x.search_index.0.i1.7dd63a81cWhV23"
-									class="selected"></path>
-							</svg>
-						</el-row>
-						<el-row style="color:#fff">小额农贷</el-row>
-					</div>
-				</el-col>
-				<el-col :span="8" >
-					<div style="background-color: #7bed9f; border-radius: 5px;">
-					<el-row style="padding:15px"><!-- 图标 -->
+	<view class="body">
+		<!-- 顶部 搜索栏 -->
+		<u-row gutter="20" class="index_head">
+			<u-col span="3">金融&nbsp;</u-col>
+			<u-col span="7">
+				<u-search :show-action="false"></u-search>
+			</u-col>
+			<u-col span="2">天气</u-col>
+		</u-row>
+		<!-- 金融产品 -->
+		<view class="main_context first_main_context">
+			<view class="load_product_list">
+				<view class="load_product_item">
+					<view> </view>
+					<view class="flex_row">
+						<svg t="1695194222329" class="icon" viewBox="0 0 1024 1024" version="1.1"
+							xmlns="http://www.w3.org/2000/svg" p-id="1970" width="32" height="32">
+							<path
+								d="M977.92 801.28c15.36 10.24 0 25.6 0 25.6L819.2 988.16s-15.36 20.48-43.52 0c-12.8-10.24-69.12-56.32-69.12-56.32s-17.92-15.36-46.08-17.92H307.2s-15.36 5.12-28.16-5.12-184.32-153.6-232.96-194.56c-10.24-12.8 0-33.28 0-33.28s33.28-58.88 122.88 0c53.76 38.4 138.24 97.28 138.24 97.28h204.8l58.88-38.4s15.36-10.24 0-10.24c-46.08-2.56-110.08-7.68-135.68-12.8-30.72-5.12-48.64-30.72-48.64-56.32 0-40.96 25.6-46.08 48.64-46.08h307.2s12.8 0 25.6 10.24c10.24 12.8 194.56 166.4 209.92 176.64zM250.88 0h473.6c25.6 0 46.08 20.48 46.08 46.08V384c0 15.36-7.68 30.72-20.48 38.4l-256 166.4L230.4 422.4c-17.92-7.68-25.6-23.04-25.6-38.4V46.08C204.8 20.48 225.28 0 250.88 0z m17.92 371.2l222.72 135.68 212.48-135.68V71.68h-435.2v299.52z m117.76-212.48c-5.12-10.24 0-20.48 10.24-28.16 12.8-5.12 23.04-2.56 30.72 10.24L486.4 232.96l61.44-92.16c7.68-10.24 17.92-15.36 28.16-10.24 12.8 5.12 15.36 15.36 10.24 28.16l-61.44 92.16h51.2c5.12 5.12 7.68 10.24 7.68 15.36s-2.56 12.8-7.68 15.36H512v25.6h64c5.12 5.12 7.68 10.24 7.68 15.36 0 7.68-2.56 12.8-7.68 15.36H512v66.56c0 17.92-7.68 28.16-23.04 28.16-17.92 0-25.6-10.24-25.6-28.16v-66.56h-64c-7.68-2.56-10.24-7.68-10.24-15.36s2.56-12.8 10.24-15.36H460.8v-25.6h-64c-7.68-5.12-10.24-10.24-10.24-15.36 0-5.12 2.56-12.8 10.24-15.36h48.64l-58.88-92.16z"
+								fill="#2ed573" p-id="1971" data-spm-anchor-id="a313x.search_index.0.i1.7dd63a81cWhV23"
+								class="selected"></path>
+						</svg>
+					</view>
+					<view style="text-align: center;color:#fff">小额农贷</view>
+					<view class=""></view>
+				</view>
+				<view class="load_product_item">
+					<view> </view>
+					<view class="flex_row">
 						<svg t="1695196178745" class="icon" viewBox="0 0 1024 1024" version="1.1"
 							xmlns="http://www.w3.org/2000/svg" p-id="3547" width="32" height="32">
 							<path
@@ -40,13 +38,13 @@
 								p-id="3549" data-spm-anchor-id="a313x.search_index.0.i10.7dd63a81cWhV23" fill="#2ed573"
 								class="selected"></path>
 						</svg>
-					</el-row>
-					<el-row style="color:#fff">合作社金融</el-row>
-					</div>
-				</el-col>
-				<el-col :span="8" >
-					<div style="background-color: #7bed9f; border-radius: 5px;">
-					<el-row style="padding:15px"><!-- 图标 -->
+					</view>
+					<view style="text-align: center;color:#fff">合作社金融</view>
+					<view class=""></view>
+				</view>
+				<view class="load_product_item">
+					<view> </view>
+					<view class="flex_row">
 						<svg t="1695196223315" class="icon" viewBox="0 0 1024 1024" version="1.1"
 							xmlns="http://www.w3.org/2000/svg" p-id="5832"
 							data-spm-anchor-id="a313x.search_index.0.i14.7dd63a81cWhV23" width="32" height="32">
@@ -54,23 +52,68 @@
 								d="M992 853.824c0-145.984-83.904-270.848-202.432-321.728 57.408-41.344 95.296-111.872 95.296-191.936 0-109.312-70.528-200.768-165.184-224.576a3.712 3.712 0 0 0-2.496 0.192c-1.088-0.128-2.112-0.384-3.2-0.384-20.224 0-36.608 17.664-36.608 39.488 0 19.712 13.44 35.904 30.848 38.848 3.136 1.344 7.168 2.432 7.36 2.496 54.784 20.032 94.272 75.968 94.272 141.824 0 73.472-49.088 134.528-113.792 147.328l-0.256 0.256c-21.504 1.408-38.656 20.544-38.656 44.16 0 23.872 17.6 43.264 39.616 44.224 0.128 0.128 0.256 0.384 0.448 0.384 130.112 14.272 222.4 133.888 222.4 279.36 0 21.504 16.192 38.976 36.16 38.976 19.52 0 35.264-16.64 36.032-37.504l0.192-0.512-0.064-0.256 0.064-0.64zM558.592 538.56c68.544-49.536 113.664-133.76 113.664-229.504 0-152.448-114.624-276.096-256-276.096s-256 123.648-256 276.096c0 95.744 45.184 179.968 113.728 229.504C132.16 599.552 32 748.8 32 923.456c0 9.856 0.512 19.648 1.216 29.248H33.28c0 21.248 16 38.4 35.712 38.4 19.712 0 35.712-17.152 35.712-38.4 0-1.28-0.192-2.368-0.32-3.52-0.64-8.512-1.28-17.024-1.28-25.728 0-186.496 140.224-337.728 313.216-337.728s313.216 151.232 313.216 337.728c0 9.024-0.576 17.856-1.344 26.752l-0.128 1.28 0.064 0.384-0.064 0.896h0.128c0.64 20.608 16.256 37.248 35.584 37.248s35.008-16.64 35.584-37.248h0.064c0.704-9.6 1.216-19.392 1.216-29.12-0.128-174.848-100.352-324.096-242.048-385.088z m-142.336-31.104c-101.568 0-183.936-88.832-183.936-198.336 0-109.568 82.304-198.336 183.936-198.336 101.568 0 183.872 88.768 183.872 198.336 0 109.504-82.304 198.336-183.872 198.336z m0 0"
 								fill="#2ed573" p-id="5833"></path>
 						</svg>
-					</el-row>
-					<el-row style="color:#fff">招商引资</el-row>
-					</div>
-				</el-col>
-			</el-row>
-		</el-main>
-		<el-main class="radius  finance_products">
-			<el-row>
-				<el-col :span="2"><svg t="1694852434425" class="icon" viewBox="0 0 1024 1024" version="1.1"
-						xmlns="http://www.w3.org/2000/svg" p-id="9323"
-						data-spm-anchor-id="a313x.search_index.0.i11.77e73a81VQhc3c" width="23" height="23">
-						<path
-							d="M878.18 118.28l-732.3 0c-58.14 0-105.42 47.34-105.42 105.42l0 576.48c0 58.2 47.34 105.48 105.42 105.48l732.3 0c58.14 0 105.42-47.28 105.42-105.48l0-576.42c-0.06-58.14-47.34-105.48-105.42-105.48zM923.54 800.24c0 25.08-20.4 45.48-45.42 45.48l-732.24 0c-25.02 0-45.42-20.4-45.42-45.48l0-576.48c0-25.02 20.4-45.42 45.42-45.42l732.3 0c25.02 0 45.42 20.4 45.42 45.42l0 576.48zM181.04 264.08l661.86 0 0 61.86-661.86 0 0-61.86zM542 390.74l300.96 0 0 61.86-300.96 0 0-61.86zM542 516.08l300.96 0 0 88.74-300.96 0 0-88.74zM542 692l246.36 0 0 61.86-246.36 0 0-61.86zM181.04 391.64l285.96 0 0 362.16-285.96 0 0-362.16z"
-							fill="#2ed573" p-id="9324"></path>
-					</svg></el-col>
-				<el-col :span="20">&nbsp;金融资讯</el-col>
-				<el-col :span="2"><svg t="1694850751155" class="icon" viewBox="0 0 1024 1024" version="1.1"
+					</view>
+					<view style="text-align: center;color:#fff">招商引资</view>
+					<view class=""></view>
+				</view>
+			</view>
+		</view>
+		<!-- 金融资讯 -->
+		<view class="main_context">
+			<view> <!-- 主体框 -->
+				<u-row gutter="16">
+					<u-col span="2">
+						<svg t="1694852434425" class="icon" viewBox="0 0 1024 1024" version="1.1"
+							xmlns="http://www.w3.org/2000/svg" p-id="9323"
+							data-spm-anchor-id="a313x.search_index.0.i11.77e73a81VQhc3c" width="23" height="23">
+							<path
+								d="M878.18 118.28l-732.3 0c-58.14 0-105.42 47.34-105.42 105.42l0 576.48c0 58.2 47.34 105.48 105.42 105.48l732.3 0c58.14 0 105.42-47.28 105.42-105.48l0-576.42c-0.06-58.14-47.34-105.48-105.42-105.48zM923.54 800.24c0 25.08-20.4 45.48-45.42 45.48l-732.24 0c-25.02 0-45.42-20.4-45.42-45.48l0-576.48c0-25.02 20.4-45.42 45.42-45.42l732.3 0c25.02 0 45.42 20.4 45.42 45.42l0 576.48zM181.04 264.08l661.86 0 0 61.86-661.86 0 0-61.86zM542 390.74l300.96 0 0 61.86-300.96 0 0-61.86zM542 516.08l300.96 0 0 88.74-300.96 0 0-88.74zM542 692l246.36 0 0 61.86-246.36 0 0-61.86zM181.04 391.64l285.96 0 0 362.16-285.96 0 0-362.16z"
+								fill="#2ed573" p-id="9324"></path>
+						</svg>
+					</u-col>
+					<u-col span="9" class="bar">金融咨询</u-col>
+					<u-col span="1">
+						<svg t="1694850751155" class="icon" viewBox="0 0 1024 1024" version="1.1"
+							xmlns="http://www.w3.org/2000/svg" p-id="8256" width="23" height="23">
+							<path
+								d="M326.4 838.4l352-352c12.8-12.8 32-12.8 44.8 0l0 0c12.8 12.8 12.8 32 0 44.8l-352 352c-12.8 12.8-32 12.8-44.8 0l0 0C313.6 876.8 313.6 851.2 326.4 838.4z"
+								p-id="8257" fill="#cdcdcd"></path>
+							<path
+								d="M678.4 531.2 326.4 185.6c-12.8-12.8-12.8-32 0-44.8l0 0C339.2 128 358.4 128 371.2 134.4l352 352c12.8 12.8 12.8 32 0 44.8l0 0C710.4 544 684.8 544 678.4 531.2z"
+								p-id="8258" fill="#cdcdcd"></path>
+						</svg>
+					</u-col>
+				</u-row>
+			</view>
+			<view> <!-- 栏目标签 -->
+				<u-tabs :list="list" :is-scroll="true" v-on:click="getData" active-color="#2ed573"
+					@change="change"></u-tabs>
+			</view>
+			<view><!-- 栏目内容 -->
+				<view class="news">
+					<view class="new_img">
+						<img src="../../static/images/finance/finance.png" alt=""
+							style="width:100%;height: auto;overflow: hidden">
+					</view>
+					<view class="new_title">【新时代新征程新伟业——实干笃行】安徽扩外贸引外资 提高开放型经济水平</view>
+					<view class="new_origin"><span class="origin">来源</span><span>中国政府网</span>
+					</view>
+				</view>
+			</view>
+			 
+		</view>
+		
+		<!-- 视频 -->
+		<view class="main_context first_main_context">
+			<!-- 顶部栏 -->
+			<u-row gutter="16">
+				<u-col span="2">
+					<svg t="1695451579000" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5388" width="23" height="23"><path d="M768 128a128 128 0 0 1 128 128v512a128 128 0 0 1-128 128H256a128 128 0 0 1-128-128V256a128 128 0 0 1 128-128h512z m0 64H256a64 64 0 0 0-63.84 59.2L192 256v512a64 64 0 0 0 59.2 63.84L256 832h512a64 64 0 0 0 63.84-59.2L832 768V256a64 64 0 0 0-59.2-63.84L768 192z m-347.008 137.088a64 64 0 0 1 25.248 5.216l5.824 2.88 214.016 118.88a64 64 0 0 1 5.056 108.736l-5.056 3.136-214.016 118.88a64 64 0 0 1-94.72-49.44l-0.352-6.496v-237.76a64 64 0 0 1 64-64z m0 64v237.792L635.008 512l-214.016-118.912z" fill="#2ed573" p-id="5389" data-spm-anchor-id="a313x.search_index.0.i9.9ade3a81Veu1lv" class="selected"></path></svg>
+					
+				</u-col>
+				<u-col span="9" class="bar">金融产品介绍视频</u-col>
+				<u-col span="1">
+					<svg t="1694850751155" class="icon" viewBox="0 0 1024 1024" version="1.1"
 						xmlns="http://www.w3.org/2000/svg" p-id="8256" width="23" height="23">
 						<path
 							d="M326.4 838.4l352-352c12.8-12.8 32-12.8 44.8 0l0 0c12.8 12.8 12.8 32 0 44.8l-352 352c-12.8 12.8-32 12.8-44.8 0l0 0C313.6 876.8 313.6 851.2 326.4 838.4z"
@@ -78,167 +121,89 @@
 						<path
 							d="M678.4 531.2 326.4 185.6c-12.8-12.8-12.8-32 0-44.8l0 0C339.2 128 358.4 128 371.2 134.4l352 352c12.8 12.8 12.8 32 0 44.8l0 0C710.4 544 684.8 544 678.4 531.2z"
 							p-id="8258" fill="#cdcdcd"></path>
-					</svg></el-col>
-			</el-row>
-			<el-row>
-				<el-menu :default-active="activeIndex" class="el-menu-demo flex_center"
-					style="height:auto;padding:5px;flex-wrap:nowrap;overflow-x: auto;margin:-10px 0px 10px 0px"
-					mode="horizontal" @select="handleSelect">
-					<el-menu-item index="2">金融助农</el-menu-item>
-					<el-menu-item index="3">业务新闻</el-menu-item>
-					<el-menu-item index="4">相关案例</el-menu-item>
-				</el-menu>
-			</el-row>
-			<el-row :span="24">
-				<el-row>
-					<el-col :span="8"><img style="width:100%;height:auto" src="../../static/images/finance/finance.png" /></el-col>
-					<el-col :span="16" style="padding:5px;font-size:14px">
-						<el-row :span="16">打造金融助农“1+5”运行体系 <br> 重庆金融助力农村致富带头人行动计划启动</el-row>
-						<el-row :span="8" style="font-size: 10px;">
-							<br><br>
-							<el-col :span="8" style="color:#2ed573">政策法规</el-col>
-							
-							<el-col :span="16" style="color:#ced6e0">中国政府网</el-col>
-						</el-row>
-					</el-col>
-				</el-row>
-			</el-row>
-		</el-main>
-
-		<el-main class="radius  video ">
-			<el-row>
-				<el-col :span="2"><svg t="1694852434425" class="icon" viewBox="0 0 1024 1024" version="1.1"
-						xmlns="http://www.w3.org/2000/svg" p-id="9323"
-						data-spm-anchor-id="a313x.search_index.0.i11.77e73a81VQhc3c" width="23" height="23">
-						<path
-							d="M878.18 118.28l-732.3 0c-58.14 0-105.42 47.34-105.42 105.42l0 576.48c0 58.2 47.34 105.48 105.42 105.48l732.3 0c58.14 0 105.42-47.28 105.42-105.48l0-576.42c-0.06-58.14-47.34-105.48-105.42-105.48zM923.54 800.24c0 25.08-20.4 45.48-45.42 45.48l-732.24 0c-25.02 0-45.42-20.4-45.42-45.48l0-576.48c0-25.02 20.4-45.42 45.42-45.42l732.3 0c25.02 0 45.42 20.4 45.42 45.42l0 576.48zM181.04 264.08l661.86 0 0 61.86-661.86 0 0-61.86zM542 390.74l300.96 0 0 61.86-300.96 0 0-61.86zM542 516.08l300.96 0 0 88.74-300.96 0 0-88.74zM542 692l246.36 0 0 61.86-246.36 0 0-61.86zM181.04 391.64l285.96 0 0 362.16-285.96 0 0-362.16z"
-							fill="#2ed573" p-id="9324"></path>
-					</svg></el-col>
-				<el-col :span="20">&nbsp;金融视频</el-col>
-				<el-col :span="2"><svg t="1694850751155" class="icon" viewBox="0 0 1024 1024" version="1.1"
-						xmlns="http://www.w3.org/2000/svg" p-id="8256" width="23" height="23">
-						<path
-							d="M326.4 838.4l352-352c12.8-12.8 32-12.8 44.8 0l0 0c12.8 12.8 12.8 32 0 44.8l-352 352c-12.8 12.8-32 12.8-44.8 0l0 0C313.6 876.8 313.6 851.2 326.4 838.4z"
-							p-id="8257" fill="#cdcdcd"></path>
-						<path
-							d="M678.4 531.2 326.4 185.6c-12.8-12.8-12.8-32 0-44.8l0 0C339.2 128 358.4 128 371.2 134.4l352 352c12.8 12.8 12.8 32 0 44.8l0 0C710.4 544 684.8 544 678.4 531.2z"
-							p-id="8258" fill="#cdcdcd"></path>
-					</svg></el-col>
-			</el-row>
-			<el-row>
-				<el-row style="text-align: center;">
-					<el-col :span="11" style="margin-right:10px;">
-						<el-row :span="18">
-							<img style="width: 100%; height: 150px;" src="../../static/images/finance/load1.jpg" />
-						</el-row>
-						<el-row :span="6">金融活水润“三夏”</el-row>
-					</el-col>
-					<el-col :span="11">
-						<el-row :span="18">
-							<img style="width: 100%; height: 150px;" src="../../static/images/finance/load2.jpg" />
-						</el-row>
-						<el-row :span="6"> 助农惠企保民生</el-row>
-					</el-col>
-				</el-row>
-			</el-row>
-		</el-main>
-
-
-	</el-container>
+					</svg>
+				</u-col>
+			</u-row>
+			<view class="flex_row video_list">
+				<view class="video_list_item">
+					<view class="flex_col">
+						<img class="video_img" src="../../static/images/finance/load1.jpg" />
+					</view>
+					<view style="font-size: 13px;">金融活水润“三夏”</view>
+				</view>
+				<view class="video_list_item">
+					<view class="flex_col">
+						<img class="video_img" src="../../static/images/finance/load2.jpg" />
+					</view>
+					<view style="font-size: 13px;">助农惠企保民生</view>
+				</view>
+			</view>
+		</view>
+		
+	</view>
 </template>
-
 <script>
 	export default {
 		onLoad: function() {},
 		data() {
 			return {
-				input2: '',
-				activeIndex: '1',
-				activeIndex2: '1'
+				cur: 0,
+				text: '000',
+				textList: ['1', '2', '3'],
+				list: [{
+					name: '全部 ',
+				}, {
+					name: '金融助农',
+				}, {
+					name: ' 业务新闻 '
+				}, {
+					name: ' 相关案例 '
+				}, ],
 			}
 		},
 		methods: {
 			handleSelect(key, keyPath) {
 				console.log(key, keyPath);
+			},
+			change(index) {
+				this.cur = index;
+				console.log(index)
+				this.text = this.textList[index];
+			},
+			getData() {
+
 			}
 		}
 	}
 </script>
 
+<style src="../../static/css/index.css">
+</style>
 <style>
-	//可以组件化样式
-	.body {
-		background: #dfe4ea;
+	.load_product_list {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-column-gap: 10%;
+		margin: 6px 10px;
 	}
 
-	.flex_center {
-		//横向居中弹性盒子
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.font_white {
-		//白色字体
-		color: azure;
-		font-size: 18px;
-	}
-
-	.radius {
-		border: 1px solid #fffff;
+	.load_product_item {
 		border-radius: 10px;
-		background-color: #ffffff;
+		background-color: #7bed9f;
+		display: grid;
+		grid-template-rows: 1fr 2fr 1fr 1fr;
+		height: 100px;
+		max-width: 110px;
 	}
 
-	.el-header,
-	.el-footer {
-		background-color: #B3C0D1;
-		color: #333;
+	.load_product_text {
 		text-align: center;
-		line-height: 100px;
+		color: #fff;
 	}
-
-	.el-main {
-		color: #333;
-		text-align: center;
-		margin-left: 15px;
-		margin-right: 15px;
-		margin-bottom: 10px;
-		font-size: 16px;
+	.video_list_item{
+		height:175px;
 	}
-
-	.el-row,
-	.el-row>.el-col {
-		margin: 0px;
+	.video_img{
+		max-height: 150px;
 	}
-
-	.el-container:nth-child(5) .el-aside,
-	.el-container:nth-child(6) .el-aside {
-		line-height: 260px;
-	}
-
-	.el-container:nth-child(7) .el-aside {
-		line-height: 320px;
-	}
-
-	// 单独定义
-	.load {
-		margin-top: -10px;
-		z-index: 10;
-	}
-
-	.notify>.el-row,
-	.new>.el-row,
-	.goods>.el-row {
-		text-align: left;
-		margin-top: 8px;
-	}
-
-
-	.new {
-		margin-top: 10px;
-	}
-
-	//上右下左
 </style>
