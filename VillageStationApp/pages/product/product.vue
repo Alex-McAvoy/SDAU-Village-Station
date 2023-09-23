@@ -19,7 +19,7 @@
 		</view>
 		<!-- 农产品展示 -->
 		<view class="module">
-			<image src="/static/images/station/station/农林.png"
+			<image src="/static/images/station/station/nl.png"
 				style="margin:8px 8px 0px 8px; width: 20px; height: 20px;">
 			</image>
 			<u-text style="font-weight: 20px;" margin="8px 0px 0px 0px" text="热销农产" bold size="20"></u-text>
@@ -103,7 +103,7 @@
 		</view>
 		<!-- 优品动态 -->
 		<view class="module">
-			<image src="/static/images/station/station/农林.png"
+			<image src="/static/images/station/station/nl.png"
 				style="margin:8px 8px 0px 8px; width: 20px; height: 20px;">
 			</image>
 			<u-text style="font-weight: 20px;" margin="6px 0px 0px 0px" text="优品动态" bold size="20"></u-text>
@@ -232,7 +232,7 @@
 		align-items: flex-start;
 
 		&__avatar {
-			background-color: $u-bg-color;
+			background-color:#fff;
 			padding: 5px;
 			border-radius: 3px;
 		}
