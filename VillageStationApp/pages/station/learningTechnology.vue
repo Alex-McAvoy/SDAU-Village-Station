@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<!-- 头部 -->
-		<view style="margin: 5px; border-radius: 10px; overflow: hidden; background-color: white;">
+		<view style="margin: 15px; border-radius: 10px; overflow: hidden; background-color: white;">
 			<u-grid :border="false" col="4">
 				<u-grid-item v-for="(listItem,listIndex) in list" :key="listIndex">
 					<u-icon :customStyle="{paddingTop:20+'rpx'}" :name="listItem.name" :size="22"
@@ -12,9 +12,9 @@
 			<u-toast ref="uToast" />
 		</view>
 		<!-- 内容一 -->
-		<view style="display: flex;  background-color: white;margin: 5px; border-radius: 10px; overflow: hidden; ">
+		<view style="display: flex;  background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; ">
 			<image src="../../static/images/station/learningTechnology/melon.jpg"
-				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
+				style=" margin-bottom: 8px; width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
 			</image>
 			<view style="margin-left: 1vh;">
 				<u--text text="大棚早春薄皮甜瓜—秋延红辣椒高效套作栽培模式 " type="primary" bold size="17"></u--text>
@@ -25,9 +25,9 @@
 			</view>
 		</view>
 		<!-- 内容二 -->
-		<view style="display: flex;  background-color: white;margin: 5px; border-radius: 10px; overflow: hidden; ">
+		<view style="display: flex;  background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; ">
 			<image src="../../static/images/station/learningTechnology/melon.jpg"
-				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
+				style="  margin-bottom: 8px; width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
 			</image>
 			<view style="margin-left: 1vh;">
 				<u--text text="大棚早春薄皮甜瓜—秋延红辣椒高效套作栽培模式 " type="primary" bold size="17"></u--text>
@@ -38,9 +38,9 @@
 			</view>
 		</view>
 		<!-- 内容三 -->
-		<view style="display: flex;  background-color: white;margin: 5px; border-radius: 10px; overflow: hidden; ">
+		<view style="display: flex;  background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; ">
 			<image src="../../static/images/station/learningTechnology/melon.jpg"
-				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
+				style="  margin-bottom: 8px; width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
 			</image>
 			<view style="margin-left: 1vh;">
 				<u--text text="大棚早春薄皮甜瓜—秋延红辣椒高效套作栽培模式 " type="primary" bold size="17"></u--text>
@@ -51,9 +51,9 @@
 			</view>
 		</view>
 		<!-- 内容四 -->
-		<view style="display: flex;  background-color: white;margin: 5px; border-radius: 10px; overflow: hidden; ">
+		<view style="display: flex;  background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; ">
 			<image src="../../static/images/station/learningTechnology/melon.jpg"
-				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
+				style="  margin-bottom: 8px; width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
 			</image>
 			<view style="margin-left: 1vh;">
 				<u--text text="大棚早春薄皮甜瓜—秋延红辣椒高效套作栽培模式 " type="primary" bold size="17"></u--text>
@@ -64,9 +64,9 @@
 			</view>
 		</view>
 		<!-- 内容五 -->
-		<view style="display: flex;  background-color: white;margin: 5px; border-radius: 10px; overflow: hidden; ">
+		<view style="display: flex;  background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; ">
 			<image src="../../static/images/station/learningTechnology/melon.jpg"
-				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
+				style="  margin-bottom: 8px; width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
 			</image>
 			<view style="margin-left: 1vh;">
 				<u--text text="大棚早春薄皮甜瓜—秋延红辣椒高效套作栽培模式 " type="primary" bold size="17"></u--text>
@@ -76,32 +76,7 @@
 				</view>
 			</view>
 		</view>
-		<!-- 内容六 -->
-		<view style="display: flex;  background-color: white;margin: 5px; border-radius: 10px; overflow: hidden; ">
-			<image src="../../static/images/station/learningTechnology/melon.jpg"
-				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
-			</image>
-			<view style="margin-left: 1vh;">
-				<u--text text="大棚早春薄皮甜瓜—秋延红辣椒高效套作栽培模式 " type="primary" bold size="17"></u--text>
-				<view style="display: flex; margin-top: 3vh;">
-					<u--text color="#909090 " margin="0 0 8px 0" text="中国政府网 "></u--text>
-					<u--text color="#909090 " margin="0 0 8px 0" text="342人阅读"></u--text>
-				</view>
-			</view>
-		</view>
-		<!-- 内容七 -->
-		<view style="display: flex;  background-color: white;margin: 5px; border-radius: 10px; overflow: hidden; ">
-			<image src="../../static/images/station/learningTechnology/melon.jpg"
-				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
-			</image>
-			<view style="margin-left: 1vh;">
-				<u--text text="大棚早春薄皮甜瓜—秋延红辣椒高效套作栽培模式 " type="primary" bold size="17"></u--text>
-				<view style="display: flex; margin-top: 3vh;">
-					<u--text color="#909090 " margin="0 0 8px 0" text="中国政府网 "></u--text>
-					<u--text color="#909090 " margin="0 0 8px 0" text="342人阅读"></u--text>
-				</view>
-			</view>
-		</view>
+		
 	</view>
 </template>
 
