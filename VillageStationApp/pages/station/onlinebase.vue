@@ -4,7 +4,7 @@
 			<u-parse :content="content"></u-parse>
 		</view>
 		<!-- 内容1 -->
-		<view class="album__content" style="background-color: white; display:flex;">
+		<view class="album__content" style="background-color: white; display:flex;margin: 15px;">
 			<!-- 左 -->
 			<view style="margin-left: 1vh;">
 				<!-- 左上 -->
@@ -12,8 +12,15 @@
 					<u--text text="江苏(姜堰)现代农业 (稻麦) 科技综合示范基地"  bold size="1"></u--text>
 				</view>
 				<!-- 左下 -->
-				<view style="margin-top: 3vh;">
-					<u--text text="泰州市农业开发区江苏红旗种业"  size="1" ></u--text>
+				<view style="margin-top: 3vh; display:flex; ">
+					<view>
+						<image src="../../static/images/station/onlinebase/location.png"
+						style="width: 13px;height: 15px;" ></image>
+					</view>
+					<view style="margin-left: 2vh;">
+						<u--text text="泰州市农业开发区江苏红旗种业" size="1" ></u--text>
+					</view>
+					
 				</view>
 			</view>
 			<!-- 右 -->
@@ -31,7 +38,7 @@
 
 		</view>
 		<!-- 内容2 -->
-		<view class="album__content" style="background-color: white; display:flex;margin-top: 20px;">
+		<view class="album__content" style="background-color: white; display:flex;margin-top: 20px;margin: 15px;">
 			<!-- 左 -->
 			<view style="margin-left: 1vh;">
 				<!-- 左上 -->
@@ -39,8 +46,15 @@
 					<u--text text="江苏(姜堰)现代农业 (稻麦) 科技综合示范基地"  bold size="1"></u--text>
 				</view>
 				<!-- 左下 -->
-				<view style="margin-top: 3vh;">
-					<u--text text="泰州市农业开发区江苏红旗种业"  size="1" ></u--text>
+				<view style="margin-top: 3vh;   display:flex;">
+					<view>
+						<image src="../../static/images/station/onlinebase/location.png"
+						style="width: 13px;height: 15px;" ></image>
+					</view>
+					<view style="margin-left: 2vh;">
+						<u--text text="泰州市农业开发区江苏红旗种业" size="1" ></u--text>
+					</view>
+					
 				</view>
 			</view>
 			<!-- 右 -->
