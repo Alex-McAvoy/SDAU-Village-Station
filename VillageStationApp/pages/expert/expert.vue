@@ -1,155 +1,109 @@
 <template>
-	<el-container>
-		<el-header style="height:100px;padding:0px 0px 0px 0px">
-			<el-row style="background: linear-gradient(#2ed573,#2ed573,#2ed573,#2ed573,#7bed9f,#f1f2f6);">
-				<el-col :span="5" class="font_white">专家&nbsp;</div></el-col>
-				<el-col :span="15">
-					<el-input placeholder="请输入内容" prefix-icon="el-icon-search" v-model="input2">
-					</el-input>
-				</el-col>
-				<el-col :span="4" class="font_white">天气</div></el-col>
-			</el-row>
-		</el-header>
-		
-		<el-main class="radius new" style="margin-top: -10px">
-			<el-row>
-				<el-menu :default-active="activeIndex" class="el-menu-demo flex_center"
-					style="height:auto;padding:5px;flex-wrap:nowrap;overflow-x: auto;margin:-10px 0px 10px 0px"
-					mode="horizontal" @select="handleSelect">
-					<el-menu-item index="2">全部</el-menu-item>
-					<el-menu-item index="3">农学</el-menu-item>
-					<el-menu-item index="4">林学</el-menu-item>
-					<el-menu-item index="5">植保</el-menu-item>
-					<el-menu-item index="6">园艺</el-menu-item>
-				</el-menu>
-			</el-row>
-		</el-main>
-		
-		<el-main class="radius  video ">
-			<el-row>
-				<el-row style="text-align: center;">
-					<div class="content" @click="goToDetailPage1">
-					<el-col :span="11" style="margin-right:10px;">
-						<el-row :span="18">
-							<img style="width: 100%; height: 180px;" src="../../static/images/station/askExperts/shr.png" />
-						</el-row>
-						<el-row :span="6">束怀瑞</el-row>
-					</el-col>
-					</div>
-					<div class="content" @click="goToDetailPage2">
-					<el-col :span="11">
-						<el-row :span="18">
-							<img style="width: 100%; height: 180px;" src="../../static/images/station/askExperts/whg.png" />
-						</el-row>
-						<el-row :span="6">王洪刚</el-row>
-					</el-col>
-					</div>
-				</el-row>
-			</el-row>
-		</el-main>
-		
+	<view class="body">
+		<!-- 顶部 搜索栏 -->
+		<u-row gutter="20" class="index_head">
+			<u-col span="3">专家&nbsp;</u-col>
+			<u-col span="7">
+				<u-search :show-action="false"></u-search>
+			</u-col>
+			<u-col span="2">天气</u-col>
+		</u-row>
 
-	</el-container>
+		<!-- 专家 -->
+		<view class="main_context first_main_context">
+			<view> <!-- 主体框 -->
+				<u-row gutter="16">
+					<u-col span="2">
+						<svg t="1694852434425" class="icon" viewBox="0 0 1024 1024" version="1.1"
+							xmlns="http://www.w3.org/2000/svg" p-id="9323"
+							data-spm-anchor-id="a313x.search_index.0.i11.77e73a81VQhc3c" width="23" height="23">
+							<path
+								d="M878.18 118.28l-732.3 0c-58.14 0-105.42 47.34-105.42 105.42l0 576.48c0 58.2 47.34 105.48 105.42 105.48l732.3 0c58.14 0 105.42-47.28 105.42-105.48l0-576.42c-0.06-58.14-47.34-105.48-105.42-105.48zM923.54 800.24c0 25.08-20.4 45.48-45.42 45.48l-732.24 0c-25.02 0-45.42-20.4-45.42-45.48l0-576.48c0-25.02 20.4-45.42 45.42-45.42l732.3 0c25.02 0 45.42 20.4 45.42 45.42l0 576.48zM181.04 264.08l661.86 0 0 61.86-661.86 0 0-61.86zM542 390.74l300.96 0 0 61.86-300.96 0 0-61.86zM542 516.08l300.96 0 0 88.74-300.96 0 0-88.74zM542 692l246.36 0 0 61.86-246.36 0 0-61.86zM181.04 391.64l285.96 0 0 362.16-285.96 0 0-362.16z"
+								fill="#2ed573" p-id="9324"></path>
+						</svg>
+					</u-col>
+					<u-col span="9" class="bar">专家</u-col>
+					<u-col span="1">
+						<svg t="1694850751155" class="icon" viewBox="0 0 1024 1024" version="1.1"
+							xmlns="http://www.w3.org/2000/svg" p-id="8256" width="23" height="23">
+							<path
+								d="M326.4 838.4l352-352c12.8-12.8 32-12.8 44.8 0l0 0c12.8 12.8 12.8 32 0 44.8l-352 352c-12.8 12.8-32 12.8-44.8 0l0 0C313.6 876.8 313.6 851.2 326.4 838.4z"
+								p-id="8257" fill="#cdcdcd"></path>
+							<path
+								d="M678.4 531.2 326.4 185.6c-12.8-12.8-12.8-32 0-44.8l0 0C339.2 128 358.4 128 371.2 134.4l352 352c12.8 12.8 12.8 32 0 44.8l0 0C710.4 544 684.8 544 678.4 531.2z"
+								p-id="8258" fill="#cdcdcd"></path>
+						</svg>
+					</u-col>
+				</u-row>
+			</view>
+			<view> <!-- 栏目标签 -->
+				<u-tabs :list="list" :is-scroll="true" v-on:click="getData" active-color="#2ed573"
+					@change="change"></u-tabs>
+			</view>
+		 
+			<view class="flex_row video_list ">
+				<view class="video_list_item">
+					<view class="flex_col">
+						<img class="video_img" src="../../static/images/station/askExperts/shr.png" />
+					</view>
+					<view>束怀瑞</view>
+				</view>
+				<view class="video_list_item">
+					<view class="flex_col">
+						<img class="video_img" src="../../static/images/station/askExperts/whg.png" />
+					</view>
+					<view>王洪刚</view>
+				</view>
+			</view>
+		</view>
+		 
+	</view>
 </template>
-
 <script>
 	export default {
 		onLoad: function() {},
 		data() {
 			return {
-				input2: '',
-				activeIndex: '1',
-				activeIndex2: '1'
+				cur: 0,
+				text: '000',
+				textList: ['1', '2', '3'],
+				list: [{
+					name: '全部 ',
+				}, {
+					name: '林学专家',
+				}, {
+					name: ' 农学专家 '
+				}, {
+					name: ' 植保专家 '
+				}, {
+					name: ' 园艺 '
+				}],
 			}
 		},
 		methods: {
 			handleSelect(key, keyPath) {
 				console.log(key, keyPath);
 			},
-			goToDetailPage1() {
-				this.$router.push('/pages/station/askExperts/shr');
+			change(index) {
+				this.cur = index;
+				console.log(index)
+				this.text = this.textList[index];
 			},
-			goToDetailPage2() {
-				this.$router.push('/pages/station/askExperts/whg');
-			},
+			getData() {
+
+			}
 		}
 	}
 </script>
 
+<style src="../../static/css/index.css">
+</style>
 <style>
-	//可以组件化样式
-	.body {
-		background: #dfe4ea;
+	.video_list{
+		height:195px;
+		margin-top:10px;
 	}
-
-	.flex_center {
-		//横向居中弹性盒子
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items: center;
+	.video_img{
+		max-height:170px;
 	}
-
-	.font_white {
-		//白色字体
-		color: azure;
-		font-size: 18px;
-	}
-
-	.radius {
-		border: 1px solid #fffff;
-		border-radius: 10px;
-		background-color: #ffffff;
-	}
-
-	.el-header,
-	.el-footer {
-		background-color: #B3C0D1;
-		color: #333;
-		text-align: center;
-		line-height: 100px;
-	}
-
-	.el-main {
-		color: #333;
-		text-align: center;
-		margin-left: 15px;
-		margin-right: 15px;
-		margin-bottom: 10px;
-		font-size: 16px;
-	}
-
-	.el-row,
-	.el-row>.el-col {
-		margin: 0px;
-	}
-
-	.el-container:nth-child(5) .el-aside,
-	.el-container:nth-child(6) .el-aside {
-		line-height: 260px;
-	}
-
-	.el-container:nth-child(7) .el-aside {
-		line-height: 320px;
-	}
-
-	// 单独定义
-	.new {
-		margin-top: -10px;
-		z-index: 10;
-	}
-
-	.notify>.el-row,
-	.new>.el-row,
-	.goods>.el-row {
-		text-align: left;
-		margin-top: 8px;
-	}
-
-
-	.new {
-		margin-top: 10px;
-	}
-
-	//上右下左
 </style>
