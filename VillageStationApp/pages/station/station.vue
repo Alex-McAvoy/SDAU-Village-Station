@@ -27,7 +27,7 @@
 		<!-- 3 问专家 -->
 		<view style="border-radius: 10px; background-color: white;margin:15px">
 			<view class="askexperts-bar" style="font-size: 100px;">
-				<image src="/static/images/station/station/问答.png"
+				<image src="/static/images/station/station/wd.png"
 					style="margin:8px; width:30px; height: 25px;">
 				</image>
 				<u-text margin="8px 0 4px 0" size="20" text="问专家"></u-text>
@@ -74,7 +74,7 @@
 		<!-- 4 随时问 -->
 		<view style="border-radius: 10px; background-color: white;  margin:15px;">
 			<view class="askexperts-bar">
-				<image src="/static/images/station/station/常见问题.png"
+				<image src="/static/images/station/station/cjwt.png"
 					style="margin:8px; width:30px; height: 25px;">
 				</image>
 				<u-text margin="8px 0 8px 0" size="20" text="随时问"></u-text>
@@ -84,7 +84,7 @@
 				<view class="album">
 					<view class="album__content">
 						<u--text size="18" margin="0 0 8px 0" text="秋季苹果花芽分化期管理"></u--text>
-						<u-album :urls="urls2" size="50" style="border-radius: 8px; overflow: hidden;"></u-album>
+						<u-album :urls="urls2" size="50" style="margin-bottom: 10px; border-radius: 8px; overflow: hidden;"></u-album>
 						<div>
 							<span
 								style="margin:20px 0 30px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
@@ -97,7 +97,7 @@
 				<view class="album">
 					<view class="album__content">
 						<u--text size="18" margin="0 0 8px 0" text="秋花生怎么种植高产"></u--text>
-						<u-album width="100px" height="80px" :urls="urls2" size="50" style="border-radius: 8px; overflow: hidden;"></u-album>
+						<u-album width="100px" height="80px" :urls="urls2" size="50" style="margin-bottom: 15px; border-radius: 8px; overflow: hidden;"></u-album>
 					</view>
 				</view>
 			</view>
@@ -105,7 +105,7 @@
 		<!-- 5 学农技 -->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="askexperts-bar">
-				<image src="/static/images/station/station/农村幸福院.png"
+				<image src="/static/images/station/station/ncxfy.png"
 					style="margin:8px; width:30px; height: 25px;">
 				</image>
 				<u-text margin="8px 0 8px 0" size="20" text="学农技"></u-text>
@@ -133,7 +133,7 @@
 				<view class="u-demo-block">
 					<view class="album">
 						<view class="album__avatar">
-							<image src="/static/images/station/station/gl.png" style="border-radius: 8px; overflow: hidden;width: 80px;height: 70px;">
+							<image src="/static/images/station/station/gl.png" style="margin-bottom: 15px;border-radius: 8px; overflow: hidden;width: 80px;height: 70px;">
 							</image>
 						</view>
 						<view class="album__content">
@@ -141,7 +141,7 @@
 							<div>
 								<span
 									style="margin:20px 0 30px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
-									中国政府网 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp 256人阅读</span>
+									中国政府网 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 256人阅读</span>
 							</div>
 						</view>
 					</view>
@@ -151,7 +151,7 @@
 		<!-- 6 买农资-->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="askexperts-bar">
-				<image src="/static/images/station/station/农产品.png"
+				<image src="/static/images/station/station/ncp.png"
 					style="margin:8px; width:30px; height: 25px;">
 				</image>
 				<u-text margin="8px 0 2px 0" size="20" text="买农资"></u-text>
@@ -162,7 +162,7 @@
 					:src="src" width="100px" height="80px" @click="click"></u--image>
 				<u--image style="margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
 					:src="src1" width="100px" height="80px" @click="click"></u--image>
-				<u--image style="margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
+				<u--image style="margin-bottom: 15px;margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
 					:src="src2" width="100px" height="80px" @click="click"></u--image>
 			</div>
 
@@ -170,7 +170,7 @@
 		<!-- 7 找渠道-->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="askexperts-bar" style="font-size: 100px;">
-				<image src="/static/images/station/station/渠道管理_面.png"
+				<image src="/static/images/station/station/qdgl.png"
 					style="margin:8px; width:30px; height: 25px;">
 				</image>
 				<u-text margin="8px 0 4px 0" size="20" text="找渠道"></u-text>
@@ -193,7 +193,7 @@
 		<!-- 8 推优品-->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="askexperts-bar" style="font-size: 100px;">
-				<image src="/static/images/station/station/农林.png"
+				<image src="/static/images/station/station/nl.png"
 					style="margin:8px; width:30px; height: 25px;">
 				</image>
 				<u-text margin="8px 0 4px 0" size="20" text="推优品"></u-text>
@@ -210,13 +210,13 @@
 					<view class="album">
 						<view class="album__avatar">
 							<image src="/static/images/station/station/sg.png"
-								style="width: 100px; height: 100px;border-radius: 8px; overflow: hidden;"></image>
+								style="margin-bottom: 10px;width: 100px; height: 100px;border-radius: 8px; overflow: hidden;"></image>
 						</view>
 						<view class="album__content">
 							<u-text margin="20px 0 10px 0" text="农业品牌农业品牌" bold size="20"></u-text>
 							<div>
 								<span
-									style="margin:20px 0 30px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
+									style="margin:50px 0 30px 0; font-size:17px;font-weight: 300px; color:rgb(169,169,169)">
 									惠农121 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 36人购买</span>
 							</div>
 						</view>
@@ -227,7 +227,7 @@
 		<!-- 9 新品种-->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="askexperts-bar" style="font-size: 100px;">
-				<image src="/static/images/station/station/种植品种.png"
+				<image src="/static/images/station/station/zzpz.png"
 					style="margin:8px; width:30px; height: 25px;">
 				</image>
 				<u-text margin="8px 0 4px 0" size="20" text="新品种"></u-text>
@@ -237,7 +237,7 @@
 					<view class="album">
 						<view class="album__avatar">
 							<image src="/static/images/station/station/gl.png"
-								style="width: 100px; height: 100px;border-radius: 8px; overflow: hidden;"></image>
+								style="margin-bottom: 10px;width: 100px; height: 100px;border-radius: 8px; overflow: hidden;"></image>
 						</view>
 						<view class="album__content">
 							<u-text margin="10px 0 6px 0" text="显示驿站以及邻近地区涉及领域的新品种" bold size="20"></u-text>
@@ -254,7 +254,7 @@
 		<!-- 10 在线基地-->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="askexperts-bar" style="font-size: 100px;">
-				<image src="/static/images/station/station/地图-旗.png"
+				<image src="/static/images/station/station/dt.png"
 					style="margin:8px; width:30px; height: 25px;">
 				</image>
 				<u-text margin="8px 0 4px 0" size="20" text="在线基地"></u-text>
@@ -299,42 +299,42 @@
 				src2: "/static/images/station/station/sg.png",
 				src3: "/static/images/station/station/gl.png",
 				list: [{
-						src:"/static/images/station/station/问答.png",
+						src:"/static/images/station/station/wd.png",
 						title: '问专家',
 						route: '/pages/station/askExperts/askExpert'
 					},
 					{
-						src:"/static/images/station/station/常见问题.png",
+						src:"/static/images/station/station/cjwt.png",
 						title: '随时问',
 						route: '/pages/station/freeAsk'
 					},
 					{
-						src:"/static/images/station/station/农村幸福院.png",
+						src:"/static/images/station/station/ncxfy.png",
 						title: '学农技',
 						route: '/pages/station/learningTechnology'
 					},
 					{
-						src:"/static/images/station/station/农产品.png",
+						src:"/static/images/station/station/ncp.png",
 						title: '买农资',
 						route: '/pages/station/purchaseFarm'
 					},
 					{
-						src:"/static/images/station/station/渠道管理_面.png",
+						src:"/static/images/station/station/qdgl.png",
 						title: '找渠道',
 						route: '/pages/station/channel'
 					},
 					{
-						src:"/static/images/station/station/农林.png",
+						src:"/static/images/station/station/nl.png",
 						title: '推优品',
 						route: '/pages/station/products'
 					},
 					{
-						src:"/static/images/station/station/种植品种.png",
+						src:"/static/images/station/station/zzpz.png",
 						title: '新品种',
 						route: '/pages/station/newspecies'
 					},
 					{
-						src:"/static/images/station/station/地图-旗.png",
+						src:"/static/images/station/station/dt.png",
 						title: '在线基地',
 						route: '/pages/station/onlinebase'
 					},
@@ -458,7 +458,7 @@
 		align-items: flex-start;
 
 		&__avatar {
-			background-color: $u-bg-color;
+			background-color: #fff;
 			padding: 5px;
 			border-radius: 3px;
 		}
