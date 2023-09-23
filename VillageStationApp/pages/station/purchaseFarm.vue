@@ -1,7 +1,7 @@
 <template>
 	<view class="u-page">
 		<!-- 导航栏 -->
-		<view style="border-radius: 5px; margin-bottom: 1vh; background-color: white;">
+		<view style=" margin: 15px; border-radius: 5px; background-color: white;">
 			<u-tabs :list="list1" @click="click" class="tabs" style="align-items: center;" lineColor="#2ed573"
 				lineWidth="50"> </u-tabs>
 		</view>
@@ -73,7 +73,7 @@
 
 <style lang="scss">
 	.album__content {
-		margin-top: 1vh;
+		margin: 15px;
 		border-bottom: 1px solid #979797;
 		border-radius: 5px;
 		background-color: white;
