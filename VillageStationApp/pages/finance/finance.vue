@@ -47,14 +47,13 @@
 					<u-col span="9" class="bar" style="margin-left:-25px">
 						<u-text style="font-weight: 20px;" margin="0px 0px 0px 0px" text="金融资讯" bold size="22"></u-text>
 					</u-col>
-					 
 					<u-col span="1">
 						<image src="/static/images/index/arrow_right.png" style="height:20px;width:35px;"/>
 					</u-col>
 				</u-row>
 			</view>
 			<view> <!-- 栏目标签 -->
-				<u-tabs :list="list" :is-scroll="true" v-on:click="getData" active-color="#2ed573"
+				<u-tabs :list="list" :is-scroll="true" v-on:click="getData" lineColor="#2ed573"
 					@change="change"></u-tabs>
 			</view>
 			<view><!-- 栏目内容 -->

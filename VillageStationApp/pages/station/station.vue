@@ -2,19 +2,19 @@
 	<view style="">
 		<view class="contain">
 			<!-- 1 标题-->
-			<view class="container">
-				<u--text style="margin-top:2px; margin-left: 2vh;" size="25" color="#fff"  text="乡村驿站"></u--text>
-				<!-- 搜索框 -->
-				<view class="search-bar">
-					<u-search style="margin:22px;" shape="round" height="40" placeholder=""
-						:clearabled="true" :show-action="false"></u-search>
-				</view>
-			</view>
+		<u-row gutter="20" class="index_head">
+			<u-col span="3">乡村驿站&nbsp;</u-col>
+			<u-col span="7">
+				<u-search :show-action="false"></u-search>
+			</u-col>
+			<u-col span="2">天气</u-col>
+		</u-row>
+				
 			<!-- 2 九宫格 -->
 			<view style="border-radius: 10px; background-color: white;margin:15px">
 				<u-grid :border="false" col="4">
 					<u-grid-item  v-for="(listItem,listIndex) in list" :key="listIndex">
-						<view @click="redirectTo(listItem.route)">
+						<view @click="$goBack(2,listItem.route)">
 							<u-image  :customStyle="{paddingTop:20+'rpx'}" :src="listItem.src"
 								:height="40" :width="25" style="display: flex;justify-content: center;align-items: center;"></u-image>
 							<span class="grid-text" style="color:#9f9f9f;font-size: 15px; margin:15px">{{listItem.title}}</span>
@@ -41,10 +41,10 @@
 							</image>
 						</view>
 						<view class="album__content">
-							<u-text margin="10px 0 10px 0" text="王洪刚" bold size="20"></u-text>
+							<u-text margin="10px 0 20px 0" text="王洪刚" bold size="20"></u-text>
 							<div>
 								<span
-									style="margin:20px 0 8px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
+									style="margin:30px 0 8px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
 									曾任山东农业大学农学系系主任、农学院院长，现为农学院教授委员会主任。</span>
 							</div>
 						</view>
@@ -60,10 +60,10 @@
 							</image>
 						</view>
 						<view class="album__content">
-							<u-text margin="10px 0 10px 0" text="束怀瑞" bold size="20"></u-text>
+							<u-text margin="20px 0 20px 0" text="束怀瑞" bold size="20"></u-text>
 							<div>
 								<span
-									style="margin:20px 0 8px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
+									style="margin:40px 0 8px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
 									中国工程院院士，博士生导师，中国园艺学会常务理事</span>
 							</div>
 						</view>
@@ -84,20 +84,38 @@
 				<view class="album">
 					<view class="album__content">
 						<u--text size="18" margin="0 0 8px 0" text="秋季苹果花芽分化期管理"></u--text>
-						<u-album :urls="urls2" size="50" style="margin-bottom: 10px; border-radius: 8px; overflow: hidden;"></u-album>
-						<div>
-							<span
-								style="margin:20px 0 30px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
-								惠农网用户投稿 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;19553人阅读</span>
+						<div style="display: flex; ">
+						<u--image style="margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
+							:src="src" width="100px" height="80px" @click="click"></u--image>
+						<u--image style="margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
+							:src="src1" width="100px" height="80px" @click="click"></u--image>
+						<u--image style="margin-bottom: 15px;margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
+							:src="src2" width="100px" height="80px" @click="click"></u--image>
 						</div>
+						<view style="display: flex; margin-top: 8px;">
+							<u--text color="#909090 " margin="0 0 8px 0" text="惠农网用户投稿"></u--text>
+							<u--text style="justify-content: end;" color="#909090 " margin="0 10px 8px 0" text="19553人阅读"></u--text>
+						</view>
 					</view>
 				</view>
 			</view>
+			<u-divider></u-divider>
 			<view class="u-page">
 				<view class="album">
 					<view class="album__content">
-						<u--text size="18" margin="0 0 8px 0" text="秋花生怎么种植高产"></u--text>
-						<u-album width="100px" height="80px" :urls="urls2" size="50" style="margin-bottom: 15px; border-radius: 8px; overflow: hidden;"></u-album>
+						<u--text size="18" margin="0 0 10px 0" text="秋花生怎么种植高产"></u--text>
+						<div style="display: flex; ">
+						<u--image style="margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
+							:src="src" width="100px" height="80px" @click="click"></u--image>
+						<u--image style="margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
+							:src="src1" width="100px" height="80px" @click="click"></u--image>
+						<u--image style="margin-bottom: 10px;margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
+							:src="src2" width="100px" height="80px" @click="click"></u--image>
+						</div>
+						<view style="display: flex; margin-top: 8px;">
+							<u--text color="#909090 " margin="0 0 8px 0" text="惠农网用户投稿"></u--text>
+							<u--text style="justify-content: end;" color="#909090 " margin="0 10px 8px 0" text="19553人阅读"></u--text>
+						</view>
 					</view>
 				</view>
 			</view>
@@ -115,15 +133,16 @@
 				<view class="u-demo-block">
 					<view class="album">
 						<view class="album__avatar">
-							<image src="/static/images/station/station/sg.png" style="border-radius: 8px; overflow: hidden;width: 80px;height: 70px;">
+							<image margin="30px 0px 8px 0px" src="/static/images/station/station/sg.png" style="margin-top: 15px;border-radius: 8px; overflow: hidden;width: 100px;height: 70px;">
 							</image>
 						</view>
 						<view class="album__content">
-							<u-text margin="20px 0 8px 0" text="标题学农技标题学农标题学农技" bold size="17"></u-text>
+							<u-text style="padding-right: 8px;" margin="20px 0px 8px 0px" text="标题学农技标题学农标题学农技" bold size="17"></u-text>
 							<div>
-								<span
-									style="margin:20px 0 30px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
-									中国政府网 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp 256人阅读</span>
+								<view style="display: flex; margin-top:10px;">
+									<u--text color="#909090 " margin="0 0 8px 0" text="中国政府网 "></u--text>
+									<u--text style="justify-content: end;" color="#909090 " margin="0 10px 8px 0" text="256人阅读"></u--text>
+								</view>
 							</div>
 						</view>
 					</view>
@@ -133,16 +152,15 @@
 				<view class="u-demo-block">
 					<view class="album">
 						<view class="album__avatar">
-							<image src="/static/images/station/station/gl.png" style="margin-bottom: 15px;border-radius: 8px; overflow: hidden;width: 80px;height: 70px;">
+							<image src="/static/images/station/station/gl.png" style="margin-top: 15px;margin-bottom: 15px;border-radius: 8px; overflow: hidden;width: 100px;height: 70px;">
 							</image>
 						</view>
 						<view class="album__content">
-							<u-text margin="20px 0 8px 0" text="标题学农技标题学农标题学农技" bold size="17"></u-text>
-							<div>
-								<span
-									style="margin:20px 0 30px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
-									中国政府网 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 256人阅读</span>
-							</div>
+							<u-text style="padding-right: 8px;" margin="20px 0px 8px 0px" text="标题学农技标题学农标题学农技" bold size="17"></u-text>
+								<view style="display: flex; margin-top:10px;">
+									<u--text color="#909090 " margin="0 0 8px 0" text="中国政府网 "></u--text>
+									<u--text style="justify-content: end;"color="#909090 " margin="0 10px 8px 0" text="256人阅读"></u--text>
+								</view>
 						</view>
 					</view>
 				</view>
@@ -152,18 +170,18 @@
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="askexperts-bar">
 				<image src="/static/images/station/station/ncp.png"
-					style="margin:8px; width:30px; height: 25px;">
+					style="margin:8px; width:40px; height: 25px;">
 				</image>
 				<u-text margin="8px 0 2px 0" size="20" text="买农资"></u-text>
 			</view>
 			<u-tabs :list="list2" @click="click" size="20"></u-tabs>
-			<div style="display: flex; ">
-				<u--image style="margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
-					:src="src" width="100px" height="80px" @click="click"></u--image>
-				<u--image style="margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
-					:src="src1" width="100px" height="80px" @click="click"></u--image>
-				<u--image style="margin-bottom: 15px;margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
-					:src="src2" width="100px" height="80px" @click="click"></u--image>
+			<div style="display: flex;margin-left: 10px; ">
+			<u--image style="margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
+				:src="src" width="100px" height="80px" @click="click"></u--image>
+			<u--image style="margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
+				:src="src1" width="100px" height="80px" @click="click"></u--image>
+			<u--image style="margin-bottom: 15px;margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
+				:src="src2" width="100px" height="80px" @click="click"></u--image>
 			</div>
 
 		</view>
@@ -176,19 +194,17 @@
 				<u-text margin="8px 0 4px 0" size="20" text="找渠道"></u-text>
 			</view>
 			<u-tabs :list="list3" @click="click" size="20"></u-tabs>
-			<u-scroll-list @right="right" @left="left">
-				<view class="scroll-list" style="flex-direction: row;">
-					<view class="scroll-list__goods-item" v-for="(item, index) in list4" :key="index"
-						:class="[(index === 9) && 'scroll-list__goods-item--no-margin-right']">
-						<image class="scroll-list__goods-item__image" :src="item.thumb"></image>
-						<text class="scroll-list__goods-item__text">￥{{ item.price }}</text>
-					</view>
-					<view class="scroll-list__show-more">
-						<text class="scroll-list__show-more__text">查看更多</text>
-						<u-icon name="arrow-leftward" color="#f56c6c" size="12"></u-icon>
-					</view>
-				</view>
-			</u-scroll-list>
+			<div style="display: flex; ">
+				<u--image style="margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
+					:src="src1" width="160px" height="80px" @click="click"></u--image>
+				<u--image style="margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
+					:src="src" width="160px" height="80px" @click="click"></u--image>
+			</div>
+			<div style="display: flex;">
+				<u-text margin="10px 0 15px 15px" text="农业品牌农业品牌" bold size="18"></u-text>
+				<u-text margin="10px 0 15px 0px" text="农业品牌农业品牌" bold size="18"></u-text>
+			</div>
+			
 		</view>
 		<!-- 8 推优品-->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
@@ -204,21 +220,21 @@
 				<u--image style="margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
 					:src="src1" width="160px" height="80px" @click="click"></u--image>
 			</div>
+			<u-divider></u-divider>
 			<u-tabs :list="list5" @click="click" size="20"></u-tabs>
 			<view class="u-page">
 				<view class="u-demo-block">
 					<view class="album">
 						<view class="album__avatar">
 							<image src="/static/images/station/station/sg.png"
-								style="margin-bottom: 10px;width: 100px; height: 100px;border-radius: 8px; overflow: hidden;"></image>
+								style="margin-bottom: 10px;width: 120px; height: 80px;border-radius: 8px; overflow: hidden;"></image>
 						</view>
 						<view class="album__content">
 							<u-text margin="20px 0 10px 0" text="农业品牌农业品牌" bold size="20"></u-text>
-							<div>
-								<span
-									style="margin:50px 0 30px 0; font-size:17px;font-weight: 300px; color:rgb(169,169,169)">
-									惠农121 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 36人购买</span>
-							</div>
+								<view style="display: flex; margin-top:2vh;">
+									<u--text color="#909090 " margin="0 0 8px 0" text="惠农121 "></u--text>
+									<u--text  style="justify-content: end;" color="#909090 " margin="0 10px 8px 0" text="36人购买"></u--text>
+								</view>
 						</view>
 					</view>
 				</view>
@@ -237,15 +253,13 @@
 					<view class="album">
 						<view class="album__avatar">
 							<image src="/static/images/station/station/gl.png"
-								style="margin-bottom: 10px;width: 100px; height: 100px;border-radius: 8px; overflow: hidden;"></image>
+								style="margin-bottom: 10px;width: 120px; height: 80px;border-radius: 8px; overflow: hidden;"></image>
 						</view>
 						<view class="album__content">
-							<u-text margin="10px 0 6px 0" text="显示驿站以及邻近地区涉及领域的新品种" bold size="20"></u-text>
-							<div>
-								<span
-									style="margin:30px 0 30px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
-									咨询单位名称及联系人</span>
-							</div>
+							<u-text style="padding-right: 8px;" margin="10px 0px 6px 0px" text="显示驿站以及邻近地区涉及领域的新品种" bold size="20"></u-text>
+								<view style="display: flex; margin-top:1vh;">
+									<u--text color="#909090 " margin="0 0 8px 0" text="咨询单位名称及联系人"></u--text>
+								</view>
 						</view>
 					</view>
 				</view>
@@ -257,20 +271,8 @@
 				<image src="/static/images/station/station/dt.png"
 					style="margin:8px; width:30px; height: 25px;">
 				</image>
-				<u-text margin="8px 0 4px 0" size="20" text="在线基地"></u-text>
+				<u-text margin="8px 0 4px 0" size="20" text="寻基地"></u-text>
 			</view>
-			<!-- 			<view>
-			     <map :latitude="latitude" :longitude="longitude" :scale="20" :markers="markers" style="width: 100%; height: 350px;"></map>
-			</view> -->
-			<!-- 			<u--image 
-				style="margin-left: 10px; border-radius: 8px; overflow: hidden;" 
-				:showLoading="true" 
-				:src="src3" 
-				width="160px" 
-				height="80px" 
-				@click="click" >
-			</u--image> -->
-
 			<image src="/static/images/station/station/R-C.jpg" style="height: 350px; width: 400px;">
 			</image>
 		</view>
@@ -306,7 +308,7 @@
 					{
 						src:"/static/images/station/station/cjwt.png",
 						title: '随时问',
-						route: '/pages/station/freeAsk'
+						route: 'freeAsk'
 					},
 					{
 						src:"/static/images/station/station/ncxfy.png",
@@ -335,7 +337,7 @@
 					},
 					{
 						src:"/static/images/station/station/dt.png",
-						title: '在线基地',
+						title: '寻基地',
 						route: '/pages/station/onlinebase'
 					},
 				],
@@ -435,13 +437,16 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" >
+	/* 顶部样式 */
+	.index_head {
+		color: azure;
+		height: 100px;
+		padding: 0px 15px 0px 15px;
+		background: linear-gradient(#2ed573, #2ed573, #2ed573, #2ed573, #7bed9f, #f1f2f6);
+	}
 	.body {
 		background: #dfe4ea;
-	}
-	
-	.contain {
-		background: linear-gradient(#2ed573,#2ed573,#2ed573,#2ed573,#7bed9f,#f1f2f6);
 	}
 	.container {
 		display: flex;
@@ -465,7 +470,7 @@
 
 		&__content {
 			margin-left: 10px;
-			flex: 1;
+			flex: 2;
 		}
 	}
 

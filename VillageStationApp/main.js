@@ -5,6 +5,12 @@ import plugins from './plugins' // plugins
 import './permission' // permission 
 import uView from "uview-ui";
 
+import { goBack } from '@/utils/common.js' //公共方法
+Object.assign(Vue.prototype, {
+	'$goBack':goBack,
+})
+
+
 Vue.use(uView);
 Vue.use(plugins)
 
