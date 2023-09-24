@@ -5,7 +5,7 @@
 			style=" display: flex; align-items: center;  background-color: white; justify-content: space-between; margin-bottom: 10px;">
 			<!-- 定位 -->
 			<view style="margin-left: 1vh; align-items: center; margin-bottom: 10px;">
-				<image src="../../static/images/station/freeAsk/定位.png" style="width: 15px; height: 15px;"></image>
+				<image src="../../static/images/station/freeAsk/location.png" style="width: 15px; height: 15px;"></image>
 				<span style="color:#2ed573 ; margin-left: 5px; ">泰安</span>
 			</view>
 			<!-- 搜索框 -->
