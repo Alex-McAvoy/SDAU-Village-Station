@@ -40,6 +40,14 @@
             },
             "sdkConfigs" : {
                 "ad" : {}
+            },
+            "splashscreen" : {
+                "androidStyle" : "common",
+                "android" : {
+                    "hdpi" : "static/sdau.png",
+                    "xhdpi" : "static/sdau.png",
+                    "xxhdpi" : "static/sdau.png"
+                }
             }
         }
     },
