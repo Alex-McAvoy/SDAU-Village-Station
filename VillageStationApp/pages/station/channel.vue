@@ -1,14 +1,9 @@
 <template>
 	<view>
-		<!-- 导航栏 -->
-		<view style="border-radius: 5px; margin-bottom: 1vh; background-color: white;">
-			<u-tabs :list="list1" @click="click" class="tabs" style="align-items: center;" lineColor="#2ed573"
-				lineWidth="50"> </u-tabs>
-		</view>
+
 
 		<!-- 搜索框-->
-		<view
-			style=" display: flex; align-items: center;  background-color: white; justify-content: space-between; margin-bottom: 10px;">
+		<view style=" display: flex; align-items: center;  background-color: white; justify-content: space-between;">
 			<!-- 定位 -->
 			<view style="margin-left: 1vh; align-items: center; margin-bottom: 10px;">
 				<image src="../../static/images/station/onlinebase/location.png" style="width: 15px; height: 15px;">
@@ -21,34 +16,39 @@
 			</view>
 		</view>
 
+		<!-- 导航栏 -->
+		<view style="border-radius: 5px; margin-top: -5px; margin-bottom: 1vh; background-color: white;">
+			<u-tabs :list="list1" @click="click" class="tabs" style="align-items: center;" lineColor="#2ed573"
+				lineWidth="50"> </u-tabs>
+		</view>
+
 		<!-- 内容1 -->
-		<view
-			style="display: flex;  background-color: white;margin: 15px; border-radius: 10px; overflow: hidden;display:flex; ">
+		<view style="display: flex;  background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; display:flex;">
 			<image src="../../static/images/station/channel/cornharvester.jpg"
-				style="width: 450px;height: 350px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
+				style="width: 160px;height: 100px; padding-top: 1vh; border-radius: 10px; overflow: hidden; margin-left: 1vh;">
 			</image>
 			<!-- 左上 -->
 			<view style="margin-left: 2vh;">
 				<u--text text="玉米收割机" bold size="17"></u--text>
-				<u--text color="#909090 " text="春种秋收一条龙,实现高收益的高性能机器 " size="9"></u--text>
+				<u--text color="#909090 " text="春种秋收一条龙,实现高收益的高性能机器" size="15"></u--text>
 			</view>
 			<!-- 时间 -->
-			<!-- <view style=" margin-top: 7vh;margin-left: 10px;;">
-				<u--text color="#909090 " margin="5px" text="2023-09-15 16:00"></u--text>
+			<!-- <view style=" margin-top: 7vh;margin-right: 1px;">
+				<u--text color="#909090 " margin="5px" text="2023-07-14 14:00"></u--text>
 			</view> -->
 		</view>
 
 		<!--内容2 -->
 
 		<view
-			style="display: flex;  background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; display:flex;">
+			style="display: flex; background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; display:flex;">
 			<image src="../../static/images/station/channel/Fragrans.jpg"
 				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
 			</image>
 			<!-- 左上 -->
 			<view style="margin-left: 2vh;">
 				<u--text text="桂花,桂花蜜" bold size="17"></u--text>
-				<u--text color="#909090 " text="桂花具有杀菌美容功效" size="7"></u--text>
+				<u--text color="#909090 " text="桂花具有杀菌美容功效" size="15"></u--text>
 			</view>
 			<!-- 时间 -->
 			<!-- <view style=" margin-top: 7vh;margin-left: 10px;">
@@ -56,14 +56,14 @@
 			</view> -->
 		</view>
 		<!-- 内容3 -->
-		<view style="display: flex;  background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; ">
+		<view style="display: flex; background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; ">
 			<image src="../../static/images/station/channel/Goose.jpg"
 				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
 			</image>
 			<!-- 左上 -->
 			<view style="margin-left: 2vh;">
 				<u--text text="大白鹅" bold size="17"></u--text>
-				<u--text color="#909090 " text="散养河道大白鹅" size="7"></u--text>
+				<u--text color="#909090 " text="散养河道大白鹅" size="15"></u--text>
 			</view>
 			<!-- 时间 -->
 			<!-- <view style=" margin-top: 7vh;margin-right: 1px;">
@@ -72,14 +72,14 @@
 		</view>
 
 		<!-- 内容4 -->
-		<view style="display: flex;  background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; ">
+		<view style="display: flex; background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; ">
 			<image src="../../static/images/station/channel/sheep.jpg"
 				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
 			</image>
 			<!-- 左上 -->
 			<view style="margin-left: 2vh;">
 				<u--text text="黑山羊" bold size="17"></u--text>
-				<u--text color="#909090 " text="本地黑山羊膻味少" size="7"></u--text>
+				<u--text color="#909090 " text="本地黑山羊膻味少" size="15"></u--text>
 			</view>
 			<!-- 时间 -->
 			<!-- <view style=" margin-top: 7vh;margin-right: 1px;">
@@ -95,7 +95,7 @@
 			<!-- 左上 -->
 			<view style="margin-left: 2vh;">
 				<u--text text="小番茄" bold size="17"></u--text>
-				<u--text color="#909090 " text="优质圣女果肉软，水分足" size="7"></u--text>
+				<u--text color="#909090 " text="优质圣女果肉软，水分足" size="15"></u--text>
 			</view>
 			<!-- 时间 -->
 			<!-- <view style=" margin-top: 7vh;margin-right: 1px;">
@@ -110,7 +110,7 @@
 			<!-- 左上 -->
 			<view style="margin-left: 2vh;">
 				<u--text text="黄杨木" bold size="17"></u--text>
-				<u--text color="#909090 " text="耐晒耐阴,耐寒耐热" size="7"></u--text>
+				<u--text color="#909090 " text="耐晒耐阴,耐寒耐热" size="15"></u--text>
 			</view>
 			<!-- 时间 -->
 			<!-- <view style=" margin-top: 7vh;margin-right: 1px;">
