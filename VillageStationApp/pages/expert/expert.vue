@@ -13,7 +13,7 @@
 		<view class="main_context first_main_context">
 			<view> <!-- 主体框 -->
 				<u-row gutter="16">
-					<u-col span="2" style="padding-left:10px">
+					<u-col span="2" style="padding-left:10px;margin-right: 8px;">
 						<image src="/static/images/index/index_news.png" style="height:30px;width:30px;" />
 					</u-col>
 					<u-col span="9" class="bar" style="margin-left:-25px">

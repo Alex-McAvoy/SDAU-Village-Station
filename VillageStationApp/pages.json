@@ -193,8 +193,7 @@
 		},{
 			"pagePath": "pages/station/station",
 			"iconPath": "static/images/tabbar/station_.png",
-			"selectedIconPath": "static/images/tabbar/station_.png",
-			"text": "驿站"
+			"selectedIconPath": "static/images/tabbar/station_.png"
 		}, {
 			"pagePath": "pages/expert/expert",
 			"iconPath": "static/images/tabbar/expert.png",
