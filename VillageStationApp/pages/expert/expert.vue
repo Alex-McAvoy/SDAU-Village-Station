@@ -23,7 +23,7 @@
 				</u-row>
 			</view>
 			<view> <!-- 栏目标签 -->
-				<u-tabs :list="list" :is-scroll="true" v-on:click="getData" active-color="#2ed573"
+				<u-tabs :list="list" :is-scroll="true" v-on:click="getData" lineColor="#2ed573"
 					@change="change"></u-tabs>
 			</view>
 		 

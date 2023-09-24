@@ -308,7 +308,7 @@
 					{
 						src:"/static/images/station/station/cjwt.png",
 						title: '随时问',
-						route: '/pages/station/freeAsk'
+						route: 'freeAsk'
 					},
 					{
 						src:"/static/images/station/station/ncxfy.png",
