@@ -1,7 +1,7 @@
 <template>
 	<view>
-		<view class="u-content">
-			<u-parse :content="content"></u-parse>
+		<view class="view_box">
+			<u--image src="../../static/images/station/onlinebase/map.jpg" > </u--image>
 		</view>
 		<!-- 内容1 -->
 		<view class="album__content" style="background-color: white; display:flex;margin: 15px;">
@@ -77,18 +77,7 @@
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				content: `
-				<img src="../../static/images/station/onlinebase/map.jpg" />
-				
 
-					
-				`
-			}
-		},
-	}
 </script>
 
 <style lang="scss" scoped>
@@ -99,5 +88,12 @@
 		line-height: 1.6;
 		text-indent: 20px; //缩进了20px
 		letter-spacing: 3px; //字体间距为8px
+	}
+	.view_box{
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  width: 100%;
+	  height: 100%;
 	}
 </style>
