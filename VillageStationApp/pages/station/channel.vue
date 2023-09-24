@@ -8,7 +8,7 @@
 			<view style="margin-left: 1vh; align-items: center; margin-bottom: 10px;">
 				<image src="../../static/images/station/onlinebase/location.png" style="width: 15px; height: 15px;">
 				</image>
-				<span style="color:#2ed573 ; margin-left: 5px; ">泰安</span>
+				<span style="color:#00ae67  ; margin-left: 5px; ">泰安</span>
 			</view>
 			<!-- 搜索框 -->
 			<view style="width: 80%; height: 20px; margin-bottom: 20px; ">
@@ -18,7 +18,7 @@
 
 		<!-- 导航栏 -->
 		<view style="border-radius: 5px; margin-top: -5px; margin-bottom: 1vh; background-color: white;">
-			<u-tabs :list="list1" @click="click" class="tabs" style="align-items: center;" lineColor="#2ed573"
+			<u-tabs :list="list1" @click="click" class="tabs" style="align-items: center;" lineColor="#00ae67 "
 				lineWidth="50"> </u-tabs>
 		</view>
 
@@ -118,7 +118,7 @@
 			</view> -->
 		</view>
 		<!-- 悬浮框 -->
-		<u-button class="custom-style" color="#2ed573" type="primary" shape="circle"
+		<u-button class="custom-style" color="#00ae67 " type="primary" shape="circle"
 			style="  width: 100px; height: 100px; position: fixed;bottom: 50px;right: 30px; font-size: 50px;">＋
 		</u-button>
 

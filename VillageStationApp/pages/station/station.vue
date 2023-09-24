@@ -85,11 +85,11 @@
 					<view class="album__content">
 						<u--text size="18" margin="0 0 8px 0" text="秋季苹果花芽分化期管理"></u--text>
 						<div style="display: flex; ">
-						<u--image style="margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
+						<u--image style="margin-left: 5px; border-radius: 8px; overflow: hidden;" :showLoading="true"
 							:src="src" width="100px" height="80px" @click="click"></u--image>
-						<u--image style="margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
+						<u--image style="margin-left: 5px; border-radius: 8px; overflow: hidden;" :showLoading="true"
 							:src="src1" width="100px" height="80px" @click="click"></u--image>
-						<u--image style="margin-bottom: 15px;margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
+						<u--image style="margin-bottom: 15px;margin-left: 5px; border-radius: 8px; overflow: hidden; " :showLoading="true"
 							:src="src2" width="100px" height="80px" @click="click"></u--image>
 						</div>
 						<view style="display: flex; margin-top: 8px;">
@@ -105,11 +105,11 @@
 					<view class="album__content">
 						<u--text size="18" margin="0 0 10px 0" text="秋花生怎么种植高产"></u--text>
 						<div style="display: flex; ">
-						<u--image style="margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
+						<u--image style="margin-left: 5px; border-radius: 8px; overflow: hidden;" :showLoading="true"
 							:src="src" width="100px" height="80px" @click="click"></u--image>
-						<u--image style="margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
+						<u--image style="margin-left: 5px; border-radius: 8px; overflow: hidden;" :showLoading="true"
 							:src="src1" width="100px" height="80px" @click="click"></u--image>
-						<u--image style="margin-bottom: 10px;margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
+						<u--image style="margin-bottom: 5px;margin-left: 5px; border-radius: 8px; overflow: hidden;" :showLoading="true"
 							:src="src2" width="100px" height="80px" @click="click"></u--image>
 						</div>
 						<view style="display: flex; margin-top: 8px;">
@@ -176,11 +176,11 @@
 			</view>
 			<u-tabs :list="list2" @click="click" size="20"></u-tabs>
 			<div style="display: flex;margin-left: 10px; ">
-			<u--image style="margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
+			<u--image style="margin-left: 3px; border-radius: 8px; overflow: hidden;" :showLoading="true"
 				:src="src" width="100px" height="80px" @click="click"></u--image>
-			<u--image style="margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
+			<u--image style="margin-left: 3px; border-radius: 8px; overflow: hidden;" :showLoading="true"
 				:src="src1" width="100px" height="80px" @click="click"></u--image>
-			<u--image style="margin-bottom: 15px;margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
+			<u--image style="margin-bottom: 15px;margin-left: 5px; border-radius: 8px; overflow: hidden;" :showLoading="true"
 				:src="src2" width="100px" height="80px" @click="click"></u--image>
 			</div>
 
@@ -195,9 +195,9 @@
 			</view>
 			<u-tabs :list="list3" @click="click" size="20"></u-tabs>
 			<div style="display: flex; ">
-				<u--image style="margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
+				<u--image style="margin-left: 3px; border-radius: 8px; overflow: hidden;" :showLoading="true"
 					:src="src1" width="160px" height="80px" @click="click"></u--image>
-				<u--image style="margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
+				<u--image style="margin-left: 3px; border-radius: 8px; overflow: hidden;" :showLoading="true"
 					:src="src" width="160px" height="80px" @click="click"></u--image>
 			</div>
 			<div style="display: flex;">
@@ -215,9 +215,9 @@
 				<u-text margin="8px 0 4px 0" size="20" text="推优品"></u-text>
 			</view>
 			<div style="display: flex; ">
-				<u--image style="margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
+				<u--image style="margin-left: 3px; border-radius: 8px; overflow: hidden;" :showLoading="true"
 					:src="src" width="160px" height="80px" @click="click"></u--image>
-				<u--image style="margin-left: 10px; border-radius: 8px; overflow: hidden;" :showLoading="true"
+				<u--image style="margin-left: 3px; border-radius: 8px; overflow: hidden;" :showLoading="true"
 					:src="src1" width="160px" height="80px" @click="click"></u--image>
 			</div>
 			<u-divider></u-divider>
