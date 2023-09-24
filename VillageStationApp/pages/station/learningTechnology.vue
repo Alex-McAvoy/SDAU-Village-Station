@@ -17,10 +17,10 @@
 				style=" margin-bottom: 8px; width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
 			</image>
 			<view style="margin-left: 1vh;">
-				<u--text text="大棚早春薄皮甜瓜—秋延红辣椒高效套作栽培模式 " type="primary" bold size="17"></u--text>
+				<u--text text="大棚早春薄皮甜瓜—秋延红辣椒高效套作栽培模式 " type="primary" bold size="17" style="margin-top: 5px;"></u--text>
 				<view style="display: flex; margin-top: 3vh;">
 					<u--text color="#909090 " margin="0 0 8px 0" text="中国政府网 "></u--text>
-					<u--text color="#909090 " margin="0 0 8px 0" text="342人阅读"></u--text>
+					<u--text color="#909090 " margin="0 0 8px 0" text="342人阅读" style="justify-content:end;"></u--text>
 				</view>
 			</view>
 		</view>
@@ -30,10 +30,10 @@
 				style="  margin-bottom: 8px; width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
 			</image>
 			<view style="margin-left: 1vh;">
-				<u--text text="大棚早春薄皮甜瓜—秋延红辣椒高效套作栽培模式 " type="primary" bold size="17"></u--text>
+				<u--text text="大棚早春薄皮甜瓜—秋延红辣椒高效套作栽培模式 " type="primary" bold size="17" style="margin-top: 5px;"></u--text>
 				<view style="display: flex; margin-top: 3vh;">
 					<u--text color="#909090 " margin="0 0 8px 0" text="中国政府网 "></u--text>
-					<u--text color="#909090 " margin="0 0 8px 0" text="342人阅读"></u--text>
+					<u--text color="#909090 " margin="0 0 8px 0" text="342人阅读" style="justify-content:end;"></u--text>
 				</view>
 			</view>
 		</view>
@@ -43,10 +43,10 @@
 				style="  margin-bottom: 8px; width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
 			</image>
 			<view style="margin-left: 1vh;">
-				<u--text text="大棚早春薄皮甜瓜—秋延红辣椒高效套作栽培模式 " type="primary" bold size="17"></u--text>
+				<u--text text="大棚早春薄皮甜瓜—秋延红辣椒高效套作栽培模式 " type="primary" bold size="17" style="margin-top: 5px;"></u--text>
 				<view style="display: flex; margin-top: 3vh;">
 					<u--text color="#909090 " margin="0 0 8px 0" text="中国政府网 "></u--text>
-					<u--text color="#909090 " margin="0 0 8px 0" text="342人阅读"></u--text>
+					<u--text color="#909090 " margin="0 0 8px 0" text="342人阅读" style="justify-content:end;"></u--text>
 				</view>
 			</view>
 		</view>
@@ -56,10 +56,10 @@
 				style="  margin-bottom: 8px; width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
 			</image>
 			<view style="margin-left: 1vh;">
-				<u--text text="大棚早春薄皮甜瓜—秋延红辣椒高效套作栽培模式 " type="primary" bold size="17"></u--text>
+				<u--text text="大棚早春薄皮甜瓜—秋延红辣椒高效套作栽培模式 " type="primary" bold size="17" style="margin-top: 5px;"></u--text>
 				<view style="display: flex; margin-top: 3vh;">
 					<u--text color="#909090 " margin="0 0 8px 0" text="中国政府网 "></u--text>
-					<u--text color="#909090 " margin="0 0 8px 0" text="342人阅读"></u--text>
+					<u--text color="#909090 " margin="0 0 8px 0" text="342人阅读" style="justify-content:end;"></u--text>
 				</view>
 			</view>
 		</view>
@@ -69,10 +69,10 @@
 				style="  margin-bottom: 8px; width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
 			</image>
 			<view style="margin-left: 1vh;">
-				<u--text text="大棚早春薄皮甜瓜—秋延红辣椒高效套作栽培模式 " type="primary" bold size="17"></u--text>
-				<view style="display: flex; margin-top: 3vh;">
+				<u--text text="大棚早春薄皮甜瓜—秋延红辣椒高效套作栽培模式 " type="primary" bold size="17" style="margin-top: 5px;"></u--text>
+				<view style="display: flex; margin-top: 3vh; ">
 					<u--text color="#909090 " margin="0 0 8px 0" text="中国政府网 "></u--text>
-					<u--text color="#909090 " margin="0 0 8px 0" text="342人阅读"></u--text>
+					<u--text color="#909090 " margin="0 0 8px 0" text="342人阅读" style="justify-content:end;"></u--text>
 				</view>
 			</view>
 		</view>
