@@ -13,10 +13,12 @@
 		<view class="main_context first_main_context">
 			<view> <!-- 主体框 -->
 				<u-row gutter="16">
-					<u-col span="2">
-						<image src="/static/images/index/index_news.png" style="height:20px;width:20px;"/>
+					<u-col span="2" style="padding-left:10px">
+						<image src="/static/images/index/index_news.png" style="height:30px;width:30px;" />
 					</u-col>
-					<u-col span="9" class="bar">培训</u-col>
+					<u-col span="9" class="bar" style="margin-left:-25px">
+						<u-text style="font-weight: 20px;" margin="0px 0px 0px 0px" text="培训" bold size="22"></u-text>
+					</u-col>
 					<u-col span="1">
 						<image src="/static/images/index/arrow_right.png" style="height:20px;width:35px;"/>
 					</u-col>
