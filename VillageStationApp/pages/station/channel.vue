@@ -25,10 +25,10 @@
 		<!-- 内容1 -->
 		<view style="display: flex;  background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; display:flex;">
 			<image src="../../static/images/station/channel/cornharvester.jpg"
-				style="width: 160px;height: 100px; padding-top: 1vh; border-radius: 10px; overflow: hidden; margin-left: 1vh;">
+				style="width: 160px;height: 100px; border-radius: 10px; overflow: hidden; margin: 1vh;">
 			</image>
 			<!-- 左上 -->
-			<view style="margin-left: 2vh;">
+			<view style="margin-left: 2vh; margin-top: 8px;">
 				<u--text text="玉米收割机" bold size="17"></u--text>
 				<u--text color="#909090 " text="春种秋收一条龙,实现高收益的高性能机器" size="15"></u--text>
 			</view>
@@ -43,10 +43,10 @@
 		<view
 			style="display: flex; background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; display:flex;">
 			<image src="../../static/images/station/channel/Fragrans.jpg"
-				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
+				style="width: 150px;height: 150px;  border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin: 1vh;">
 			</image>
 			<!-- 左上 -->
-			<view style="margin-left: 2vh;">
+			<view style="margin-left: 2vh; margin-top: 8px;">
 				<u--text text="桂花,桂花蜜" bold size="17"></u--text>
 				<u--text color="#909090 " text="桂花具有杀菌美容功效" size="15"></u--text>
 			</view>
@@ -58,10 +58,10 @@
 		<!-- 内容3 -->
 		<view style="display: flex; background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; ">
 			<image src="../../static/images/station/channel/Goose.jpg"
-				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
+				style="width: 150px;height: 150px;border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin: 1vh;">
 			</image>
 			<!-- 左上 -->
-			<view style="margin-left: 2vh;">
+			<view style="margin-left: 2vh; margin-top: 8px;">
 				<u--text text="大白鹅" bold size="17"></u--text>
 				<u--text color="#909090 " text="散养河道大白鹅" size="15"></u--text>
 			</view>
@@ -74,10 +74,10 @@
 		<!-- 内容4 -->
 		<view style="display: flex; background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; ">
 			<image src="../../static/images/station/channel/sheep.jpg"
-				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
+				style="width: 150px;height: 150px;border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin: 1vh;">
 			</image>
 			<!-- 左上 -->
-			<view style="margin-left: 2vh;">
+			<view style="margin-left: 2vh; margin-top: 8px;">
 				<u--text text="黑山羊" bold size="17"></u--text>
 				<u--text color="#909090 " text="本地黑山羊膻味少" size="15"></u--text>
 			</view>
@@ -90,10 +90,10 @@
 		<!-- 内容5 -->
 		<view style="display: flex;  background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; ">
 			<image src="../../static/images/station/channel/tomato.jpg"
-				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
+				style="width: 150px;height: 150px; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin: 1vh;">
 			</image>
 			<!-- 左上 -->
-			<view style="margin-left: 2vh;">
+			<view style="margin-left: 2vh;margin-top: 8px;">
 				<u--text text="小番茄" bold size="17"></u--text>
 				<u--text color="#909090 " text="优质圣女果肉软，水分足" size="15"></u--text>
 			</view>
@@ -105,10 +105,10 @@
 
 		<view style="display: flex;  background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; ">
 			<image src="../../static/images/station/learningTechnology/melon.jpg"
-				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
+				style="width: 150px;height: 150px;  border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin: 1vh;">
 			</image>
 			<!-- 左上 -->
-			<view style="margin-left: 2vh;">
+			<view style="margin-left: 2vh; margin-top: 8px;">
 				<u--text text="黄杨木" bold size="17"></u--text>
 				<u--text color="#909090 " text="耐晒耐阴,耐寒耐热" size="15"></u--text>
 			</view>
