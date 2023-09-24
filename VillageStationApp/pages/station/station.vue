@@ -9,7 +9,7 @@
 			</u-col>
 			<u-col span="2">天气</u-col>
 		</u-row>
-				
+		
 			<!-- 2 九宫格 -->
 			<view style="border-radius: 10px; background-color: white;margin:15px">
 				<u-grid :border="false" col="4">
@@ -308,7 +308,7 @@
 					{
 						src:"/static/images/station/station/cjwt.png",
 						title: '随时问',
-						route: 'freeAsk'
+						route: '/pages/station/freeAsk'
 					},
 					{
 						src:"/static/images/station/station/ncxfy.png",
