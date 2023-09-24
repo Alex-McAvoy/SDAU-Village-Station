@@ -1,7 +1,7 @@
 <template>
-	<view class="u-page">
+	<view>
 		<!-- 导航栏 -->
-		<view style="border-radius: 5px;background-color: white;  ">
+		<view style="border-radius: 5px; margin-bottom: 1vh; background-color: white;">
 			<u-tabs :list="list1" @click="click" class="tabs" style="align-items: center;" lineColor="#2ed573"
 				lineWidth="50"> </u-tabs>
 		</view>
@@ -11,7 +11,8 @@
 			style=" display: flex; align-items: center;  background-color: white; justify-content: space-between; margin-bottom: 10px;">
 			<!-- 定位 -->
 			<view style="margin-left: 1vh; align-items: center; margin-bottom: 10px;">
-				<image src="../../static/images/station/onlinebase/location.png" style="width: 15px; height: 15px;"></image>
+				<image src="../../static/images/station/onlinebase/location.png" style="width: 15px; height: 15px;">
+				</image>
 				<span style="color:#2ed573 ; margin-left: 5px; ">泰安</span>
 			</view>
 			<!-- 搜索框 -->
@@ -19,9 +20,10 @@
 				<u-search placeholder="搜索" v-model="keyword" actionText=""></u-search>
 			</view>
 		</view>
-	
+
 		<!-- 内容1 -->
-		<view style="display: flex;  background-color: white;margin: 15px; border-radius: 10px; overflow: hidden;display:flex; ">
+		<view
+			style="display: flex;  background-color: white;margin: 15px; border-radius: 10px; overflow: hidden;display:flex; ">
 			<image src="../../static/images/station/channel/cornharvester.jpg"
 				style="width: 450px;height: 350px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
 			</image>
@@ -38,7 +40,8 @@
 
 		<!--内容2 -->
 
-		<view style="display: flex;  background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; display:flex;">
+		<view
+			style="display: flex;  background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; display:flex;">
 			<image src="../../static/images/station/channel/Fragrans.jpg"
 				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
 			</image>
@@ -67,7 +70,7 @@
 				<u--text color="#909090 " margin="5px" text="2023-07-14 14:00"></u--text>
 			</view> -->
 		</view>
-		
+
 		<!-- 内容4 -->
 		<view style="display: flex;  background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; ">
 			<image src="../../static/images/station/channel/sheep.jpg"
@@ -83,7 +86,7 @@
 				<u--text color="#909090 " margin="5px" text="2023-07-14 14:00"></u--text>
 			</view> -->
 		</view>
-		
+
 		<!-- 内容5 -->
 		<view style="display: flex;  background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; ">
 			<image src="../../static/images/station/channel/tomato.jpg"
@@ -99,7 +102,7 @@
 				<u--text color="#909090 " margin="5px" text="2023-07-14 14:00"></u--text>
 			</view> -->
 		</view>
-		
+
 		<view style="display: flex;  background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; ">
 			<image src="../../static/images/station/learningTechnology/melon.jpg"
 				style="width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
@@ -115,14 +118,10 @@
 			</view> -->
 		</view>
 		<!-- 悬浮框 -->
-		<u-button class="custom-style"
-		color="#2ed573" 
-		type="primary" 
-		shape="circle" 
-		style="  width: 100px; height: 100px; position: fixed;bottom: 50px;right: 30px; font-size: 50px;"
-		>＋
+		<u-button class="custom-style" color="#2ed573" type="primary" shape="circle"
+			style="  width: 100px; height: 100px; position: fixed;bottom: 50px;right: 30px; font-size: 50px;">＋
 		</u-button>
-		
+
 	</view>
 </template>
 
@@ -135,7 +134,7 @@
 				}, {
 					name: '求购 ',
 				}, ],
-			
+
 			}
 		},
 		methods: {
@@ -149,6 +148,7 @@
 </script>
 
 <style lang="scss">
+	// 悬浮框强制按钮
 	.list-cell {
 		display: flex;
 		box-sizing: border-box;
@@ -159,11 +159,10 @@
 		font-size: 14px;
 		line-height: 24px;
 		background-color: #fff;
-		}
-		// 悬浮框强制按钮
-		::v-deep.u-tabs__wrapper__nav__item__text {
-			font-size: 39px !important;
-		}
-		
-  
+	}
+
+	// 导航栏字体
+	::v-deep .u-tabs__wrapper__nav__item__text {
+		font-size: 19px !important;
+	}
 </style>

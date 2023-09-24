@@ -161,7 +161,7 @@
 		{
 			"path": "pages/station/onlinebase",
 			"style": {
-				"navigationBarTitleText": "在线基地"
+				"navigationBarTitleText": "寻基地"
 			}
 		}, {
 			"path": "pages/station/channel",
