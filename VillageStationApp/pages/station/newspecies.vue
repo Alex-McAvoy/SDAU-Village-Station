@@ -5,7 +5,7 @@
 			<!-- 定位 -->
 			<view style="margin-left: 1vh; align-items: center; margin-bottom: 10px;">
 				<image src="../../static/images/station/onlinebase/location.png" style="width: 15px; height: 15px;"></image>
-				<span style="color:#2ed573 ; margin-left: 5px; ">泰安</span>
+				<span style="color:#00ae67  ; margin-left: 5px; ">泰安</span>
 			</view>
 			<!-- 搜索框 -->
 			<view style="width: 80%; height: 20px; margin-bottom: 20px; ">
@@ -140,5 +140,5 @@
 	// }
 
 	// ::v-deep .u-text__value--primary {
-	// 	color: #2ed573 !important;
+	// 	color: #00ae67  !important;
 	// }
