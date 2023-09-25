@@ -14,7 +14,7 @@
 			<view> <!-- 主体框 -->
 				<u-row gutter="16">
 					<u-col span="2" style="padding-left:10px;margin-right: 8px;">
-						<image src="/static/images/index/index_news.png" style="height:30px;width:30px;" />
+						<image src="/static/images/index/index_news.png" style="height:25px;width:25px;" />
 					</u-col>
 					<u-col span="9" class="bar" style="margin-left:-25px">
 						<u-text style="font-weight: 20px;" margin="0px 0px 0px 0px" text="专家" bold size="22"></u-text>

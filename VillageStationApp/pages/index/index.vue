@@ -13,7 +13,7 @@
 		<view class="main_context first_main_context">
 			<u-row gutter="16">
 				<u-col span="2" style="padding-left:10px;margin-right: 8px;">
-					<image src="/static/images/index/index_notify.png" style="height:30px;width:30px;" />
+					<image src="/static/images/index/index_notify.png" style="height:25px;width:25px;" />
 				</u-col>
 				<u-col span="9" class="bar" style="margin-left:-25px">
 					<u-text style="font-weight: 20px;" margin="0px 0px 0px 0px" text="通知" bold size="22"></u-text>
@@ -38,7 +38,7 @@
 			<view> <!-- 主体框 -->
 				<u-row gutter="16">
 					<u-col span="2" style="padding-left:10px;margin-right: 8px;">
-						<image src="/static/images/index/index_news.png" style="height:30px;width:30px;" />
+						<image src="/static/images/index/index_news.png" style="height:25px;width:25px;" />
 					</u-col>
 					<u-col span="9" class="bar" style="margin-left:-25px">
 						<u-text style="font-weight: 20px;" margin="0px 0px 0px 0px" text="新闻资讯" bold size="22"></u-text>
@@ -79,7 +79,7 @@
 			<!-- 顶部栏 -->
 			<u-row gutter="16">
 				<u-col span="2" style="padding-left:10px;margin-right: 8px;">
-					<image src="/static/images/index/index_product.png" style="height:30px;width:30px;" />
+					<image src="/static/images/index/index_product.png" style="height:25px;width:25px;" />
 				</u-col>
 				<u-col span="9" class="bar" style="margin-left:-25px">
 					<u-text style="font-weight: 20px;" margin="0px 0px 0px 0px" text="热销农产" bold size="22"></u-text>
@@ -115,7 +115,7 @@
 			<!-- 顶部栏 -->
 			<u-row gutter="16">
 				<u-col span="2" style="padding-left:10px;margin-right: 8px;">
-					<image src="/static/images/index/index_video_icon.png" style="height:30px;width:30px;" />
+					<image src="/static/images/index/index_video_icon.png" style="height:20px;width:25px;" />
 				</u-col>
 				<u-col span="9" class="bar" style="margin-left:-25px">
 					<u-text style="font-weight: 20px;" margin="0px 0px 0px 0px" text="精彩视频" bold size="22"></u-text>
@@ -144,7 +144,7 @@
 			<!-- 顶部栏 -->
 			<u-row gutter="16">
 				<u-col span="2" style="padding-left:10px;margin-right: 8px;">
-					<image src="/static/images/index/index_query.png" style="height:30px;width:30px;" />
+					<image src="/static/images/index/index_query.png" style="height:25px;width:28px;" />
 				</u-col>
 				<u-col span="9" class="bar" style="margin-left:-25px">
 					<u-text style="font-weight: 20px;" margin="0px 0px 0px 0px" text="热点问答" bold size="22"></u-text>
@@ -170,7 +170,7 @@
 		<view class="main_context first_main_context">
 			<u-row gutter="16">
 				<u-col span="2" style="padding-left:10px;margin-right: 8px;">
-					<image src="/static/images/index/index_load.png" style="height:30px;width:30px;" />
+					<image src="/static/images/index/index_load.png" style="height:23px;width:25px;" />
 				</u-col>
 				<u-col span="9" class="bar" style="margin-left:-25px">
 					<u-text style="font-weight: 20px;" margin="0px 0px 0px 0px" text="惠民贷款" bold size="22"></u-text>
