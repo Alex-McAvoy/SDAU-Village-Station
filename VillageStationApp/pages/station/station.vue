@@ -11,12 +11,12 @@
 		</u-row>
 		
 			<!-- 2 九宫格 -->
-			<view style="border-radius: 10px; background-color: white;margin:15px">
+			<view style="border-radius: 10px; background-color: white;margin:-15px 15px 15px 10px;padding-top:8px;padding-bottom: 8px;">
 				<u-grid :border="false" col="4">
 					<u-grid-item  v-for="(listItem,listIndex) in list" :key="listIndex">
 						<view @click="$goBack(2,listItem.route)">
 							<u-image  :customStyle="{paddingTop:20+'rpx'}" :src="listItem.src"
-								:height="40" :width="25" style="display: flex;justify-content: center;align-items: center;"></u-image>
+								:height="40" :width="30" style="display: flex;justify-content: center;align-items: center;"></u-image>
 							<span class="grid-text" style="color:#9f9f9f;font-size: 15px; margin:15px">{{listItem.title}}</span>
 						</view>
 					</u-grid-item>
@@ -30,7 +30,7 @@
 				<image src="/static/images/station/station/wd.png"
 					style="margin:8px; width:30px; height: 25px;">
 				</image>
-				<u-text margin="8px 0 4px 0" size="20" text="问专家"></u-text>
+				<u-text style="font-weight: 20px;" margin="8px 0 4px 0" bold size="22" text="问专家"></u-text>
 			</view>
 			<view class="u-page">
 				<view class="u-demo-block">
@@ -42,9 +42,9 @@
 						</view>
 						<view class="album__content">
 							<u-text margin="10px 0 20px 0" text="王洪刚" bold size="20"></u-text>
-							<div>
+							<div style="margin-right: 10px;">
 								<span
-									style="margin:30px 0 8px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
+									style=" font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
 									曾任山东农业大学农学系系主任、农学院院长，现为农学院教授委员会主任。</span>
 							</div>
 						</view>
@@ -77,13 +77,13 @@
 				<image src="/static/images/station/station/cjwt.png"
 					style="margin:8px; width:30px; height: 25px;">
 				</image>
-				<u-text margin="8px 0 8px 0" size="20" text="随时问"></u-text>
+				<u-text style="font-weight: 20px;" margin="8px 0 8px 0" bold size="22" text="随时问"></u-text>
 			</view>
 			<u-gap height="10"></u-gap>
 			<view class="u-page">
 				<view class="album">
 					<view class="album__content">
-						<u--text size="18" margin="0 0 8px 0" text="秋季苹果花芽分化期管理"></u--text>
+						<u--text size="18" style="margin: 0 0 8px 0" text="秋季苹果花芽分化期管理"></u--text>
 						<div style="display: flex; ">
 						<u--image style="margin-left: 5px; border-radius: 8px; overflow: hidden;" :showLoading="true"
 							:src="src" width="100px" height="80px" @click="click"></u--image>
@@ -93,8 +93,8 @@
 							:src="src2" width="100px" height="80px" @click="click"></u--image>
 						</div>
 						<view style="display: flex; margin-top: 8px;">
-							<u--text color="#909090 " margin="0 0 8px 0" text="惠农网用户投稿"></u--text>
-							<u--text style="justify-content: end;" color="#909090 " margin="0 10px 8px 0" text="19553人阅读"></u--text>
+							<u--text color="#909090 "  text="惠农网用户投稿"></u--text>
+							<u--text style="margin-left: 10vh;" color="#909090 " text="19553人阅读"></u--text>
 						</view>
 					</view>
 				</view>
@@ -114,7 +114,7 @@
 						</div>
 						<view style="display: flex; margin-top: 8px;">
 							<u--text color="#909090 " margin="0 0 8px 0" text="惠农网用户投稿"></u--text>
-							<u--text style="justify-content: end;" color="#909090 " margin="0 10px 8px 0" text="19553人阅读"></u--text>
+							<u--text style="margin-left: 10vh;" color="#909090 " text="19553人阅读"></u--text>
 						</view>
 					</view>
 				</view>
@@ -126,7 +126,7 @@
 				<image src="/static/images/station/station/ncxfy.png"
 					style="margin:8px; width:30px; height: 25px;">
 				</image>
-				<u-text margin="8px 0 8px 0" size="20" text="学农技"></u-text>
+				<u-text style="font-weight: 20px;" margin="8px 0 8px 0" bold size="22" text="学农技"></u-text>
 			</view>
 			<u-tabs :list="list1" @click="click"></u-tabs>
 			<view class="u-page">
@@ -172,7 +172,7 @@
 				<image src="/static/images/station/station/ncp.png"
 					style="margin:8px; width:40px; height: 25px;">
 				</image>
-				<u-text margin="8px 0 2px 0" size="20" text="买农资"></u-text>
+				<u-text style="font-weight: 20px;" margin="8px 0 2px 0" bold size="22" text="买农资"></u-text>
 			</view>
 			<u-tabs :list="list2" @click="click" size="20"></u-tabs>
 			<div style="display: flex;margin-left: 10px; ">
@@ -191,7 +191,7 @@
 				<image src="/static/images/station/station/qdgl.png"
 					style="margin:8px; width:30px; height: 25px;">
 				</image>
-				<u-text margin="8px 0 4px 0" size="20" text="找渠道"></u-text>
+				<u-text style="font-weight: 20px;" margin="8px 0 4px 0" bold size="22" text="找渠道"></u-text>
 			</view>
 			<u-tabs :list="list3" @click="click" size="20"></u-tabs>
 			<div style="display: flex; ">
@@ -212,7 +212,7 @@
 				<image src="/static/images/station/station/nl.png"
 					style="margin:8px; width:30px; height: 25px;">
 				</image>
-				<u-text margin="8px 0 4px 0" size="20" text="推优品"></u-text>
+				<u-text style="font-weight: 20px;" margin="8px 0 4px 0" bold size="22" text="推优品"></u-text>
 			</view>
 			<div style="display: flex; ">
 				<u--image style="margin-left: 3px; border-radius: 8px; overflow: hidden;" :showLoading="true"
@@ -246,7 +246,7 @@
 				<image src="/static/images/station/station/zzpz.png"
 					style="margin:8px; width:30px; height: 25px;">
 				</image>
-				<u-text margin="8px 0 4px 0" size="20" text="新品种"></u-text>
+				<u-text style="font-weight: 20px;" margin="8px 0 4px 0" bold size="22" text="新品种"></u-text>
 			</view>
 			<view class="u-page">
 				<view class="u-demo-block">
@@ -271,7 +271,7 @@
 				<image src="/static/images/station/station/dt.png"
 					style="margin:8px; width:30px; height: 25px;">
 				</image>
-				<u-text margin="8px 0 4px 0" size="20" text="寻基地"></u-text>
+				<u-text style="font-weight: 20px;" margin="8px 0 4px 0" bold size="22" text="寻基地"></u-text>
 			</view>
 			<image src="/static/images/station/station/R-C.jpg" style="height: 350px; width: 400px;">
 			</image>
@@ -443,10 +443,11 @@
 		color: azure;
 		height: 100px;
 		padding: 0px 15px 0px 15px;
-		background: linear-gradient(#2ed573, #2ed573, #2ed573, #2ed573, #7bed9f, #f1f2f6);
+		background: linear-gradient(#00ae67, #00ae67, #00ae67, #00ae67,#2ed573, #7bed9f, #f1f2f6);
 	}
 	.body {
 		background: #dfe4ea;
+		min-height: 100vh;
 	}
 	.container {
 		display: flex;
@@ -472,10 +473,6 @@
 			margin-left: 10px;
 			flex: 2;
 		}
-	}
-
-	body {
-		background-color: #b6b6b6;
 	}
 
 	::v-deep .u-tabs__wrapper__nav__item__text {
