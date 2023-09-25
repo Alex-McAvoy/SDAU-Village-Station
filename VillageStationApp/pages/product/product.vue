@@ -9,7 +9,7 @@
 			<u-col span="2">天气</u-col>
 		</u-row>
 		<!-- 轮播图 -->
-		<view style="margin: 5px;border-radius: 5px; overflow: hidden;">
+		<view style="margin: -10px 5px 5px 10px;border-radius: 5px; overflow: hidden;">
 			<u-swiper :list="list" height="180px"></u-swiper>
 		</view>
 		<!-- 农产品展示 -->
@@ -37,7 +37,7 @@
 							<div>
 								<span
 									style="padding-right: 8px;margin:30px 0 8px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
-									鲁花是中国知名的食用油品牌，其产品包括花生油、豆油、调和油等。</span>
+									鲁花是中国知名的食用油品牌，<br/>其产品包括花生油、豆油、调和油等。</span>
 							</div>
 						</view>
 					</view>
@@ -213,7 +213,7 @@
 		color: azure;
 		height: 100px;
 		padding: 0px 15px 0px 15px;
-		background: linear-gradient(#2ed573, #2ed573, #2ed573, #2ed573, #7bed9f, #f1f2f6);
+		background: linear-gradient(#00ae67, #00ae67, #00ae67, #00ae67,#2ed573, #7bed9f, #f1f2f6);
 	}
 	.contain {
 		display: flex;
