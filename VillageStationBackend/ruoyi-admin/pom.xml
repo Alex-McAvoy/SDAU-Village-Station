@@ -61,6 +61,14 @@
             <artifactId>ruoyi-generator</artifactId>
         </dependency>
 
+        <!-- 驿站模块 -->
+        <dependency>
+            <groupId>com.ruoyi</groupId>
+            <artifactId>station</artifactId>
+            <version>3.8.6</version>
+            <scope>compile</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
