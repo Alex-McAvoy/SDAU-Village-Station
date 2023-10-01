@@ -180,6 +180,7 @@
         <module>ruoyi-generator</module>
         <module>ruoyi-common</module>
         <module>station</module>
+        <module>index</module>
     </modules>
     <packaging>pom</packaging>
 
