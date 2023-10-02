@@ -30,6 +30,8 @@
         <poi.version>4.1.2</poi.version>
         <velocity.version>2.3</velocity.version>
         <jwt.version>0.9.1</jwt.version>
+        <minio.version>8.0.3</minio.version>
+        <lombok.version>1.18.20</lombok.version>
     </properties>
 
     <!-- 依赖声明 -->
@@ -134,6 +136,20 @@
                 <version>${kaptcha.version}</version>
             </dependency>
 
+            <!-- minio -->
+            <dependency>
+                <groupId>io.minio</groupId>
+                <artifactId>minio</artifactId>
+                <version>${minio.version}</version>
+            </dependency>
+
+            <!-- lombok -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
             <!-- 定时任务-->
             <dependency>
                 <groupId>com.ruoyi</groupId>
@@ -169,6 +185,20 @@
                 <version>${ruoyi.version}</version>
             </dependency>
 
+            <!-- 驿站模块 -->
+            <dependency>
+                <groupId>com.ruoyi</groupId>
+                <artifactId>station</artifactId>
+                <version>${ruoyi.version}</version>
+            </dependency>
+
+            <!-- 主页除驿站的模块 -->
+            <dependency>
+                <groupId>com.ruoyi</groupId>
+                <artifactId>index</artifactId>
+                <version>${ruoyi.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -181,6 +211,7 @@
         <module>ruoyi-common</module>
         <module>station</module>
         <module>index</module>
+        <module>minio</module>
     </modules>
     <packaging>pom</packaging>
 

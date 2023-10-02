@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2023/10/1 17:48
  **/
 @RestController
-@RequestMapping("/system/expert")
+@RequestMapping("/station/expert")
 public class StaAskExpertController extends BaseController
 {
 
@@ -40,7 +40,7 @@ public class StaAskExpertController extends BaseController
     /**
      * 查询问专家列表
      */
-    @PreAuthorize("@ss.hasPermi('system:expert:list')")
+    @PreAuthorize("@ss.hasPermi('station:expert:list')")
     @GetMapping("/list")
     public TableDataInfo list(StaExpert tbAskExpert)
     {
@@ -51,7 +51,7 @@ public class StaAskExpertController extends BaseController
     /**
      * 导出问专家列表
      */
-    @PreAuthorize("@ss.hasPermi('system:expert:export')")
+    @PreAuthorize("@ss.hasPermi('station:expert:export')")
     @Log(title = "问专家", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, StaExpert tbAskExpert)
@@ -63,7 +63,7 @@ public class StaAskExpertController extends BaseController
     /**
      * 获取问专家详细信息
      */
-    @PreAuthorize("@ss.hasPermi('system:expert:query')")
+    @PreAuthorize("@ss.hasPermi('station:expert:query')")
     @GetMapping(value = "/{askExpertsId}")
     public AjaxResult getInfo(@PathVariable("askExpertsId") Long askExpertsId)
     {
@@ -72,7 +72,7 @@ public class StaAskExpertController extends BaseController
     /**
      * 新增问专家
      */
-    @PreAuthorize("@ss.hasPermi('system:expert:add')")
+    @PreAuthorize("@ss.hasPermi('station:expert:add')")
     @Log(title = "问专家", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody StaExpert tbAskExpert)
@@ -82,7 +82,7 @@ public class StaAskExpertController extends BaseController
     /**
      * 修改问专家
      */
-    @PreAuthorize("@ss.hasPermi('system:expert:edit')")
+    @PreAuthorize("@ss.hasPermi('station:expert:edit')")
     @Log(title = "问专家", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody StaExpert tbAskExpert)
@@ -92,7 +92,7 @@ public class StaAskExpertController extends BaseController
     /**
      * 删除问专家
      */
-    @PreAuthorize("@ss.hasPermi('system:expert:remove')")
+    @PreAuthorize("@ss.hasPermi('station:expert:remove')")
     @Log(title = "问专家", businessType = BusinessType.DELETE)
     @DeleteMapping("/{askExpertsIds}")
     public AjaxResult remove(@PathVariable Long[] askExpertsIds)
