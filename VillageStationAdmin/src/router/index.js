@@ -47,6 +47,22 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/station',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '/submit',
+        component: () => import('@/views/system/columns/index'),
+        hidden: true
+      },{
+        path: '/station/audit',
+        component: () => import('@/views/system/columns/audit'),
+        hidden: true
+      }
+    ]
+  },
+  {
     path: '/register',
     component: () => import('@/views/register'),
     hidden: true
