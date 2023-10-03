@@ -74,13 +74,6 @@
             <version>${ruoyi.version}</version>
         </dependency>
 
-        <!-- 主页除驿站的模块 -->
-        <dependency>
-            <groupId>com.ruoyi</groupId>
-            <artifactId>index</artifactId>
-            <version>${ruoyi.version}</version>
-        </dependency>
-
         <!-- MinIO 文件服务器模块 -->
         <dependency>
             <groupId>com.ruoyi</groupId>

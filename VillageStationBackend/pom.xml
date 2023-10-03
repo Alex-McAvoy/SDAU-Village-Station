@@ -192,13 +192,6 @@
                 <version>${ruoyi.version}</version>
             </dependency>
 
-            <!-- 主页除驿站的模块 -->
-            <dependency>
-                <groupId>com.ruoyi</groupId>
-                <artifactId>index</artifactId>
-                <version>${ruoyi.version}</version>
-            </dependency>
-
         </dependencies>
     </dependencyManagement>
 
@@ -210,7 +203,6 @@
         <module>ruoyi-generator</module>
         <module>ruoyi-common</module>
         <module>station</module>
-        <module>index</module>
         <module>minio</module>
     </modules>
     <packaging>pom</packaging>
