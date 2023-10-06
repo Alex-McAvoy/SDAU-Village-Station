@@ -144,7 +144,6 @@ public class TbOtherColumnsController extends BaseController
     {
         return success(tbOtherColumnsService.selectTbOtherColumnsByNewsId(newsId));
     }
-
     /**
      * 新增其它栏目
        一级栏目              二级栏目 （在字典中设置）

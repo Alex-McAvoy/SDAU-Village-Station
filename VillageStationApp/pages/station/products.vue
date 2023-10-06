@@ -12,72 +12,65 @@
 		</view>
 
 		<!-- 导航栏 -->
-		<view style="border-radius: 5px; margin-bottom: 1vh;background-color: white;">
-			<u-tabs :list="list1" @click="click" class="tabs" style="align-items: center;" lineColor="#00ae67 "
-				lineWidth="50"> </u-tabs>
+		<view class="tab_nav" style="border-radius: 10px; background-color: white;  margin:8px 15px">
+			<view class="navTitle" v-for="(item,index) in navList" :key="index">
+				<view :class="{'active':isActive === index}" @click="checked(index)">
+					{{item.title}}
+				</view>
+			</view>
 		</view>
-
-		<!-- 我的优品：(驿站区域的农业品牌) 肥城桃-->
-		<view style=" margin: 15px; border-radius: 5px;  background-color: white; margin-top: 10px; ">
-			<view class="u-page">
+		<!-- 详情展示 -->
+		<view class="nav_item" style="border-radius: 10px; background-color: white;  margin:8px 15px"
+			v-for="item in productsList" @click="skip(item)">
+			<view>
 				<view class="u-demo-block">
 					<view class="u-demo-block__content">
 						<view class="album">
-							<!-- <view class="album__avatar">
-								<image src="/static/images/icon.jpg" mode="" style="width: 32px;height: 32px; "></image>
-							</view> -->
 							<view class="album__content">
-								<u--text text="天上蟠桃，人间肥桃" type="primary" bold size="17"></u--text>
-								<u--text margin="0 0 8px 0"
-				                    text="肥城桃，山东省泰安市肥城市特产，全国农产品地理标志.肥城桃简称“肥桃”，因产于山东省肥城市境内而得名。已有1100多年的栽培历史。 肥城桃果形端正、美观，呈圆球型，果尖稍凸，缝合线深而明显，梗洼深广，两半对称。成熟后果面底色米黄色（部分阳面有红晕）。果实肥大， 粘核，果肉乳白，肉质细嫩致密，柔软多汁，口味甘甜。 ">
-								</u--text>
-								<image src="../../static/images/station/products/peach.jpg" style="width: 300px;height: 150px; padding-left: 5vh; padding-right: 5vh; "></image>
-								<u-album :urls="urls1" keyName="src2" style="margin-bottom: 8px;"></u-album>
+								<view style="font-size:18px; margin-bottom:10px; color: #3cb4ff; font-weight: bold;">
+									{{ item.title }}
+								</view>
+								<view style="font-size:15px; margin-bottom:10px;"><u-parse
+										:content="item.content"></u-parse></view>
+								<image src="../../static/images/station/products/peach.jpg"
+									style="width: 350px;height: 180px; padding-left: 5vh; padding-right: 5vh; "></image>
+								<!-- <u-album :urls="urls1" keyName="src2" style="margin-bottom: 8px;"></u-album> -->
 							</view>
 						</view>
 					</view>
 				</view>
 			</view>
 		</view>
-		
 
-		<!-- 我的优品：(驿站区域的农业品牌) 烟台苹果 -->
-		<view style=" margin: 15px; border-radius: 5px;  background-color: white; margin-top: 10px; ">
-					<view class="u-page">
-						<view class="u-demo-block">
-							<view class="u-demo-block__content">
-								<view class="album">
-									<!-- <view class="album__avatar">
-										<image src="/static/images/icon.jpg" mode="" style="width: 32px;height: 32px; "></image>
-									</view> -->
-									<view class="album__content">
-										<u--text text="中国苹果看山东，山东苹果看烟台" type="primary" bold size="17"></u--text>
-										<u--text margin="0 0 8px 0"
-				                          text="烟台市是我国苹果种植最早的地区，也是苹果栽种面积最大，产量最多的地区。烟台苹果，品种优良，风味独具，很受人们喜爱，被誉为胶东水果家族的“皇后”。烟台苹果甜脆可口，富于营养，除了含有丰富的糖外，还含有苹果酸、胡萝卜素、抗坏血酸以及钙、铁、锌等多种人体健康所必需的物质。所以，它倍受营养学家的青睐。">
-										  </u--text>
-
-										<image src="../../static/images/station/products/apple.png" style="width: 300px;height: 150px; padding-left: 5vh; padding-right: 5vh;  "></image>
-										<u-album :urls="urls1" keyName="src2" style="margin-bottom: 8px;"></u-album>
-									</view>
-								</view>
-							</view>
-						</view>
-					</view>
-				</view>
-			</view>
-
-
+		<!-- <view style="border-radius: 5px; margin-bottom: 1vh;background-color: white;">
+			<u-tabs :list="list1" @click="click" class="tabs" style="align-items: center;" lineColor="#00ae67 "
+				lineWidth="50"> </u-tabs>
+		</view> -->
+	</view>
 </template>
 
 <script>
+	import {
+		listProducts,
+		getProducts,
+		getProductsByColumns
+	} from "@/api/system/products";
 	export default {
+		name: "Products",
+		onLoad: function() {},
 		data() {
 			return {
-				list1: [{
-					name: '我的优品',
+				isActive: 0,
+				navList: [{
+					index: 0,
+					title: '我的优品'
 				}, {
-					name: '品牌展示',
-				}, ],
+					index: 1,
+					title: "品牌展示"
+				}],
+				productsList: [],
+				current: 0,
+				text: '000',
 				list3: [
 					'../../static/images/station/products/produepolicy1.jpg',
 					'../../static/images/station/products/produepolicy2.jpg',
@@ -86,34 +79,65 @@
 				text1: '甘肃文县茶亮相北京茶博会 甘茶品牌魅力绽放'
 			}
 		},
+		created() {
+			this.getList();
+		},
 		methods: {
-			click(item) {
-				console.log('item', item);
+			//跳转详情页
+			skip(item) {
+				getApp().globalData.item=item;
+				console.log(getApp().globalData.item);
+				uni.navigateTo({
+					url: "products/products_detail"
+				}) 
+			},
+			checked(index) {
+				this.isActive = index;
+				var secondColumn = '我的优品';
+				if (index == 1) secondColumn = '品牌展示'
+				getProductsByColumns('推优品', secondColumn).then(response => {
+					console.log(response)
+					this.productsList = response.data;
+					console.log(this.productsList);
+					this.loading = false;
+				});
 			},
 
 			scrolltolower() {
 				this.loadmore()
+			},
+			handleSelect(key, keyPath) {
+				console.log(key, keyPath);
+			},
+			/** 查询其它栏目*/
+			getList() {
+				this.loading = true;
+				getProductsByColumns('推优品', '我的优品').then(response => {
+					console.log(response)
+					this.productsList = response.data;
+					console.log(this.productsList);
+					this.loading = false;
+				});
+			},
+			// 多选框选中数据
+			handleSelectionChange(selection) {
+				this.ids = selection.map(item => item.newsId)
+				this.single = selection.length !== 1
+				this.multiple = !selection.length
 			},
 		}
 	}
 </script>
 <style lang="scss">
 	.album__content {
-		
+
 		// text-indent: 20px; //缩进了20px
 		// letter-spacing: 3px; //字体间距为8px
-         margin: 15px;
-		border-bottom: 1px solid #979797;
+		// margin: 15px;
+		// border-bottom: 1px solid #979797;
 		border-radius: 10px;
 		background-color: white;
 
-	}
-
-	.u-page {
-		background-color: white;
-		height: 100%;
-		border-radius: 5px;
-		margin: 1vh;
 	}
 
 	.album {
@@ -135,8 +159,6 @@
 
 	image {
 		margin-bottom: 2vh;
-
-
 	}
 
 	::v-deep .u-tabs__wrapper__nav__item__text {
@@ -146,4 +168,36 @@
 	// ::v-deep .u-text__value--primary {
 	// 	color: #2ed573 !important;
 	// }
+	.tab_nav {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.tab_nav .navTitle {
+		height: 90rpx;
+		line-height: 90rpx;
+		width: 100%;
+		text-align: center;
+		font-size: 32rpx;
+		font-family: Alibaba PuHuiTi;
+		color: #333;
+	}
+
+	.active {
+		position: relative;
+		color: #00ae67;
+	}
+
+	.active::after {
+		content: "";
+		position: absolute;
+		width: 100rpx;
+		height: 4rpx;
+		background-color: #00ae67;
+		left: 0px;
+		right: 0px;
+		bottom: 0px;
+		margin: auto;
+	}
 </style>

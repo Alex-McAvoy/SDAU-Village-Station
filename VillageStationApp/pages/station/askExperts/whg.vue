@@ -31,17 +31,6 @@
 				<u-tabs :list="list1" @click="click" class="tabs" style="align-items: center;" lineColor="#2ed573"
 					lineWidth="50"> </u-tabs>
 			</view>
-
-			<!-- 内容二 -->
-			<!-- <view class="album__content">
-				<image src="/static/images/icon.jpg" mode="" style="width: 32px;height: 32px; margin-left: 5px;margin-top: 2px;"></image>
-				<u--text text="玉米用控释肥时应注意哪几点 " type="primary" bold size="14"></u--text>
-				<u--text margin="0 0 8px 0" text="		1：种肥要隔离。 
-									2：配方用量要合适。 
-									3：施用方法要科学。 "></u--text>
-				<!-- <image src="../../../static/images/station/purchaseFarm/manure.jpeg" 
-					 style="width: 150px;height: 150px; padding-top: 1vh;"></image> -->
-			<!-- </view> -->
 			<!-- 内容一 -->
 			<view class="u-page" >
 				<view class="u-demo-block">
@@ -63,69 +52,8 @@
 					</view>
 				</view>
 			</view>	
-			<!-- 内容二 -->
-			<view class="u-page">
-				<view class="u-demo-block">
-					<view class="album__content">
-						<view class="u-demo-block__content">
-							<view class="album">
-								<view class="album__avatar">
-									<image src="/static/images/icon.jpg" mode="" style="width: 32px;height: 32px; "></image>
-									<image src="../../../static/images/station/freeAsk/location.png" style="width: 15px; height: 15px;"></image>
-									<span style="color:#D3D3D3;; ; margin-left: 5px; ">暂无地址</span>
-									<u--text text="苹果在树上，还没摘就面了，还能变脆吗？" type="primary" bold size="14"></u--text>
-									<u--text margin="0 0 4px 0"
-										text="提高果实硬度: 一，清园配方用康纯钙镁锌。 二，施基肥配方中用矿物晶。 三，套装前喷足三次美钙镁幼果补钙。"bold size="12"></u--text>
-									<u-album :urls="urls1" keyName="src2" style="margin-bottom: 8px;"></u-album>
-									<span style="color: dimgrey;front-size 10px;margin-left: 10px;">2023-10-01</span>
-								</view>
-							</view>
-						</view>
-					</view>
-				</view>
-			</view>	
-			<!-- 内容三 -->
-			<view class="u-page">
-				<view class="u-demo-block">
-					<view class="album__content">
-						<view class="u-demo-block__content">
-							<view class="album">
-								<view class="album__avatar">
-									<image src="/static/images/icon.jpg" mode="" style="width: 32px;height: 32px; "></image>
-									<image src="../../../static/images/station/freeAsk/location.png" style="width: 15px; height: 15px;"></image>
-									<span style="color:#D3D3D3;; ; margin-left: 5px; ">暂无地址</span>
-									<u--text text="苹果在树上，还没摘就面了，还能变脆吗？" type="primary" bold size="14"></u--text>
-									<u--text margin="0 0 4px 0"
-										text="提高果实硬度: 一，清园配方用康纯钙镁锌。 二，施基肥配方中用矿物晶。 三，套装前喷足三次美钙镁幼果补钙。"bold size="12"></u--text>
-									<u-album :urls="urls1" keyName="src2" style="margin-bottom: 8px;"></u-album>
-									<span style="color: dimgrey;front-size 10px;margin-left: 10px;">2023-10-01</span>
-								</view>
-							</view>
-						</view>
-					</view>
-				</view>
-			</view>	
+			
 			<!-- 内容四 -->
-			<view class="u-page">
-				<view class="u-demo-block">
-					<view class="album__content">
-						<view class="u-demo-block__content">
-							<view class="album">
-								<view class="album__avatar">
-									<image src="/static/images/icon.jpg" mode="" style="width: 32px;height: 32px; "></image>
-									<image src="../../../static/images/station/freeAsk/location.png" style="width: 15px; height: 15px;"></image>
-									<span style="color:#D3D3D3;; ; margin-left: 5px; ">暂无地址</span>
-									<u--text text="苹果在树上，还没摘就面了，还能变脆吗？" type="primary" bold size="14"></u--text>
-									<u--text margin="0 0 4px 0"
-										text="提高果实硬度: 一，清园配方用康纯钙镁锌。 二，施基肥配方中用矿物晶。 三，套装前喷足三次美钙镁幼果补钙。"bold size="12"></u--text>
-									<u-album :urls="urls1" keyName="src2" style="margin-bottom: 8px;"></u-album>
-									<span style="color: dimgrey;front-size 10px;margin-left: 10px;">2023-10-01</span>
-								</view>
-							</view>
-						</view>
-					</view>
-				</view>
-			</view>	
 		</view>
 	</view>
 </template>

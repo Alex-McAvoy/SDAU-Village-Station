@@ -11,6 +11,11 @@
 	} from '@/utils/auth'
 
 	export default {
+		globalData:{
+			title:'',
+			content:'',
+			item:'',
+		},
 		onLaunch: function() {
 			this.initApp()
 		},

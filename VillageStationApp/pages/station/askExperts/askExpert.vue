@@ -1,8 +1,8 @@
 <template>
 	<view>
 		<!-- 1 -->
-		<div class="content" @click="goToDetailPage1">
-			<view style=" border-radius: 10px; background-color: white;margin:15px;">
+		<div class="content" v-for="expert in experts" :key="expert.id">
+			<view style=" border-radius: 10px; background-color: white;margin:15px;"  @click="goToDetailPage1(expert.askExpertsId)">
 				<view class="u-page">
 					<view class="u-demo-block">
 						<view class="album">
@@ -12,77 +12,60 @@
 								</image>
 							</view>
 							<view class="album__content">
-								<u-text margin="20px 0 10px 0" text="王洪刚" bold size="25"></u-text>
-								<u-text margin="20px 0 8px 0" text="曾任山东农业大学农学系系主任、农学院院长，现为农学院教授委员会主任。"
-									color="rgb(169,169,169)" bold size="18"></u-text>
+								<div style="margin: 20px 0 10px 0; size: 25px;">
+									{{expert.expertName}}
+								</div>
+								<div style="margin:20px 0 8px 0 ; color:rgb(169,169,169) ;">
+									{{expert.introduction}}
+								</div>
 							</view>
 						</view>
 					</view>
 				</view>
 			</view>
 		</div>
-		<!-- 2 -->
-		<div class="content" @click="goToDetailPage2">
-			<view style=" border-radius: 10px; background-color: white; margin:15px;">
-				<view class="u-page">
-					<view class="u-demo-block">
-						<view class="album">
-							<view class="album__avatar">
-								<image src="/static/images/station/askExperts/shr.png"
-									style="margin:10px; width: 100px; height: 120px;border-radius: 8px; overflow: hidden;">
-								</image>
-							</view>
-							<view class="album__content">
-								<u-text margin="20px 0 10px 0" text="束怀瑞" bold size="25"></u-text>
-								<u-text margin="20px 0 8px 0" text="中国工程院院士，博士生导师，中国园艺学会常务理事" color="rgb(169,169,169)"
-									bold size="18"></u-text>
-							</view>
-						</view>
-					</view>
-				</view>
-			</view>
-		</div>
-		<!-- 3 -->
-		<div class="content" @click="goToDetailPage3">
-			<view style=" border-radius: 10px; background-color: white; margin:15px;">
-				<view class="u-page">
-					<view class="u-demo-block">
-						<view class="album">
-							<view class="album__avatar">
-								<image src="/static/images/station/askExperts/wy.png"
-									style="margin:10px; width: 100px; height: 120px;border-radius: 8px; overflow: hidden;">
-								</image>
-							</view>
-							<view class="album__content">
-								<u-text margin="20px 0 10px 0" text="王勇" bold size="25"></u-text>
-								<u-text margin="20px 0 8px 0" text="现任生命科学学院院长,主要从事植物氮素分子生物学和一氧化氮产生机理的研究."
-									color="rgb(169,169,169)" bold size="18"></u-text>
-							</view>
-						</view>
-					</view>
-				</view>
-			</view>
-		</div>
+
 	</view>
 	</view>
 </template>
 
 <script>
+	import {
+		listExpert,
+		getExpert,
+		delExpert,
+		addExpert,
+		updateExpert
+	} from "@/api/station/expert.js";
+	
 	export default {
 		data() {
 			return {
+				experts: {
+					expertName: '',
+					introduction: ''
+				}
 			}
 		},
+		created() {
+			this.getList();
+		},
 		methods: {
-			goToDetailPage1() {
-				this.$router.push('/pages/station/askExperts/whg');
+			//获取专家列表
+			getList() {
+				this.loading = true;
+				listExpert(this.queryParams).then(response => {
+					this.experts = response.rows;
+					// this.total = response.total;
+					this.loading = false;
+				});
 			},
-			goToDetailPage2() {
-				this.$router.push('/pages/station/askExperts/shr');
+			goToDetailPage1(id) {
+				uni.navigateTo({
+				       url:"/pages/station/askExperts/shr?id="+id
+				    })
+				// this.$router.push(`/pages/station/askExperts/shr`);
 			},
-			goToDetailPage3() {
-				this.$router.push('/pages/station/askExperts/wy');
-			}
 		}
 	}
 </script>

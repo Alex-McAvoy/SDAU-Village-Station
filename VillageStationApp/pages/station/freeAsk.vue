@@ -18,72 +18,62 @@
 			<u-swiper :list="list1"></u-swiper>
 		</view>
 		<!-- 主体内容一 -->
-		<view style=" margin: 15px; border-radius: 5px;  background-color: white; margin-top: 10px; ">
-			<view class="u-page">
-				<view class="u-demo-block">
-					<view class="u-demo-block__content">
-						<view class="album">
-							<view class="album__avatar">
-								<image src="/static/images/icon.jpg" mode="" style="width: 32px;height: 32px; "></image>
-							</view>
-							<view class="album__content">
-								<u--text text="苹果在树上，还没摘就面了，还能变脆吗？" type="primary" bold size="17"></u--text>
-								<u--text margin="0 0 8px 0"
-									text="提高果实硬度: 一，清园配方用康纯钙镁锌。 二，施基肥配方中用矿物晶。 三，套装前喷足三次美钙镁幼果补钙。"></u--text>
-								<u-album :urls="urls1" keyName="src2" style="margin-bottom: 8px;"></u-album>
+		<div v-for="askquestion in askquestions" :key="askquestion.id">
+			<view style=" margin: 15px; border-radius: 5px;  background-color: white; margin-top: 10px; " @click="goToDetailPage(askquestion.askFreeId)">
+				<view class="u-page">
+					<view class="u-demo-block">
+						<view class="u-demo-block__content">
+							<view class="album">
+								<view class="album__avatar">
+									<image src="/static/images/icon.jpg" mode="" style="width: 32px;height: 32px; "></image>
+								</view>
+								<view class="album__content">
+									<div>
+										{{askquestion.title}}
+									</div>
+									<div>
+										{{askquestion.content}}
+									</div>
+								</view>
 							</view>
 						</view>
 					</view>
 				</view>
 			</view>
+		</div>
+		<view>
+			<u-modal :show="show" :title="title" @cancel="cancel" @confirm="confirm" :showCancelButton='true'>
+				<div style="width: 90%;">
+					<u--input placeholder="请输入标题" v-model="questions.title"></u--input>
+					<u--input placeholder="请输入内容" style="margin-top: 20px;" v-model="questions.content"></u--input>
+				</div>
+			</u-modal>
 		</view>
-		<!-- 主体内容二 -->
-		<view style=" margin: 15px; border-radius: 5px;  background-color: white; margin-top: 10px; ">
-			<view class="u-page">
-				<view class="u-demo-block">
-					<view class="u-demo-block__content">
-						<view class="album">
-							<view class="album__avatar">
-								<image src="/static/images/icon.jpg" mode="" style="width: 32px;height: 32px; "></image>
-							</view>
-							<view class="album__content">
-								<u--text text="苹果在树上，还没摘就面了，还能变脆吗？" type="primary" bold size="17"></u--text>
-								<u--text margin="0 0 8px 0"
-									text="提高果实硬度: 一，清园配方用康纯钙镁锌。 二，施基肥配方中用矿物晶。 三，套装前喷足三次美钙镁幼果补钙。"></u--text>
-								<u-album :urls="urls1" keyName="src2" style="margin-bottom: 8px;"></u-album>
-							</view>
-						</view>
-					</view>
-				</view>
-			</view>
-		</view>
-		<!-- 主体内容三 -->
-		<view style=" margin: 15px; border-radius: 5px;  background-color: white; margin-top: 10px; ">
-			<view class="u-page">
-				<view class="u-demo-block">
-					<view class="u-demo-block__content">
-						<view class="album">
-							<view class="album__avatar">
-								<image src="/static/images/icon.jpg" mode="" style="width: 32px;height: 32px; "></image>
-							</view>
-							<view class="album__content">
-								<u--text text="苹果在树上，还没摘就面了，还能变脆吗？" type="primary" bold size="17"></u--text>
-								<u--text margin="0 0 8px 0"
-									text="提高果实硬度: 一，清园配方用康纯钙镁锌。 二，施基肥配方中用矿物晶。 三，套装前喷足三次美钙镁幼果补钙。"></u--text>
-								<u-album :urls="urls1" keyName="src2" style="margin-bottom: 8px;"></u-album>
-							</view>
-						</view>
-					</view>
-				</view>
-			</view>
+		<view @click="open">
+			<u-button class="custom-style" color="#00ae67 " type="primary" shape="circle"
+				style="  width: 80px; height: 80px; position: fixed;bottom: 80px;right: 30px; font-size: 50px;">＋
+			</u-button>
 		</view>
 	</view>
 </template>
 
 <script>
+	import {
+		listfreeAsk,
+		addAskQuestion
+	} from "@/api/station/freeAsk.js";
+	
 	export default {
 		data() {
 			return {
+
+				//弹出框
+				show: false,
+				title: '添加问题',
+				askquestions: {
+					title: '',
+					content: '',
+				},
 				keyword: '',
 				list1: [
 					'../../static/images/station/freeAsk/orange.jpg',
@@ -94,10 +84,51 @@
 				urls1: [{
 					src2: '../../static/images/station/freeAsk/apple.jpg',
 				}],
+				questions:{
+					title:'',
+					content:'',
+				},
 			}
 		},
+		created() {
+			this.getList();
+		},
 		methods: {
-
+			goToDetailPage(id) {
+			    // console.log(id);
+			    uni.navigateTo({
+			      url: "/pages/station/freeAskdetail?id="+id
+			    });
+			  },
+			//获取随时问问题列表
+			getList() {
+				this.loading = true;
+				listfreeAsk(this.queryParams).then(response => {
+					// console.log(response)
+					this.askquestions = response.rows;
+					// // this.total = response.total;
+					this.loading = false;
+				});
+			},
+			confirm() {
+				// console.log(this.questions)
+				addAskQuestion(this.questions).then(response => {
+					// console.log(response)
+					this.getList();
+					// this.question = response.data;
+					// this.total = response.total;
+					this.loading = false;
+					// console.log(this.question);
+					this.show = false;
+					
+				});
+			},
+			open() {
+				this.show = true;
+			},
+			cancel() {
+				this.show = false;
+			}
 		}
 	}
 </script>
