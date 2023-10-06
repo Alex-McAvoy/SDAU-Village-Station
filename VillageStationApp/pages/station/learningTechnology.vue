@@ -4,86 +4,45 @@
 		<view style="margin: 15px; border-radius: 10px; overflow: hidden; background-color: white;">
 			<u-grid :border="false" col="4">
 				<u-grid-item v-for="(listItem,listIndex) in list" :key="listIndex">
-					<u-icon :customStyle="{paddingTop:20+'rpx'}" :name="listItem.name" :size="22"
-						color="#2ed573"></u-icon>
+					<u-icon :customStyle="{paddingTop:20+'rpx'}" :name="listItem.name" :size="22" color="#2ed573"
+						@click="click(listItem.title)"></u-icon>
 					<text class="grid-text">{{listItem.title}}</text>
 				</u-grid-item>
 			</u-grid>
 			<u-toast ref="uToast" />
 		</view>
 		<!-- 内容一 -->
-		<view style="display: flex;  background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; ">
-			<image src="../../static/images/station/learningTechnology/melon.jpg"
-				style=" margin-bottom: 8px; width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
-			</image>
-			<view style="margin-left: 1vh;">
-				<u--text text="大棚早春薄皮甜瓜—秋延红辣椒高效套作栽培模式 " type="primary" bold size="17" style="margin-top: 5px;"></u--text>
-				<view style="display: flex; margin-top: 3vh;">
-					<u--text color="#909090 " margin="0 0 8px 0" text="中国政府网 "></u--text>
-					<u--text color="#909090 " margin="0 0 8px 0" text="342人阅读" style="justify-content:end;"></u--text>
+		<div v-for="onetechdetail in techdetails" :key="onetechdetail.title">
+			<div style=" background-color: white;margin: 15px; border-radius: 10px;" @click="goToDetailPage(onetechdetail.articleId)">
+				<div style="display: flex; margin-left: 20px; margin-top: 20px;">	
+					<image src="../../static/images/station/learningTechnology/melon.jpg" style="margin-top: 10px; border-radius: 15px; height: 100px; width: 130px;">
+					</image>
+					<image src="../../static/images/station/channel/demand.jpg" style="margin-top: 10px; border-radius: 15px; height: 100px; width: 130px; margin-left: 15px;">
+					</image>
+				</div>
+				<view style="margin-left: 20px;">
+					<div type="primary" style="margin-top: 5px;">{{onetechdetail.content}}</div>
+					<view style="display: flex; margin-top: 3vh;">
+						<u--text color="#909090 " margin="0 0 8px 0" text="中国政府网 "></u--text>
+						<u--text color="#909090 " margin="0 0 8px 0" text="342人阅读" style="justify-content:end;"></u--text>
+					</view>
 				</view>
-			</view>
-		</view>
-		<!-- 内容二 -->
-		<view style="display: flex;  background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; ">
-			<image src="../../static/images/station/learningTechnology/melon.jpg"
-				style="  margin-bottom: 8px; width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
-			</image>
-			<view style="margin-left: 1vh;">
-				<u--text text="大棚早春薄皮甜瓜—秋延红辣椒高效套作栽培模式 " type="primary" bold size="17" style="margin-top: 5px;"></u--text>
-				<view style="display: flex; margin-top: 3vh;">
-					<u--text color="#909090 " margin="0 0 8px 0" text="中国政府网 "></u--text>
-					<u--text color="#909090 " margin="0 0 8px 0" text="342人阅读" style="justify-content:end;"></u--text>
-				</view>
-			</view>
-		</view>
-		<!-- 内容三 -->
-		<view style="display: flex;  background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; ">
-			<image src="../../static/images/station/learningTechnology/melon.jpg"
-				style="  margin-bottom: 8px; width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
-			</image>
-			<view style="margin-left: 1vh;">
-				<u--text text="大棚早春薄皮甜瓜—秋延红辣椒高效套作栽培模式 " type="primary" bold size="17" style="margin-top: 5px;"></u--text>
-				<view style="display: flex; margin-top: 3vh;">
-					<u--text color="#909090 " margin="0 0 8px 0" text="中国政府网 "></u--text>
-					<u--text color="#909090 " margin="0 0 8px 0" text="342人阅读" style="justify-content:end;"></u--text>
-				</view>
-			</view>
-		</view>
-		<!-- 内容四 -->
-		<view style="display: flex;  background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; ">
-			<image src="../../static/images/station/learningTechnology/melon.jpg"
-				style="  margin-bottom: 8px; width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
-			</image>
-			<view style="margin-left: 1vh;">
-				<u--text text="大棚早春薄皮甜瓜—秋延红辣椒高效套作栽培模式 " type="primary" bold size="17" style="margin-top: 5px;"></u--text>
-				<view style="display: flex; margin-top: 3vh;">
-					<u--text color="#909090 " margin="0 0 8px 0" text="中国政府网 "></u--text>
-					<u--text color="#909090 " margin="0 0 8px 0" text="342人阅读" style="justify-content:end;"></u--text>
-				</view>
-			</view>
-		</view>
-		<!-- 内容五 -->
-		<view style="display: flex;  background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; ">
-			<image src="../../static/images/station/learningTechnology/melon.jpg"
-				style="  margin-bottom: 8px; width: 150px;height: 150px; padding-top: 1vh; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin-left: 1vh;">
-			</image>
-			<view style="margin-left: 1vh;">
-				<u--text text="大棚早春薄皮甜瓜—秋延红辣椒高效套作栽培模式 " type="primary" bold size="17" style="margin-top: 5px;"></u--text>
-				<view style="display: flex; margin-top: 3vh; ">
-					<u--text color="#909090 " margin="0 0 8px 0" text="中国政府网 "></u--text>
-					<u--text color="#909090 " margin="0 0 8px 0" text="342人阅读" style="justify-content:end;"></u--text>
-				</view>
-			</view>
-		</view>
+			</div>
+		</div>	
 		
 	</view>
 </template>
 
 <script>
+	import {
+		getTechdetail,
+	} from "@/api/station/tech.js"
+
 	export default {
 		data() {
 			return {
+				//标题
+				title:'',
 				list: [{
 						name: 'bag-fill',
 						title: '水稻'
@@ -117,12 +76,30 @@
 						title: '水产'
 					},
 				],
+			techdetails: {
+				content:'',
+			}
 			}
 		},
+		created() {
+			this.click("水稻")
+		},
 		methods: {
-			click(name) {
-				this.$refs.uToast.success(`点击了第${name}个`)
-			}
+			goToDetailPage(id) {
+				// console.log(id);
+				uni.navigateTo({
+					url: "/pages/station/techdetail?id=" + id
+				});
+			},
+			click(title) {
+				//获取作物详情
+				getTechdetail(title).then(response => {
+					// console.log(response)
+						this.techdetails = response.data;
+						// this.total = response.total;
+						this.loading = false;
+				});
+			},
 		}
 	}
 </script>
@@ -135,5 +112,9 @@
 		/* #ifndef APP-PLUS */
 		box-sizing: border-box;
 		/* #endif */
+	}
+	.uni-image{
+		width: 10px;
+		height: 10px;
 	}
 </style>

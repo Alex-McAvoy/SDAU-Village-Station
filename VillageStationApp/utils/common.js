@@ -52,6 +52,7 @@ export function tansParams(params) {
   }
   return result
 }
+
 export function goBack(index, url) {
 	if (index == 1) { 
 		// 关闭当前页，返回上一页面或多级页面。

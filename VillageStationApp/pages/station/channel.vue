@@ -1,7 +1,5 @@
 <template>
 	<view>
-
-
 		<!-- 搜索框-->
 		<view style=" display: flex; align-items: center;  background-color: white; justify-content: space-between;">
 			<!-- 定位 -->
@@ -12,142 +10,184 @@
 			</view>
 			<!-- 搜索框 -->
 			<view style="width: 80%; height: 20px; margin-bottom: 20px; ">
-				<u-search placeholder="搜索" v-model="keyword" actionText=""></u-search>
+				<u-search placeholder="搜索" actionText=""></u-search>
 			</view>
 		</view>
-
 		<!-- 导航栏 -->
-		<view style="border-radius: 5px; margin-top: -5px; margin-bottom: 1vh; background-color: white;">
-			<u-tabs :list="list1" @click="click" class="tabs" style="align-items: center;" lineColor="#00ae67 "
-				lineWidth="50"> </u-tabs>
+		<view class="tab_nav" style="border-radius: 10px; background-color: white;  margin:8px 15px">
+			<view class="navTitle" v-for="(item,index) in navList" :key="index">
+				<view :class="{'active':isActive === index}" @click="checked(index)">
+					{{item.title}}
+				</view>
+			</view>
 		</view>
 
 		<!-- 内容1 -->
-		<view style="display: flex;  background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; display:flex;">
-			<image src="../../static/images/station/channel/cornharvester.jpg"
-				style="width: 160px;height: 100px; border-radius: 10px; overflow: hidden; margin: 1vh;">
-			</image>
-			<!-- 左上 -->
-			<view style="margin-left: 2vh; margin-top: 8px;">
-				<u--text text="玉米收割机" bold size="17"></u--text>
-				<u--text color="#909090 " text="春种秋收一条龙,实现高收益的高性能机器" size="15"></u--text>
+		<view class="nav_item">
+			<view class="u-page" v-for="item in channelList" @click="skip(item)">
+				<view class="album">
+					<view class="album__avatar">
+						<image src="../../static/images/station/channel/cornharvester.jpg"
+							style="width: 160px;height: 100px; border-radius: 10px; overflow: hidden; margin: 1vh;">
+						</image>
+					</view>
+					<!-- 左上 -->
+					<view class="album__content">
+						<view style="margin-top: 8px;">
+							<view style="margin-top: 8px;">
+								<view style="font-size:18px; margin-bottom:10px; font-weight: bold;">
+									{{ item.title }}
+								</view>
+								<view style="font-size:15px; margin-bottom:10px;"><u-parse
+										:content="item.content"></u-parse></view>
+							</view>
+						</view>
+					</view>
+				</view>
 			</view>
-			<!-- 时间 -->
-			<!-- <view style=" margin-top: 7vh;margin-right: 1px;">
-				<u--text color="#909090 " margin="5px" text="2023-07-14 14:00"></u--text>
-			</view> -->
-		</view>
-
-		<!--内容2 -->
-
-		<view
-			style="display: flex; background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; display:flex;">
-			<image src="../../static/images/station/channel/Fragrans.jpg"
-				style="width: 150px;height: 150px;  border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin: 1vh;">
-			</image>
-			<!-- 左上 -->
-			<view style="margin-left: 2vh; margin-top: 8px;">
-				<u--text text="桂花,桂花蜜" bold size="17"></u--text>
-				<u--text color="#909090 " text="桂花具有杀菌美容功效" size="15"></u--text>
-			</view>
-			<!-- 时间 -->
-			<!-- <view style=" margin-top: 7vh;margin-left: 10px;">
-				<u--text color="#909090 " margin="5px" text="2023-09-15 16:00"></u--text>
-			</view> -->
-		</view>
-		<!-- 内容3 -->
-		<view style="display: flex; background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; ">
-			<image src="../../static/images/station/channel/Goose.jpg"
-				style="width: 150px;height: 150px;border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin: 1vh;">
-			</image>
-			<!-- 左上 -->
-			<view style="margin-left: 2vh; margin-top: 8px;">
-				<u--text text="大白鹅" bold size="17"></u--text>
-				<u--text color="#909090 " text="散养河道大白鹅" size="15"></u--text>
-			</view>
-			<!-- 时间 -->
-			<!-- <view style=" margin-top: 7vh;margin-right: 1px;">
-				<u--text color="#909090 " margin="5px" text="2023-07-14 14:00"></u--text>
-			</view> -->
-		</view>
-
-		<!-- 内容4 -->
-		<view style="display: flex; background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; ">
-			<image src="../../static/images/station/channel/sheep.jpg"
-				style="width: 150px;height: 150px;border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin: 1vh;">
-			</image>
-			<!-- 左上 -->
-			<view style="margin-left: 2vh; margin-top: 8px;">
-				<u--text text="黑山羊" bold size="17"></u--text>
-				<u--text color="#909090 " text="本地黑山羊膻味少" size="15"></u--text>
-			</view>
-			<!-- 时间 -->
-			<!-- <view style=" margin-top: 7vh;margin-right: 1px;">
-				<u--text color="#909090 " margin="5px" text="2023-07-14 14:00"></u--text>
-			</view> -->
-		</view>
-
-		<!-- 内容5 -->
-		<view style="display: flex;  background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; ">
-			<image src="../../static/images/station/channel/tomato.jpg"
-				style="width: 150px;height: 150px; border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin: 1vh;">
-			</image>
-			<!-- 左上 -->
-			<view style="margin-left: 2vh;margin-top: 8px;">
-				<u--text text="小番茄" bold size="17"></u--text>
-				<u--text color="#909090 " text="优质圣女果肉软，水分足" size="15"></u--text>
-			</view>
-			<!-- 时间 -->
-			<!-- <view style=" margin-top: 7vh;margin-right: 1px;">
-				<u--text color="#909090 " margin="5px" text="2023-07-14 14:00"></u--text>
-			</view> -->
-		</view>
-
-		<view style="display: flex;  background-color: white;margin: 15px; border-radius: 10px; overflow: hidden; ">
-			<image src="../../static/images/station/learningTechnology/melon.jpg"
-				style="width: 150px;height: 150px;  border-radius: 10px; overflow: hidden; width: 120px; height: 100px; margin: 1vh;">
-			</image>
-			<!-- 左上 -->
-			<view style="margin-left: 2vh; margin-top: 8px;">
-				<u--text text="黄杨木" bold size="17"></u--text>
-				<u--text color="#909090 " text="耐晒耐阴,耐寒耐热" size="15"></u--text>
-			</view>
-			<!-- 时间 -->
-			<!-- <view style=" margin-top: 7vh;margin-right: 1px;">
-				<u--text color="#909090 " margin="5px" text="2023-07-14 14:00"></u--text>
-			</view> -->
 		</view>
 		<!-- 悬浮框 -->
-		<u-button class="custom-style" color="#00ae67 " type="primary" shape="circle"
-			style="  width: 100px; height: 100px; position: fixed;bottom: 50px;right: 30px; font-size: 50px;">＋
-		</u-button>
+		<u-modal :show="show" :title="title" @confirm="submitForm" @cancel="cancel" :showCancelButton="true">
+			<u-form :model="form" ref="form">
+				<u-form-item label="标题">
+					<u-input v-model="form.title" placeholder="请输入标题" />
+				</u-form-item>
+				<u-form-item label="内容">
+					<u-input v-model="form.content" placeholder="请输入内容" />
+				</u-form-item>
+				<u-form-item label="类型"  borderBottom ref="item2">
+					<u-radio-group v-model="form.firstColumn">
+						<u-radio :customStyle="{marginRight: '16px'}" v-for="(item, index) in selectType" :key="index"
+							:label="item.name" :name="item.name">
+						</u-radio>
+					</u-radio-group>
+				</u-form-item>
+			</u-form>
 
+		</u-modal>
+		<u-button class="custom-style" color="#00ae67 " type="primary" shape="circle"
+			style="  width: 100px; height: 100px; position: fixed;bottom: 50px;right: 30px; font-size: 50px;"
+			@click="handleAdd">+
+		</u-button>
 	</view>
 </template>
 
 <script>
+	import {
+		listChannel,
+		getChannel,
+		delChannel,
+		addChannel,
+		updateChannel,
+		listByColumn
+	} from "@/api/system/channel";
 	export default {
 		data() {
 			return {
-				list1: [{
-					name: '供应',
+				form: {},
+				current: 0,
+				text: '000',
+				show: false,
+				title: '添加问题',
+				// 找渠道表格数据
+				channelList: [],
+				isActive: 0,
+				navList: [{
+					index: 0,
+					title: '供应'
 				}, {
-					name: '求购 ',
-				}, ],
-
+					index: 1,
+					title: "求购"
+				}],
+				productsList: [],
+				current: 0,
+				selectType: [{
+						name: '供应',
+						disabled: false
+					},
+					{
+						name: '求购',
+						disabled: false
+					},
+				],
 			}
 		},
+		created() {
+			this.loading = true;
+			this.checked(0);
+		},
 		methods: {
-			click(item) {
-				console.log('item', item);
+			checked(index) {
+				this.isActive = index;
+				listByColumn(this.navList[index].title).then(response => {
+					console.log(response);
+					this.channelList = response.rows;
+					this.total = response.total;
+					this.loading = false;
+				});
 			},
-
-
+			// 多选框选中数据
+			handleSelectionChange(selection) {
+				this.ids = selection.map(item => item.newsId)
+				this.single = selection.length !== 1
+				this.multiple = !selection.length
+			},
+			/** 新增按钮操作 */
+			handleAdd() {
+				this.show = true;
+				this.open = true;
+				this.title = "发布信息";
+			},
+			// 取消按钮
+			cancel() {
+				this.show = false;
+				this.form = {};
+			},
+			/** 提交按钮 */
+			submitForm() {
+				console.log(this.form)
+				addChannel(this.form).then(response => {
+					this.$modal.msgSuccess("发布成功");
+					this.show = false;
+					this.checked(0);
+				});
+			},
+			//跳转详情页
+			skip(item) {
+				getApp().globalData.item=item;
+				console.log(getApp().globalData.item);
+				uni.navigateTo({
+					url: "channel/channel_detail"
+				}) 
+			}
 		}
 	}
 </script>
 
 <style lang="scss">
+	.album {
+		@include flex;
+		align-items: flex-start;
+
+		&__avatar {
+			background-color: #fff;
+			padding: 5px;
+			border-radius: 3px;
+		}
+
+		&__content {
+			margin-left: 10px;
+			flex: 2;
+		}
+	}
+
+	.u-page {
+		background-color: white;
+		height: 100%;
+		border-radius: 5px;
+		margin: 15px;
+	}
+
 	// 悬浮框强制按钮
 	.list-cell {
 		display: flex;
@@ -164,5 +204,38 @@
 	// 导航栏字体
 	::v-deep .u-tabs__wrapper__nav__item__text {
 		font-size: 19px !important;
+	}
+
+	.tab_nav {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.tab_nav .navTitle {
+		height: 90rpx;
+		line-height: 90rpx;
+		width: 100%;
+		text-align: center;
+		font-size: 32rpx;
+		font-family: Alibaba PuHuiTi;
+		color: #333;
+	}
+
+	.active {
+		position: relative;
+		color: #00ae67;
+	}
+
+	.active::after {
+		content: "";
+		position: absolute;
+		width: 100rpx;
+		height: 4rpx;
+		background-color: #00ae67;
+		left: 0px;
+		right: 0px;
+		bottom: 0px;
+		margin: auto;
 	}
 </style>

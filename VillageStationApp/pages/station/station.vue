@@ -6,7 +6,7 @@
 			<u-col span="3">乡村驿站&nbsp;</u-col>
 			<u-col span="7">
 				<u-search :show-action="false"></u-search>
-			</u-col>
+			</u-col
 			<u-col span="2">天气</u-col>
 		</u-row>
 		
@@ -411,7 +411,7 @@
 			redirectTo(route) {
 				// 进行跳转逻辑
 				// 例如使用 Vue Router 跳转到指定路径
-				this.$router.push(route);
+				this.$router.push(route); 
 			},
 			loadmore() {
 				for (let i = 0; i < 2; i++) {

@@ -1,6 +1,8 @@
 package com.ruoyi.web.controller.minio;
 
 import com.ruoyi.minio.utils.MinIoUtil;
+import com.ruoyi.system.domain.TbFileServer;
+import com.ruoyi.system.service.ITbFileServerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,17 +22,24 @@ import java.util.List;
 public class MinIoController {
     @Autowired
     private MinIoUtil minIoUtil;
+    @Autowired
+    private ITbFileServerService tbFileServerService;
 
     @Value("${minio.endpoint}")
     private String address;
     @Value("${minio.bucketName}")
     private String bucketName;
 
-    @PostMapping("/upload")
+    @PostMapping("/uploadImg")
     public Object upload(MultipartFile file) {
-
-        List<String> upload = minIoUtil.upload(new MultipartFile[]{file});
-
+        System.out.println("上传");
+        List<String> upload = minIoUtil.upload(new MultipartFile[]{file},"species");
+        System.out.println("上传中");
+        String url = address+"/"+bucketName+"/"+upload.get(0);
+        System.out.println(url);
+        TbFileServer tbFileServer = new TbFileServer(new Long("0"), file.getContentType(), upload.get(0), file.getOriginalFilename(), bucketName, url, new Long("0"), "0", "tb_new_species", new Long("23"), "");
+        System.out.println(tbFileServer.toString());
+        tbFileServerService.insertTbFileServer(tbFileServer);
         return address+"/"+bucketName+"/"+upload.get(0);
     }
 }

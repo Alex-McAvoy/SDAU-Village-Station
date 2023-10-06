@@ -34,14 +34,14 @@
 		</view>
 
 		<!-- 新闻资讯 -->
-		<view class="main_context">
+		<view class="main_context" >
 			<view> <!-- 主体框 -->
 				<u-row gutter="16">
 					<u-col span="2" style="padding-left:10px;margin-right: 8px;">
 						<image src="/static/images/index/index_news.png" style="height:25px;width:25px;" />
 					</u-col>
 					<u-col span="9" class="bar" style="margin-left:-25px">
-						<u-text style="font-weight: 20px;" margin="0px 0px 0px 0px" text="新闻资讯" bold size="22"></u-text>
+						<u-text @click="goNewsList" style="font-weight: 20px;" margin="0px 0px 0px 0px" text="新闻资讯" bold size="22"></u-text>
 					</u-col>
 
 					<u-col span="1">
@@ -50,8 +50,10 @@
 				</u-row>
 			</view>
 			<view> <!-- 栏目标签 -->
-				<u-tabs :list="list" :is-scroll="true" v-on:click="getData" lineColor="#2ed573"
+			<u-sticky bgColor="#fff">
+			    <u-tabs :list="list" :is-scroll="true" v-on:click="getData" lineColor="#2ed573"
 					@change="change"></u-tabs>
+			</u-sticky>
 			</view>
 			<view><!-- 栏目内容 -->
 				<view class="news">
@@ -215,7 +217,12 @@
 				this.text = this.textList[index];
 			},
 			getData() {
-
+			},
+			goNewsList() {
+			    // this.$router.push('/pages/index/news/newsList');
+				uni.navigateTo({
+					url: "news/newsList"
+				})
 			}
 		}
 	}

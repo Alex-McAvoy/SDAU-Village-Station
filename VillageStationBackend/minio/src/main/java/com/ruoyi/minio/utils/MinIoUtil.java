@@ -99,11 +99,12 @@ public class MinIoUtil {
     /**
      * 上传文件
      * @param multipartFile 文件
+     * @param species
      * @return List<String>
      * @author Alex McAvoy
      * @date 2023/10/2 17:10:18
      */
-    public List<String> upload(MultipartFile[] multipartFile) {
+    public List<String> upload(MultipartFile[] multipartFile, String species) {
         List<String> names = new ArrayList<>(multipartFile.length);
         for (MultipartFile file : multipartFile) {
             String fileName = file.getOriginalFilename();

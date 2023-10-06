@@ -20,8 +20,8 @@
 			</image>
 			<u-text style="font-weight: 20px;" margin="8px 0px 0px 0px" text="热销农产" bold size="22"></u-text>
 		</view>
-		<!-- 鲁花 -->
-			<view class="u-page">
+		<!-- 热销农产详情 -->
+			<view class="u-page" v-for="item in newsList.slice(0, 3)">
 				<view class="u-demo-block">
 					<view class="album">
 						<view class="album__avatar">
@@ -30,70 +30,13 @@
 							</image>
 						</view>
 						<view class="album__content">
-							<div>
-								<span style="padding-right: 8px;margin:30px 0 10px 0; font-size:20px;font-weight: 500px;">
-									鲁花（山东春兴粮油集团有限公司）</span>
-							</div>
-							<div>
-								<span
-									style="padding-right: 8px;margin:30px 0 8px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
-									鲁花是中国知名的食用油品牌，<br/>其产品包括花生油、豆油、调和油等。</span>
-							</div>
+							<view style="font-size:18px; margin-bottom:10px;">{{ item.title }}</view>
+							<view style="font-size:15px; margin-bottom:10px;"><u-parse :content="item.content"></u-parse></view>
+							
 						</view>
 					</view>
 				</view>
 			</view>
-		<!-- 泰山 -->
-		<view style="border-radius: 10px; background-color: white;  margin:15px">
-			<view class="u-page">
-				<view class="u-demo-block">
-					<view class="album">
-						<view class="album__avatar">
-							<image src="/static/images/product/ts.png"
-								style=" width: 70px; height: 80px;border-radius: 8px; overflow: hidden;">
-							</image>
-						</view>
-						<view class="album__content">
-							<div>
-								<span style="padding-right: 8px;margin:40px 0 0px 0; font-size:20px;font-weight: 500px;">
-									泰山（泰山集团）</span>
-							</div>
-							<div>
-								<span
-									style="padding-right: 8px;margin:10px 0 8px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
-									泰山是中国著名的茶叶品牌，主要生产各类优质茶叶，如绿茶、红茶、乌龙茶等。</span>
-							</div>
-						</view>
-					</view>
-				</view>
-			</view>
-		</view>
-		<!-- 蓝湾 -->
-		<view style="border-radius: 10px; background-color: white;  margin:15px">
-			<view class="u-page">
-				<view class="u-demo-block">
-					<view class="album">
-						<view class="album__avatar">
-							<image src="/static/logo.png"
-								style="margin-top: 10px; width: 70px; height: 80px;border-radius: 8px; overflow: hidden;">
-							</image>
-						</view>
-						<view class="album__content">
-							<div>
-								<span style="padding-right: 8px;margin:20px 0 10px 0; font-size:20px;font-weight: 500px;">
-									蓝湾（山东蓝湾集团）</span>
-							</div>
-							<br/>
-							<div>
-								<span
-									style="padding-right: 8px;margin:30px 0 8px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
-									蓝湾是中国知名的水果品牌，其产品主要包括苹果、樱桃、葡萄等。</span>
-							</div>
-						</view>
-					</view>
-				</view>
-			</view>
-		</view>
 		</view>
 		<!-- 优品动态 -->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
@@ -103,78 +46,18 @@
 			</image>
 			<u-text style="font-weight: 20px;" margin="8px 0px 0px 0px" text="优品动态" bold size="22"></u-text>
 		</view>
-		<!-- 泰山茶 -->
-		<view style="border-radius: 10px; background-color: white;  margin:15px">
-			<view class="u-page">
-				<view class="u-demo-block">
-					<view class="album">
-						<view class="album__avatar">
-							<image src="/static/images/product/ts.png"
-								style=" width: 70px; height: 80px;border-radius: 8px; overflow: hidden;">
-							</image>
-						</view>
-						<view class="album__content">
-							<div>
-								<span style="padding-right: 8px;margin:40px 0 0px 0; font-size:20px;font-weight: 500px;">
-									泰山茶</span>
-							</div>
-							<div>
-								<span
-									style="padding-right: 8px;margin:10px 0 8px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
-									到2018年泰安市茶园面积4.5万亩，产量1770吨，产值达11亿，位列山东省的第三位。</span>
-							</div>
-						</view>
+		<!-- 优品动态详情 -->
+		<view class="u-page" v-for="item in newsList.slice(3, 6)">
+			<view class="u-demo-block">
+				<view class="album">
+					<view class="album__avatar">
+						<image src="/static/images/product/lh.png"
+							style="margin-left: 15px; width: 70px; height: 80px;border-radius: 8px; overflow: hidden;">
+						</image>
 					</view>
-				</view>
-			</view>
-		</view>
-		<!-- 荣成海带 -->
-		<view style="border-radius: 10px; background-color: white;  margin:15px">
-			<view class="u-page">
-				<view class="u-demo-block">
-					<view class="album">
-						<view class="album__avatar">
-							<image src="/static/images/product/hd.png"
-								style=" width: 70px; height: 80px;border-radius: 8px; overflow: hidden;">
-							</image>
-						</view>
-						<view class="album__content">
-							<div>
-								<span style="padding-right: 8px;margin:40px 0 20px 0; font-size:20px;font-weight: 500px;">
-									荣成海带</span>
-							</div>
-							<br/>
-							<div>
-								<span
-									style="padding-right: 8px;margin:20px 0 8px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
-									山东省威海市特产，中国国家地理标志产品。</span>
-							</div>
-						</view>
-					</view>
-				</view>
-			</view>
-		</view>
-		<!-- 新城细毛山药 -->
-		<view style="border-radius: 10px; background-color: white;  margin:15px">
-			<view class="u-page">
-				<view class="u-demo-block">
-					<view class="album">
-						<view class="album__avatar">
-							<image src="/static/images/product/sy.png"
-								style=" width: 70px; height: 80px;border-radius: 8px; overflow: hidden;">
-							</image>
-						</view>
-						<view class="album__content">
-							<div>
-								<span style="padding-right: 8px;margin:40px 0 0px 0; font-size:20px;font-weight: 500px;">
-									新城细毛山药</span>
-							</div>
-							<div>
-								<span
-									style="padding-right: 8px;margin:10px 0 10px 0; font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
-									新城细毛山药栽培历史悠久，早在明清年间就享有盛誉。因其特殊的水土生长条件，成为山药家族中的上乘之品，并成为宫廷贡品。</span>
-							</div>
-						</view>
+					<view class="album__content">
+						<view style="font-size:18px; margin-bottom:10px;">{{ item.title }}</view>
+						<view style="font-size:15px; margin-bottom:10px;"><u-parse :content="item.content"></u-parse></view>
 					</view>
 				</view>
 			</view>
@@ -184,9 +67,18 @@
 </template>
 
 <script>
+	import {
+		listProducts,
+		getProducts,
+		getProductsByColumns
+	} from "@/api/system/products";
 	export default {
+		name: "Product",
+		onLoad: function() {},
 		data() {
 			return {
+				newsList: [],
+				current: 0,
 				value1: 0,
 				list: [
 					'../../static/images/station/freeAsk/orange.jpg',
@@ -195,6 +87,9 @@
 				],
 			}
 		},
+		created() {
+			this.getList();
+		},
 		methods: {
 			click1(e) {
 				console.log('click1', e);
@@ -202,6 +97,21 @@
 			change5(name) {
 				if (name === 1) return uni.$u.toast('请您先登录')
 				else this.value5 = name
+			},
+			/** 查询其它栏目*/
+			getList() {
+				this.loading = true;
+				listProducts(this.queryParams).then(response => {
+					this.newsList = response.rows;
+					console.log(this.newsList);
+					this.loading = false;
+				});
+			},
+			// 多选框选中数据
+			handleSelectionChange(selection) {
+				this.ids = selection.map(item => item.newsId)
+				this.single = selection.length !== 1
+				this.multiple = !selection.length
 			},
 		}
 	}
