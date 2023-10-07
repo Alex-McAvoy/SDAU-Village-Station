@@ -123,7 +123,6 @@
 			click(dictValue) {
 				//根据值获取相应专家详情
 				expertList(dictValue).then(response => {
-					// console.log(response)
 						this.experts = response.data;
 						this.loading = false;
 				});
