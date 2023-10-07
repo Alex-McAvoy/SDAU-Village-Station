@@ -30,8 +30,8 @@
 							</image>
 						</view>
 						<view class="album__content">
-							<view style="font-size:18px; margin-bottom:10px;">{{ item.title }}</view>
-							<view style="font-size:15px; margin-bottom:10px;"><u-parse :content="item.content"></u-parse></view>
+							<view class="station_title">{{ item.title }}</view>
+							<view class="main_content"><u-parse :content="item.content"></u-parse></view>
 							
 						</view>
 					</view>
@@ -56,8 +56,8 @@
 						</image>
 					</view>
 					<view class="album__content">
-						<view style="font-size:18px; margin-bottom:10px;">{{ item.title }}</view>
-						<view style="font-size:15px; margin-bottom:10px;"><u-parse :content="item.content"></u-parse></view>
+						<view class="station_title">{{ item.title }}</view>
+						<view class="main_content"><u-parse :content="item.content"></u-parse></view>
 					</view>
 				</view>
 			</view>
@@ -118,6 +118,7 @@
 </script>
 
 <style lang="scss">
+	@import url("../../static/css/text.css");
 	/* 顶部样式 */
 	.index_head {
 		color: azure;

@@ -36,14 +36,14 @@
 		<!-- 新闻资讯 -->
 		<view class="main_context" >
 			<view> <!-- 主体框 -->
-				<u-row gutter="16">
+				<u-row gutter="16" @click="goNewsList">
 					<u-col span="2" style="padding-left:10px;margin-right: 8px;">
 						<image src="/static/images/index/index_news.png" style="height:25px;width:25px;" />
 					</u-col>
 					<u-col span="9" class="bar" style="margin-left:-25px">
 						<u-text @click="goNewsList" style="font-weight: 20px;" margin="0px 0px 0px 0px" text="新闻资讯" bold size="22"></u-text>
 					</u-col>
-
+					
 					<u-col span="1">
 						<image src="/static/images/index/arrow_right.png" style="height:20px;width:35px;" />
 					</u-col>
@@ -55,26 +55,18 @@
 					@change="change"></u-tabs>
 			</u-sticky>
 			</view>
-			<view><!-- 栏目内容 -->
-				<view class="news">
+			<view v-for="item in newsList"><!-- 栏目内容 -->
+				<view class="news" >
 					<view class="new_img">
 						<img src="http://paper.people.com.cn/rmrb/images/2023-09/16/01/rmrb2023091601p27_b.jpg" alt=""
 							style="width:100%;height: auto;overflow: hidden">
 					</view>
-					<view class="new_title">【新时代新征程新伟业——实干笃行】安徽扩外贸引外资 提高开放型经济水平</view>
+					<view class="new_title" style="width:100%">{{item.title}}</view>
 					<view class="new_origin"><span class="origin">来源</span><span>中国政府网</span>
 					</view>
 				</view>
 			</view>
-			<view class="news">
-				<view class="new_img">
-					<img src="http://paper.people.com.cn/rmrb/images/2023-09/16/01/rmrb2023091601p27_b.jpg" alt=""
-						style="width:100%;height: auto;overflow: hidden">
-				</view>
-				<view class="new_title">【新时代新征程新伟业——实干笃行】安徽扩外贸引外资 提高开放型经济水平</view>
-				<view class="new_origin"><span class="origin">来源</span><span>中国政府网</span>
-				</view>
-			</view>
+			
 		</view>
 		<!-- 热销农产 -->
 		<view class="main_context first_main_context">
@@ -167,7 +159,6 @@
 				<view class="answer_text flex_col">山农自主研发高质量新品种优质苹果</view>
 			</view>
 		</view>
-
 		<!-- 惠民贷款 -->
 		<view class="main_context first_main_context">
 			<u-row gutter="16">
@@ -186,6 +177,11 @@
 	</view>
 </template>
 <script>
+	import {
+		listColumns,
+		getColumns,
+		Columns
+	} from "@/api/system/user.js";
 	export default {
 		onLoad: function() {},
 		data() {
@@ -194,8 +190,6 @@
 				text: '000',
 				textList: ['1', '2', '3'],
 				list: [{
-					name: '推荐',
-				}, {
 					name: '政策法规',
 				}, {
 					name: '三农资讯'
@@ -203,18 +197,28 @@
 					name: '科技动态'
 				}, {
 					name: '典型案例'
-				}],
-
+				}],newList:{}
 			}
+		},  created() {
+			this.change({
+				index: 0
+			});
 		},
 		methods: {
 			handleSelect(key, keyPath) {
 				console.log(key, keyPath);
 			},
 			change(index) {
-				this.cur = index;
-				console.log(index)
-				this.text = this.textList[index];
+				console.log(index.index)
+				alert(index.index)
+				this.current = index;
+				//请求 firstColumn=’新闻资讯‘ secondColumn=index.name
+				this.loading = true;
+				Columns(0, index.index).then(response => {
+					this.newsList = response.rows;
+					console.log(response);
+					this.loading = false;
+				});
 			},
 			getData() {
 			},

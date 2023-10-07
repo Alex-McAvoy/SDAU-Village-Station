@@ -15,13 +15,13 @@
 		<div v-for="onetechdetail in techdetails" :key="onetechdetail.title">
 			<div style=" background-color: white;margin: 15px; border-radius: 10px;" @click="goToDetailPage(onetechdetail.articleId)">
 				<div style="display: flex; margin-left: 20px; margin-top: 20px;">	
-					<image src="../../static/images/station/learningTechnology/melon.jpg" style="margin-top: 10px; border-radius: 15px; height: 100px; width: 130px;">
+					<image src="../../../static/images/station/learningTechnology/melon.jpg" style="margin-top: 10px; border-radius: 15px; height: 100px; width: 130px;">
 					</image>
-					<image src="../../static/images/station/channel/demand.jpg" style="margin-top: 10px; border-radius: 15px; height: 100px; width: 130px; margin-left: 15px;">
+					<image src="../../../static/images/station/channel/demand.jpg" style="margin-top: 10px; border-radius: 15px; height: 100px; width: 130px; margin-left: 15px;">
 					</image>
 				</div>
 				<view style="margin-left: 20px;">
-					<div type="primary" style="margin: 10px;">{{onetechdetail.content}}</div>
+					<div type="primary" class="main_content">{{onetechdetail.content}}</div>
 					<view style="display: flex; margin-top: 3vh;">
 						<u--text color="#909090 " margin="0 0 8px 0" text="中国政府网 "></u--text>
 						<u--text color="#909090 " margin="0 0 8px 0" text="342人阅读" style="justify-content:end;"></u--text>
@@ -88,7 +88,7 @@
 			goToDetailPage(id) {
 				// console.log(id);
 				uni.navigateTo({
-					url: "/pages/station/techdetail?id=" + id
+					url: "/pages/station/learningTechnology/techdetail?id=" + id
 				});
 			},
 			click(title) {
@@ -105,6 +105,7 @@
 </script>
 
 <style lang="scss">
+	@import url("../../../static/css/text.css");
 	.grid-text {
 		font-size: 14px;
 		color: #222325;

@@ -20,7 +20,7 @@
 				<image src="/static/images/station/askExperts/expert.png" mode=""
 					style=" width: 18px;height:15px; margin-left: 15px;margin-top: 15px;shape:circle;border-radius: 5px">
 				</image>
-				<view style="margin-top: 10px; margin-left: 5px; font-size: 20px;">专家简介</view>
+				<view class="ask_title">专家简介</view>
 			</view>
 			<view style="display: flex;">
 				<view style="margin-top: 15px;">
@@ -29,11 +29,11 @@
 					</image>
 				</view>
 				<view>
-					<view style=" margin-top: 20px;margin-left: 5px;">
+					<view class="sub_title">
 						姓名：<span>{{expert.expertName}}</span>
 					</view>
-					<view style="margin-top: 20px;margin-left: 5px;" :model="expert">
-						<span style="font-size: 8px;color: #5f5959;">{{expert.introduction}}</span>
+					<view class="sub_content" :model="expert">
+						<span >{{expert.introduction}}</span>
 					</view>
 				</view>
 				
@@ -46,7 +46,7 @@
 				<image src="/static/images/station/askExperts/question.png" mode=""
 					style=" width: 22px;height:22px; margin-left: 15px;margin-top: 15px;shape:circle;border-radius: 5px">
 				</image>
-				<view style="margin-top: 15px; margin-left: 5px;">专家答疑</view>
+				<view class="ask_title">专家答疑</view>
 			</view>
 		</view>
 		<!-- 内容 -->
@@ -70,7 +70,7 @@
 				<view style="margin-left: 5px;">
 					<view style="font-size: 15px;border: #5f5959;" label="问题" prop="queryParams.Question"
 						:model="questions">
-						<div style="margin-top: 2px;">
+						<div class="ask_content">
 							{{onequestions.questionTitle}}
 						</div>
 						<view style="display:flex; margin-left: -23px; margin-top: 3px;">
@@ -178,7 +178,7 @@
 			goToDetailPage(id) {
 				// console.log(id);
 				uni.navigateTo({
-					url: "/pages/station/detail?id=" + id
+					url: "/pages/station/askExperts/detail?id=" + id
 				});
 			},
 			//获取问题列表
@@ -230,6 +230,7 @@
 </script>
 
 <style lang="scss">
+	@import url("../../../static/css/text.css");
 	.list-cell {
 		display: flex;
 		box-sizing: border-box;

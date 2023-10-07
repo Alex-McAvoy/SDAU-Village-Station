@@ -2,22 +2,23 @@
 	<view style="">
 		<view class="contain">
 			<!-- 1 标题-->
-		<u-row gutter="20" class="index_head">
-			<u-col span="3">乡村驿站&nbsp;</u-col>
-			<u-col span="7">
-				<u-search :show-action="false"></u-search>
-			</u-col
-			<u-col span="2">天气</u-col>
-		</u-row>
-		
+			<u-row gutter="20" class="index_head">
+				<u-col span="3">乡村驿站&nbsp;</u-col>
+				<u-col span="7">
+					<u-search :show-action="false"></u-search>
+				</u-col <u-col span="2">天气</u-col>
+			</u-row>
+
 			<!-- 2 九宫格 -->
-			<view style="border-radius: 10px; background-color: white;margin:-15px 15px 15px 10px;padding-top:8px;padding-bottom: 8px;">
+			<view
+				style="border-radius: 10px; background-color: white;margin:-15px 15px 15px 10px;padding-top:8px;padding-bottom: 8px;">
 				<u-grid :border="false" col="4">
-					<u-grid-item  v-for="(listItem,listIndex) in list" :key="listIndex">
+					<u-grid-item v-for="(listItem,listIndex) in list" :key="listIndex">
 						<view @click="$goBack(2,listItem.route)">
-							<u-image  :customStyle="{paddingTop:20+'rpx'}" :src="listItem.src"
-								:height="40" :width="30" style="display: flex;justify-content: center;align-items: center;"></u-image>
-							<span class="grid-text" style="color:#9f9f9f;font-size: 15px; margin:15px">{{listItem.title}}</span>
+							<u-image :customStyle="{paddingTop:20+'rpx'}" :src="listItem.src" :height="40" :width="30"
+								style="display: flex;justify-content: center;align-items: center;"></u-image>
+							<span class="grid-text"
+								style="color:#9f9f9f;font-size: 15px; margin:15px">{{listItem.title}}</span>
 						</view>
 					</u-grid-item>
 				</u-grid>
@@ -25,10 +26,9 @@
 			</view>
 		</view>
 		<!-- 3 问专家 -->
-		<view style="border-radius: 10px; background-color: white;margin:15px">
+		<view style="border-radius: 10px; background-color: white;margin:15px" @click="goExpert">
 			<view class="askexperts-bar" style="font-size: 100px;">
-				<image src="/static/images/station/station/wd.png"
-					style="margin:8px; width:30px; height: 25px;">
+				<image src="/static/images/station/station/wd.png" style="margin:8px; width:30px; height: 25px;">
 				</image>
 				<u-text style="font-weight: 20px;" margin="8px 0 4px 0" bold size="22" text="问专家"></u-text>
 			</view>
@@ -43,8 +43,7 @@
 						<view class="album__content">
 							<u-text margin="10px 0 20px 0" text="王洪刚" bold size="20"></u-text>
 							<div style="margin-right: 10px;">
-								<span
-									style=" font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
+								<span style=" font-size:15px;font-weight: 300px; color:rgb(169,169,169)">
 									曾任山东农业大学农学系系主任、农学院院长，现为农学院教授委员会主任。</span>
 							</div>
 						</view>
@@ -73,9 +72,8 @@
 		</view>
 		<!-- 4 随时问 -->
 		<view style="border-radius: 10px; background-color: white;  margin:15px;">
-			<view class="askexperts-bar">
-				<image src="/static/images/station/station/cjwt.png"
-					style="margin:8px; width:30px; height: 25px;">
+			<view class="askexperts-bar" @click="goAskfree">
+				<image src="/static/images/station/station/cjwt.png" style="margin:8px; width:30px; height: 25px;">
 				</image>
 				<u-text style="font-weight: 20px;" margin="8px 0 8px 0" bold size="22" text="随时问"></u-text>
 			</view>
@@ -85,15 +83,16 @@
 					<view class="album__content">
 						<u--text size="18" style="margin: 0 0 8px 0" text="秋季苹果花芽分化期管理"></u--text>
 						<div style="display: flex; ">
-						<u--image style="margin-left: 5px; border-radius: 8px; overflow: hidden;" :showLoading="true"
-							:src="src" width="100px" height="80px" @click="click"></u--image>
-						<u--image style="margin-left: 5px; border-radius: 8px; overflow: hidden;" :showLoading="true"
-							:src="src1" width="100px" height="80px" @click="click"></u--image>
-						<u--image style="margin-bottom: 15px;margin-left: 5px; border-radius: 8px; overflow: hidden; " :showLoading="true"
-							:src="src2" width="100px" height="80px" @click="click"></u--image>
+							<u--image style="margin-left: 5px; border-radius: 8px; overflow: hidden;"
+								:showLoading="true" :src="src" width="100px" height="80px" @click="click"></u--image>
+							<u--image style="margin-left: 5px; border-radius: 8px; overflow: hidden;"
+								:showLoading="true" :src="src1" width="100px" height="80px" @click="click"></u--image>
+							<u--image
+								style="margin-bottom: 15px;margin-left: 5px; border-radius: 8px; overflow: hidden; "
+								:showLoading="true" :src="src2" width="100px" height="80px" @click="click"></u--image>
 						</div>
 						<view style="display: flex; margin-top: 8px;">
-							<u--text color="#909090 "  text="惠农网用户投稿"></u--text>
+							<u--text color="#909090 " text="惠农网用户投稿"></u--text>
 							<u--text style="margin-left: 10vh;" color="#909090 " text="19553人阅读"></u--text>
 						</view>
 					</view>
@@ -105,12 +104,12 @@
 					<view class="album__content">
 						<u--text size="18" margin="0 0 10px 0" text="秋花生怎么种植高产"></u--text>
 						<div style="display: flex; ">
-						<u--image style="margin-left: 5px; border-radius: 8px; overflow: hidden;" :showLoading="true"
-							:src="src" width="100px" height="80px" @click="click"></u--image>
-						<u--image style="margin-left: 5px; border-radius: 8px; overflow: hidden;" :showLoading="true"
-							:src="src1" width="100px" height="80px" @click="click"></u--image>
-						<u--image style="margin-bottom: 5px;margin-left: 5px; border-radius: 8px; overflow: hidden;" :showLoading="true"
-							:src="src2" width="100px" height="80px" @click="click"></u--image>
+							<u--image style="margin-left: 5px; border-radius: 8px; overflow: hidden;"
+								:showLoading="true" :src="src" width="100px" height="80px" @click="click"></u--image>
+							<u--image style="margin-left: 5px; border-radius: 8px; overflow: hidden;"
+								:showLoading="true" :src="src1" width="100px" height="80px" @click="click"></u--image>
+							<u--image style="margin-bottom: 5px;margin-left: 5px; border-radius: 8px; overflow: hidden;"
+								:showLoading="true" :src="src2" width="100px" height="80px" @click="click"></u--image>
 						</div>
 						<view style="display: flex; margin-top: 8px;">
 							<u--text color="#909090 " margin="0 0 8px 0" text="惠农网用户投稿"></u--text>
@@ -122,26 +121,28 @@
 		</view>
 		<!-- 5 学农技 -->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
-			<view class="askexperts-bar">
-				<image src="/static/images/station/station/ncxfy.png"
-					style="margin:8px; width:30px; height: 25px;">
+			<view class="askexperts-bar" @click="goLearntec">
+				<image src="/static/images/station/station/ncxfy.png" style="margin:8px; width:30px; height: 25px;">
 				</image>
 				<u-text style="font-weight: 20px;" margin="8px 0 8px 0" bold size="22" text="学农技"></u-text>
 			</view>
-			<u-tabs :list="list1" @click="click"></u-tabs>
+			<u-tabs :list="list1" :is-scroll="true" lineColor="#2ed573" @change="change1"></u-tabs>
 			<view class="u-page">
 				<view class="u-demo-block">
 					<view class="album">
 						<view class="album__avatar">
-							<image margin="30px 0px 8px 0px" src="/static/images/station/station/sg.png" style="margin-top: 15px;border-radius: 8px; overflow: hidden;width: 100px;height: 70px;">
+							<image margin="30px 0px 8px 0px" src="/static/images/station/station/sg.png"
+								style="margin-top: 15px;border-radius: 8px; overflow: hidden;width: 100px;height: 70px;">
 							</image>
 						</view>
 						<view class="album__content">
-							<u-text style="padding-right: 8px;" margin="20px 0px 8px 0px" text="标题学农技标题学农标题学农技" bold size="17"></u-text>
+							<u-text style="padding-right: 8px;" margin="20px 0px 8px 0px" text="标题学农技标题学农标题学农技" bold
+								size="17"></u-text>
 							<div>
 								<view style="display: flex; margin-top:10px;">
 									<u--text color="#909090 " margin="0 0 8px 0" text="中国政府网 "></u--text>
-									<u--text style="justify-content: end;" color="#909090 " margin="0 10px 8px 0" text="256人阅读"></u--text>
+									<u--text style="justify-content: end;" color="#909090 " margin="0 10px 8px 0"
+										text="256人阅读"></u--text>
 								</view>
 							</div>
 						</view>
@@ -152,15 +153,18 @@
 				<view class="u-demo-block">
 					<view class="album">
 						<view class="album__avatar">
-							<image src="/static/images/station/station/gl.png" style="margin-top: 15px;margin-bottom: 15px;border-radius: 8px; overflow: hidden;width: 100px;height: 70px;">
+							<image src="/static/images/station/station/gl.png"
+								style="margin-top: 15px;margin-bottom: 15px;border-radius: 8px; overflow: hidden;width: 100px;height: 70px;">
 							</image>
 						</view>
 						<view class="album__content">
-							<u-text style="padding-right: 8px;" margin="20px 0px 8px 0px" text="标题学农技标题学农标题学农技" bold size="17"></u-text>
-								<view style="display: flex; margin-top:10px;">
-									<u--text color="#909090 " margin="0 0 8px 0" text="中国政府网 "></u--text>
-									<u--text style="justify-content: end;"color="#909090 " margin="0 10px 8px 0" text="256人阅读"></u--text>
-								</view>
+							<u-text style="padding-right: 8px;" margin="20px 0px 8px 0px" text="标题学农技标题学农标题学农技" bold
+								size="17"></u-text>
+							<view style="display: flex; margin-top:10px;">
+								<u--text color="#909090 " margin="0 0 8px 0" text="中国政府网 "></u--text>
+								<u--text style="justify-content: end;" color="#909090 " margin="0 10px 8px 0"
+									text="256人阅读"></u--text>
+							</view>
 						</view>
 					</view>
 				</view>
@@ -168,83 +172,128 @@
 		</view>
 		<!-- 6 买农资-->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
-			<view class="askexperts-bar">
-				<image src="/static/images/station/station/ncp.png"
-					style="margin:8px; width:40px; height: 25px;">
+			<view class="askexperts-bar" @click="goPurchaseFarm">
+				<image src="/static/images/station/station/ncp.png" style="margin:8px; width:40px; height: 25px;">
 				</image>
 				<u-text style="font-weight: 20px;" margin="8px 0 2px 0" bold size="22" text="买农资"></u-text>
 			</view>
-			<u-tabs :list="list2" @click="click" size="20"></u-tabs>
-			<div style="display: flex;margin-left: 10px; ">
-			<u--image style="margin-left: 3px; border-radius: 8px; overflow: hidden;" :showLoading="true"
-				:src="src" width="100px" height="80px" @click="click"></u--image>
-			<u--image style="margin-left: 3px; border-radius: 8px; overflow: hidden;" :showLoading="true"
-				:src="src1" width="100px" height="80px" @click="click"></u--image>
-			<u--image style="margin-bottom: 15px;margin-left: 5px; border-radius: 8px; overflow: hidden;" :showLoading="true"
-				:src="src2" width="100px" height="80px" @click="click"></u--image>
-			</div>
+			
+			<view class="tab_nav">
+				<view class="navTitle" v-for="(item,index) in list2" :key="index">
+					<view :class="{'active':isActive === index}" @click="checkedFarm(index)">
+						{{item.title}}
+					</view>
+				</view>
+			</view>
+			<view class="u-page"  v-for="item in farmList.slice(0,2)">
+				<view class="u-demo-block">
+					<view class="album">
+					<view class="album__avatar">
+						<image margin="30px 0px 8px 0px" src="/static/images/station/station/sg.png"
+							style="margin-top: 15px;border-radius: 8px; overflow: hidden;width: 100px;height: 70px;">
+						</image>
+					</view>
+					<view class="album__content">
+						<u-text style="padding-right: 8px;" margin="20px 0px 8px 0px" :text="item.title" bold
+							size="17"></u-text>
+						<div>
+							<view style="display: flex; margin-top:10px;">
+								<u--text color="#909090 " margin="0 0 8px 0" :text="fixedSize(item.content)"></u--text>
+							</view>
+						</div>
+					</view>
+					</view>
+			<!-- 		<view class="album">
+						<view class="album__avatar">
+							<image margin="30px 0px 8px 0px" src="/static/images/station/station/sg.png"
+								style="margin-top: 15px;border-radius: 8px; overflow: hidden;width: 100px;height: 70px;">
+							</image>
+						</view>
+						<view class="album__content">
+							<view class="main_content">{{ item.title }}</view>
+							<view class="station_note" style="display: flex; margin-top:1vh;"><u-parse
+									:content="fixedSize(item.content)"></u-parse></view>
+						</view>
+					</view> -->
+				</view>
+			</view>
 
 		</view>
 		<!-- 7 找渠道-->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
-			<view class="askexperts-bar" style="font-size: 100px;">
-				<image src="/static/images/station/station/qdgl.png"
-					style="margin:8px; width:30px; height: 25px;">
+			<view class="askexperts-bar" style="font-size: 100px;" @click="goChannel">
+				<image src="/static/images/station/station/qdgl.png" style="margin:8px; width:30px; height: 25px;">
 				</image>
 				<u-text style="font-weight: 20px;" margin="8px 0 4px 0" bold size="22" text="找渠道"></u-text>
 			</view>
-			<u-tabs :list="list3" @click="click" size="20"></u-tabs>
-			<div style="display: flex; ">
-				<u--image style="margin-left: 3px; border-radius: 8px; overflow: hidden;" :showLoading="true"
-					:src="src1" width="160px" height="80px" @click="click"></u--image>
-				<u--image style="margin-left: 3px; border-radius: 8px; overflow: hidden;" :showLoading="true"
-					:src="src" width="160px" height="80px" @click="click"></u--image>
-			</div>
-			<div style="display: flex;">
-				<u-text margin="10px 0 15px 15px" text="农业品牌农业品牌" bold size="18"></u-text>
-				<u-text margin="10px 0 15px 0px" text="农业品牌农业品牌" bold size="18"></u-text>
-			</div>
-			
+			<view class="tab_nav">
+				<view class="navTitle" v-for="(item,index) in list3" :key="index">
+					<view :class="{'active':isActive === index}" @click="checkedChannel(index)">
+						{{item.title}}
+					</view>
+				</view>
+			</view>
+			<view class="u-page" v-for="item in channelList.slice(0, 2)">
+				<view class="u-demo-block">
+					<view class="album">
+					<view class="album__avatar">
+						<image margin="30px 0px 8px 0px" :src="item.remark"
+							style="margin-top: 15px;border-radius: 8px; overflow: hidden;width: 100px;height: 70px;">
+						</image>
+					</view>
+					<view class="album__content">
+						<u-text style="padding-right: 8px;" margin="20px 0px 8px 0px" :text="item.title" bold
+							size="17"></u-text>
+						<div>
+							<view style="display: flex; margin-top:10px;">
+								<u--text color="#909090 " margin="0 0 8px 0" :text="fixedSize(item.content)"></u--text>
+							</view>
+						</div>
+					</view>
+					</view>
+				</view>
+			</view>
+
 		</view>
 		<!-- 8 推优品-->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
-			<view class="askexperts-bar" style="font-size: 100px;">
-				<image src="/static/images/station/station/nl.png"
-					style="margin:8px; width:30px; height: 25px;">
+			<view class="askexperts-bar" style="font-size: 100px;" @click="goProducts">
+				<image src="/static/images/station/station/nl.png" style="margin:8px; width:30px; height: 25px;">
 				</image>
 				<u-text style="font-weight: 20px;" margin="8px 0 4px 0" bold size="22" text="推优品"></u-text>
 			</view>
-			<div style="display: flex; ">
-				<u--image style="margin-left: 3px; border-radius: 8px; overflow: hidden;" :showLoading="true"
-					:src="src" width="160px" height="80px" @click="click"></u--image>
-				<u--image style="margin-left: 3px; border-radius: 8px; overflow: hidden;" :showLoading="true"
-					:src="src1" width="160px" height="80px" @click="click"></u--image>
-			</div>
-			<u-divider></u-divider>
-			<u-tabs :list="list5" @click="click" size="20"></u-tabs>
-			<view class="u-page">
+			<view class="tab_nav">
+				<view class="navTitle" v-for="(item,index) in list5.slice(0, 2)" :key="index">
+					<view :class="{'active':isActive === index}" @click="checked(index)">
+						{{item.name}}
+					</view>
+				</view>
+			</view>
+			<view class="u-page" v-for="item in productsList">
 				<view class="u-demo-block">
 					<view class="album">
-						<view class="album__avatar">
-							<image src="/static/images/station/station/sg.png"
-								style="margin-bottom: 10px;width: 120px; height: 80px;border-radius: 8px; overflow: hidden;"></image>
-						</view>
-						<view class="album__content">
-							<u-text margin="20px 0 10px 0" text="农业品牌农业品牌" bold size="20"></u-text>
-								<view style="display: flex; margin-top:2vh;">
-									<u--text color="#909090 " margin="0 0 8px 0" text="惠农121 "></u--text>
-									<u--text  style="justify-content: end;" color="#909090 " margin="0 10px 8px 0" text="36人购买"></u--text>
-								</view>
-						</view>
+					<view class="album__avatar">
+						<image margin="30px 0px 8px 0px" :src="item.remark"
+							style="margin-top: 15px;border-radius: 8px; overflow: hidden;width: 100px;height: 70px;">
+						</image>
+					</view>
+					<view class="album__content">
+						<u-text style="padding-right: 8px;" margin="20px 0px 8px 0px" :text="item.title" bold
+							size="17"></u-text>
+						<div>
+							<view style="display: flex; margin-top:10px;">
+								<u--text color="#909090 " margin="0 0 8px 0" :text="fixedSize(item.content)"></u--text>
+							</view>
+						</div>
+					</view>
 					</view>
 				</view>
 			</view>
 		</view>
 		<!-- 9 新品种-->
-		<view style="border-radius: 10px; background-color: white;  margin:15px">
+		<view style="border-radius: 10px; background-color: white;  margin:15px" @click="goNewspecies">
 			<view class="askexperts-bar" style="font-size: 100px;">
-				<image src="/static/images/station/station/zzpz.png"
-					style="margin:8px; width:30px; height: 25px;">
+				<image src="/static/images/station/station/zzpz.png" style="margin:8px; width:30px; height: 25px;">
 				</image>
 				<u-text style="font-weight: 20px;" margin="8px 0 4px 0" bold size="22" text="新品种"></u-text>
 			</view>
@@ -253,23 +302,24 @@
 					<view class="album">
 						<view class="album__avatar">
 							<image src="/static/images/station/station/gl.png"
-								style="margin-bottom: 10px;width: 120px; height: 80px;border-radius: 8px; overflow: hidden;"></image>
+								style="margin-bottom: 10px;width: 120px; height: 80px;border-radius: 8px; overflow: hidden;">
+							</image>
 						</view>
 						<view class="album__content">
-							<u-text style="padding-right: 8px;" margin="10px 0px 6px 0px" text="显示驿站以及邻近地区涉及领域的新品种" bold size="20"></u-text>
-								<view style="display: flex; margin-top:1vh;">
-									<u--text color="#909090 " margin="0 0 8px 0" text="咨询单位名称及联系人"></u--text>
-								</view>
+							<u-text style="padding-right: 8px;" margin="10px 0px 6px 0px" text="显示驿站以及邻近地区涉及领域的新品种" bold
+								size="17"></u-text>
+							<view style="display: flex; margin-top:1vh;">
+								<u--text color="#909090 " margin="0 0 8px 0" text="咨询单位名称及联系人"></u--text>
+							</view>
 						</view>
 					</view>
 				</view>
 			</view>
 		</view>
 		<!-- 10 在线基地-->
-		<view style="border-radius: 10px; background-color: white;  margin:15px">
+		<view style="border-radius: 10px; background-color: white;  margin:15px" @click="goOnlinebase">
 			<view class="askexperts-bar" style="font-size: 100px;">
-				<image src="/static/images/station/station/dt.png"
-					style="margin:8px; width:30px; height: 25px;">
+				<image src="/static/images/station/station/dt.png" style="margin:8px; width:30px; height: 25px;">
 				</image>
 				<u-text style="font-weight: 20px;" margin="8px 0 4px 0" bold size="22" text="寻基地"></u-text>
 			</view>
@@ -285,7 +335,23 @@
 		UText,
 		UIcon
 	} from 'uview-ui';
-
+	import {
+		getTechdetail,
+	} from "@/api/station/tech.js"
+	import {
+		listProducts,
+		getProducts,
+		getProductsByColumns
+	} from "@/api/system/products";
+	import {
+		listChannel,
+		getChannel,
+		delChannel,
+		addChannel,
+		updateChannel,
+		listByColumn
+	} from "@/api/system/channel";
+	import { listFarm, getFarm, getInfo} from "@/api/station/farm";
 	export default {
 		components: {
 			UList,
@@ -295,48 +361,57 @@
 		},
 		data() {
 			return {
+				isActive: 0,
+				current: 0,
+				text: '000',
+				// 找渠道
+				channelList: [],
+				// 推优品
+				productsList: [],
+				// 买农资
+				farmList:[],
 				value1: 0,
 				src: "/static/images/station/station/sg.png",
 				src1: "/static/images/station/station/gl.png",
 				src2: "/static/images/station/station/sg.png",
 				src3: "/static/images/station/station/gl.png",
 				list: [{
-						src:"/static/images/station/station/wd.png",
+						src: "/static/images/station/station/wd.png",
 						title: '问专家',
 						route: '/pages/station/askExperts/askExpert'
 					},
 					{
-						src:"/static/images/station/station/cjwt.png",
+						src: "/static/images/station/station/cjwt.png",
 						title: '随时问',
-						route: '/pages/station/freeAsk'
+						route: '/pages/station/freeAsk/freeAsk'
 					},
 					{
-						src:"/static/images/station/station/ncxfy.png",
+						src: "/static/images/station/station/ncxfy.png",
 						title: '学农技',
-						route: '/pages/station/learningTechnology'
+						route: '/pages/station/learningTechnology/learningTechnology'
 					},
 					{
-						src:"/static/images/station/station/ncp.png",
+						src: "/static/images/station/station/ncp.png",
 						title: '买农资',
-						route: '/pages/station/purchaseFarm'
+						route: '/pages/station/farm/purchaseFarm'
 					},
 					{
-						src:"/static/images/station/station/qdgl.png",
+						src: "/static/images/station/station/qdgl.png",
 						title: '找渠道',
-						route: '/pages/station/channel'
+						route: '/pages/station/channel/channel'
 					},
 					{
-						src:"/static/images/station/station/nl.png",
+						src: "/static/images/station/station/nl.png",
 						title: '推优品',
-						route: '/pages/station/products'
+						route: '/pages/station/products/products'
 					},
 					{
-						src:"/static/images/station/station/zzpz.png",
+						src: "/static/images/station/station/zzpz.png",
 						title: '新品种',
-						route: '/pages/station/newspecies'
+						route: '/pages/station/newsSpecies/newspecies'
 					},
 					{
-						src:"/static/images/station/station/dt.png",
+						src: "/static/images/station/station/dt.png",
 						title: '寻基地',
 						route: '/pages/station/onlinebase'
 					},
@@ -357,40 +432,32 @@
 				}, {
 					name: '禽畜'
 				}],
-				list2: [{
-					name: '节肥增效',
+				list2:  [{
+					index: 0,
+					title: '节肥增效'
 				}, {
-					name: '虫害防控'
-				}, {
-					name: '农机装备'
-				}, {
-					name: '种子树苗'
+					index: 1,
+					title: "虫害防控"
+				},{
+					index: 2,
+					title: "农机装备"
+				},{
+					index: 3,
+					title: "种子树苗"
 				}],
 				list3: [{
-					name: '供应',
+					index: 0,
+					title: '供应'
 				}, {
-					name: '求购'
-				}],
-				list4: [{
-					price: '230.5',
-					thumb: '/static/images/station/station/sg.png'
-				}, {
-					price: '74.1',
-					thumb: '/static/images/station/station/gl.png'
-				}, {
-					price: '8457',
-					thumb: '/static/images/station/station/sg.png'
-				}, {
-					price: '1442',
-					thumb: '/static/images/station/station/gl.png'
-				}, {
-					price: '541',
-					thumb: '/static/images/station/station/sg.png'
+					index: 1,
+					title: "求购"
 				}],
 				list5: [{
-					name: '我的优品',
+					index: 0,
+					name: '我的优品'
 				}, {
-					name: '品牌展示'
+					index: 1,
+					name: "品牌展示"
 				}],
 				urls: [
 					'https://zhcz01.oss-cn-beijing.aliyuncs.com/7252903bf220591b9a8e9b7b91aa9f6.png',
@@ -407,11 +474,93 @@
 		onLoad() {
 			this.loadmore()
 		},
+		created() {
+			this.checked(0);
+			this.checkedChannel(0);
+			this.checkedFarm(0);
+		},
 		methods: {
+			// 控制显示字的长度
+			fixedSize(content) {
+				return content.substring(0, 25) + "...."
+			},
+			// 跳转问专家
+			goExpert() {
+				uni.navigateTo({
+					url: "askExperts/askExpert"
+				})
+			},
+			goAskfree() {
+				uni.navigateTo({
+					url: "freeAsk/freeAsk"
+				})
+			},
+			goLearntec() {
+				uni.navigateTo({
+					url: "learningTechnology/learningTechnology"
+				})
+			},
+			goPurchaseFarm() {
+				uni.navigateTo({
+					url: "farm/purchaseFarm"
+				})
+			},
+			goChannel() {
+				uni.navigateTo({
+					url: "channel/channel"
+				})
+			},
+			goProducts() {
+				uni.navigateTo({
+					url: "products/products"
+				})
+			},
+			goNewspecies() {
+				uni.navigateTo({
+					url: "newsSpecies/newspecies"
+				})
+			},
+			goOnlinebase() {
+				uni.navigateTo({
+					url: "onlinebase"
+				})
+			},
+			// 导航栏跳转
+			// 学农技导航栏
+			// 推优品导航栏
+			checked(index) {
+				this.isActive = index;
+				getProductsByColumns(1, index+2).then(response => {
+					console.log(response)
+					this.productsList = response.data;
+					console.log(this.productsList);
+					this.loading = false;
+				});
+			},
+			// 找渠道导航栏
+			checkedChannel(index){
+				this.isActive = index;
+				listByColumn(index).then(response => {
+					console.log(response);
+					this.channelList = response.rows;
+					this.total = response.total;
+					this.loading = false;
+				});
+			},
+			// 买农资导航栏
+			checkedFarm(index){
+				this.isActive = index;
+				getInfo(index).then(response => {
+					console.log(response);
+					this.farmList = response.data;
+					this.total = response.total;
+					this.loading = false;
+				});
+			},
 			redirectTo(route) {
 				// 进行跳转逻辑
 				// 例如使用 Vue Router 跳转到指定路径
-				this.$router.push(route); 
+				this.$router.push(route);
 			},
 			loadmore() {
 				for (let i = 0; i < 2; i++) {
@@ -436,19 +585,21 @@
 		},
 	}
 </script>
-
-<style lang="scss" >
+<style src="../../static/css/text.css"></style>
+<style lang="scss">
 	/* 顶部样式 */
 	.index_head {
 		color: azure;
 		height: 100px;
 		padding: 0px 15px 0px 15px;
-		background: linear-gradient(#00ae67, #00ae67, #00ae67, #00ae67,#2ed573, #7bed9f, #f1f2f6);
+		background: linear-gradient(#00ae67, #00ae67, #00ae67, #00ae67, #2ed573, #7bed9f, #f1f2f6);
 	}
+
 	.body {
 		background: #dfe4ea;
 		min-height: 100vh;
 	}
+
 	.container {
 		display: flex;
 		align-items: center;
