@@ -33,9 +33,8 @@
 							</image>
 						</view>
 						<view class="album__content">
-							<view style="font-size:18px; margin-bottom:10px; color:#00ae67 ; font-weight: bold;">{{ item.title }}</view>
-							<view style="font-size:15px; margin-bottom:10px;"><u-parse :content="item.content"></u-parse></view>
-							
+							<view class="station_title">{{ item.title }}</view>
+							<view class="main_content"><u-parse :content="item.content"></u-parse></view>							
 						</view>
 					</view>
 				</view>
@@ -59,8 +58,8 @@
 						</image>
 					</view>
 					<view class="album__content">
-						<view style="font-size:18px; margin-bottom:10px;">{{ item.title }}</view>
-						<view style="font-size:15px; margin-bottom:10px;"><u-parse :content="item.content"></u-parse></view>
+						<view class="station_title">{{ item.title }}</view>
+						<view class="main_content"><u-parse :content="item.content"></u-parse></view>
 					</view>
 				</view>
 			</view>
@@ -131,8 +130,7 @@
 	@import url("../../static/css/nav_bar.css")
 </style>
 <style lang="scss">
-
-	/* 顶部样式 */
+	@import url("../../static/css/text.css");	/* 顶部样式 */
 	.index_head {
 		color: azure;
 		height: 100px;

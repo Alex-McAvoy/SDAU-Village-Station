@@ -16,10 +16,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="updateTime"    column="update_time"    />
         <result property="remark"    column="remark"    />
         <result property="userId"    column="user_id"    />
+        <result property="direction"    column="direction"    />
+        <result property="researchIntroduction"    column="research_introduction"    />
     </resultMap>
 
     <sql id="selectTbAskExpertVo">
-        select ask_experts_id, expert_name, introduction, dict_value, del_flag, create_by, create_time, update_by, update_time, remark, user_id from tb_ask_expert
+        select ask_experts_id, expert_name, introduction, dict_value,
+               del_flag, create_by, create_time, update_by, update_time, remark, user_id ,direction,research_introduction
+        from tb_ask_expert
     </sql>
 
     <select id="selectTbAskExpertList" parameterType="TbAskExpert" resultMap="TbAskExpertResult">
@@ -30,6 +34,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="introduction != null  and introduction != ''">and introduction = #{introduction}</if>
             <if test="dictValue != null  and dictValue != ''">and dict_value = #{dictValue}</if>
             <if test="userId != null ">and user_id = #{userId}</if>
+            <if test="direction != null ">and direction = #{direction}</if>
+            <if test="researchIntroduction != null ">and research_introduction = #{researchIntroduction}</if>
         </where>
     </select>
     
@@ -37,12 +43,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectTbAskExpertVo"/>
         where ask_experts_id = #{askExpertsId}
     </select>
-
+    
     <select id="selectTbAskExpertByDictValue" parameterType="String" resultMap="TbAskExpertResult">
         <include refid="selectTbAskExpertVo"/>
         where dict_value = #{dictValue}
     </select>
-        
+
     <insert id="insertTbAskExpert" parameterType="TbAskExpert" useGeneratedKeys="true" keyProperty="askExpertsId">
         insert into tb_ask_expert
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -56,6 +62,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateTime != null">update_time,</if>
             <if test="remark != null">remark,</if>
             <if test="userId != null">user_id,</if>
+            <if test="direction != null">direction,</if>
+            <if test="researchIntroduction != null">research_introduction,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="expertName != null">#{expertName},</if>
@@ -68,9 +76,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateTime != null">#{updateTime},</if>
             <if test="remark != null">#{remark},</if>
             <if test="userId != null">#{userId},</if>
+            <if test="direction != null">#{direction},</if>
+            <if test="researchIntroduction != null">#{researchIntroduction},</if>
          </trim>
     </insert>
-
     <update id="updateTbAskExpert" parameterType="TbAskExpert">
         update tb_ask_expert
         <trim prefix="SET" suffixOverrides=",">
@@ -84,6 +93,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateTime != null">update_time = #{updateTime},</if>
             <if test="remark != null">remark = #{remark},</if>
             <if test="userId != null">user_id = #{userId},</if>
+            <if test="direction != null">direction = #{direction},</if>
+            <if test="researchIntroduction != null">user_id = #{researchIntroduction},</if>
         </trim>
         where ask_experts_id = #{askExpertsId}
     </update>

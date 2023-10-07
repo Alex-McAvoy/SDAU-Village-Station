@@ -34,6 +34,7 @@
 </script>
 
 <style lang="scss">
+	@import url("../../../static/css/text.css");
 	.container {
 		background: linear-gradient(#ededed,#f1f2f6);
 	}

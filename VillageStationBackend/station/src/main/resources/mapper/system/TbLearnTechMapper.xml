@@ -36,9 +36,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </where>
     </select>
 
-    <select id="selectTbLearnTechBySecondColumn" parameterType="String" resultMap="TbLearnTechResult">
+    <select id="selectTbLearnTechByFirstColumn" parameterType="String" resultMap="TbLearnTechResult">
         <include refid="selectTbLearnTechVo"/>
-        where second_column = #{secondColumn}
+        where first_column = #{firstColumn}
     </select>
 
     <select id="selectTbLearnTechByArticleId" parameterType="Long" resultMap="TbLearnTechResult">

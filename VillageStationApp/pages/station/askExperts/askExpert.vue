@@ -29,10 +29,11 @@
 								</image>
 							</view>
 							<view class="album__content">
-								<div style="margin: 20px 0 10px 0; size: 25px;">
+								<div class="main_title">
 									{{expert.expertName}}
 								</div>
-								<div style="margin:20px 0 8px 0 ; color:rgb(169,169,169) ;">
+								<br/>
+								<div class="main_content">
 									{{expert.introduction}}
 								</div>
 							</view>
@@ -149,6 +150,7 @@
 </script>
 
 <style lang="scss">
+	@import url("../../../static/css/text.css");
 	.container {
 		display: flex;
 		justify-content: center;
