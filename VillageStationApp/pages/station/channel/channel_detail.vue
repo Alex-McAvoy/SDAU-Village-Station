@@ -4,7 +4,7 @@
 		 <view class="sub_note">用户 | 2023-10-06 16:57</view>
 		<view class="news">
 			<view class="new_img">
-				<image src="/static/images/station/channel/cornharvester.jpg" alt=""
+				<image :src="imgUrl" alt=""
 					style="width:100%;height: 200px;overflow: hidden">
 			</view>
 			<view class="sub_content"><u-parse :content="content"></u-parse></view>
@@ -20,6 +20,7 @@
 				loading: false,
 				title: '',
 				content: '',
+				imgUrl:'/static/images/station/channel/cornharvester.jpg'
 			}
 		},
 		created() {
@@ -32,6 +33,7 @@
 				var channel_detail = getApp().globalData.item;
 				this.title = channel_detail.title;
 				this.content = channel_detail.content;
+				this.imgUrl = channel_detail.remark;
 			    this.loading = false;
 			    },
 			} 

@@ -27,7 +27,7 @@
 			<view class="u-page" v-for="item in channelList" @click="skip(item)">
 				<view class="album">
 					<view class="album__avatar">
-						<image src="../../../static/images/station/channel/cornharvester.jpg"
+						<image :src="item.remark"
 							style="width: 160px;height: 100px; border-radius: 10px; overflow: hidden; margin: 1vh;">
 						</image>
 					</view>
@@ -63,10 +63,10 @@
 					</u-radio-group>
 				</u-form-item>
 			</u-form>
-
 		</u-modal>
-		<u-button class="custom-style" color="#00ae67 " type="primary" shape="circle"
-			style="  width: 100px; height: 100px; position: fixed;bottom: 50px;right: 30px; font-size: 50px;"
+    
+		<u-button class="custom-style" color="#eeeeee " type="primary" shape="circle"
+			style="  width: 100px; height: 100px; position: fixed;bottom: 50px;right: 30px; font-size: 50px;color:#00ae67;opacity: 0.5;"
 			@click="handleAdd">+
 		</u-button>
 	</view>

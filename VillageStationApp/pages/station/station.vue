@@ -176,19 +176,12 @@
 				</image>
 				<u-text style="font-weight: 20px;" margin="8px 0 2px 0" bold size="22" text="买农资"></u-text>
 			</view>
-			
-			<view class="tab_nav">
-				<view class="navTitle" v-for="(item,index) in list2" :key="index">
-					<view :class="{'active':isActive === index}" @click="checkedFarm(index)">
-						{{item.title}}
-					</view>
-				</view>
-			</view>
-			<view class="u-page"  v-for="item in farmList.slice(0,2)">
+			<u-tabs :list="list5" @click="checkedFarm" lineColor="#2ed573" lineWidth="60" :current="0"></u-tabs>
+			<view class="u-page"  v-for="item in farmList.slice(0,2)" @click="goPurchaseFarm">
 				<view class="u-demo-block">
-					<view class="album">
+					<view class="album" >
 					<view class="album__avatar">
-						<image margin="30px 0px 8px 0px" src="/static/images/station/station/sg.png"
+						<image margin="30px 0px 8px 0px" :src="item.remark"
 							style="margin-top: 15px;border-radius: 8px; overflow: hidden;width: 100px;height: 70px;">
 						</image>
 					</view>
@@ -202,18 +195,6 @@
 						</div>
 					</view>
 					</view>
-			<!-- 		<view class="album">
-						<view class="album__avatar">
-							<image margin="30px 0px 8px 0px" src="/static/images/station/station/sg.png"
-								style="margin-top: 15px;border-radius: 8px; overflow: hidden;width: 100px;height: 70px;">
-							</image>
-						</view>
-						<view class="album__content">
-							<view class="main_content">{{ item.title }}</view>
-							<view class="station_note" style="display: flex; margin-top:1vh;"><u-parse
-									:content="fixedSize(item.content)"></u-parse></view>
-						</view>
-					</view> -->
 				</view>
 			</view>
 
@@ -225,15 +206,11 @@
 				</image>
 				<u-text style="font-weight: 20px;" margin="8px 0 4px 0" bold size="22" text="找渠道"></u-text>
 			</view>
-			<view class="tab_nav">
-				<view class="navTitle" v-for="(item,index) in list3" :key="index">
-					<view :class="{'active':isActive === index}" @click="checkedChannel(index)">
-						{{item.title}}
-					</view>
-				</view>
-			</view>
-			<view class="u-page" v-for="item in channelList.slice(0, 2)">
-				<view class="u-demo-block">
+			
+			<u-tabs :list="list3" @click="checkedChannel" lineColor="#2ed573" lineWidth="60" :current="0"></u-tabs>
+			 
+			<view class="u-page" v-for="item in channelList.slice(0, 2)" @click="goChannel">
+				<view class="u-demo-block"  >
 					<view class="album">
 					<view class="album__avatar">
 						<image margin="30px 0px 8px 0px" :src="item.remark"
@@ -261,14 +238,9 @@
 				</image>
 				<u-text style="font-weight: 20px;" margin="8px 0 4px 0" bold size="22" text="推优品"></u-text>
 			</view>
-			<view class="tab_nav">
-				<view class="navTitle" v-for="(item,index) in list5.slice(0, 2)" :key="index">
-					<view :class="{'active':isActive === index}" @click="checked(index)">
-						{{item.name}}
-					</view>
-				</view>
-			</view>
-			<view class="u-page" v-for="item in productsList">
+			<u-tabs :list="list5" @click="checked" lineColor="#2ed573" lineWidth="60" :current="0"></u-tabs>
+
+			<view class="u-page" v-for="item in productsList" @click="goProducts">
 				<view class="u-demo-block">
 					<view class="album">
 					<view class="album__avatar">
@@ -296,21 +268,23 @@
 				</image>
 				<u-text style="font-weight: 20px;" margin="8px 0 4px 0" bold size="22" text="新品种"></u-text>
 			</view>
-			<view class="u-page">
+			<view class="u-page" v-for="item in speciesList.slice(0,1)">
 				<view class="u-demo-block">
 					<view class="album">
 						<view class="album__avatar">
-							<image src="/static/images/station/station/gl.png"
-								style="margin-bottom: 10px;width: 120px; height: 80px;border-radius: 8px; overflow: hidden;">
+							<image :src="item.remark"
+								style="margin: 5px;width: 120px; height: 80px;border-radius: 8px; overflow: hidden;">
 							</image>
 						</view>
-						<view class="album__content">
-							<u-text style="padding-right: 8px;" margin="10px 0px 6px 0px" text="显示驿站以及邻近地区涉及领域的新品种" bold
-								size="17"></u-text>
-							<view style="display: flex; margin-top:1vh;">
-								<u--text color="#909090 " margin="0 0 8px 0" text="咨询单位名称及联系人"></u--text>
+					<view class="album__content">
+						<u-text style="padding-right: 8px;" margin="20px 0px 8px 0px" :text="item.title" bold
+							size="17"></u-text>
+						<div>
+							<view style="display: flex; margin-top:10px;">
+								<u--text color="#909090 " margin="0 0 8px 0" :text="item.content.substring(0, 20)+'...'"></u--text>
 							</view>
-						</view>
+						</div>
+					</view>
 					</view>
 				</view>
 			</view>
@@ -351,6 +325,10 @@
 		listByColumn
 	} from "@/api/system/channel";
 	import { listFarm, getFarm, getInfo} from "@/api/station/farm";
+	import {
+		listSpecies,
+		getSpecies
+	} from "@/api/system/species";
 	export default {
 		components: {
 			UList,
@@ -369,6 +347,7 @@
 				productsList: [],
 				// 买农资
 				farmList:[],
+				speciesList:[],
 				value1: 0,
 				src: "/static/images/station/station/sg.png",
 				src1: "/static/images/station/station/gl.png",
@@ -452,10 +431,10 @@
 				}],
 				list3: [{
 					index: 0,
-					title: '供应'
+					name: '供应'
 				}, {
 					index: 1,
-					title: "求购"
+					name: "求购"
 				}],
 				list5: [{
 					index: 0,
@@ -480,14 +459,15 @@
 			this.loadmore()
 		},
 		created() {
-			this.checked(0);
-			this.checkedChannel(0);
-			this.checkedFarm(0);
+			this.checked({index:0});
+			this.checkedChannel({index:0});
+			this.checkedFarm({index:0});
+			this.getList();
 		},
 		methods: {
 			// 控制显示字的长度
 			fixedSize(content) {
-				return content.substring(0, 25) + "...."
+				return content.substring(0, 25) + "..."
 			},
 			// 跳转问专家
 			goExpert() {
@@ -534,8 +514,8 @@
 			// 学农技导航栏
 			// 推优品导航栏
 			checked(index) {
-				this.isActive = index;
-				getProductsByColumns(1, index+2).then(response => {
+				console.log(index);
+				getProductsByColumns(1, index.index+2).then(response => {
 					console.log(response)
 					this.productsList = response.data;
 					console.log(this.productsList);
@@ -543,9 +523,8 @@
 				});
 			},
 			// 找渠道导航栏
-			checkedChannel(index){
-				this.isActive = index;
-				listByColumn(index).then(response => {
+			checkedChannel(index){  
+				listByColumn(index.index).then(response => {
 					console.log(response);
 					this.channelList = response.rows;
 					this.total = response.total;
@@ -553,11 +532,19 @@
 				});
 			},
 			// 买农资导航栏
-			checkedFarm(index){
-				this.isActive = index;
-				getInfo(index).then(response => {
+			checkedFarm(index){ 
+				getInfo(index.index).then(response => {
 					console.log(response);
 					this.farmList = response.data;
+					this.total = response.total;
+					this.loading = false;
+				});
+			},
+			/** 查询新品种列表 */
+			getList() {
+				this.loading = true;
+				listSpecies(this.queryParams).then(response => {
+					this.speciesList = response.rows;
 					this.total = response.total;
 					this.loading = false;
 				});
@@ -591,6 +578,32 @@
 	}
 </script>
 <style src="../../static/css/text.css"></style>
+<style>
+	/* 导航栏字体样式 */
+	::v-deep .u-tabs__wrapper__nav__item__text {
+		font-size: 19px !important;
+	}
+	
+	.tab_nav {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 10px;
+		background-color: white;
+		margin: 8px 15px
+	}
+	
+	.tab_nav .navTitle {
+		height: 90rpx;
+		line-height: 90rpx;
+		width: 100%;
+		text-align: center;
+		font-size: 32rpx;
+		font-family: Alibaba PuHuiTi;
+		color: #333;
+	}
+	
+</style>
 <style lang="scss">
 	@import url("../../static/css/nav_bar.css");
 	/* 顶部样式 */

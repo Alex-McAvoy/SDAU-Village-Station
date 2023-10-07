@@ -32,7 +32,7 @@
 								</view>
 								<view class="main_content"><u-parse
 										:content="item.content"></u-parse></view>
-								<image src="../../../static/images/station/products/peach.jpg"
+								<image :src="item.remark"
 									style="width: 350px;height: 180px; padding-left: 5vh; padding-right: 5vh; "></image>
 								<!-- <u-album :urls="urls1" keyName="src2" style="margin-bottom: 8px;"></u-album> -->
 							</view>
