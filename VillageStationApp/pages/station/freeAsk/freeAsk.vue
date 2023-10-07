@@ -5,7 +5,7 @@
 			style=" display: flex; align-items: center;  background-color: white; justify-content: space-between; margin-bottom: 10px;">
 			<!-- 定位 -->
 			<view style="margin-left: 1vh; align-items: center; margin-bottom: 10px;">
-				<image src="../../static/images/station/freeAsk/location.png" style="width: 15px; height: 15px;"></image>
+				<image src="../../../static/images/station/freeAsk/location.png" style="width: 15px; height: 15px;"></image>
 				<span style="color:#2ed573 ; margin-left: 5px; ">泰安</span>
 			</view>
 			<!-- 搜索框 -->
@@ -28,10 +28,10 @@
 									<image src="/static/images/icon.jpg" mode="" style="width: 32px;height: 32px; "></image>
 								</view>
 								<view class="album__content">
-									<div style="font-size: 20px;">
+									<div class="ask_title">
 										{{askquestion.title}}
 									</div>
-									<div style="margin-top: 10px; padding-bottom: 10px;">
+									<div class="ask_content">
 										{{askquestion.content}}
 									</div>
 								</view>
@@ -76,13 +76,13 @@
 				},
 				keyword: '',
 				list1: [
-					'../../static/images/station/freeAsk/orange.jpg',
-					'../../static/images/station/freeAsk/pitaya.jpg',
-					'../../static/images/station/freeAsk/banana.png',
+					'../../../static/images/station/freeAsk/orange.jpg',
+					'../../../static/images/station/freeAsk/pitaya.jpg',
+					'../../../static/images/station/freeAsk/banana.png',
 				],
 				albumWidth: 0,
 				urls1: [{
-					src2: '../../static/images/station/freeAsk/apple.jpg',
+					src2: '../../../static/images/station/freeAsk/apple.jpg',
 				}],
 				questions:{
 					title:'',
@@ -97,7 +97,7 @@
 			goToDetailPage(id) {
 			    // console.log(id);
 			    uni.navigateTo({
-			      url: "/pages/station/freeAskdetail?id="+id
+			      url: "/pages/station/freeAsk/freeAskdetail?id="+id
 			    });
 			  },
 			//获取随时问问题列表
@@ -134,6 +134,7 @@
 </script>
 
 <style lang="scss">
+	@import url("../../../static/css/text.css");
 	.album {
 		@include flex;
 		align-items: flex-start;

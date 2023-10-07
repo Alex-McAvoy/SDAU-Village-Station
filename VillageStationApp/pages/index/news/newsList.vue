@@ -76,7 +76,7 @@
 				this.current = index;
 				//请求 firstColumn=’新闻资讯‘ secondColumn=index.name
 				this.loading = true;
-				Columns('新闻资讯', this.list[index.index].name).then(response => {
+				Columns(0, index.index).then(response => {
 					this.newsList = response.rows;
 					console.log(response);
 					this.loading = false;

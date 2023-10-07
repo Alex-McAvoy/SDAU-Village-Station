@@ -4,7 +4,7 @@
 		<view style=" display: flex; align-items: center;  background-color: white; justify-content: space-between;">
 			<!-- 定位 -->
 			<view style="margin-left: 1vh; align-items: center; margin-bottom: 10px;">
-				<image src="../../static/images/station/onlinebase/location.png" style="width: 15px; height: 15px;">
+				<image src="../../../static/images/station/onlinebase/location.png" style="width: 15px; height: 15px;">
 				</image>
 				<span style="color:#00ae67  ; margin-left: 5px; ">泰安</span>
 			</view>
@@ -14,7 +14,7 @@
 			</view>
 		</view>
 		<!-- 导航栏 -->
-		<view class="tab_nav" style="border-radius: 10px; background-color: white;  margin:8px 15px">
+		<view class="tab_nav">
 			<view class="navTitle" v-for="(item,index) in navList" :key="index">
 				<view :class="{'active':isActive === index}" @click="checked(index)">
 					{{item.title}}
@@ -27,7 +27,7 @@
 			<view class="u-page" v-for="item in channelList" @click="skip(item)">
 				<view class="album">
 					<view class="album__avatar">
-						<image src="../../static/images/station/channel/cornharvester.jpg"
+						<image src="../../../static/images/station/channel/cornharvester.jpg"
 							style="width: 160px;height: 100px; border-radius: 10px; overflow: hidden; margin: 1vh;">
 						</image>
 					</view>
@@ -35,10 +35,10 @@
 					<view class="album__content">
 						<view style="margin-top: 8px;">
 							<view style="margin-top: 8px;">
-								<view style="font-size:18px; margin-bottom:10px; font-weight: bold;">
+								<view class="main_title">
 									{{ item.title }}
 								</view>
-								<view style="font-size:15px; margin-bottom:10px;"><u-parse
+								<view class="main_content"><u-parse
 										:content="item.content"></u-parse></view>
 							</view>
 						</view>
@@ -120,8 +120,7 @@
 			checked(index) {
 				this.isActive = index;
 				console.log(this.isActive);
-				listByColumn(this.isActive).then(response => {
-					console.log(response);
+				listByColumn(this.isActive).then(response => {					console.log(response);
 					this.channelList = response.rows;
 					this.total = response.total;
 					this.loading = false;
@@ -158,7 +157,7 @@
 				getApp().globalData.item=item;
 				console.log(getApp().globalData.item);
 				uni.navigateTo({
-					url: "channel/channel_detail"
+					url: "channel_detail"
 				}) 
 			}
 		}
@@ -166,6 +165,7 @@
 </script>
 
 <style lang="scss">
+	@import url("../../../static/css/text.css");
 	.album {
 		@include flex;
 		align-items: flex-start;
@@ -205,22 +205,6 @@
 	// 导航栏字体
 	::v-deep .u-tabs__wrapper__nav__item__text {
 		font-size: 19px !important;
-	}
-
-	.tab_nav {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.tab_nav .navTitle {
-		height: 90rpx;
-		line-height: 90rpx;
-		width: 100%;
-		text-align: center;
-		font-size: 32rpx;
-		font-family: Alibaba PuHuiTi;
-		color: #333;
 	}
 
 	.active {

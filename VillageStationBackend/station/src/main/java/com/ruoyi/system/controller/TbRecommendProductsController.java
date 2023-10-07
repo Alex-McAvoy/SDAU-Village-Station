@@ -75,7 +75,7 @@ public class TbRecommendProductsController extends BaseController
     @GetMapping(value = "/getNewsByColumn/{firstColumn}/{secondColumn}")
     public AjaxResult getProductsByColumn(@PathVariable("firstColumn") String firstColumn,@PathVariable("secondColumn") String secondColumn)
     {
-//        System.out.println(firstColumn+" "+secondColumn);
+        System.out.println(firstColumn+" "+secondColumn);
         return success(tbRecommendProductsService.selectTbRecommendProductsByColumn(firstColumn,secondColumn));
     }
 

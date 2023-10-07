@@ -80,6 +80,7 @@
 </script>
 
 <style lang="scss">
+	@import url("../../../static/css/text.css");
 	.album__content {
 		margin: 15px;
 		border-bottom: 1px solid #979797;
