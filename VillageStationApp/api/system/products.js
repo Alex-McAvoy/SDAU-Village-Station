@@ -16,7 +16,7 @@ export function getProducts(newsId) {
   })
 }
 //根据栏目推荐优品
-export function getProductsByColumns(firstColumn,secondColumn) {
+export function getProductsByColumns(firstColumn,secondColumn) { 
   return request({
     url: '/system/products/getNewsByColumn/' + firstColumn+'/'+secondColumn,
     method: 'get'

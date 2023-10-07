@@ -12,7 +12,7 @@
 		</view>
 
 		<!-- 导航栏 -->
-		<view class="tab_nav" style="border-radius: 10px; background-color: white;  margin:8px 15px">
+		<view class="tab_nav">
 			<view class="navTitle" v-for="(item,index) in navList" :key="index">
 				<view :class="{'active':isActive === index}" @click="checked(index)">
 					{{item.title}}
@@ -20,19 +20,19 @@
 			</view>
 		</view>
 		<!-- 详情展示 -->
-		<view class="nav_item" style="border-radius: 10px; background-color: white;  margin:8px 15px"
-			v-for="item in productsList" @click="skip(item)">
+		<view v-for="item in productsList" @click="skip(item)">
+			<view style=" margin: 15px; border-radius: 5px;  background-color: white;">
 			<view>
-				<view class="u-demo-block">
-					<view class="u-demo-block__content">
-						<view class="album">
-							<view class="album__content">
-								<view style="font-size:18px; margin-bottom:10px; color: #3cb4ff; font-weight: bold;">
+				<view style=" margin: 15px;">
+					<view>
+						<view>
+							<view>
+								<view class="main_title">
 									{{ item.title }}
 								</view>
-								<view style="font-size:15px; margin-bottom:10px;"><u-parse
+								<view class="main_content"><u-parse
 										:content="item.content"></u-parse></view>
-								<image src="../../static/images/station/products/peach.jpg"
+								<image src="../../../static/images/station/products/peach.jpg"
 									style="width: 350px;height: 180px; padding-left: 5vh; padding-right: 5vh; "></image>
 								<!-- <u-album :urls="urls1" keyName="src2" style="margin-bottom: 8px;"></u-album> -->
 							</view>
@@ -40,6 +40,7 @@
 					</view>
 				</view>
 			</view>
+		</view>
 		</view>
 
 		<!-- <view style="border-radius: 5px; margin-bottom: 1vh;background-color: white;">
@@ -72,9 +73,9 @@
 				current: 0,
 				text: '000',
 				list3: [
-					'../../static/images/station/products/produepolicy1.jpg',
-					'../../static/images/station/products/produepolicy2.jpg',
-					'../../static/images/station/products/produepolicy3.jpg',
+					'../../../static/images/station/products/produepolicy1.jpg',
+					'../../../static/images/station/products/produepolicy2.jpg',
+					'../../../static/images/station/products/produepolicy3.jpg',
 				],
 				text1: '甘肃文县茶亮相北京茶博会 甘茶品牌魅力绽放'
 			}
@@ -88,14 +89,14 @@
 				getApp().globalData.item=item;
 				console.log(getApp().globalData.item);
 				uni.navigateTo({
-					url: "products/products_detail"
+					url: "products_detail"
 				}) 
 			},
 			checked(index) {
 				this.isActive = index;
-				var secondColumn = '我的优品';
-				if (index == 1) secondColumn = '品牌展示'
-				getProductsByColumns('推优品', secondColumn).then(response => {
+				// var secondColumn = '我的优品';
+				// if (index == 1) secondColumn = '品牌展示'
+				getProductsByColumns(1, index+2).then(response => {
 					console.log(response)
 					this.productsList = response.data;
 					console.log(this.productsList);
@@ -112,7 +113,7 @@
 			/** 查询其它栏目*/
 			getList() {
 				this.loading = true;
-				getProductsByColumns('推优品', '我的优品').then(response => {
+				getProductsByColumns(1, 2).then(response => {
 					console.log(response)
 					this.productsList = response.data;
 					console.log(this.productsList);
@@ -129,6 +130,7 @@
 	}
 </script>
 <style lang="scss">
+	@import url("../../../static/css/text.css");
 	.album__content {
 
 		// text-indent: 20px; //缩进了20px
@@ -168,22 +170,6 @@
 	// ::v-deep .u-text__value--primary {
 	// 	color: #2ed573 !important;
 	// }
-	.tab_nav {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.tab_nav .navTitle {
-		height: 90rpx;
-		line-height: 90rpx;
-		width: 100%;
-		text-align: center;
-		font-size: 32rpx;
-		font-family: Alibaba PuHuiTi;
-		color: #333;
-	}
-
 	.active {
 		position: relative;
 		color: #00ae67;
