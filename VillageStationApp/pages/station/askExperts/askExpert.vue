@@ -121,11 +121,9 @@
 		},
 		methods: {
 			click(dictValue) {
-				//获取作物详情
+				//根据值获取相应专家详情
 				expertList(dictValue).then(response => {
-					console.log(response)
-						this.techdetails = response.data;
-						// this.total = response.total;
+						this.experts = response.data;
 						this.loading = false;
 				});
 			},
@@ -135,7 +133,6 @@
 				listExpert(this.queryParams).then(response => {
 					console.log(response)
 					this.experts = response.rows;
-					// this.total = response.total;
 					this.loading = false;
 				});
 			},

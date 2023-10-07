@@ -177,9 +177,9 @@
 			"style": {
 				"navigationBarTitleText": "详细新闻"
 			}
-		}, {
+		},{
 			"path": "pages/station/products/products",
-			"style": {
+      "style": {
 				"navigationBarTitleText": "推优品"
 			}
 		},
