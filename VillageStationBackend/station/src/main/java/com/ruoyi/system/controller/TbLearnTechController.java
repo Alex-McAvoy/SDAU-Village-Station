@@ -63,10 +63,10 @@ public class TbLearnTechController extends BaseController
      * 获取学农技二级列表(类型)
      */
     @PreAuthorize("@ss.hasPermi('system:tech:query')")
-    @GetMapping(value = "/column/{secondColumn}")
-    public AjaxResult getSecondColumnInfo(@PathVariable("secondColumn") String secondColumn)
+    @GetMapping(value = "/column/{firstColumn}")
+    public AjaxResult getFirstColumnInfo(@PathVariable("firstColumn") String firstColumn)
     {
-        return success(tbLearnTechService.selectTbLearnTechBySecondColumn(secondColumn));
+        return success(tbLearnTechService.selectTbLearnTechByFirstColumn(firstColumn));
     }
 
     /**
