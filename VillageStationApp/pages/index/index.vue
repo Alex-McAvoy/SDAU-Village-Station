@@ -80,7 +80,7 @@
 			</view>
 		</view>
 		<!-- 热销农产 -->
-		<view class="main_context first_main_context">
+		<view class="main_context first_main_context" @click="goProductList">
 			<!-- 顶部栏 -->
 			<u-row gutter="16">
 				<u-col span="2" style="padding-left:10px;margin-right: 8px;">
@@ -116,7 +116,7 @@
 			</view>
 		</view>
 		<!-- 精彩视频 -->
-		<view class="main_context first_main_context">
+		<view class="main_context first_main_context"@click="goVedioList">
 			<!-- 顶部栏 -->
 			<u-row gutter="16">
 				<u-col span="2" style="padding-left:10px;margin-right: 8px;">
@@ -226,7 +226,19 @@
 				uni.navigateTo({
 					url: "news/newsList"
 				})
-			}
+			},
+			goProductList() {
+			    // this.$router.push('/pages/index/news/newsList');
+				uni.navigateTo({
+					url: "product/product_detail"
+				})
+			},
+			goVedioList() {
+			    // this.$router.push('/pages/index/news/newsList');
+				uni.navigateTo({
+					url: "product/product_detail"
+				})
+			},
 		}
 	}
 </script>
