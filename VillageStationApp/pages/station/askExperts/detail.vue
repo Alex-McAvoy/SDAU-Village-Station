@@ -5,7 +5,7 @@
 				<view style="display: flex;">
 
 					<view> 
-						<image src="../../static/images/index/index_query2.png" style="width: 20px; height: 20px;margin: 10px;"></image>
+						<image src="../../../static/images/index/index_query2.png" style="width: 20px; height: 20px;margin: 10px;"></image>
 					</view>
 					
 					<view style="margin-top: 5px;" >
@@ -14,20 +14,20 @@
 				</view>
 				<view style="display:flex;">
 					<view>
-						<image src="../../static/images/icon.jpg" style="border-radius: 50%;width: 60px;height: 60px;"></image>
+						<image src="../../../static/images/icon.jpg" style="border-radius: 50%;width: 60px;height: 60px;"></image>
 					</view>
 					<!-- <view style="margin-top: 5px;">
 						<text style="font-size: 23px;">张建平</text>
 					</view> -->
 					<view label="标题" >
 						<view style="margin-top: 5px;">
-							<text style="font-size: 15px;border: 5px;">张建平</text>
+							<text class="sub_title">张建平</text>
 						</view>
-						<div style="margin: 10px; font-size: 18px; border: 5px;">
+						<div class="sub_ask">
 							{{questions.questionTitle}}
 						</div>
 						<view label="内容" >
-							<div  style="margin: 10px; margin-left: 20px; font-size:15px;">
+							<div class="sub_content">
 								{{questions.question}}
 							</div>
 		
@@ -37,20 +37,20 @@
 				</view>
 				<view style="display: flex;">
 					<view style="margin-left: 80px;">
-						<image src="../../static/images/station/askExperts/location.png" style="width: 10px;height: 10px;"></image>
+						<image src="../../../static/images/station/askExperts/location.png" style="width: 10px;height: 10px;"></image>
 					</view>
 					<view>
-						<text style="font-size: 10px; margin-left: 10px;color: darkgrey;">山东-泰安</text>
+						<text class="ask_note">山东-泰安</text>
 					</view> 
 					<view>
-						<text style="font-size: 10px; margin-left: 20px;color: darkgrey;">2023-10-07 10:00</text>
+						<text class="ask_note">2023-10-07 10:00</text>
 					</view>
 				</view>
 			</view>
 			<view style="background-color: white; margin: 15px; border-radius: 10px ;">
 				<view style="display:flex;">
 					<view>
-						<image src="../../static/images/index/index_query1.png" style="width: 20px; height: 20px;margin: 10px;"></image>
+						<image src="../../../static/images/index/index_query1.png" style="width: 20px; height: 20px;margin: 10px;"></image>
 					</view>
 					<view style="margin-top: 5px;" >
 						<text style="font-size: 20px;">答疑回复</text>
@@ -68,12 +68,12 @@
 											</view>
 											<view>
 												<view style="margin-top: 5px;">
-													<text style="font-size: 15px;border: 5px;">王洪刚</text>
+													<text class="sub_title">王洪刚</text>
 												</view>
 												<div >
 													<view style="background-color: white;border-radius: 10px ;" :model="detailquestions">
 														<view style="font-size: 15px;" label="评论" >
-															<div style=" margin: 5px;" >
+															<div class="sub_content">
 																{{onedetailquestion.question}}
 															</div>
 														</view>
@@ -81,13 +81,13 @@
 												</div>
 												<view style="display: flex;">
 													<view style="margin-left: 10px;">
-														<image src="../../static/images/station/askExperts/location.png" style="width: 10px;height: 10px;"></image>
+														<image src="../../../static/images/station/askExperts/location.png" style="width: 10px;height: 10px;"></image>
 													</view>
 													<view>
-														<text style="font-size: 10px;margin-left: 8px ;color: darkgrey;">山东-泰安</text>
+														<text class="ask_note">山东-泰安</text>
 													</view> 
 													<view>
-														<text style="font-size: 10px; margin-left: 15px;color: darkgrey;">2023-10-07 10:00</text>
+														<text class="ask_note">2023-10-07 10:00</text>
 													</view>
 												</view>
 											</view>
@@ -220,4 +220,5 @@
 </script>
 
 <style>
+	@import url("../../../static/css/text.css");
 </style>

@@ -12,11 +12,11 @@
 		</view>
 		<!-- 内容一 -->
 		<view class="album__content" v-for="item in farmList" @click="goToDetailPage(item.newsId)">
-			<view style="font-size:20px; color: #00ae67 ; font-weight: bold; margin-left: 15px; padding-top: 5px;">
-				<span style="margin-top: 100px;">{{ item.title }}</span>
+			<view class="main_title">
+				{{ item.title }}
 			</view>
-			<view style="font-size:15px; margin-bottom:10px; margin: 15px;" ><u-parse :content="item.content"></u-parse></view>
-			<image src="../../static/images/station/purchaseFarm/manure.jpeg"
+			<view class="main_content" ><u-parse :content="item.content"></u-parse></view>
+			<image src="../../../static/images/station/purchaseFarm/manure.jpeg"
 				style="width: 150px;height: 150px; padding-top: 1vh;"></image>
 		</view>
 	</view>
@@ -69,7 +69,7 @@
 			/** 查询买农资列表 */
 			checked(index) {
 				this.isActive = index;
-				getInfo([index]).then(response => {
+				getInfo(index).then(response => {
 					// console.log(response);
 					this.farmList = response.data;
 					this.total = response.total;
@@ -90,6 +90,7 @@
 </script>
 
 <style lang="scss">
+	@import url("../../../static/css/text.css");
 	.album__content {
 		margin: 15px;
 		// border-bottom: 1px solid #979797;
@@ -134,22 +135,6 @@
 		margin-left: 3vh !important;
 		margin-top: 1vh;
 	}
-	.tab_nav {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-	
-	.tab_nav .navTitle {
-		height: 90rpx;
-		line-height: 90rpx;
-		width: 100%;
-		text-align: center;
-		font-size: 32rpx;
-		font-family: Alibaba PuHuiTi;
-		color: #333;
-	}
-	
 	.active {
 		position: relative;
 		color: #00ae67;

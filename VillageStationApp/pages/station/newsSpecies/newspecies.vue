@@ -4,7 +4,7 @@
 			style=" display: flex; align-items: center;  background-color: white; justify-content: space-between; margin-bottom: 10px;">
 			<!-- 定位 -->
 			<view style="margin-left: 1vh; align-items: center; margin-bottom: 10px;">
-				<image src="../../static/images/station/onlinebase/location.png" style="width: 15px; height: 15px;">
+				<image src="../../../static/images/station/onlinebase/location.png" style="width: 15px; height: 15px;">
 				</image>
 				<span style="color:#00ae67  ; margin-left: 5px; ">泰安</span>
 			</view>
@@ -21,13 +21,13 @@
 					<view class="u-demo-block__content">
 						<view class="album">
 							<view class="album__content">
-								<view style="font-size:20px; margin-bottom:10px; color: #00ae67; font-weight: bold;">
+								<view class="main_title">
 									{{ item.title }}
 								</view>
-								<view style="font-size:18px; margin-bottom:10px;"><u-parse
+								<view class="main_content"><u-parse
 										:content="item.content"></u-parse></view>
 								<u-album :urls="urls1" keyName="src2" style="margin-bottom: 8px;"></u-album>
-								<image src="../../static/images/station/newspecies/newPaddy.jpg"
+								<image src="../../../static/images/station/newspecies/newPaddy.jpg"
 									style="width: 300px;height: 150px; padding-left: 5vh; padding-right: 5vh;"></image>
 							</view>
 						</view>
@@ -87,13 +87,14 @@
 				getApp().globalData.item=item;
 				console.log(getApp().globalData.item);
 				uni.navigateTo({
-					url: "newsSpecies/species_detail"
+					url: "species_detail"
 				}) 
 			}
 		}
 	}
 </script>
 <style lang="scss">
+	@import url("../../../static/css/text.css");
 	.u-page {
 		background-color: white;
 		height: 100%;
@@ -119,11 +120,3 @@
 		margin-top: 5px;
 	}
 </style>
-
-// ::v-deep .u-tabs__wrapper__nav__item__text {
-// font-size: 19px !important;
-// }
-
-// ::v-deep .u-text__value--primary {
-// color: #00ae67 !important;
-// }

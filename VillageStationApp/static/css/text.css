@@ -1,0 +1,109 @@
+/* 文字样式 */
+/* 驿站导航栏字体 */
+ 
+.station_title {
+	margin-top: 10px;
+	text-align: left;
+	font-size: 18px;
+	margin: 10px;
+	color: #00ae67;
+	font-weight: bold;
+}
+.station_note{
+	color: #909090;
+	text-align: center;
+	font-size: 10px;
+	padding: 8px;
+}
+/* 导航栏字体样式 */
+::v-deep .u-tabs__wrapper__nav__item__text {
+	font-size: 19px !important;
+}
+
+.tab_nav {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10px;
+	background-color: white;
+	margin: 8px 15px
+}
+
+.tab_nav .navTitle {
+	height: 90rpx;
+	line-height: 90rpx;
+	width: 100%;
+	text-align: center;
+	font-size: 32rpx;
+	font-family: Alibaba PuHuiTi;
+	color: #333;
+}
+
+/* 详情页字体 */
+.main_title {
+	margin-top: 10px;
+	text-align: center;
+	font-size: 18px;
+	margin-bottom: 10px;
+	color: #00ae67;
+	font-weight: bold;
+}
+
+.main_content {
+	font-size: 15px;
+	margin-bottom: 10px;
+	text-indent: 32px;
+	padding: 5px;
+}
+
+.sub_main {
+	border-radius: 10px;
+	background-color: white;
+	margin: 8px 15px;
+	height: 100vh;
+}
+
+.sub_note {
+	color: #909090;
+	text-align: center;
+	font-size: 13px;
+	padding: 8px;
+}
+
+.sub_title {
+	color: #00ae67;
+	font-size: 21px;
+	padding: 8px;
+	text-align: center;
+	font-weight: bold;
+}
+
+.sub_content {
+	margin: 20px 15px 15px 15px;
+	padding-bottom: 5px;
+	font-size: 15px;
+	text-indent: 30px;
+}
+
+/* 问专家页面 */
+.sub_ask{
+	margin: 10px; 
+	font-size: 18px; 
+	border: 5px;
+}
+.ask_note{
+	font-size: 10px; 
+	margin-left: 20px;
+	color: darkgrey;
+}
+.ask_title{
+	margin-top: 10px; 
+	margin-left: 5px;
+	font-size: 20px;
+	padding: 5px 0 10px 0;
+}
+.ask_content {
+	margin: 20px 15px 15px 15px;
+	padding-bottom: 5px;
+	font-size: 15px;
+}

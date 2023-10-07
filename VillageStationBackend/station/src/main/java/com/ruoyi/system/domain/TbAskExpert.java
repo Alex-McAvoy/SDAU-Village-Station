@@ -37,7 +37,21 @@ public class TbAskExpert extends BaseEntity
     @Excel(name = "用于绑定专家账号")
     private Long userId;
 
-    public void setAskExpertsId(Long askExpertsId) 
+    @Excel(name = "研究方向")
+    private String direction;
+    @Excel(name = "科研经历")
+    private String researchIntroduction;
+
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
+    public void setAskExpertsId(Long askExpertsId)
     {
         this.askExpertsId = askExpertsId;
     }
@@ -94,18 +108,15 @@ public class TbAskExpert extends BaseEntity
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("askExpertsId", getAskExpertsId())
-            .append("expertName", getExpertName())
-            .append("introduction", getIntroduction())
-            .append("dictValue", getDictValue())
-            .append("delFlag", getDelFlag())
-            .append("createBy", getCreateBy())
-            .append("createTime", getCreateTime())
-            .append("updateBy", getUpdateBy())
-            .append("updateTime", getUpdateTime())
-            .append("remark", getRemark())
-            .append("userId", getUserId())
-            .toString();
+        return "TbAskExpert{" +
+                "askExpertsId=" + askExpertsId +
+                ", expertName='" + expertName + '\'' +
+                ", introduction='" + introduction + '\'' +
+                ", dictValue='" + dictValue + '\'' +
+                ", delFlag='" + delFlag + '\'' +
+                ", userId=" + userId +
+                ", direction='" + direction + '\'' +
+                ", researchIntroduction='" + researchIntroduction + '\'' +
+                '}';
     }
 }

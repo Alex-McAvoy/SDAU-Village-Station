@@ -48,6 +48,11 @@
 				"navigationBarTitleText": "束怀瑞"
 			}
 		}, {
+			"path": "pages/station/askExperts/detail",
+			"style": {
+				"navigationBarTitleText": "答题详情"
+			}
+		}, {
 			"path": "pages/mine/index",
 			"style": {
 				"navigationBarTitleText": "我的",
@@ -99,7 +104,7 @@
 				"navigationBarTitleText": "浏览文本"
 			}
 		},{
-			"path": "pages/station/purchaseFarm",
+			"path": "pages/station/farm/purchaseFarm",
 			"style": {
 				"navigationBarTitleText": "买农资"
 			}
@@ -109,13 +114,13 @@
 				"navigationBarTitleText": "农资详情"
 			}
 		},{
-			"path": "pages/station/learningTechnology",
+			"path": "pages/station/learningTechnology/learningTechnology",
 			"style": {
 				"navigationBarTitleText": "学农技",
 				"enablePullDownRefresh": false
 			}
 		}, {
-			"path": "pages/station/freeAsk",
+			"path": "pages/station/freeAsk/freeAsk",
 			"style": {
 				"navigationBarTitleText": "随时问",
 				"enablePullDownRefresh": false
@@ -145,11 +150,6 @@
 				"navigationStyle": "custom"
 			}
 		},{
-			"path": "pages/station/detail",
-			"style": {
-				"navigationBarTitleText": "答题详情"
-			}
-		}, {
 			"path": "pages/product/product",
 			"style": {
 				"navigationBarTitleText": "优品",
@@ -173,13 +173,11 @@
 				"navigationBarTitleText": "详细新闻"
 			}
 		},{
-			"path": "pages/index/product/product_detail",
-			"style": {
+		"style": {
 				"navigationBarTitleText": "详细农产品咨询"
 			}
 		},{
-			"path": "pages/station/products",
-			"style": {
+			"path": "pages/station/products",			"style": {
 				"navigationBarTitleText": "推优品"
 			}
 		},
@@ -189,7 +187,7 @@
 				"navigationBarTitleText": "推优品"
 			}
 		},{
-			"path": "pages/station/newspecies",
+			"path": "pages/station/newsSpecies/newspecies",
 			"style": {
 				"navigationBarTitleText": "新品种"
 			}
@@ -204,7 +202,7 @@
 				"navigationBarTitleText": "寻基地"
 			}
 		}, {
-			"path": "pages/station/channel",
+			"path": "pages/station/channel/channel",
 			"style": {
 				"navigationBarTitleText": "找渠道"
 			}
@@ -214,12 +212,12 @@
 				"navigationBarTitleText": "渠道详情"
 			}
 		},{
-			"path": "pages/station/techdetail",
+			"path": "pages/station/learningTechnology/techdetail",
 			"style": {
-				"navigationBarTitleText": "学农技"
+				"navigationBarTitleText": "农技详情"
 			}
 		},{
-			"path": "pages/station/freeAskdetail",
+			"path": "pages/station/freeAsk/freeAskdetail",
 			"style": {
 				"navigationBarTitleText": "随时问问题详情"
 			}
