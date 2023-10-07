@@ -155,6 +155,13 @@
 				"navigationBarTitleText": "优品",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path": "pages/product/productdetail",
+			"style": {
+				"navigationBarTitleText": "优品详情"
+				// "navigationStyle": "custom"
+			}
 		},{
 			"path": "pages/index/news/newsList",
 			"style": {
@@ -175,10 +182,11 @@
 			"style": {
 				"navigationBarTitleText": "推优品"
 			}
-		},{
+		},
+		{
 			"path": "pages/station/products/products_detail",
 			"style": {
-				"navigationBarTitleText": "优品详情"
+				"navigationBarTitleText": "推优品"
 			}
 		},{
 			"path": "pages/station/newspecies",

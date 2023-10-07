@@ -4,7 +4,7 @@
 			<view style="border-radius: 10px; background-color: white;margin:15px;padding-top:8px;padding-bottom: 8px;">
 				<u-grid :border="false" col="4">
 					<u-grid-item v-for="(listItem,listIndex) in list" :key="listIndex">
-						<view>
+						<view >
 							<u-image :customStyle="{paddingTop:20+'rpx'}" :src="listItem.src" :height="40" :width="30"
 								style=" margin-bottom: 10px; margin-top: 10px ; display: flex;justify-content: center;align-items: center;"></u-image>
 							<span class="grid-text"
@@ -24,7 +24,7 @@
 					<view class="u-demo-block">
 						<view class="album">
 							<view class="album__avatar">
-								<image src="/static/images/station/askExperts/whg.png"
+								<image :src="expert.remark"
 									style="margin:10px; width: 100px; height: 120px;border-radius: 8px; overflow: hidden;">
 								</image>
 							</view>
@@ -101,7 +101,8 @@
 				],
 				experts: {
 					expertName: '',
-					introduction: ''
+					introduction: '',
+					remark:''
 				}
 			}
 		},
@@ -109,10 +110,14 @@
 			this.getList();
 		},
 		methods: {
+			// getType(type){
+			// 	console.log(type)
+			// },
 			//获取专家列表
 			getList() {
 				this.loading = true;
 				listExpert(this.queryParams).then(response => {
+					console.log(response)
 					this.experts = response.rows;
 					// this.total = response.total;
 					this.loading = false;
