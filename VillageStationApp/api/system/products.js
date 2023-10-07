@@ -8,7 +8,6 @@ export function listProducts(query) {
     params: query
   })
 }
-
 // 查询推优品详细
 export function getProducts(newsId) {
   return request({
