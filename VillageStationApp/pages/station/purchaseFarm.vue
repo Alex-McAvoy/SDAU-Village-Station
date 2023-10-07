@@ -12,7 +12,7 @@
 		</view>
 		<!-- 内容一 -->
 		<view class="album__content" v-for="item in farmList" @click="goToDetailPage(item.newsId)">
-			<view style="font-size:18px; color: #3cb4ff; font-weight: bold; margin-left: 20px;">
+			<view style="font-size:20px; color: #00ae67 ; font-weight: bold; margin-left: 15px; padding-top: 5px;">
 				<span style="margin-top: 100px;">{{ item.title }}</span>
 			</view>
 			<view style="font-size:15px; margin-bottom:10px; margin: 15px;" ><u-parse :content="item.content"></u-parse></view>

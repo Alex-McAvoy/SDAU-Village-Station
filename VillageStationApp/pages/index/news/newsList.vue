@@ -1,19 +1,22 @@
 <template>
 	<view class="body">
-			<view> <!-- 栏目标签 -->
-				<u-sticky bgColor="#fff">
-					<u-tabs :list="list" :is-scroll="true" lineColor="#2ed573" @change="change" style="margin:0px 25px"></u-tabs>
-				</u-sticky>
-			</view>
-			<view style=" border-radius: 10px; background-color: white;margin:15px;">
-				<view class="news"  v-for="item in newsList" @click="skip(item)">
-					<view class="new_img">
-						<image src="/static/images/index/news_cover.png" alt=""
-							style="width:100%;height: 70px;overflow: hidden">
-					</view>
-					<view class="new_title">{{ item.title }}</view>
-					<view class="new_origin"><u-parse :content="fixedSize(item.content)"></u-parse></view>
+		<view> <!-- 栏目标签 -->
+			<u-sticky bgColor="#fff">
+				<u-tabs :list="list" :is-scroll="true" lineColor="#2ed573" @change="change"
+					style="margin:0px 25px"></u-tabs>
+			</u-sticky>
+		</view>
+		<view style="border-radius: 10px; background-color: white;margin:15px;">
+			<view class="news" v-for="item in newsList" @click="skip(item)">
+				<view class="new_img">
+					<image src="/static/images/index/news_cover.png" alt=""
+						style="width:100%;height: 70px;overflow: hidden">
 				</view>
+				<view class="new_title">{{ item.title }}</view>
+				<view class="new_origin">
+					<u-parse style="margin-bottom: 20px;" :content="fixedSize(item.content)"></u-parse>
+				</view>
+			</view>
 		</view>
 	</view>
 </template>
@@ -45,7 +48,9 @@
 			}
 		},
 		created() {
-			this.change({index:0});
+			this.change({
+				index: 0
+			});
 		},
 		methods: {
 			handleSelect(key, keyPath) {
@@ -68,7 +73,7 @@
 			},
 			change(index) {
 				console.log(index.index)
-				this.current = index; 
+				this.current = index;
 				//请求 firstColumn=’新闻资讯‘ secondColumn=index.name
 				this.loading = true;
 				Columns('新闻资讯', this.list[index.index].name).then(response => {
@@ -82,7 +87,7 @@
 			},
 			skip(item) {
 				console.log(item);
-				getApp().globalData.item=item;
+				getApp().globalData.item = item;
 				console.log(getApp().globalData.item);
 				uni.navigateTo({
 					url: "news_detail"
@@ -103,6 +108,7 @@
 		height: 90px;
 		font-size: 13px;
 		border-top: 1px solid #ecf0f1;
+		margin-bottom: 20px;
 	}
 
 	.news:nth-child(n+2) {
@@ -124,12 +130,16 @@
 		flex-direction: column;
 		justify-content: center;
 		max-height: 70px;
+		padding: 5px 0 0 0;
+		font-size: 15px;
+		font-weight: 200;
 	}
 
 	.new_origin {
 		grid-row: 2/4;
 		grid-column: 2/3;
 		padding-bottom: 5px;
+		margin-bottom: 20px;
 	}
 
 	.new_origin>.origin {

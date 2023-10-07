@@ -21,7 +21,7 @@
 					<view class="u-demo-block__content">
 						<view class="album">
 							<view class="album__content">
-								<view style="font-size:20px; margin-bottom:10px; color: #3cb4ff; font-weight: bold;">
+								<view style="font-size:20px; margin-bottom:10px; color: #00ae67; font-weight: bold;">
 									{{ item.title }}
 								</view>
 								<view style="font-size:18px; margin-bottom:10px;"><u-parse

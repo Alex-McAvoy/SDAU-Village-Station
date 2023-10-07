@@ -4,7 +4,7 @@
 			<view style="background-color: white; margin: 15px; border-radius: 10px ;display: flex;" :model="askdetailquestions">
 				<image src="../../static/images/index/index_query2.png" mode="" style="width: 20px;height: 20px; margin-top: 8px;margin-left: 10px;"></image>
 				<view label="标题">
-					<div style="margin: 10px; font-size: 15px; ">
+					<div style="margin-left: 15px; font-size: 20px;  padding: 5px 0 10px 0;">
 						{{askdetailquestions.title}}
 					</div>
 				</view>
@@ -18,12 +18,11 @@
 		</view>
 		<!-- 回答框 -->
 		<view >
-			<view style="background-color: white; margin: 15px; display: flex; margin-bottom: 0px; border-radius: 5px;" :model="askdetailquestions">
+			<view style="background-color: white; margin: 15px; display: flex; padding-bottom: 20px; border-radius: 5px;" :model="askdetailquestions">
 				<image src="../../static/images/index/index_query1.png"" mode="" style="width: 20px;height: 20px; margin-top: 2px;margin-left: 10px;"></image>
-				<view style="font-size: 13px;margin-left: 5px;color: gray;margin: 5px;" >
+				<view style="font-size: 20px;margin-left: 15px;color: gray;" >
 					回复
 				</view>
-		
 			</view>
 		</view>
 
@@ -43,9 +42,9 @@
 								<div style="margin-top: 15px; ">
 									<view style="background-color: white;border-radius: 10px ; " :model="detailQuerys ">
 										<view>
-											<text style="font-size: 15px;">小明</text>
+											<text style="font-size: 20px; padding-left: 10px;">小明</text>
 										</view>
-										<view style="font-size: 15px;" label="评论">
+										<view style="font-size: 15px; margin: 5px 0 5px 0;" label="评论">
 											<div style=" margin-left: 10px; ">
 												{{onedetailQuery.content}}
 											</div>

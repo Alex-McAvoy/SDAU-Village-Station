@@ -20,7 +20,7 @@
 				<image src="/static/images/station/askExperts/expert.png" mode=""
 					style=" width: 18px;height:15px; margin-left: 15px;margin-top: 15px;shape:circle;border-radius: 5px">
 				</image>
-				<view style="margin-top: 13px; margin-left: 5px;">专家简介</view>
+				<view style="margin-top: 10px; margin-left: 5px; font-size: 20px;">专家简介</view>
 			</view>
 			<view style="display: flex;">
 				<view style="margin-top: 15px;">

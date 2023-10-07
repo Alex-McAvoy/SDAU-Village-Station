@@ -1,8 +1,25 @@
 <template>
 	<view>
+		<div>
+			<view style="border-radius: 10px; background-color: white;margin:15px;padding-top:8px;padding-bottom: 8px;">
+				<u-grid :border="false" col="4">
+					<u-grid-item v-for="(listItem,listIndex) in list" :key="listIndex">
+						<view>
+							<u-image :customStyle="{paddingTop:20+'rpx'}" :src="listItem.src" :height="40" :width="30"
+								style=" margin-bottom: 10px; margin-top: 10px ; display: flex;justify-content: center;align-items: center;"></u-image>
+							<span class="grid-text"
+								style="color:#9f9f9f;font-size: 15px; margin:15px">{{listItem.title}}</span>
+						</view>
+					</u-grid-item>
+				</u-grid>
+				<u-toast ref="uToast" />
+			</view>
+		</div>
+
 		<!-- 1 -->
 		<div class="content" v-for="expert in experts" :key="expert.id">
-			<view style=" border-radius: 10px; background-color: white;margin:15px;"  @click="goToDetailPage1(expert.askExpertsId)">
+			<view style=" border-radius: 10px; background-color: white;margin:15px;"
+				@click="goToDetailPage1(expert.askExpertsId)">
 				<view class="u-page">
 					<view class="u-demo-block">
 						<view class="album">
@@ -37,10 +54,51 @@
 		addExpert,
 		updateExpert
 	} from "@/api/station/expert.js";
-	
+
 	export default {
 		data() {
 			return {
+				list: [{
+						src: "/static/images/station/askExperts/nx.png",
+						title: '农学',
+						// route: '/pages/station/askExperts/askExpert'
+					},
+					{
+						src: "/static/images/station/askExperts/lx.png",
+						title: '林学',
+						// route: '/pages/station/freeAsk'
+					},
+					{
+						src: "/static/images/station/askExperts/yy.png",
+						title: '园艺',
+						// route: '/pages/station/learningTechnology'
+					},
+					{
+						src: "/static/images/station/askExperts/dw.png",
+						title: '动物',
+						// route: '/pages/station/purchaseFarm'
+					},
+					{
+						src: "/static/images/station/askExperts/xx.png",
+						title: '信息',
+						// route: '/pages/station/channel'
+					},
+					{
+						src: "/static/images/station/askExperts/nj.png",
+						title: '农机',
+						// route: '/pages/station/products'
+					},
+					{
+						src: "/static/images/station/askExperts/zb.png",
+						title: '植保',
+						// route: '/pages/station/newspecies'
+					},
+					{
+						src: "/static/images/station/askExperts/sk.png",
+						title: '食科',
+						// route: '/pages/station/onlinebase'
+					},
+				],
 				experts: {
 					expertName: '',
 					introduction: ''
@@ -62,8 +120,8 @@
 			},
 			goToDetailPage1(id) {
 				uni.navigateTo({
-				       url:"/pages/station/askExperts/shr?id="+id
-				    })
+					url: "/pages/station/askExperts/shr?id=" + id
+				})
 				// this.$router.push(`/pages/station/askExperts/shr`);
 			},
 		}

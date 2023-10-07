@@ -53,8 +53,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateBy != null">update_by,</if>
             <if test="updateTime != null">update_time,</if>
             <if test="remark != null">remark,</if>
-            <if test="parentID != null">parent_id,</if>
-            <if test="userID != null">user_id,</if>
+            <if test="parentId != null">parent_id,</if>
+            <if test="userId != null">user_id,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="title != null">#{title},</if>
@@ -65,8 +65,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateBy != null">#{updateBy},</if>
             <if test="updateTime != null">#{updateTime},</if>
             <if test="remark != null">#{remark},</if>
-            <if test="parentID != null">#{parentID},</if>
-            <if test="userID != null">#{userID },</if>
+            <if test="parentId != null">#{parentId},</if>
+            <if test="userId != null">#{userId},</if>
          </trim>
     </insert>
 

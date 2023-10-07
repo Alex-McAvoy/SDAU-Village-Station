@@ -21,7 +21,7 @@
 					</image>
 				</div>
 				<view style="margin-left: 20px;">
-					<div type="primary" style="margin-top: 5px;">{{onetechdetail.content}}</div>
+					<div type="primary" style="margin: 10px;">{{onetechdetail.content}}</div>
 					<view style="display: flex; margin-top: 3vh;">
 						<u--text color="#909090 " margin="0 0 8px 0" text="中国政府网 "></u--text>
 						<u--text color="#909090 " margin="0 0 8px 0" text="342人阅读" style="justify-content:end;"></u--text>

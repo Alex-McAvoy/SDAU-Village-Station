@@ -8,8 +8,8 @@
 						<image src="../../static/images/index/index_query2.png" style="width: 20px; height: 20px;margin: 10px;"></image>
 					</view>
 					
-					<view style="margin-top: 13px;" >
-						<text style="font-size: 13px;">提问详情</text>
+					<view style="margin-top: 5px;" >
+						<text style="font-size: 20px;">提问详情</text>
 					</view>
 				</view>
 				<view style="display:flex;">
@@ -52,8 +52,8 @@
 					<view>
 						<image src="../../static/images/index/index_query1.png" style="width: 20px; height: 20px;margin: 10px;"></image>
 					</view>
-					<view style="margin-top: 15px;" >
-						<text style="font-size: 13px;">答疑回复</text>
+					<view style="margin-top: 5px;" >
+						<text style="font-size: 20px;">答疑回复</text>
 					</view>
 				</view>
 				<div v-for="onedetailquestion in detailquestions" :key="onedetailquestion.id">

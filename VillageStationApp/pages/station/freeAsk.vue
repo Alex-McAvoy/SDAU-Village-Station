@@ -28,10 +28,10 @@
 									<image src="/static/images/icon.jpg" mode="" style="width: 32px;height: 32px; "></image>
 								</view>
 								<view class="album__content">
-									<div>
+									<div style="font-size: 20px;">
 										{{askquestion.title}}
 									</div>
-									<div>
+									<div style="margin-top: 10px; padding-bottom: 10px;">
 										{{askquestion.content}}
 									</div>
 								</view>

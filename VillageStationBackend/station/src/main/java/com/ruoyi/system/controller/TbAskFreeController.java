@@ -79,6 +79,7 @@ public class TbAskFreeController extends BaseController
     @PostMapping
     public AjaxResult add(@RequestBody TbAskFree tbAskFree)
     {
+        System.out.println(tbAskFree);
         return toAjax(tbAskFreeService.insertTbAskFree(tbAskFree));
     }
 

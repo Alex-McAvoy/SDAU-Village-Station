@@ -22,7 +22,7 @@
 				</view>
 			</view>
 			<view class="action-btn">
-				<button @click="handleLogin" class="login-btn cu-btn block bg-blue lg round">登录</button>
+				<button @click="handleLogin" class="login-btn cu-btn block bg-color lg round">登录</button>
 			</view>
 			<view class="reg text-center" v-if="register">
 				<text class="text-grey1">没有账号？</text>
@@ -30,8 +30,8 @@
 			</view>
 			<view class="xieyi text-center">
 				<text class="text-grey1">登录即代表同意</text>
-				<text @click="handleUserAgrement" class="text-blue">《用户协议》</text>
-				<text @click="handlePrivacy" class="text-blue">《隐私协议》</text>
+				<text @click="handleUserAgrement" class="text-color">《用户协议》</text>
+				<text @click="handlePrivacy" class="text-color">《隐私协议》</text>
 			</view>
 		</view>
 
@@ -126,6 +126,14 @@
 <style lang="scss">
 	page {
 		background-color: #ffffff;
+	}
+	
+	.bg-color{
+		color: #ffffff;
+		background-color: #00ae67;
+	}
+	.text-color {
+		color: #00ae67;
 	}
 
 	.normal-login-container {
