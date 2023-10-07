@@ -24,7 +24,7 @@
 			</view>
 			<view style="display: flex;">
 				<view style="margin-top: 15px;">
-					<image src="/static/images/station/askExperts/shr.png" mode=""
+					<image :src="expert.remark"
 						style=" width: 100px;height: 120px; margin-left: 5px;margin-top: 2px;shape:circle;border-radius: 5px">
 					</image>
 				</view>
@@ -141,7 +141,8 @@
 			return {
 				//专家介绍
 				expert: {
-					introduction: ''
+					introduction: '',
+					remark:''
 				},
 				//专家id
 				expertId: '',
@@ -197,6 +198,7 @@
 				this.loading = true;
 				// console.log(this.expertId);
 				getExpert(expertId).then(response => {
+					// console.log(response);
 					this.expert = response.data;
 					// this.total = response.total;
 					this.loading = false;

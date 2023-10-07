@@ -24,7 +24,7 @@
 					<view class="u-demo-block">
 						<view class="album">
 							<view class="album__avatar">
-								<image src="/static/images/station/askExperts/whg.png"
+								<image :src="expert.remark"
 									style="margin:10px; width: 100px; height: 120px;border-radius: 8px; overflow: hidden;">
 								</image>
 							</view>
@@ -101,7 +101,8 @@
 				],
 				experts: {
 					expertName: '',
-					introduction: ''
+					introduction: '',
+					remark:''
 				}
 			}
 		},
@@ -109,10 +110,14 @@
 			this.getList();
 		},
 		methods: {
+			// getType(type){
+			// 	console.log(type)
+			// },
 			//获取专家列表
 			getList() {
 				this.loading = true;
 				listExpert(this.queryParams).then(response => {
+					console.log(response)
 					this.experts = response.rows;
 					// this.total = response.total;
 					this.loading = false;
