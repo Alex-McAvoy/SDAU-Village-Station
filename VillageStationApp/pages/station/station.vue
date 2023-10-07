@@ -345,17 +345,23 @@
 				list1: [{
 					name: '推荐',
 				}, {
-					name: '水稻'
+					name: '水稻',
+					firstColumn:'0',
 				}, {
-					name: '小麦'
+					name: '小麦',
+					firstColumn:'1',
 				}, {
-					name: '蔬菜'
+					name: '蔬菜',
+					firstColumn:'2',
 				}, {
-					name: '果树'
+					name: '果树',
+					firstColumn:'3',
 				}, {
-					name: '植保'
+					name: '植保',
+					firstColumn:'4',
 				}, {
-					name: '禽畜'
+					name: '禽畜',
+					firstColumn:'5',
 				}],
 				list2: [{
 					name: '节肥增效',

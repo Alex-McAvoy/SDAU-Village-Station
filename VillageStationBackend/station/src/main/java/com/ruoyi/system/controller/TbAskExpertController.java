@@ -64,11 +64,24 @@ public class TbAskExpertController extends BaseController
      * 获取问专家详细信息
      */
     @PreAuthorize("@ss.hasPermi('system:expert:query')")
-    @GetMapping(value = "/{askExpertsId}")
-    public AjaxResult getInfo(@PathVariable("askExpertsId") Long askExpertsId)
+    @GetMapping(value = "/id/{askExpertsId}")
+    public AjaxResult getExpertInfo(@PathVariable("askExpertsId") Long askExpertsId)
     {
         return success(tbAskExpertService.selectTbAskExpertByAskExpertsId(askExpertsId));
     }
+
+    /**
+     * 获取不同领域的专家详细信息
+     */
+    @PreAuthorize("@ss.hasPermi('system:expert:query')")
+    @GetMapping(value = "/dict/{dictValue}")
+    public AjaxResult getDictValueExpertInfo(@PathVariable("dictValue") String dictValue)
+    {
+        return success(tbAskExpertService.selectTbAskExpertByDictValue(dictValue));
+    }
+
+
+
 
     /**
      * 新增问专家
