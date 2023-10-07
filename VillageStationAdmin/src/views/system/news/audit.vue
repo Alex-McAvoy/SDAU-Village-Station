@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { listColumnsRemark, getColumns, delColumns, addColumns, updateColumns } from "@/api/system/columns";
+import { listColumnsRemark, getColumns, delColumns, addColumns, updateColumns } from "@/api/system/news";
 
 export default {
   name: "Columns",

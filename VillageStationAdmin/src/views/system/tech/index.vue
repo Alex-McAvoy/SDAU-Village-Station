@@ -39,7 +39,7 @@
           icon="el-icon-plus"
           size="mini"
           @click="handleAdd"
-          v-hasPermi="['system:columns:add']"
+          v-hasPermi="['system:tech:add']"
         >新增</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -50,7 +50,7 @@
           size="mini"
           :disabled="single"
           @click="handleUpdate"
-          v-hasPermi="['system:columns:edit']"
+          v-hasPermi="['system:tech:edit']"
         >修改</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -61,7 +61,7 @@
           size="mini"
           :disabled="multiple"
           @click="handleDelete"
-          v-hasPermi="['system:columns:remove']"
+          v-hasPermi="['system:tech:remove']"
         >删除</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -71,21 +71,22 @@
           icon="el-icon-download"
           size="mini"
           @click="handleExport"
-          v-hasPermi="['system:columns:export']"
+          v-hasPermi="['system:tech:export']"
         >导出</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
-    <el-table v-loading="loading" :data="columnsList" @selection-change="handleSelectionChange">
+    <el-table v-loading="loading" :data="techList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="ID" align="center" prop="newsId" />
+      <el-table-column label="ID" align="center" prop="articleId" />
       <el-table-column label="标题" align="center" prop="title" />
       <el-table-column label="内容" align="center" prop="content" />
       <el-table-column label="备注" align="center" prop="remark" />
       <el-table-column label="一级栏目编码" align="center" prop="firstColumn" />
       <el-table-column label="二级栏目编码" align="center" prop="secondColumn" />
       <el-table-column label="排序" align="center" prop="sort" />
+      <el-table-column label="来源" align="center" prop="source" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -93,14 +94,14 @@
             type="text"
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
-            v-hasPermi="['system:columns:edit']"
+            v-hasPermi="['system:tech:edit']"
           >修改</el-button>
           <el-button
             size="mini"
             type="text"
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
-            v-hasPermi="['system:columns:remove']"
+            v-hasPermi="['system:tech:remove']"
           >删除</el-button>
         </template>
       </el-table-column>
@@ -114,15 +115,7 @@
       @pagination="getList"
     />
 
-    <!-- 添加或修改其它栏目
-       一级栏目              二级栏目 （在字典中设置）
-         学农技：            水稻、小麦..
-         买农资：           节肥增效、虫害防治..
-         找渠道：           供应、求购..
-         推优品：           我的优品、品牌展示..
-         新品种：
-         培训：              园艺培训、粮食种植..
-         热销农产：对话框 -->
+    <!-- 添加或修改学农技对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="标题" prop="title">
@@ -146,6 +139,9 @@
         <el-form-item label="排序" prop="sort">
           <el-input v-model="form.sort" placeholder="请输入排序" />
         </el-form-item>
+        <el-form-item label="来源" prop="source">
+          <el-input v-model="form.source" type="textarea" placeholder="请输入内容" />
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -156,10 +152,10 @@
 </template>
 
 <script>
-import { Columns,listColumns, getColumns, delColumns, addColumns, updateColumns } from "@/api/system/columns";
+import { listTech, getTech, delTech, addTech, updateTech } from "@/api/system/tech";
 
 export default {
-  name: "Columns",
+  name: "Tech",
   data() {
     return {
       // 遮罩层
@@ -174,16 +170,8 @@ export default {
       showSearch: true,
       // 总条数
       total: 0,
-      // 其它栏目
-      //  一级栏目              二级栏目 （在字典中设置）
-      //    学农技：            水稻、小麦..
-      //    买农资：           节肥增效、虫害防治..
-      //    找渠道：           供应、求购..
-      //    推优品：           我的优品、品牌展示..
-      //    新品种：
-      //    培训：              园艺培训、粮食种植..
-      //    热销农产：表格数据
-      columnsList: [],
+      // 学农技表格数据
+      techList: [],
       // 弹出层标题
       title: "",
       // 是否显示弹出层
@@ -196,7 +184,8 @@ export default {
         content: null,
         firstColumn: null,
         secondColumn: null,
-        sort: null
+        sort: null,
+        source: null
       },
       // 表单参数
       form: {},
@@ -207,35 +196,13 @@ export default {
   },
   created() {
     this.getList();
-    //测试用
-    this.columns();
   },
   methods: {
-    /** 查询其它栏目
-       一级栏目              二级栏目 （在字典中设置）
-         学农技：            水稻、小麦..
-         买农资：           节肥增效、虫害防治..
-         找渠道：           供应、求购..
-         推优品：           我的优品、品牌展示..
-         新品种：
-         培训：              园艺培训、粮食种植..
-         热销农产：列表 */
-    
-  columns() {
+    /** 查询学农技列表 */
+    getList() {
       this.loading = true;
-      var firstColumn = '1';
-      var secondColumn= '1';
-      Columns(firstColumn,secondColumn).then(response => {
-        console.log(response.rows)
-        this.columnsList = response.rows;
-        this.total = response.total;
-        this.loading = false;
-      });
-    }
-    ,getList() {
-      this.loading = true;
-      listColumns(this.queryParams).then(response => {
-        this.columnsList = response.rows;
+      listTech(this.queryParams).then(response => {
+        this.techList = response.rows;
         this.total = response.total;
         this.loading = false;
       });
@@ -248,7 +215,7 @@ export default {
     // 表单重置
     reset() {
       this.form = {
-        newsId: null,
+        articleId: null,
         title: null,
         content: null,
         delFlag: null,
@@ -259,7 +226,8 @@ export default {
         remark: null,
         firstColumn: null,
         secondColumn: null,
-        sort: null
+        sort: null,
+        source: null
       };
       this.resetForm("form");
     },
@@ -275,7 +243,7 @@ export default {
     },
     // 多选框选中数据
     handleSelectionChange(selection) {
-      this.ids = selection.map(item => item.newsId)
+      this.ids = selection.map(item => item.articleId)
       this.single = selection.length!==1
       this.multiple = !selection.length
     },
@@ -283,30 +251,30 @@ export default {
     handleAdd() {
       this.reset();
       this.open = true;
-      this.title = "添加其它栏目"     
+      this.title = "添加学农技";
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
       this.reset();
-      const newsId = row.newsId || this.ids
-      getColumns(newsId).then(response => {
+      const articleId = row.articleId || this.ids
+      getTech(articleId).then(response => {
         this.form = response.data;
         this.open = true;
-        this.title = "修改其它栏目";
+        this.title = "修改学农技";
       });
     },
     /** 提交按钮 */
     submitForm() {
       this.$refs["form"].validate(valid => {
         if (valid) {
-          if (this.form.newsId != null) {
-            updateColumns(this.form).then(response => {
+          if (this.form.articleId != null) {
+            updateTech(this.form).then(response => {
               this.$modal.msgSuccess("修改成功");
               this.open = false;
               this.getList();
             });
           } else {
-            addColumns(this.form).then(response => {
+            addTech(this.form).then(response => {
               this.$modal.msgSuccess("新增成功");
               this.open = false;
               this.getList();
@@ -317,9 +285,9 @@ export default {
     },
     /** 删除按钮操作 */
     handleDelete(row) {
-      const newsIds = row.newsId || this.ids;
-      this.$modal.confirm('是否确认删除其它栏目编号为"' + newsIds + '"的数据项？').then(function() {
-        return delColumns(newsIds);
+      const articleIds = row.articleId || this.ids;
+      this.$modal.confirm('是否确认删除学农技编号为"' + articleIds + '"的数据项？').then(function() {
+        return delTech(articleIds);
       }).then(() => {
         this.getList();
         this.$modal.msgSuccess("删除成功");
@@ -327,9 +295,9 @@ export default {
     },
     /** 导出按钮操作 */
     handleExport() {
-      this.download('system/columns/export', {
+      this.download('system/tech/export', {
         ...this.queryParams
-      }, `columns_${new Date().getTime()}.xlsx`)
+      }, `tech_${new Date().getTime()}.xlsx`)
     }
   }
 };

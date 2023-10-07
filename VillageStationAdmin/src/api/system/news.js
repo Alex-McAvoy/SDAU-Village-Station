@@ -1,13 +1,4 @@
 import request from '@/utils/request'
-//测试用，需删除
-export function Columns(firstColumn,secondColumn) {
-  var url_ = '/system/columns/getNewsByColumn/'+firstColumn+'/'+secondColumn; 
-  //alert(url_);
-  return request({
-    url: url_,
-    method: 'get',
-  })
-}
 
 // 查询其它栏目
       //  一级栏目              二级栏目 （在字典中设置）
@@ -43,7 +34,7 @@ export function listColumnsRemark(query) {
       //    新品种：
       //    培训：              园艺培训、粮食种植..
       //    热销农产：详细
-export function getColumns(newsId) {
+export function getColumns(newsId) { 
   return request({
     url: '/system/columns/getById/' + newsId,
     method: 'get'
