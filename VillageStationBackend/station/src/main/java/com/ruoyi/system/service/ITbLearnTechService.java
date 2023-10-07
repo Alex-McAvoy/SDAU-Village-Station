@@ -12,12 +12,12 @@ import com.ruoyi.system.domain.TbLearnTech;
 public interface ITbLearnTechService 
 {
     /**
-     * 查询学农技二级列表(类型)
+     * 查询学农技一级列表(类型)
      *
-     * @param secondColumn 学农技二级列表(类型)
+     * @param firstColumn 学农技一级列表(类型)
      * @return 学农技
      */
-    public List<TbLearnTech> selectTbLearnTechBySecondColumn(String secondColumn);
+    public List<TbLearnTech> selectTbLearnTechByFirstColumn(String firstColumn);
 
     /**
      * 查询学农技

@@ -23,13 +23,13 @@ public class TbLearnTechServiceImpl implements ITbLearnTechService
     /**
      * 查询学农技二级列表(类型)
      *
-     * @param secondColumn 农技二级列表(类型)
+     * @param firstColumn 农技一级列表(类型)
      * @return 学农技
      */
     @Override
-    public List<TbLearnTech> selectTbLearnTechBySecondColumn(String secondColumn)
+    public List<TbLearnTech> selectTbLearnTechByFirstColumn(String firstColumn)
     {
-        return tbLearnTechMapper.selectTbLearnTechBySecondColumn( secondColumn );
+        return tbLearnTechMapper.selectTbLearnTechByFirstColumn( firstColumn );
     }
 
     /**

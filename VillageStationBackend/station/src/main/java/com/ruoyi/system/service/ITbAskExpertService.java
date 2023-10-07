@@ -20,6 +20,15 @@ public interface ITbAskExpertService
     public TbAskExpert selectTbAskExpertByAskExpertsId(Long askExpertsId);
 
     /**
+     * 查询不同领域的专家
+     *
+     * @param dictValue 不同领域的专家
+     * @return 问专家
+     */
+    public List<TbAskExpert> selectTbAskExpertByDictValue(String dictValue);
+
+
+    /**
      * 查询问专家列表
      * 
      * @param tbAskExpert 问专家

@@ -155,6 +155,13 @@
 				"navigationBarTitleText": "优品",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path": "pages/product/productdetail",
+			"style": {
+				"navigationBarTitleText": "优品详情"
+				// "navigationStyle": "custom"
+			}
 		},{
 			"path": "pages/index/news/newsList",
 			"style": {
@@ -166,14 +173,18 @@
 				"navigationBarTitleText": "详细新闻"
 			}
 		},{
-			"path": "pages/station/products/products",
-			"style": {
-				"navigationBarTitleText": "推优品"
+		"style": {
+				"navigationBarTitleText": "详细农产品咨询"
 			}
 		},{
+			"path": "pages/station/products",			"style": {
+				"navigationBarTitleText": "推优品"
+			}
+		},
+		{
 			"path": "pages/station/products/products_detail",
 			"style": {
-				"navigationBarTitleText": "优品详情"
+				"navigationBarTitleText": "推优品"
 			}
 		},{
 			"path": "pages/station/newsSpecies/newspecies",

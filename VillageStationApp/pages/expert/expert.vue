@@ -1,16 +1,18 @@
 <template>
 	<view class="body">
 		<!-- 顶部 搜索栏 -->
-		<u-row gutter="20" class="index_head">
-			<u-col span="3">专家&nbsp;</u-col>
-			<u-col span="7">
-				<u-search :show-action="false"></u-search>
-			</u-col>
-			<u-col span="2">天气</u-col>
-		</u-row>
+		<div class="nav_bar">
+			<u-row gutter="20" class="index_head">
+				<u-col span="3">专家&nbsp;</u-col>
+				<u-col span="7">
+					<u-search :show-action="false"></u-search>
+				</u-col>
+				<u-col span="2">天气</u-col>
+			</u-row>
+		</div>
 
 		<!-- 专家 -->
-		<view class="main_context first_main_context">
+		<view class="main_context first_main_context" style="margin-top: 100px;">
 			<view> <!-- 主体框 -->
 				<u-row gutter="16">
 					<u-col span="2" style="padding-left:10px;margin-right: 8px;">
@@ -83,7 +85,9 @@
 	}
 </script>
 
-<style src="../../static/css/index.css">
+<style >
+	@import url("../../static/css/index.css");
+	@import url("../../static/css/nav_bar.css");
 </style>
 <style>
 	.video_list{

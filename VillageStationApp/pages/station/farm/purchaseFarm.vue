@@ -70,7 +70,7 @@
 			checked(index) {
 				this.isActive = index;
 				getInfo(index).then(response => {
-					console.log(response);
+					// console.log(response);
 					this.farmList = response.data;
 					this.total = response.total;
 					this.loading = false;
