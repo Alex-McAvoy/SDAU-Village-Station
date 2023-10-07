@@ -52,14 +52,59 @@ export const constantRoutes = [
     hidden: true,
     children: [
       {
-        path: '/submit',
-        component: () => import('@/views/system/columns/index'),
+        path: '/station/submit',
+        component: () => import('@/views/system/news/index'),
         hidden: true
-      },{
+      },
+      {
         path: '/station/audit',
-        component: () => import('@/views/system/columns/audit'),
+        component: () => import('@/views/system/news/audit'),
         hidden: true
-      }
+      },
+      {
+        path: '/station/products',
+        component: () => import('@/views/system/products/index'),
+        hidden: true
+      },
+      {
+        path: '/station/species',
+        component: () => import('@/views/system/species/index'),
+        hidden: true
+      },
+      {
+        path: '/station/channel',
+        component: () => import('@/views/system/channel/index'),
+        hidden: true
+      },
+      {
+        path: '/station/farm',
+        component: () => import('@/views/system/farm/index'),
+        hidden: true
+      },
+               // 学农技
+               {
+                path: '/station/tech',
+                component: () => import('@/views/system/tech/index'),
+                hidden: true
+              },
+               // 问答
+               {
+                path: '/station/question',
+                component: () => import('@/views/system/question/index'),
+                hidden: true
+              },
+              // 随时问
+              {
+                path: '/station/free',
+                component: () => import('@/views/system/free/index'),
+                hidden: true
+              },
+              // 问专家
+              {
+                path: '/station/expert',
+                component: () => import('@/views/system/expert/index'),
+                hidden: true
+              },
     ]
   },
   {
