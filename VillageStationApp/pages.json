@@ -166,6 +166,11 @@
 				"navigationBarTitleText": "详细新闻"
 			}
 		},{
+			"path": "pages/index/product/product_detail",
+			"style": {
+				"navigationBarTitleText": "详细农产品咨询"
+			}
+		},{
 			"path": "pages/station/products",
 			"style": {
 				"navigationBarTitleText": "推优品"
