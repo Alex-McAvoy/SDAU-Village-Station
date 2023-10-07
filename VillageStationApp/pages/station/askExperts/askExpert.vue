@@ -4,9 +4,9 @@
 			<view style="border-radius: 10px; background-color: white;margin:15px;padding-top:8px;padding-bottom: 8px;">
 				<u-grid :border="false" col="4">
 					<u-grid-item v-for="(listItem,listIndex) in list" :key="listIndex">
-						<view>
+						<view >
 							<u-image :customStyle="{paddingTop:20+'rpx'}" :src="listItem.src" :height="40" :width="30"
-								style=" margin-bottom: 10px; margin-top: 10px ; display: flex;justify-content: center;align-items: center;"></u-image>
+								style=" margin-bottom: 10px; margin-top: 10px ; display: flex;justify-content: center;align-items: center;" @click="click(listItem.dictValue)"></u-image>
 							<span class="grid-text"
 								style="color:#9f9f9f;font-size: 15px; margin:15px">{{listItem.title}}</span>
 						</view>
@@ -24,7 +24,7 @@
 					<view class="u-demo-block">
 						<view class="album">
 							<view class="album__avatar">
-								<image src="/static/images/station/askExperts/whg.png"
+								<image :src="expert.remark"
 									style="margin:10px; width: 100px; height: 120px;border-radius: 8px; overflow: hidden;">
 								</image>
 							</view>
@@ -48,6 +48,7 @@
 
 <script>
 	import {
+		expertList,
 		listExpert,
 		getExpert,
 		delExpert,
@@ -61,47 +62,56 @@
 				list: [{
 						src: "/static/images/station/askExperts/nx.png",
 						title: '农学',
+						dictValue:'0',
 						// route: '/pages/station/askExperts/askExpert'
 					},
 					{
 						src: "/static/images/station/askExperts/lx.png",
 						title: '林学',
+						dictValue:'1',
 						// route: '/pages/station/freeAsk'
 					},
 					{
 						src: "/static/images/station/askExperts/yy.png",
 						title: '园艺',
+						dictValue:'2',
 						// route: '/pages/station/learningTechnology'
 					},
 					{
 						src: "/static/images/station/askExperts/dw.png",
 						title: '动物',
+						dictValue:'3',
 						// route: '/pages/station/purchaseFarm'
 					},
 					{
 						src: "/static/images/station/askExperts/xx.png",
 						title: '信息',
+						dictValue:'4',
 						// route: '/pages/station/channel'
 					},
 					{
 						src: "/static/images/station/askExperts/nj.png",
 						title: '农机',
+						dictValue:'5',
 						// route: '/pages/station/products'
 					},
 					{
 						src: "/static/images/station/askExperts/zb.png",
 						title: '植保',
+						dictValue:'6',
 						// route: '/pages/station/newspecies'
 					},
 					{
 						src: "/static/images/station/askExperts/sk.png",
 						title: '食科',
+						dictValue:'7',
 						// route: '/pages/station/onlinebase'
 					},
 				],
 				experts: {
 					expertName: '',
-					introduction: ''
+					introduction: '',
+					remark:''
 				}
 			}
 		},
@@ -109,10 +119,20 @@
 			this.getList();
 		},
 		methods: {
+			click(dictValue) {
+				//获取作物详情
+				expertList(dictValue).then(response => {
+					// console.log(response)
+						this.techdetails = response.data;
+						// this.total = response.total;
+						this.loading = false;
+				});
+			},
 			//获取专家列表
 			getList() {
 				this.loading = true;
 				listExpert(this.queryParams).then(response => {
+					console.log(response)
 					this.experts = response.rows;
 					// this.total = response.total;
 					this.loading = false;

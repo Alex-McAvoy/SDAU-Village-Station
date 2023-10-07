@@ -1,16 +1,19 @@
 <template>
 	<view class="body">
 		<!-- 顶部 搜索栏 -->
-		<u-row gutter="20" class="index_head">
-			<u-col span="3">乡村驿站&nbsp;</u-col>
-			<u-col span="7">
-				<u-search :show-action="false"></u-search>
-			</u-col>
-			<u-col span="2">天气</u-col>
-		</u-row>
+		<div class="nav_bar">
+			<u-row gutter="20" class="index_head">
+				<u-col span="3">乡村驿站&nbsp;</u-col>
+				<u-col span="7">
+					<u-search :show-action="false"></u-search>
+				</u-col>
+				<u-col span="2">天气</u-col>
+			</u-row>
+		</div>
+
 
 		<!-- 通知 -->
-		<view class="main_context first_main_context">
+		<view class="main_context first_main_context" style="margin-top: 100px;">
 			<u-row gutter="16">
 				<u-col span="2" style="padding-left:10px;margin-right: 8px;">
 					<image src="/static/images/index/index_notify.png" style="height:25px;width:25px;" />
@@ -77,7 +80,7 @@
 			</view>
 		</view>
 		<!-- 热销农产 -->
-		<view class="main_context first_main_context">
+		<view class="main_context first_main_context" @click="goProductList">
 			<!-- 顶部栏 -->
 			<u-row gutter="16">
 				<u-col span="2" style="padding-left:10px;margin-right: 8px;">
@@ -113,7 +116,7 @@
 			</view>
 		</view>
 		<!-- 精彩视频 -->
-		<view class="main_context first_main_context">
+		<view class="main_context first_main_context"@click="goVedioList">
 			<!-- 顶部栏 -->
 			<u-row gutter="16">
 				<u-col span="2" style="padding-left:10px;margin-right: 8px;">
@@ -142,7 +145,7 @@
 			</view>
 		</view>
 		<!-- 热点问答 -->
-		<view class="main_context first_main_context">
+		<view class="main_context first_main_context" @click="goToDetailPage2()">
 			<!-- 顶部栏 -->
 			<u-row gutter="16">
 				<u-col span="2" style="padding-left:10px;margin-right: 8px;">
@@ -223,12 +226,32 @@
 				uni.navigateTo({
 					url: "news/newsList"
 				})
-			}
+			},
+			goToDetailPage2() {
+				uni.navigateTo({
+					url: "/pages/station/freeAsk"
+				})
+				// this.$router.push(`/pages/station/askExperts/shr`);
+      },
+			goProductList() {
+			    // this.$router.push('/pages/index/news/newsList');
+				uni.navigateTo({
+					url: "product/product_detail"
+				})
+			},
+			goVedioList() {
+			    // this.$router.push('/pages/index/news/newsList');
+				uni.navigateTo({
+					url: "product/product_detail"
+				})
+			},
 		}
 	}
 </script>
 
-<style src="../../static/css/index.css">
+<style >
+		@import url("../../static/css/index.css");
+		@import url("../../static/css/nav_bar.css");
 </style>
 <style>
 

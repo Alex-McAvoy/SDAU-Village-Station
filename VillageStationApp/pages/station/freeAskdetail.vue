@@ -19,7 +19,7 @@
 		<!-- 回答框 -->
 		<view >
 			<view style="background-color: white; margin: 15px; display: flex; padding-bottom: 20px; border-radius: 5px;" :model="askdetailquestions">
-				<image src="../../static/images/index/index_query1.png"" mode="" style="width: 20px;height: 20px; margin-top: 2px;margin-left: 10px;"></image>
+				<image src="../../static/images/index/index_query1.png" mode="" style="width: 20px;height: 20px; margin-top: 2px;margin-left: 10px;"></image>
 				<view style="font-size: 20px;margin-left: 15px;color: gray;" >
 					回复
 				</view>

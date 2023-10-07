@@ -5,7 +5,7 @@
 			<u-grid :border="false" col="4">
 				<u-grid-item v-for="(listItem,listIndex) in list" :key="listIndex">
 					<u-icon :customStyle="{paddingTop:20+'rpx'}" :name="listItem.name" :size="22" color="#2ed573"
-						@click="click(listItem.title)"></u-icon>
+						@click="click(listItem.firstColumn)"></u-icon>
 					<text class="grid-text">{{listItem.title}}</text>
 				</u-grid-item>
 			</u-grid>
@@ -45,35 +45,43 @@
 				title:'',
 				list: [{
 						name: 'bag-fill',
-						title: '水稻'
+						title: '水稻',
+						firstColumn:'0',
 					},
 					{
 						name: 'bookmark-fill',
-						title: '小麦'
+						title: '小麦',
+						firstColumn:'1',
 					},
 					{
 						name: 'setting-fill',
-						title: '蔬菜'
+						title: '蔬菜',
+						firstColumn:'2',
 					},
 					{
 						name: 'coupon-fill',
-						title: '果树'
+						title: '果树',
+						firstColumn:'3',
 					},
 					{
 						name: 'pushpin-fill',
-						title: '植保'
+						title: '植保',
+						firstColumn:'4',
 					},
 					{
 						name: 'grid-fill',
-						title: '禽畜'
+						title: '禽畜',
+						firstColumn:'5',
 					},
 					{
 						name: 'car-fill',
-						title: '农机装备'
+						title: '农机装备',
+						firstColumn:'6',
 					},
 					{
 						name: 'integral-fill',
-						title: '水产'
+						title: '水产',
+						firstColumn:'7',
 					},
 				],
 			techdetails: {
@@ -82,7 +90,7 @@
 			}
 		},
 		created() {
-			this.click("水稻")
+			this.click(0)
 		},
 		methods: {
 			goToDetailPage(id) {
@@ -91,9 +99,9 @@
 					url: "/pages/station/techdetail?id=" + id
 				});
 			},
-			click(title) {
+			click(firstColumn) {
 				//获取作物详情
-				getTechdetail(title).then(response => {
+				getTechdetail(firstColumn).then(response => {
 					// console.log(response)
 						this.techdetails = response.data;
 						// this.total = response.total;
