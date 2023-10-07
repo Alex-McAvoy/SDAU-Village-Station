@@ -1,15 +1,18 @@
 <template>
 	<view>
 		<!-- 1 标题-->
-		<u-row gutter="20" class="index_head">
-			<u-col span="3">推优品&nbsp;</u-col>
-			<u-col span="7">
-				<u-search :show-action="false"></u-search>
-			</u-col>
-			<u-col span="2">天气</u-col>
-		</u-row>
+		<div class="nav_bar">
+			<u-row gutter="20" class="index_head">
+				<u-col span="3">推优品&nbsp;</u-col>
+				<u-col span="7">
+					<u-search :show-action="false"></u-search>
+				</u-col>
+				<u-col span="2">天气</u-col>
+			</u-row>
+		</div>
+
 		<!-- 轮播图 -->
-		<view style="margin: -10px 5px 5px 10px;border-radius: 5px; overflow: hidden;">
+		<view style="margin: 100px 5px 5px 10px;border-radius: 5px; overflow: hidden;">
 			<u-swiper :list="list" height="180px"></u-swiper>
 		</view>
 		<!-- 农产品展示 -->
@@ -117,7 +120,12 @@
 	}
 </script>
 
+<style>
+	@import url("../../static/css/index.css");
+	@import url("../../static/css/nav_bar.css")
+</style>
 <style lang="scss">
+
 	/* 顶部样式 */
 	.index_head {
 		color: azure;

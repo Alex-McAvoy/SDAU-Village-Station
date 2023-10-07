@@ -4,7 +4,7 @@
 			<view style="border-radius: 10px; background-color: white;margin:15px;padding-top:8px;padding-bottom: 8px;">
 				<u-grid :border="false" col="4">
 					<u-grid-item v-for="(listItem,listIndex) in list" :key="listIndex">
-						<view>
+						<view >
 							<u-image :customStyle="{paddingTop:20+'rpx'}" :src="listItem.src" :height="40" :width="30"
 								style=" margin-bottom: 10px; margin-top: 10px ; display: flex;justify-content: center;align-items: center;"></u-image>
 							<span class="grid-text"
