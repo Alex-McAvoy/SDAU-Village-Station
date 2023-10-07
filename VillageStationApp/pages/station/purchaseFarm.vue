@@ -69,7 +69,7 @@
 			/** 查询买农资列表 */
 			checked(index) {
 				this.isActive = index;
-				getInfo(this.navList[index].title).then(response => {
+				getInfo([index]).then(response => {
 					// console.log(response);
 					this.farmList = response.data;
 					this.total = response.total;
