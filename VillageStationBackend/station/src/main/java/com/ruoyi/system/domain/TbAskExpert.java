@@ -42,6 +42,13 @@ public class TbAskExpert extends BaseEntity
     @Excel(name = "科研经历")
     private String researchIntroduction;
 
+    public String getResearchIntroduction() {
+        return researchIntroduction;
+    }
+
+    public void setResearchIntroduction(String researchIntroduction) {
+        this.researchIntroduction = researchIntroduction;
+    }
 
     public String getDirection() {
         return direction;
