@@ -122,7 +122,7 @@
 			click(dictValue) {
 				//获取作物详情
 				expertList(dictValue).then(response => {
-					// console.log(response)
+					console.log(response)
 						this.techdetails = response.data;
 						// this.total = response.total;
 						this.loading = false;
