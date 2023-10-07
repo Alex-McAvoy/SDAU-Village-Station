@@ -2,16 +2,19 @@
 	<view style="">
 		<view class="contain">
 			<!-- 1 标题-->
-		<u-row gutter="20" class="index_head">
-			<u-col span="3">乡村驿站&nbsp;</u-col>
-			<u-col span="7">
-				<u-search :show-action="false"></u-search>
-			</u-col
-			<u-col span="2">天气</u-col>
-		</u-row>
+			<div class="nav_bar">
+				<u-row gutter="20" class="index_head">
+					<u-col span="3">乡村驿站&nbsp;</u-col>
+					<u-col span="7">
+						<u-search :show-action="false"></u-search>
+					</u-col
+					<u-col span="2">天气</u-col>
+				</u-row>
+			</div>
+
 		
 			<!-- 2 九宫格 -->
-			<view style="border-radius: 10px; background-color: white;margin:-15px 15px 15px 10px;padding-top:8px;padding-bottom: 8px;">
+			<view style="border-radius: 10px; background-color: white;margin:105px 15px 15px 10px;padding-top:8px;padding-bottom: 8px;">
 				<u-grid :border="false" col="4">
 					<u-grid-item  v-for="(listItem,listIndex) in list" :key="listIndex">
 						<view @click="$goBack(2,listItem.route)">
@@ -444,12 +447,14 @@
 </script>
 
 <style lang="scss" >
+	@import url("../../static/css/nav_bar.css");
 	/* 顶部样式 */
 	.index_head {
 		color: azure;
 		height: 100px;
 		padding: 0px 15px 0px 15px;
 		background: linear-gradient(#00ae67, #00ae67, #00ae67, #00ae67,#2ed573, #7bed9f, #f1f2f6);
+		
 	}
 	.body {
 		background: #dfe4ea;

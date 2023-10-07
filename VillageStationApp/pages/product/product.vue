@@ -1,15 +1,18 @@
 <template>
 	<view>
 		<!-- 1 标题-->
-		<u-row gutter="20" class="index_head">
-			<u-col span="3">推优品&nbsp;</u-col>
-			<u-col span="7">
-				<u-search :show-action="false"></u-search>
-			</u-col>
-			<u-col span="2">天气</u-col>
-		</u-row>
+		<div class="nav_bar">
+			<u-row gutter="20" class="index_head">
+				<u-col span="3">推优品&nbsp;</u-col>
+				<u-col span="7">
+					<u-search :show-action="false"></u-search>
+				</u-col>
+				<u-col span="2">天气</u-col>
+			</u-row>
+		</div>
+
 		<!-- 轮播图 -->
-		<view style="margin: -10px 5px 5px 10px;border-radius: 5px; overflow: hidden;">
+		<view style="margin: 100px 5px 5px 10px;border-radius: 5px; overflow: hidden;">
 			<u-swiper :list="list" height="180px"></u-swiper>
 		</view>
 		<!-- 农产品展示 -->
@@ -22,15 +25,15 @@
 		</view>
 		<!-- 热销农产详情 -->
 			<view class="u-page" v-for="item in newsList.slice(0, 3)">
-				<view class="u-demo-block">
+				<view class="u-demo-block" @click="getOneList(item.newsId)">
 					<view class="album">
 						<view class="album__avatar">
-							<image src="/static/images/product/lh.png"
-								style="margin-left: 15px; width: 70px; height: 80px;border-radius: 8px; overflow: hidden;">
+							<image :src="item.remark"
+								style="margin-left: 5px; width: 80px; height: 80px;border-radius: 8px; overflow: hidden;">
 							</image>
 						</view>
 						<view class="album__content">
-							<view style="font-size:18px; margin-bottom:10px;">{{ item.title }}</view>
+							<view style="font-size:18px; margin-bottom:10px; color:#00ae67 ; font-weight: bold;">{{ item.title }}</view>
 							<view style="font-size:15px; margin-bottom:10px;"><u-parse :content="item.content"></u-parse></view>
 							
 						</view>
@@ -48,10 +51,10 @@
 		</view>
 		<!-- 优品动态详情 -->
 		<view class="u-page" v-for="item in newsList.slice(3, 6)">
-			<view class="u-demo-block">
+			<view class="u-demo-block" @click="getOneList(item.newsId)">
 				<view class="album">
 					<view class="album__avatar">
-						<image src="/static/images/product/lh.png"
+						<image :src="item.remark"
 							style="margin-left: 15px; width: 70px; height: 80px;border-radius: 8px; overflow: hidden;">
 						</image>
 					</view>
@@ -91,6 +94,12 @@
 			this.getList();
 		},
 		methods: {
+			getOneList(id){
+				// console.log(id)
+				uni.navigateTo({
+					url: "/pages/product/productdetail?id=" + id
+				})
+			},
 			click1(e) {
 				console.log('click1', e);
 			},
@@ -117,7 +126,12 @@
 	}
 </script>
 
+<style>
+	@import url("../../static/css/index.css");
+	@import url("../../static/css/nav_bar.css")
+</style>
 <style lang="scss">
+
 	/* 顶部样式 */
 	.index_head {
 		color: azure;
