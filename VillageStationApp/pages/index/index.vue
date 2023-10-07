@@ -11,33 +11,8 @@
 			</u-row>
 		</div>
 
-
-		<!-- 通知 -->
-		<view class="main_context first_main_context" style="margin-top: 100px;">
-			<u-row gutter="16">
-				<u-col span="2" style="padding-left:10px;margin-right: 8px;">
-					<image src="/static/images/index/index_notify.png" style="height:25px;width:25px;" />
-				</u-col>
-				<u-col span="9" class="bar" style="margin-left:-25px">
-					<u-text style="font-weight: 20px;" margin="0px 0px 0px 0px" text="通知" bold size="22"></u-text>
-				</u-col>
-
-				<u-col span="1">
-					<image src="/static/images/index/arrow_right.png" style="height:20px;width:35px;" />
-				</u-col>
-			</u-row>
-			<u-row gutter="16" justify="space-between" class="notify_list">
-				<u-col :span="10" style="font-size:14px;">一条即时通知信息，点击可查看更多</u-col>
-				<u-col :span="2">12:23</u-col>
-			</u-row>
-			<u-row gutter="16" justify="space-between" class="notify_list">
-				<u-col :span="10" style="font-size:14px;">一条即时通知信息，点击可查看更多</u-col>
-				<u-col :span="2">12:23</u-col>
-			</u-row>
-		</view>
-
 		<!-- 新闻资讯 -->
-		<view class="main_context" >
+		<view class="main_context first_main_context" style="margin-top: 100px;">
 			<view> <!-- 主体框 -->
 				<u-row gutter="16" @click="goNewsList">
 					<u-col span="2" style="padding-left:10px;margin-right: 8px;">
@@ -200,7 +175,8 @@
 					name: '科技动态'
 				}, {
 					name: '典型案例'
-				}],newList:{}
+				}],
+				newsList:{}
 			}
 		},  created() {
 			this.change({
@@ -212,8 +188,7 @@
 				console.log(key, keyPath);
 			},
 			change(index) {
-				console.log(index.index)
-				alert(index.index)
+				console.log(index.index) 
 				this.current = index;
 				//请求 firstColumn=’新闻资讯‘ secondColumn=index.name
 				this.loading = true;
@@ -233,10 +208,10 @@
 			},
 			goToDetailPage2() {
 				uni.navigateTo({
-					url: "/pages/station/freeAsk"
+					url: "/pages/station/freeAsk/freeAsk"
 				})
 				// this.$router.push(`/pages/station/askExperts/shr`);
-      },
+			},
 			goProductList() {
 			    // this.$router.push('/pages/index/news/newsList');
 				uni.navigateTo({
