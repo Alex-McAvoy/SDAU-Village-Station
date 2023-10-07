@@ -200,7 +200,8 @@
 					name: '科技动态'
 				}, {
 					name: '典型案例'
-				}],newList:{}
+				}],
+				newsList:{}
 			}
 		},  created() {
 			this.change({
@@ -212,8 +213,7 @@
 				console.log(key, keyPath);
 			},
 			change(index) {
-				console.log(index.index)
-				alert(index.index)
+				console.log(index.index) 
 				this.current = index;
 				//请求 firstColumn=’新闻资讯‘ secondColumn=index.name
 				this.loading = true;
@@ -233,10 +233,10 @@
 			},
 			goToDetailPage2() {
 				uni.navigateTo({
-					url: "/pages/station/freeAsk"
+					url: "/pages/station/freeAsk/freeAsk"
 				})
 				// this.$router.push(`/pages/station/askExperts/shr`);
-      },
+			},
 			goProductList() {
 			    // this.$router.push('/pages/index/news/newsList');
 				uni.navigateTo({

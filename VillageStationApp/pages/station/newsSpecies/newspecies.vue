@@ -26,7 +26,7 @@
 								</view>
 								<view class="main_content"><u-parse
 										:content="item.content"></u-parse></view>
-								<u-album :urls="urls1" keyName="src2" style="margin-bottom: 8px;"></u-album>
+								<u-album keyName="src2" style="margin-bottom: 8px;"></u-album>
 								<image src="../../../static/images/station/newspecies/newPaddy.jpg"
 									style="width: 300px;height: 150px; padding-left: 5vh; padding-right: 5vh;"></image>
 							</view>
@@ -54,6 +54,7 @@
 				speciesList: [],
 				current: 0,
 				text: '000',
+				keyword: ''
 			}
 		},
 		created() {
