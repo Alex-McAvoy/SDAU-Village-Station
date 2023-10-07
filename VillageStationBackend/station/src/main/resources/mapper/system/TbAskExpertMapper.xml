@@ -37,6 +37,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectTbAskExpertVo"/>
         where ask_experts_id = #{askExpertsId}
     </select>
+
+    <select id="selectTbAskExpertByDictValue" parameterType="String" resultMap="TbAskExpertResult">
+        <include refid="selectTbAskExpertVo"/>
+        where dict_value = #{dictValue}
+    </select>
         
     <insert id="insertTbAskExpert" parameterType="TbAskExpert" useGeneratedKeys="true" keyProperty="askExpertsId">
         insert into tb_ask_expert

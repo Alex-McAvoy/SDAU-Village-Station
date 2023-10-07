@@ -145,7 +145,7 @@
 			</view>
 		</view>
 		<!-- 热点问答 -->
-		<view class="main_context first_main_context">
+		<view class="main_context first_main_context" @click="goToDetailPage2()">
 			<!-- 顶部栏 -->
 			<u-row gutter="16">
 				<u-col span="2" style="padding-left:10px;margin-right: 8px;">
@@ -227,6 +227,12 @@
 					url: "news/newsList"
 				})
 			},
+			goToDetailPage2() {
+				uni.navigateTo({
+					url: "/pages/station/freeAsk"
+				})
+				// this.$router.push(`/pages/station/askExperts/shr`);
+      },
 			goProductList() {
 			    // this.$router.push('/pages/index/news/newsList');
 				uni.navigateTo({

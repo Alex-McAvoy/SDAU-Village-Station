@@ -1,5 +1,13 @@
 import request from '@/utils/request'
 
+//根据title查询获取专家列表
+
+export function expertList(dictValue) {
+  return request({
+      url: '/system/expert/dict/' + dictValue,
+      method: 'get'
+  })
+}
 // 查询问专家列表
 export function listExpert(query) {
   return request({

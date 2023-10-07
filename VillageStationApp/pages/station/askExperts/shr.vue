@@ -28,7 +28,7 @@
 						style=" width: 100px;height: 120px; margin-left: 5px;margin-top: 2px;shape:circle;border-radius: 5px">
 					</image>
 				</view>
-				<view>
+				<view :model="expert">
 					<view style=" margin-top: 20px;margin-left: 5px;">
 						姓名：<span>{{expert.expertName}}</span>
 					</view>
@@ -141,6 +141,7 @@
 			return {
 				//专家介绍
 				expert: {
+					expertName:'',
 					introduction: '',
 					remark:''
 				},

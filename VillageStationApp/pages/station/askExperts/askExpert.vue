@@ -6,7 +6,7 @@
 					<u-grid-item v-for="(listItem,listIndex) in list" :key="listIndex">
 						<view >
 							<u-image :customStyle="{paddingTop:20+'rpx'}" :src="listItem.src" :height="40" :width="30"
-								style=" margin-bottom: 10px; margin-top: 10px ; display: flex;justify-content: center;align-items: center;"></u-image>
+								style=" margin-bottom: 10px; margin-top: 10px ; display: flex;justify-content: center;align-items: center;" @click="click(listItem.dictValue)"></u-image>
 							<span class="grid-text"
 								style="color:#9f9f9f;font-size: 15px; margin:15px">{{listItem.title}}</span>
 						</view>
@@ -48,6 +48,7 @@
 
 <script>
 	import {
+		expertList,
 		listExpert,
 		getExpert,
 		delExpert,
@@ -61,41 +62,49 @@
 				list: [{
 						src: "/static/images/station/askExperts/nx.png",
 						title: '农学',
+						dictValue:'0',
 						// route: '/pages/station/askExperts/askExpert'
 					},
 					{
 						src: "/static/images/station/askExperts/lx.png",
 						title: '林学',
+						dictValue:'1',
 						// route: '/pages/station/freeAsk'
 					},
 					{
 						src: "/static/images/station/askExperts/yy.png",
 						title: '园艺',
+						dictValue:'2',
 						// route: '/pages/station/learningTechnology'
 					},
 					{
 						src: "/static/images/station/askExperts/dw.png",
 						title: '动物',
+						dictValue:'3',
 						// route: '/pages/station/purchaseFarm'
 					},
 					{
 						src: "/static/images/station/askExperts/xx.png",
 						title: '信息',
+						dictValue:'4',
 						// route: '/pages/station/channel'
 					},
 					{
 						src: "/static/images/station/askExperts/nj.png",
 						title: '农机',
+						dictValue:'5',
 						// route: '/pages/station/products'
 					},
 					{
 						src: "/static/images/station/askExperts/zb.png",
 						title: '植保',
+						dictValue:'6',
 						// route: '/pages/station/newspecies'
 					},
 					{
 						src: "/static/images/station/askExperts/sk.png",
 						title: '食科',
+						dictValue:'7',
 						// route: '/pages/station/onlinebase'
 					},
 				],
@@ -110,9 +119,15 @@
 			this.getList();
 		},
 		methods: {
-			// getType(type){
-			// 	console.log(type)
-			// },
+			click(dictValue) {
+				//获取作物详情
+				expertList(dictValue).then(response => {
+					// console.log(response)
+						this.techdetails = response.data;
+						// this.total = response.total;
+						this.loading = false;
+				});
+			},
 			//获取专家列表
 			getList() {
 				this.loading = true;
