@@ -177,7 +177,8 @@
 				"navigationBarTitleText": "详细农产品咨询"
 			}
 		},{
-			"path": "pages/station/products",			"style": {
+			"path": "pages/station/products/products",
+			"style": {
 				"navigationBarTitleText": "推优品"
 			}
 		},
