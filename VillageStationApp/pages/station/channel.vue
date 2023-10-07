@@ -119,7 +119,8 @@
 		methods: {
 			checked(index) {
 				this.isActive = index;
-				listByColumn(this.navList[index].title).then(response => {
+				console.log(this.isActive);
+				listByColumn(this.isActive).then(response => {
 					console.log(response);
 					this.channelList = response.rows;
 					this.total = response.total;
