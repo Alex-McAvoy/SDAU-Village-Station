@@ -33,6 +33,19 @@ public class TbAskExpertServiceImpl implements ITbAskExpertService
     }
 
     /**
+     * 查询不同领域的专家
+     *
+     * @param  dictValue 不同领域的专家
+     * @return 问专家
+     */
+    @Override
+    public List<TbAskExpert> selectTbAskExpertByDictValue(String dictValue)
+    {
+        return tbAskExpertMapper.selectTbAskExpertByDictValue(dictValue);
+    }
+
+
+    /**
      * 查询问专家列表
      * 
      * @param tbAskExpert 问专家
