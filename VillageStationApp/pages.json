@@ -27,7 +27,7 @@
 			"style": {
 				"navigationBarTitleText": "工作台"
 			}
-		},{
+		}, {
 			"path": "pages/station/askExperts/askExpert",
 			"style": {
 				"navigationBarTitleText": "问专家"
@@ -103,7 +103,7 @@
 			"style": {
 				"navigationBarTitleText": "浏览文本"
 			}
-		},{
+		}, {
 			"path": "pages/station/farm/purchaseFarm",
 			"style": {
 				"navigationBarTitleText": "买农资"
@@ -113,7 +113,7 @@
 			"style": {
 				"navigationBarTitleText": "农资详情"
 			}
-		},{
+		}, {
 			"path": "pages/station/learningTechnology/learningTechnology",
 			"style": {
 				"navigationBarTitleText": "学农技",
@@ -149,6 +149,13 @@
 				"navigationBarTitleText": "专家",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path": "pages/expert/expert_detail",
+			"style": {
+				"navigationBarTitleText": "专家详情"
+				// "navigationStyle": "custom"
+			}
 		},{
 			"path": "pages/product/product",
 			"style": {
@@ -162,23 +169,24 @@
 				"navigationBarTitleText": "优品详情"
 				// "navigationStyle": "custom"
 			}
-		},{
+		}, {
 			"path": "pages/index/news/newsList",
 			"style": {
 				"navigationBarTitleText": "新闻资讯"
 			}
-		},{
+		}, {
 			"path": "pages/index/news/news_detail",
 			"style": {
 				"navigationBarTitleText": "详细新闻"
 			}
 		},{
-		"style": {
-				"navigationBarTitleText": "详细农产品咨询"
+			"path": "pages/index/product/product_detail",
+			"style": {
+				"navigationBarTitleText": "详细新闻"
 			}
 		},{
 			"path": "pages/station/products/products",
-			"style": {
+      "style": {
 				"navigationBarTitleText": "推优品"
 			}
 		},
@@ -187,17 +195,17 @@
 			"style": {
 				"navigationBarTitleText": "推优品"
 			}
-		},{
+		}, {
 			"path": "pages/station/newsSpecies/newspecies",
 			"style": {
 				"navigationBarTitleText": "新品种"
 			}
-		},{
+		}, {
 			"path": "pages/station/newsSpecies/species_detail",
 			"style": {
 				"navigationBarTitleText": "品种详情"
 			}
-		},{
+		}, {
 			"path": "pages/station/onlinebase",
 			"style": {
 				"navigationBarTitleText": "寻基地"
@@ -212,18 +220,18 @@
 			"style": {
 				"navigationBarTitleText": "渠道详情"
 			}
-		},{
+		}, {
 			"path": "pages/station/learningTechnology/techdetail",
 			"style": {
 				"navigationBarTitleText": "农技详情"
 			}
-		},{
+		}, {
 			"path": "pages/station/freeAsk/freeAskdetail",
 			"style": {
 				"navigationBarTitleText": "随时问问题详情"
 			}
 		}
-    ],
+	],
 	"tabBar": {
 		"color": "#000000",
 		"selectedColor": "#000000",
@@ -244,7 +252,7 @@
 			"iconPath": "static/images/tabbar/finance.png",
 			"selectedIconPath": "static/images/tabbar/finance_.png",
 			"text": "金融"
-		},{
+		}, {
 			"pagePath": "pages/station/station",
 			"iconPath": "static/images/tabbar/station_.png",
 			"selectedIconPath": "static/images/tabbar/station_.png"
@@ -263,7 +271,7 @@
 			"iconPath": "static/images/tabbar/mine.png",
 			"selectedIconPath": "static/images/tabbar/mine_.png",
 			"text": "我的"
-		}]		
+		}]
 	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

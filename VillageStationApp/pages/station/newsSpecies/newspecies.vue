@@ -54,6 +54,7 @@
 				speciesList: [],
 				current: 0,
 				text: '000',
+				keyword: ''
 			}
 		},
 		created() {

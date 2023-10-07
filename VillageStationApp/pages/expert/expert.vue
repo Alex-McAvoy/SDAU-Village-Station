@@ -27,60 +27,94 @@
 				</u-row>
 			</view>
 			<view> <!-- 栏目标签 -->
-				<u-tabs :list="list" :is-scroll="true" v-on:click="getData" lineColor="#2ed573"
+				<u-tabs :list="list" :is-scroll="true" lineColor="#2ed573"
 					@change="change"></u-tabs>
 			</view>
-		 
-			<view class="flex_row video_list ">
-				<view class="video_list_item">
-					<view class="flex_col">
-						<image src="/static/images/station/askExperts/shr.png" style="width:100%;height:160px;margin:3px" />
+			 <div v-for="oneexpert in expert" :key="oneexpert.id" >
+				 <view style="margin-top: 10px;" @click="expertdetail(oneexpert.askExpertsId)">
+					<view >
+						<view  style="display: flex;">
+							<div>
+								<image :src="oneexpert.remark" style="width:160px;height:160px;margin:3px;border-radius: 10px;" />
+							</div>
+							<div>
+								<div class="main_title" >
+									{{ oneexpert.expertName }}
+								</div>
+								<div class="main_content">
+									{{ fixedSize(oneexpert.introduction) }}
+								</div>
+							</div>
+						</view>
 					</view>
-					<view>束怀瑞</view>
-				</view>
-				<view class="video_list_item">
-					<view class="flex_col">
-						<image src="/static/images/station/askExperts/whg.png" style="width:100%;height:160px;margin:3px" />
-					</view>
-					<view>王洪刚</view>
-				</view>
-			</view>
+				 </view>
+			 </div>
+		
 		</view>
 	</view>
 </template>
 <script>
+	import {
+		expertList,
+		listExpert,
+		getExpert,
+		delExpert,
+		addExpert,
+		updateExpert
+	} from "@/api/station/expert.js";
 	export default {
 		onLoad: function() {},
 		data() {
 			return {
+				expert:[],
 				cur: 0,
 				text: '000',
-				textList: ['1', '2', '3'],
-				list: [{
-					name: '全部 ',
+				textList: ['1', '2', '6'],
+				list: [ {
+					name: '农学专家',
 				}, {
-					name: '林学专家',
+					name: '林学专家'
 				}, {
-					name: ' 农学专家 '
+					name: '园艺专家'
 				}, {
-					name: ' 植保专家 '
-				}, {
-					name: ' 园艺 '
+					name: '植保专家'
 				}],
 			}
 		},
+		created(){
+			this.change(0)
+		},
 		methods: {
 			handleSelect(key, keyPath) {
-				console.log(key, keyPath);
+				// console.log(key, keyPath);
 			},
 			change(index) {
-				this.cur = index;
-				console.log(index)
-				this.text = this.textList[index];
+				let tmp = 0
+				if(index != 0) {
+					tmp = index.index
+				}
+				
+				// 后期该处需修改！！！
+				if (index.index === 3) {
+					tmp = 6
+				}
+				expertList(tmp).then(response => {
+					console.log(response)
+					this.expert = response.data;
+					// this.total = response.total;
+					this.loading = false;
+				});
 			},
-			getData() {
-
-			}
+			expertdetail(id){
+				console.log(id)
+				uni.navigateTo({
+					url: "/pages/expert/expert_detail?id=" + id
+				})
+				
+			},
+			fixedSize(content) {
+				return content.substring(0, 25) + "..."
+			},
 		}
 	}
 </script>
@@ -88,6 +122,7 @@
 <style >
 	@import url("../../static/css/index.css");
 	@import url("../../static/css/nav_bar.css");
+	@import url("../../static/css/text.css");
 </style>
 <style>
 	.video_list{

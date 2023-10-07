@@ -63,8 +63,8 @@
 					</u-radio-group>
 				</u-form-item>
 			</u-form>
-
 		</u-modal>
+    
 		<u-button class="custom-style" color="#eeeeee " type="primary" shape="circle"
 			style="  width: 100px; height: 100px; position: fixed;bottom: 50px;right: 30px; font-size: 50px;color:#00ae67;opacity: 0.5;"
 			@click="handleAdd">+
@@ -119,8 +119,8 @@
 		methods: {
 			checked(index) {
 				this.isActive = index;
-				listByColumn(index).then(response => {
-					console.log(response);
+				console.log(this.isActive);
+				listByColumn(this.isActive).then(response => {					console.log(response);
 					this.channelList = response.rows;
 					this.total = response.total;
 					this.loading = false;
