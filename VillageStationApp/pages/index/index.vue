@@ -34,7 +34,7 @@
 			</u-sticky>
 			</view>
 			<view v-for="item in newsList"><!-- 栏目内容 -->
-				<view class="news" >
+				<view class="news" @click="skip(item)">
 					<view class="new_img">
 						<img src="http://paper.people.com.cn/rmrb/images/2023-09/16/01/rmrb2023091601p27_b.jpg" alt=""
 							style="width:100%;height: auto;overflow: hidden">
@@ -189,7 +189,7 @@
 			},
 			change(index) {
 				console.log(index.index) 
-				this.current = index;
+				this.current = index.index;
 				//请求 firstColumn=’新闻资讯‘ secondColumn=index.name
 				this.loading = true;
 				Columns(0, index.index).then(response => {
@@ -223,7 +223,14 @@
 				uni.navigateTo({
 					url: "product/product_detail"
 				})
-			},
+			},skip(item) {
+				console.log(item);
+				getApp().globalData.item = item;
+				console.log(getApp().globalData.item);
+				uni.navigateTo({
+					url: "news/news_detail"
+				})
+			}
 		}
 	}
 </script>
