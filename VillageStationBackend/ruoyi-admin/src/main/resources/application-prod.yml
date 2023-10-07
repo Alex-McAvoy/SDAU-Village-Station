@@ -2,7 +2,7 @@
 # 服务配置
 server:
   # 服务器的HTTP端口，默认为8080
-  port: 8080
+  port: 80
   servlet:
     # 应用的访问路径
     context-path: /
@@ -20,7 +20,7 @@ server:
 # 日志配置
 logging:
   level:
-    com.ruoyi: debug
+    com.ruoyi: info
     org.springframework: warn
 
 # 用户配置
