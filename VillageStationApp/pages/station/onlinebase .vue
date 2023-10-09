@@ -34,8 +34,6 @@
 					<button type="primary" style="font-size: 5px; margin-top: 4px;">去这里</button>
 				</view>
 			</view>
-
-
 		</view>
 		<!-- 内容2 -->
 		<view class="album__content" style="background-color: white; display:flex;margin-top: 20px;margin: 15px;">
@@ -54,14 +52,13 @@
 					<view style="margin-left: 2vh;">
 						<u--text text="泰州市农业开发区江苏红旗种业" size="1" ></u--text>
 					</view>
-					
 				</view>
 			</view>
 			<!-- 右 -->
 			<view style=" margin-left: auto;">
 				<!-- 右上 -->
 				<view>
-					<button  style="font-size: 4px;background-color: #2ed573;color: white;">查看详情</button>
+					<button  style="font-size: 5px;background-color: #2ed573;color: white;">查看详情</button>
 				</view>
 				<!-- 右下 -->
 				<view>
