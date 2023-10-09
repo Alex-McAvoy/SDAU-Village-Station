@@ -1,9 +1,6 @@
 // 应用全局配置
 module.exports = {
 	transpileDependencies: ['uview-ui'],
-  //baseUrl: 'http://localhost:8080',
-//baseUrl: 'http://xcyz.nat300.top',
-baseUrl: 'http://tmdf5i.natappfree.cc',
 	// 应用信息
 	appInfo: {
 		// 应用名称
