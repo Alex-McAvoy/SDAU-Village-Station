@@ -21,24 +21,21 @@
 					<u-col span="9" class="bar" style="margin-left:-25px">
 						<u-text style="font-weight: 20px;" margin="0px 0px 0px 0px" text="专家" bold size="22"></u-text>
 					</u-col>
-					<u-col span="1">
-						<image src="/static/images/index/arrow_right.png" style="height:20px;width:35px;"/>
-					</u-col>
 				</u-row>
 			</view>
 			<view> <!-- 栏目标签 -->
-				<u-tabs :list="list" :is-scroll="true" lineColor="#2ed573"
-					@change="change"></u-tabs>
+				<u-tabs :list="list" :is-scroll="true" lineColor="#2ed573" @change="change"></u-tabs>
 			</view>
-			 <div v-for="oneexpert in expert" :key="oneexpert.id" >
-				 <view style="margin-top: 10px;" @click="expertdetail(oneexpert.askExpertsId)">
-					<view >
-						<view  style="display: flex;">
+			<div v-for="oneexpert in expert" :key="oneexpert.id">
+				<view style="margin-top: 10px;" @click="goToDetailPage1(oneexpert.askExpertsId)">
+					<view>
+						<view style="display: flex;">
 							<div>
-								<image :src="oneexpert.remark" style="width:160px;height:160px;margin:3px;border-radius: 10px;" />
+								<image :src="oneexpert.remark"
+									style="width:140px;height:180px;margin:3px;border-radius: 10px;" />
 							</div>
 							<div>
-								<div class="main_title" >
+								<div class="main_title">
 									{{ oneexpert.expertName }}
 								</div>
 								<div class="main_content">
@@ -47,9 +44,9 @@
 							</div>
 						</view>
 					</view>
-				 </view>
-			 </div>
-		
+				</view>
+			</div>
+
 		</view>
 	</view>
 </template>
@@ -66,11 +63,11 @@
 		onLoad: function() {},
 		data() {
 			return {
-				expert:[],
+				expert: [],
 				cur: 0,
 				text: '000',
 				textList: ['1', '2', '6'],
-				list: [ {
+				list: [{
 					name: '农学专家',
 				}, {
 					name: '林学专家'
@@ -78,22 +75,37 @@
 					name: '园艺专家'
 				}, {
 					name: '植保专家'
-				}],
+				},{
+					name: '动物专家'
+				},{
+					name: '信息专家'
+				},{
+					name: '农机专家'
+				},{
+					name: '食科专家'
+				},
+				],
 			}
 		},
-		created(){
+		created() {
 			this.change(0)
 		},
 		methods: {
+			//跳转专家详情
+			goToDetailPage1(id) {
+				uni.navigateTo({
+					url: "/pages/station/askExperts/shr?id=" + id
+				})
+			},
 			handleSelect(key, keyPath) {
 				// console.log(key, keyPath);
 			},
 			change(index) {
 				let tmp = 0
-				if(index != 0) {
+				if (index != 0) {
 					tmp = index.index
 				}
-				
+
 				// 后期该处需修改！！！
 				if (index.index === 3) {
 					tmp = 6
@@ -105,12 +117,12 @@
 					this.loading = false;
 				});
 			},
-			expertdetail(id){
+			expertdetail(id) {
 				console.log(id)
 				uni.navigateTo({
 					url: "/pages/expert/expert_detail?id=" + id
 				})
-				
+
 			},
 			fixedSize(content) {
 				return content.substring(0, 25) + "..."
@@ -119,17 +131,18 @@
 	}
 </script>
 
-<style >
+<style>
 	@import url("../../static/css/index.css");
 	@import url("../../static/css/nav_bar.css");
 	@import url("../../static/css/text.css");
 </style>
 <style>
-	.video_list{
-		height:195px;
-		margin-top:10px;
+	.video_list {
+		height: 195px;
+		margin-top: 10px;
 	}
-	.video_img{
-		max-height:170px;
+
+	.video_img {
+		max-height: 170px;
 	}
 </style>

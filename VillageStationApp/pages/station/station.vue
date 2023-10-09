@@ -398,7 +398,7 @@
 					},
 					{
 						src: "/static/images/station/station/dt.png",
-						title: '寻基地',
+						title: '寻驿站',
 						route: '/pages/station/onlinebase'
 					},
 				],
@@ -421,7 +421,16 @@
 				}, {
 					name: '禽畜',
 					firstColumn: '5',
-				}],
+				},
+				{
+					name: '农机',
+					firstColumn: '6',
+				},
+				{
+					name: '水产',
+					firstColumn: '7',
+				},
+				],
 				list2: [{
 					index: 0,
 					title: '节肥增效'
