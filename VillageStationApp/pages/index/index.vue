@@ -228,6 +228,9 @@
 			handleSelect(key, keyPath) {
 				console.log(key, keyPath);
 			},
+			getData() {
+				
+			},
 			change(index) {
 				// console.log(index.index)
 				this.current = index.index;

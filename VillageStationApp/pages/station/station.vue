@@ -35,7 +35,7 @@
 					<image src="/static/images/index/arrow_right.png" style="height:20px;width:35px;" />
 				</u-col>
 			</view>
-			<view class="u-page" v-for="expert in experts.slice(0,2)">
+			<view class="u-page" v-for="expert in Array.from(experts).slice(0,2)">
 				<view class="u-demo-block">
 					<view class="album">
 						<view class="album__avatar">
@@ -66,7 +66,7 @@
 				</u-col>
 			</view>
 			<u-gap height="10"></u-gap>
-			<view class="u-page" v-for="askquestion in askquestions.slice(0,2)">
+			<view class="u-page" v-for="askquestion in Array.from(askquestions).slice(0,2)">
 				<view class="album">
 					<view class="album__content">
 						<view class="u-page">
@@ -106,7 +106,8 @@
 				</u-col>
 			</view>
 			<u-tabs :list="list1" :is-scroll="true" @click="checkedtechnology" lineColor="#2ed573"></u-tabs>
-			<view class="u-page" v-for="onetechdetail in techdetails.slice(0,2)" @click="goToDetailPage5(onetechdetail.articleId)">
+			<view class="u-page" v-for="onetechdetail in Array.from(techdetails).slice(0,2)"
+				@click="goToDetailPage5(onetechdetail.articleId)">
 				<view class="u-demo-block">
 					<view class="album">
 						<view class="album__avatar">
@@ -141,7 +142,7 @@
 				</u-col>
 			</view>
 			<u-tabs :list="list5" @click="checkedFarm" lineColor="#2ed573" lineWidth="60" :current="0"></u-tabs>
-			<view class="u-page" v-for="item in farmList.slice(0,2)" @click="gopurchasefarm_detail(item)">
+			<view class="u-page" v-for="item in Array.from(farmList).slice(0,2)" @click="gopurchasefarm_detail(item)">
 				<view class="u-demo-block">
 					<view class="album">
 						<view class="album__avatar">
@@ -177,7 +178,7 @@
 
 			<u-tabs :list="list3" @click="checkedChannel" lineColor="#2ed573" lineWidth="60" :current="0"></u-tabs>
 
-			<view class="u-page" v-for="item in channelList.slice(0, 2)" @click="gochannel_detail(item)">
+			<view class="u-page" v-for="item in Array.from(channelList).slice(0, 2)" @click="gochannel_detail(item)">
 				<view class="u-demo-block">
 					<view class="album">
 						<view class="album__avatar">
@@ -244,7 +245,7 @@
 					<image src="/static/images/index/arrow_right.png" style="height:20px;width:35px;" />
 				</u-col>
 			</view>
-			<view class="u-page" v-for="item in speciesList.slice(0,1)" @click="goNewspeciesDetail(item)">
+			<view class="u-page" v-for="item in Array.from(speciesList).slice(0,1)" @click="goNewspeciesDetail(item)">
 				<view class="u-demo-block">
 					<view class="album">
 						<view class="album__avatar">
@@ -287,6 +288,7 @@
 		listfreeAsk,
 		addAskQuestion
 	} from "@/api/station/freeAsk.js";
+	
 	import {
 		expertList,
 		listExpert,
@@ -301,16 +303,18 @@
 		UAvatar,
 		UText,
 		UIcon,
-
 	} from 'uview-ui';
+	
 	import {
 		getTechdetail,
 	} from "@/api/station/tech.js";
+	
 	import {
 		listProducts,
 		getProducts,
 		getProductsByColumns
 	} from "@/api/system/products";
+	
 	import {
 		listChannel,
 		getChannel,
@@ -319,15 +323,18 @@
 		updateChannel,
 		listByColumn
 	} from "@/api/system/channel";
+	
 	import {
 		listFarm,
 		getFarm,
 		getInfo
 	} from "@/api/station/farm";
+	
 	import {
 		listSpecies,
 		getSpecies
 	} from "@/api/system/species";
+	
 	export default {
 		components: {
 			UList,
@@ -404,32 +411,32 @@
 				],
 				expertsList: [],
 				list1: [{
-					name: '水稻',
-					firstColumn: '0',
-				}, {
-					name: '小麦',
-					firstColumn: '1',
-				}, {
-					name: '蔬菜',
-					firstColumn: '2',
-				}, {
-					name: '果树',
-					firstColumn: '3',
-				}, {
-					name: '植保',
-					firstColumn: '4',
-				}, {
-					name: '禽畜',
-					firstColumn: '5',
-				},
-				{
-					name: '农机',
-					firstColumn: '6',
-				},
-				{
-					name: '水产',
-					firstColumn: '7',
-				},
+						name: '水稻',
+						firstColumn: '0',
+					}, {
+						name: '小麦',
+						firstColumn: '1',
+					}, {
+						name: '蔬菜',
+						firstColumn: '2',
+					}, {
+						name: '果树',
+						firstColumn: '3',
+					}, {
+						name: '植保',
+						firstColumn: '4',
+					}, {
+						name: '禽畜',
+						firstColumn: '5',
+					},
+					{
+						name: '农机',
+						firstColumn: '6',
+					},
+					{
+						name: '水产',
+						firstColumn: '7',
+					},
 				],
 				list2: [{
 					index: 0,
