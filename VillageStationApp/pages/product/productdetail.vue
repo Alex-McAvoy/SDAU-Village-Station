@@ -38,27 +38,14 @@
 			}
 		},
 		created() {
-			this.gettail(this.id)
-			// console.log(detailId)
-			
-		},
-		onLoad(options) {
-			// console.log(options)
-			this.id = options.id;
-			// console.log(this.id)
+			this.gettail();
 		},
 		methods: {
-			gettail(id) {
+			gettail() {
 				this.loading = true;
-				// console.log(detailId)
-				getProducts(id).then(response => {
-					// console.log(response)
-							this.datailList = response.data;
-					// 		// // 	// this.total = response.total;
-					// 		this.loading = false;
-				});
-		}
-	},
+				this.datailList = getApp().globalData.item;
+			}
+		},
 	}
 </script>
 
