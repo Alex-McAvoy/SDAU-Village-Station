@@ -398,7 +398,7 @@
 					},
 					{
 						src: "/static/images/station/station/dt.png",
-						title: '寻基地',
+						title: '寻驿站',
 						route: '/pages/station/onlinebase'
 					},
 				],
@@ -421,7 +421,16 @@
 				}, {
 					name: '禽畜',
 					firstColumn: '5',
-				}],
+				},
+				{
+					name: '农机',
+					firstColumn: '6',
+				},
+				{
+					name: '水产',
+					firstColumn: '7',
+				},
+				],
 				list2: [{
 					index: 0,
 					title: '节肥增效'
@@ -511,7 +520,6 @@
 			getList1() {
 				this.loading = true;
 				listExpert(this.queryParams).then(response => {
-					console.log(response)
 					this.experts = response.rows;
 					this.loading = false;
 				});
@@ -598,18 +606,14 @@
 			// 学农技导航栏
 			// 推优品导航栏
 			checked(index) {
-				console.log(index);
 				getProductsByColumns(1, index.index + 2).then(response => {
-					console.log(response)
 					this.productsList = response.data;
-					console.log(this.productsList);
 					this.loading = false;
 				});
 			},
 			// 学农技导航栏
 			checkedtechnology(firstColumn) {
 				getTechdetail(firstColumn.firstColumn).then(response => {
-					console.log(response);
 					this.techdetails = response.data;
 					this.total = response.total;
 					this.loading = false;
@@ -618,7 +622,6 @@
 			// 找渠道导航栏
 			checkedChannel(index) {
 				listByColumn(index.index).then(response => {
-					console.log(response);
 					this.channelList = response.rows;
 					this.total = response.total;
 					this.loading = false;
@@ -627,7 +630,6 @@
 			// 买农资导航栏
 			checkedFarm(index) {
 				getInfo(index.index).then(response => {
-					console.log(response);
 					this.farmList = response.data;
 					this.total = response.total;
 					this.loading = false;
@@ -653,18 +655,6 @@
 						url: this.urls[uni.$u.random(0, this.urls.length - 1)]
 					})
 				}
-			},
-			click1(e) {
-				console.log('click1', e);
-			},
-			click(item) {
-				console.log('item', item);
-			},
-			left() {
-				console.log('left');
-			},
-			right() {
-				console.log('right');
 			},
 			goNewspeciesDetail(item) {
 				getApp().globalData.item = item;
