@@ -2,10 +2,10 @@
 	<view>
 		<!-- 动态农业资讯 -->
 		<!-- url实现页面跳转 -->
-		<view>
+		<!-- <view>
 			<u-notice-bar :text="text1" mode="closable" speed="100" url="/pages/componentsB/tag/tag" bgColor='#00ae67 '
 				color="yellow"></u-notice-bar>
-		</view>
+		</view> -->
 		<!-- 轮番滚动 -->
 		<view>
 			<u-swiper :list="list3" indicator indicatorMode="line" circular></u-swiper>
