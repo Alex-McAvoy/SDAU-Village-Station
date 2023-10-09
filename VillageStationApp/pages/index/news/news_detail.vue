@@ -54,6 +54,6 @@
 		margin: 20px 15px 15px 15px;
 		padding-bottom: 5px;
 		letter-spacing: 0.07em;
-		line-height: 1.35em;
+		line-height: 1.30em;
 	}
 </style>
