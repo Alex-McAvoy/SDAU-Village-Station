@@ -236,7 +236,25 @@
 				"navigationBarTitleText": "金融详情"
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/station/onlinebase",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/station/onlinebase",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"tabBar": {
 		"color": "#000000",
 		"selectedColor": "#000000",
