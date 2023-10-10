@@ -62,6 +62,14 @@ public class TbOtherColumnsController extends BaseController
         return getDataTable(list);
     }
 
+    //修改remark
+    @PreAuthorize("@ss.hasPermi('system:columns:edit')")
+    @PutMapping("/")
+    public AjaxResult eidtRemark(@RequestBody TbOtherColumns tbOtherColumns)
+    {
+        return toAjax(tbOtherColumnsService.updateTbOtherColumnsRemark(tbOtherColumns));
+    }
+
 //    获取全部未审核的新闻
 
     @PreAuthorize("@ss.hasPermi('system:columns:list')")
@@ -198,13 +206,7 @@ public class TbOtherColumnsController extends BaseController
         return toAjax(tbOtherColumnsService.updateTbOtherColumns(tbOtherColumns));
     }
 
-    //修改remark
-    @PreAuthorize("@ss.hasPermi('system:columns:edit')")
-    @PutMapping("/")
-    public AjaxResult eidtRemark(@RequestBody TbOtherColumns tbOtherColumns)
-    {
-        return toAjax(tbOtherColumnsService.updateTbOtherColumnsRemark(tbOtherColumns));
-    }
+
 
     /**
      * 删除其它栏目

@@ -12,7 +12,7 @@ export function listExpert(query) {
 // 查询问专家详细
 export function getExpert(askExpertsId) {
   return request({
-    url: '/system/expert/' + askExpertsId,
+    url: '/system/expert/id/' + askExpertsId,
     method: 'get'
   })
 }

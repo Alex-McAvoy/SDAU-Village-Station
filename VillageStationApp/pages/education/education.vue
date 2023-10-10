@@ -10,18 +10,19 @@
 				<u-col span="2">天气</u-col>
 			</u-row>
 		</div>
-		<!-- 培训 -->
+		<!-- 线上培训 -->
 		<view class="main_context first_main_context" style="margin-top: 100px;">
+
 			<view> <!-- 主体框 -->
 				<u-row gutter="16">
 					<u-col span="2" style="padding-left:10px;margin-right: 8px;">
 						<image src="/static/images/index/index_news.png" style="height:25px;width:25px;" />
 					</u-col>
 					<u-col span="9" class="bar" style="margin-left:-25px">
-						<u-text style="font-weight: 20px;" margin="0px 0px 0px 0px" text="培训" bold size="22"></u-text>
+						<u-text style="font-weight: 20px;" text="线上培训" bold size="22"></u-text>
 					</u-col>
 					<u-col span="1">
-						<image src="/static/images/index/arrow_right.png" style="height:20px;width:35px;"/>
+						<image src="/static/images/index/arrow_right.png" style="height:20px;width:35px;" />
 					</u-col>
 				</u-row>
 			</view>
@@ -34,20 +35,59 @@
 					<view class="flex_col">
 						<image src="/static/images/index/index_video.jpg" style="width:100%;height:120px;margin:3px" />
 					</view>
-					<view class="common_text_size">扎费特旗农业技术</view>
+					<view class="common_text_size">苹果种植技术</view>
 				</view>
 				<view class="video_list_item">
 					<view class="flex_col">
 						<image src="/static/images/index/index_video.jpg" style="width:100%;height:120px;margin:3px" />
 					</view>
-					<view class="common_text_size">扎费特旗农业技术</view>
+					<view class="common_text_size">虫害防治技术</view>
 				</view>
 			</view>
+
+
 		</view>
+		<!-- 线下培训 -->
+		<view class="main_context first_main_context">
+			<view> <!-- 主体框 -->
+				<u-row gutter="16" @click="goNewsList">
+					<u-col span="2" style="padding-left:10px;margin-right: 8px;">
+						<image src="/static/images/index/index_news.png" style="height:25px;width:25px;" />
+					</u-col>
+					<u-col span="9" class="bar" style="margin-left:-25px">
+						<u-text @click="goNewsList" style="font-weight: 20px;" margin="0px 0px 0px 0px" text="线下培训" bold
+							size="22"></u-text>
+					</u-col>
+
+					<u-col span="1">
+						<image src="/static/images/index/arrow_right.png" style="height:20px;width:35px;" />
+					</u-col>
+				</u-row>
+			</view>
+
+			<view class="news" v-for="item in train.slice(0,2)" @click="skip(item)">
+				
+				<view class="new_img">
+					<img src="http://paper.people.com.cn/rmrb/images/2023-09/16/01/rmrb2023091601p27_b.jpg" alt=""
+						style="width:100%;height: auto;overflow: hidden">
+				</view>
+			
+				<view class="new_title" style="width:100%">{{item.title}}</view>
+				<view class="new_origin"><span class="origin">来源</span><span>中国政府网</span>
+				</view>
+		
+			</view>
+		</view>
+	</view>
 
 	</view>
 </template>
 <script>
+	import {
+		selectoffinetrainlist,
+	} from "@/api/system/offinetrain.js";
+
+
 	export default {
 		onLoad: function() {},
 		data() {
@@ -66,8 +106,15 @@
 				}, {
 					name: '家畜养殖'
 				}],
+				train: [
+					
+				],
 			}
 		},
+		created() {
+			// 页面加载
+			this.getList();
+			},
 		methods: {
 			handleSelect(key, keyPath) {
 				console.log(key, keyPath);
@@ -79,15 +126,37 @@
 			},
 			getData() {
 
-			}
+			},
+			getList() {
+				this.loading = true;
+				selectoffinetrainlist(this.queryParams).then(response => {
+					this.train = response.rows
+					console.log(response);
+					this.loading = false;
+				});
+			},
+			goNewsList() {
+			    // this.$router.push('/pages/index/news/newsList');
+				uni.navigateTo({
+					url: "educationList"
+				})
+			},
+			skip(item) {
+				console.log(item);
+				getApp().globalData.item = item;
+				console.log(getApp().globalData.item);
+				uni.navigateTo({
+					url: "education_detail"
+				})
+			},
 		}
 	}
 </script>
 
-<style >
+<style>
 	@import url("../../static/css/index.css");
 	@import url("../../static/css/nav_bar.css");
 </style>
 <style>
- 
+
 </style>

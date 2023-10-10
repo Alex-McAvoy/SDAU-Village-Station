@@ -230,6 +230,16 @@
 			"style": {
 				"navigationBarTitleText": "随时问问题详情"
 			}
+		},{
+			"path": "pages/education/educationList",
+			"style": {
+				"navigationBarTitleText": "培训列表"
+			}
+		},{
+			"path": "pages/education/education_detail",
+			"style": {
+				"navigationBarTitleText": "培训列表"
+			}
 		}
 	],
 	"tabBar": {
