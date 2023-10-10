@@ -60,7 +60,7 @@ public class TbLearnTechController extends BaseController
     }
 
     /**
-     * 获取学农技二级列表(类型)
+     * 获取学农技一级列表(类型)
      */
     @PreAuthorize("@ss.hasPermi('system:tech:query')")
     @GetMapping(value = "/column/{firstColumn}")

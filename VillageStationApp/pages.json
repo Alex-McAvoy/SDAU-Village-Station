@@ -156,7 +156,7 @@
 				"navigationBarTitleText": "专家详情"
 				// "navigationStyle": "custom"
 			}
-		},{
+		}, {
 			"path": "pages/product/product",
 			"style": {
 				"navigationBarTitleText": "优品",
@@ -179,14 +179,14 @@
 			"style": {
 				"navigationBarTitleText": "详细新闻"
 			}
-		},{
+		}, {
 			"path": "pages/index/product/product_detail",
 			"style": {
 				"navigationBarTitleText": "详细新闻"
 			}
-		},{
+		}, {
 			"path": "pages/station/products/products",
-      "style": {
+			"style": {
 				"navigationBarTitleText": "推优品"
 			}
 		},
@@ -230,16 +230,39 @@
 			"style": {
 				"navigationBarTitleText": "随时问问题详情"
 			}
-		},{
+		},
+		{
+			"path": "pages/finance/finance_detail",
+			"style": {
+				"navigationBarTitleText": "金融详情"
+			}
+		},
+		{
 			"path": "pages/education/educationList",
 			"style": {
 				"navigationBarTitleText": "培训列表"
 			}
-		},{
+		},
+		{
 			"path": "pages/education/education_detail",
 			"style": {
 				"navigationBarTitleText": "培训列表"
 			}
+		},
+		{
+			"path": "pages/station/onlinebase",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/station/onlinebase",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
 		}
 	],
 	"tabBar": {
@@ -265,7 +288,8 @@
 		}, {
 			"pagePath": "pages/station/station",
 			"iconPath": "static/images/tabbar/station_.png",
-			"selectedIconPath": "static/images/tabbar/station_.png"
+			"selectedIconPath": "static/images/tabbar/station_.png",
+			"iconWidth": "60px"
 		}, {
 			"pagePath": "pages/expert/expert",
 			"iconPath": "static/images/tabbar/expert.png",
