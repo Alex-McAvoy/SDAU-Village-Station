@@ -230,6 +230,11 @@
 			"style": {
 				"navigationBarTitleText": "随时问问题详情"
 			}
+		}, {
+			"path": "pages/finance/finance_detail",
+			"style": {
+				"navigationBarTitleText": "金融详情"
+			}
 		}
 	    ,{
             "path" : "pages/station/onlinebase",
