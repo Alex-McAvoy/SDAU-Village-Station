@@ -34,7 +34,7 @@
 								</div>
 								<br/>
 								<div class="main_content">
-									{{expert.introduction}}
+									{{fixedSize(expert.introduction)}}
 								</div>
 							</view>
 						</view>
@@ -141,6 +141,13 @@
 					url: "/pages/station/askExperts/shr?id=" + id
 				})
 				// this.$router.push(`/pages/station/askExperts/shr`);
+			},
+			fixedSize(content) {
+				if (content != null) {
+					if (content.length < 35) return content;
+					else return content.substring(0, 35) + "...."
+				}
+				return content;
 			},
 		}
 	}

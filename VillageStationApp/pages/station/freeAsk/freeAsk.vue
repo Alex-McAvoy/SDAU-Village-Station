@@ -32,7 +32,7 @@
 										{{askquestion.title}}
 									</div>
 									<div class="ask_content">
-										{{askquestion.content}}
+										{{fixedSize(askquestion.content)}}
 									</div>
 								</view>
 							</view>
@@ -128,7 +128,14 @@
 			},
 			cancel() {
 				this.show = false;
-			}
+			},
+			fixedSize(content) {
+				if (content != null) {
+					if (content.length < 35) return content;
+					else return content.substring(0, 35) + "...."
+				}
+				return content;
+			},
 		}
 	}
 </script>

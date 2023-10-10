@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
+    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="150px">
       <el-form-item label="一级栏目编码" prop="firstColumn">
         <el-input
           v-model="queryParams.firstColumn"
@@ -17,14 +17,14 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="排序" prop="sort">
+      <!-- <el-form-item label="排序" prop="sort">
         <el-input
           v-model="queryParams.sort"
           placeholder="请输入排序"
           clearable
           @keyup.enter.native="handleQuery"
         />
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
         <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
@@ -39,7 +39,7 @@
           icon="el-icon-plus"
           size="mini"
           @click="handleAdd"
-          v-hasPermi="['system:tech:add']"
+          v-hasPermi="['system:training:add']"
         >新增</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -50,7 +50,7 @@
           size="mini"
           :disabled="single"
           @click="handleUpdate"
-          v-hasPermi="['system:tech:edit']"
+          v-hasPermi="['system:training:edit']"
         >修改</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -61,7 +61,7 @@
           size="mini"
           :disabled="multiple"
           @click="handleDelete"
-          v-hasPermi="['system:tech:remove']"
+          v-hasPermi="['system:training:remove']"
         >删除</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -71,22 +71,21 @@
           icon="el-icon-download"
           size="mini"
           @click="handleExport"
-          v-hasPermi="['system:tech:export']"
+          v-hasPermi="['system:training:export']"
         >导出</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
-    <el-table v-loading="loading" :data="techList" @selection-change="handleSelectionChange">
+    <el-table v-loading="loading" :data="trainingList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="ID" align="center" prop="articleId" />
+      <el-table-column label="ID" align="center" prop="newsId" />
       <el-table-column label="标题" align="center" prop="title" />
-      <el-table-column label="内容" align="center" prop="content" :formatter="formatterEmployment" />
+      <el-table-column label="内容" align="center" prop="content" :formatter="formatterEmployment"/>
       <el-table-column label="备注" align="center" prop="remark" />
-      <!-- <el-table-column label="一级栏目编码" align="center" prop="firstColumn" /> -->
-      <el-table-column label="二级栏目编码" align="center" prop="secondColumn" />
-      <!-- <el-table-column label="排序" align="center" prop="sort" /> -->
-      <el-table-column label="来源" align="center" prop="source" />
+      <el-table-column label="一级栏目编码" align="center" prop="firstColumn" />
+      <!-- <el-table-column label="二级栏目编码" align="center" prop="secondColumn" />
+      <el-table-column label="排序" align="center" prop="sort" /> -->
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -94,14 +93,14 @@
             type="text"
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
-            v-hasPermi="['system:tech:edit']"
+            v-hasPermi="['system:training:edit']"
           >修改</el-button>
           <el-button
             size="mini"
             type="text"
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
-            v-hasPermi="['system:tech:remove']"
+            v-hasPermi="['system:training:remove']"
           >删除</el-button>
         </template>
       </el-table-column>
@@ -115,7 +114,7 @@
       @pagination="getList"
     />
 
-    <!-- 添加或修改学农技对话框 -->
+    <!-- 添加或修改线下培训对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="1400px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="标题" prop="title">
@@ -130,27 +129,15 @@
         <el-form-item label="备注" prop="remark">
           <el-input v-model="form.remark" type="textarea" placeholder="请输入内容" />
         </el-form-item>
-        <!-- <el-form-item label="一级栏目编码" prop="firstColumn">
+        <el-form-item label="一级栏目编码" prop="firstColumn">
           <el-input v-model="form.firstColumn" placeholder="请输入一级栏目编码" />
-        </el-form-item> -->
-        <el-form-item label="二级栏目编码" prop="secondColumn">
-          <el-select v-model="form.secondColumn" placeholder="请选择二级栏目编码" width="1300px">
-            <el-option label="水稻" value="0"></el-option>
-            <el-option label="小麦" value="1"></el-option>
-            <el-option label="蔬菜" value="2"></el-option>
-            <el-option label="果树" value="3"></el-option>
-            <el-option label="植保" value="4"></el-option>
-            <el-option label="禽畜" value="5"></el-option>
-            <el-option label="农机装备" value="6"></el-option>
-            <el-option label="水产" value="7"></el-option>
-          </el-select>
         </el-form-item>
-        <!-- <el-form-item label="排序" prop="sort">
+        <!-- <el-form-item label="二级栏目编码" prop="secondColumn">
+          <el-input v-model="form.secondColumn" placeholder="请输入二级栏目编码" />
+        </el-form-item>
+        <el-form-item label="排序" prop="sort">
           <el-input v-model="form.sort" placeholder="请输入排序" />
         </el-form-item> -->
-        <el-form-item label="来源" prop="source">
-          <el-input v-model="form.source" type="textarea" placeholder="请输入内容" />
-        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -161,11 +148,11 @@
 </template>
 
 <script>
-import { listTech, getTech, delTech, addTech, updateTech } from "@/api/system/tech";
+import { listTraining, getTraining, delTraining, addTraining, updateTraining } from "@/api/system/training";
 import {fixedSize} from '@/utils/fixedSize';
 
 export default {
-  name: "Tech",
+  name: "Training",
   data() {
     return {
       // 遮罩层
@@ -180,8 +167,8 @@ export default {
       showSearch: true,
       // 总条数
       total: 0,
-      // 学农技表格数据
-      techList: [],
+      // 线下培训表格数据
+      trainingList: [],
       // 弹出层标题
       title: "",
       // 是否显示弹出层
@@ -194,8 +181,7 @@ export default {
         content: null,
         firstColumn: null,
         secondColumn: null,
-        sort: null,
-        source: null
+        sort: null
       },
       // 表单参数
       form: {},
@@ -208,11 +194,11 @@ export default {
     this.getList();
   },
   methods: {
-    /** 查询学农技列表 */
+    /** 查询线下培训列表 */
     getList() {
       this.loading = true;
-      listTech(this.queryParams).then(response => {
-        this.techList = response.rows;
+      listTraining(this.queryParams).then(response => {
+        this.trainingList = response.rows;
         this.total = response.total;
         this.loading = false;
       });
@@ -225,7 +211,7 @@ export default {
     // 表单重置
     reset() {
       this.form = {
-        articleId: null,
+        newsId: null,
         title: null,
         content: null,
         delFlag: null,
@@ -234,10 +220,9 @@ export default {
         updateBy: null,
         updateTime: null,
         remark: null,
-        firstColumn: null,
+        firstColumn: 0,
         secondColumn: null,
-        sort: null,
-        source: null
+        sort: null
       };
       this.resetForm("form");
     },
@@ -253,7 +238,7 @@ export default {
     },
     // 多选框选中数据
     handleSelectionChange(selection) {
-      this.ids = selection.map(item => item.articleId)
+      this.ids = selection.map(item => item.newsId)
       this.single = selection.length!==1
       this.multiple = !selection.length
     },
@@ -261,30 +246,30 @@ export default {
     handleAdd() {
       this.reset();
       this.open = true;
-      this.title = "添加学农技";
+      this.title = "添加线下培训";
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
       this.reset();
-      const articleId = row.articleId || this.ids
-      getTech(articleId).then(response => {
+      const newsId = row.newsId || this.ids
+      getTraining(newsId).then(response => {
         this.form = response.data;
         this.open = true;
-        this.title = "修改学农技";
+        this.title = "修改线下培训";
       });
     },
     /** 提交按钮 */
     submitForm() {
       this.$refs["form"].validate(valid => {
         if (valid) {
-          if (this.form.articleId != null) {
-            updateTech(this.form).then(response => {
+          if (this.form.newsId != null) {
+            updateTraining(this.form).then(response => {
               this.$modal.msgSuccess("修改成功");
               this.open = false;
               this.getList();
             });
           } else {
-            addTech(this.form).then(response => {
+            addTraining(this.form).then(response => {
               this.$modal.msgSuccess("新增成功");
               this.open = false;
               this.getList();
@@ -295,9 +280,9 @@ export default {
     },
     /** 删除按钮操作 */
     handleDelete(row) {
-      const articleIds = row.articleId || this.ids;
-      this.$modal.confirm('是否确认删除学农技编号为"' + articleIds + '"的数据项？').then(function() {
-        return delTech(articleIds);
+      const newsIds = row.newsId || this.ids;
+      this.$modal.confirm('是否确认删除线下培训编号为"' + newsIds + '"的数据项？').then(function() {
+        return delTraining(newsIds);
       }).then(() => {
         this.getList();
         this.$modal.msgSuccess("删除成功");
@@ -305,15 +290,13 @@ export default {
     },
     /** 导出按钮操作 */
     handleExport() {
-      this.download('system/tech/export', {
+      this.download('system/training/export', {
         ...this.queryParams
-      }, `tech_${new Date().getTime()}.xlsx`)
+      }, `training_${new Date().getTime()}.xlsx`)
     },
     formatterEmployment(str){
-      console.log(str.content)
       return fixedSize(str.content);
     },
-
   }
 };
 </script>

@@ -79,9 +79,9 @@
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="ID" align="center" prop="newsId" />
       <el-table-column label="标题" align="center" prop="title" />
-      <el-table-column label="内容" align="center" prop="content" />
-      <!-- <el-table-column label="备注" align="center" prop="remark" /> -->
-      <el-table-column label="一级栏目编码" align="center" prop="firstColumn" />
+      <el-table-column label="内容" align="center" prop="content" :formatter="formatterEmployment"/>
+      <el-table-column label="备注" align="center" prop="remark" />
+      <el-table-column label="一级栏目编码" align="center" prop="firstColumn" :formatter="showType"/>
       <!-- <el-table-column label="二级栏目编码" align="center" prop="secondColumn" />
       <el-table-column label="排序" align="center" prop="sort" /> -->
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
@@ -118,19 +118,19 @@
         <el-form-item label="标题" prop="title">
           <el-input v-model="form.title" type="textarea" placeholder="请输入内容" />
         </el-form-item>
-        <el-form-item label="内容">
+        <el-form-item label="内容" >
           <editor v-model="form.content" :min-height="192"/>
         </el-form-item>
         <!-- <el-form-item label="删除标志" prop="delFlag">
           <el-input v-model="form.delFlag" placeholder="请输入删除标志" />
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="备注" prop="remark">
           <el-input v-model="form.remark" type="textarea" placeholder="请输入内容" />
-        </el-form-item> -->
+        </el-form-item>
         <el-form-item label="一级栏目编码" prop="firstColumn">
           <el-select v-model="form.firstColumn" placeholder="请选择一级栏目编码" width="1300px">
-            <el-option label="供应" value="供应"></el-option>
-            <el-option label="求购" value="求购"></el-option>
+            <el-option label="供应" value="0"></el-option>
+            <el-option label="求购" value="1"></el-option>
         </el-select>
         </el-form-item>
         <!-- <el-form-item label="二级栏目编码" prop="secondColumn">
@@ -150,7 +150,7 @@
 
 <script>
 import { listChannel, getChannel, delChannel, addChannel, updateChannel } from "@/api/system/channel";
-
+import {fixedSize} from '@/utils/fixedSize'
 export default {
   name: "Channel",
   data() {
@@ -195,7 +195,7 @@ export default {
   },
   methods: {
     /** 查询找渠道列表 */
-    getList() {
+    getList() { 
       this.loading = true;
       listChannel(this.queryParams).then(response => {
         this.channelList = response.rows;
@@ -293,6 +293,14 @@ export default {
       this.download('system/channel/export', {
         ...this.queryParams
       }, `channel_${new Date().getTime()}.xlsx`)
+    },
+    formatterEmployment(str){
+      console.log(str.content)
+      return fixedSize(str.content);
+    },showType(str){
+      console.log(str.firstColumn);
+      var list=['供应','求购'];
+      return list[str.firstColumn];
     }
   }
 };

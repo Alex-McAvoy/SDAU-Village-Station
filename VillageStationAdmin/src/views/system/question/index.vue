@@ -72,8 +72,8 @@
     <el-table v-loading="loading" :data="questionList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="用户ID" align="center" prop="questionId" />
-      <el-table-column label="问题/评论" align="center" prop="question" />
-      <el-table-column label="表名" align="center" prop="tableName" />
+      <el-table-column label="问题/评论" align="center" prop="question" :formatter="formatterEmployment"/>
+      <!-- <el-table-column label="表名" align="center" prop="tableName" /> -->
       <el-table-column label="父ID" align="center" prop="parentId" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
@@ -104,17 +104,17 @@
     />
 
     <!-- 添加或修改评论/问答对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
+    <el-dialog :title="title" :visible.sync="open" width="1400px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="问题/评论" prop="question">
-          <el-input v-model="form.question" type="textarea" placeholder="请输入内容" />
+        <editor v-model="form.question" :min-height="192"/>
         </el-form-item>
-        <el-form-item label="删除标志" prop="delFlag">
+        <!-- <el-form-item label="删除标志" prop="delFlag">
           <el-input v-model="form.delFlag" placeholder="请输入删除标志" />
         </el-form-item>
         <el-form-item label="表名" prop="tableName">
           <el-input v-model="form.tableName" placeholder="请输入表名" />
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="父ID" prop="parentId">
           <el-input v-model="form.parentId" placeholder="请输入父ID" />
         </el-form-item>
@@ -129,6 +129,7 @@
 
 <script>
 import { listQuestion, getQuestion, delQuestion, addQuestion, updateQuestion } from "@/api/system/question";
+import {fixedSize} from '@/utils/fixedSize';
 
 export default {
   name: "Question",
@@ -265,7 +266,11 @@ export default {
       this.download('system/question/export', {
         ...this.queryParams
       }, `question_${new Date().getTime()}.xlsx`)
-    }
+    },
+    formatterEmployment(str){
+      console.log(str.question)
+      return fixedSize(str.question);
+    },
   }
 };
 </script>

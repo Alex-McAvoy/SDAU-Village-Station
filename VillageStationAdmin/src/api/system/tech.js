@@ -12,7 +12,7 @@ export function listTech(query) {
 // 查询学农技详细
 export function getTech(articleId) {
   return request({
-    url: '/system/tech/' + articleId,
+    url: '/system/tech/article/' + articleId,
     method: 'get'
   })
 }

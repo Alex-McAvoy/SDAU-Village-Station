@@ -12,7 +12,7 @@ export function listFree(query) {
 // 查询随时问详细
 export function getFree(askFreeId) {
   return request({
-    url: '/system/free/' + askFreeId,
+    url: '/system/free/ask/' + askFreeId,
     method: 'get'
   })
 }
