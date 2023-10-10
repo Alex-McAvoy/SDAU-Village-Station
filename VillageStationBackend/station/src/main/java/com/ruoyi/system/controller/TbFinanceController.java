@@ -1,7 +1,10 @@
+
 package com.ruoyi.system.controller;
 
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+
+import com.ruoyi.system.domain.TbOtherColumns;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +23,6 @@ import com.ruoyi.system.domain.TbFinance;
 import com.ruoyi.system.service.ITbFinanceService;
 import com.ruoyi.common.utils.poi.ExcelUtil;
 import com.ruoyi.common.core.page.TableDataInfo;
-
 /**
  * 金融Controller
  * 
@@ -112,4 +114,29 @@ public class TbFinanceController extends BaseController
     {
         return toAjax(tbFinanceService.deleteTbFinanceByNewsIds(newsIds));
     }
+
+ //    获取全部未审核的金融信息
+    @PreAuthorize("@ss.hasPermi('system:finance:list')")
+    @GetMapping("/getFirstColumns")
+    public TableDataInfo getRemark(TbFinance tbFinance)
+    {
+//        System.out.println("123"/;
+        startPage();
+
+        List<TbFinance> list = tbFinanceService.selectTbFinanceFirstColumnsList(tbFinance);
+        return getDataTable(list);
+    }
+
+    //修改firstColumns
+    @PreAuthorize("@ss.hasPermi('system:finance:edit')")
+    @PutMapping("/")
+    public AjaxResult eidtFirstColumns(@RequestBody TbFinance tbFinance)
+    {
+        return toAjax(tbFinanceService.updateTbFinanceFirstColumns(tbFinance));
+    }
 }
+
+
+
+
+

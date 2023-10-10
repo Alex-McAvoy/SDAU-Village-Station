@@ -81,10 +81,10 @@
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="ID" align="center" prop="askExpertsId" />
       <el-table-column label="专家姓名" align="center" prop="expertName" />
-      <el-table-column label="简介" align="center" prop="introduction" />
-      <el-table-column label="专家类型 " align="center" prop="dictValue" />
+      <el-table-column label="简介" align="center" prop="introduction" :formatter="formatterEmployment"/>
+      <el-table-column label="专家类型 " align="center" prop="dictValue" :formatter="showType"/>
       <el-table-column label="备注" align="center" prop="remark" />
-      <el-table-column label="用于绑定专家账号" align="center" prop="userId" />
+      <!-- <el-table-column label="用于绑定专家账号" align="center" prop="userId" /> -->
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -114,7 +114,7 @@
     />
 
     <!-- 添加或修改问专家对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
+    <el-dialog :title="title" :visible.sync="open" width="1400px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="专家姓名" prop="expertName">
           <el-input v-model="form.expertName" placeholder="请输入专家姓名" />
@@ -123,17 +123,22 @@
           <el-input v-model="form.introduction" type="textarea" placeholder="请输入内容" />
         </el-form-item>
         <el-form-item label="专家类型 " prop="dictValue">
-          <el-input v-model="form.dictValue" placeholder="请输入专家类型 " />
-        </el-form-item>
-        <el-form-item label="删除标志" prop="delFlag">
-          <el-input v-model="form.delFlag" placeholder="请输入删除标志" />
+          <el-select v-model="form.secondColumn" placeholder="请选择专家类型">
+            <el-option label="农学专家" value="0"></el-option>
+            <el-option label="林学专家" value="1"></el-option>
+            <el-option label="园艺专家" value="2"></el-option>
+            <el-option label="动物专家" value="3"></el-option>
+            <el-option label="信息专家" value="4"></el-option>
+            <el-option label="农机专家" value="5"></el-option>
+            <el-option label="植保专家" value="6"></el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="备注" prop="remark">
           <el-input v-model="form.remark" type="textarea" placeholder="请输入内容" />
         </el-form-item>
-        <el-form-item label="用于绑定专家账号" prop="userId">
+        <!-- <el-form-item label="用于绑定专家账号" prop="userId">
           <el-input v-model="form.userId" placeholder="请输入用于绑定专家账号" />
-        </el-form-item>
+        </el-form-item> -->
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -145,6 +150,7 @@
 
 <script>
 import { listExpert, getExpert, delExpert, addExpert, updateExpert } from "@/api/system/expert";
+import {fixedSize} from '@/utils/fixedSize';
 
 export default {
   name: "Expert",
@@ -286,7 +292,16 @@ export default {
       this.download('system/expert/export', {
         ...this.queryParams
       }, `expert_${new Date().getTime()}.xlsx`)
-    }
+    },
+    formatterEmployment(str){
+      console.log(str.introduction)
+      return fixedSize(str.introduction);
+    },
+    showType(str){
+      console.log(str.dictValue);
+      var list=['农学专家','林学专家','园艺专家','动物专家','信息专家','农机专家','植保专家'];
+      return list[str.dictValue];
+    },
   }
 };
 </script>

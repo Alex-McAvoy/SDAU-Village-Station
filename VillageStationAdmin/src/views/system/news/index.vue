@@ -81,14 +81,14 @@
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="ID" align="center" prop="newsId" />
       <el-table-column label="标题" align="center" prop="title" />
-      <el-table-column label="内容" align="center" prop="content" />
+      <el-table-column label="内容" align="center" prop="content" :formatter="formatterEmployment"/>
         <template>
           <div v-html="parseHTML(form.content)"></div>
         </template>
-      <el-table-column label="备注" align="center" prop="remark" />
-      <el-table-column label="一级栏目编码" align="center" prop="firstColumn" />
-      <el-table-column label="二级栏目编码" align="center" prop="secondColumn" />
-      <el-table-column label="排序" align="center" prop="sort" />
+      <!-- <el-table-column label="备注" align="center" prop="remark" /> -->
+      <el-table-column label="一级栏目编码" align="center" prop="firstColumn" :formatter="showType"/>
+      <el-table-column label="二级栏目编码" align="center" prop="secondColumn" :formatter="showType2"/>
+      <!-- <el-table-column label="排序" align="center" prop="sort" /> -->
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -129,7 +129,7 @@
     <el-dialog :title="title" :visible.sync="open" width="1400px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="标题" prop="title">
-          <el-input v-model="form.title" type="textarea" placeholder="请输入内容" />
+          <el-input v-model="form.title" type="textarea" />
         </el-form-item>
         <el-form-item label="内容">
           <editor v-model="form.content" :min-height="192"/>
@@ -137,24 +137,24 @@
         <!-- <el-form-item label="删除标志" prop="delFlag">
           <el-input v-model="form.delFlag" placeholder="请输入删除标志" />
         </el-form-item> -->
-        <el-form-item label="备注" prop="remark">
+        <!-- <el-form-item label="备注" prop="remark">
           <el-input v-model="form.remark" type="textarea" placeholder="请输入内容" />
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="一级栏目编码" prop="firstColumn">
           <el-select v-model="form.firstColumn" placeholder="请选择一级栏目编码">
-            <el-option label="新闻资讯" value="新闻资讯"></el-option>
-            <el-option label="金融资讯" value="金融资讯"></el-option>
+            <el-option label="新闻资讯" value="0"></el-option>
+            <el-option label="金融资讯" value="1"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="二级栏目编码" prop="secondColumn" width="1300px">
           <el-select v-model="form.secondColumn" placeholder="请选择二级栏目编码">
-            <el-option label="政策法规" value="政策法规"></el-option>
-            <el-option label="三农资讯" value="三农资讯"></el-option>
-            <el-option label="科技动态" value="科技动态"></el-option>
-            <el-option label="典型案例" value="典型案例"></el-option>
-            <el-option label="金融助农" value="金融助农"></el-option>
-            <el-option label="业务新闻" value="业务新闻"></el-option>
-            <el-option label="相关案例" value="相关案例"></el-option>
+            <el-option label="政策法规" value="0"></el-option>
+            <el-option label="三农资讯" value="1"></el-option>
+            <el-option label="科技动态" value="2"></el-option>
+            <el-option label="典型案例" value="3"></el-option>
+            <el-option label="金融助农" value="4"></el-option>
+            <el-option label="业务新闻" value="5"></el-option>
+            <el-option label="相关案例" value="6"></el-option>
           </el-select>
         </el-form-item>
         <!-- <el-form-item label="排序" prop="sort">
@@ -173,6 +173,7 @@
 
 <script>
 import { listColumns, getColumns, delColumns, addColumns, updateColumns } from "@/api/system/news";
+import {fixedSize} from '@/utils/fixedSize';
 
 export default {
   name: "Columns",
@@ -280,9 +281,11 @@ export default {
     },
     /** 新增按钮操作 */
     handleAdd() {
-      this.reset();
-      this.open = true;
-      this.title = "添加其它栏目"     
+      // 使用 $router.push 跳转到新增页面的路由路径
+      this.$router.push('/addNews')
+      // this.reset();
+      // this.open = true;
+      // this.title = "添加其它栏目"     
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
@@ -316,6 +319,7 @@ export default {
     },
     /** 删除按钮操作 */
     handleDelete(row) {
+
       const newsIds = row.newsId || this.ids;
       this.$modal.confirm('是否确认删除其它栏目编号为"' + newsIds + '"的数据项？').then(function() {
         return delColumns(newsIds);
@@ -329,7 +333,21 @@ export default {
       this.download('system/columns/export', {
         ...this.queryParams
       }, `columns_${new Date().getTime()}.xlsx`)
-    }
+    },
+    formatterEmployment(str){
+      console.log(str.content)
+      return fixedSize(str.content);
+    },
+    showType(str){
+      console.log(str.firstColumn);
+      var list=['新闻资讯','金融资讯'];
+      return list[str.firstColumn];
+    },
+    showType2(str){
+      console.log(str.secondColumn);
+      var list=['政策法规','三农资讯','科技动态','典型案例','金融助农','业务新闻','相关案例'];
+      return list[str.secondColumn];
+    },
   }
 };
 </script>

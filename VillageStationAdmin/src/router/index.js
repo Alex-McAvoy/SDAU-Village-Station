@@ -47,20 +47,82 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/test',
+    component: () => import('@/views/test'),
+    hidden: true
+  },
+  //信息管理
+  {
+    path: '/message',
+    component: Layout,
+    hidden: true,
+    children: [
+      //信息发布
+      {
+        path: '/release',
+        component: Layout,
+        hidden: true,
+        children: [
+          //新闻发布
+          {
+            path: '/release/submit',
+            component: () => import('@/views/system/news/index'),
+            hidden: true
+          },
+          //金融发布
+          {
+            path: '/release/submit_finance',
+            component: () => import('@/views/system/finance/index'),
+            hidden: true
+          },
+          //线下培训发布
+          {
+            path: '/release/submit_training',
+            component: () => import('@/views/system/training/index'),
+            hidden: true
+          },
+        ]
+      },
+      //信息审核
+      {
+        path: '/examine',
+        component: Layout,
+        hidden: true,
+        children: [
+          //新闻审核
+          {
+            path: '/examine/audit',
+            component: () => import('@/views/system/news/audit'),
+            hidden: true
+          },
+          //金融审核
+          {
+            path: '/examine/audit_finance',
+            component: () => import('@/views/system/finance/audit'),
+            hidden: true
+          },
+          //线下培训审核
+          {
+            path: '/examine/audit_training',
+            component: () => import('@/views/system/training/audit'),
+            hidden: true
+          },
+        ]
+      },
+      //新闻新增
+      {
+        path: '/addNews',
+        component: () => import('@/views/system/news/addNews'),
+        hidden: true
+      },
+    ]
+  },
+
+  {
     path: '/station',
     component: Layout,
     hidden: true,
     children: [
-      {
-        path: '/station/submit',
-        component: () => import('@/views/system/news/index'),
-        hidden: true
-      },
-      {
-        path: '/station/audit',
-        component: () => import('@/views/system/news/audit'),
-        hidden: true
-      },
       {
         path: '/station/products',
         component: () => import('@/views/system/products/index'),
@@ -81,30 +143,48 @@ export const constantRoutes = [
         component: () => import('@/views/system/farm/index'),
         hidden: true
       },
-               // 学农技
-               {
-                path: '/station/tech',
-                component: () => import('@/views/system/tech/index'),
-                hidden: true
-              },
-               // 问答
-               {
-                path: '/station/question',
-                component: () => import('@/views/system/question/index'),
-                hidden: true
-              },
-              // 随时问
-              {
-                path: '/station/free',
-                component: () => import('@/views/system/free/index'),
-                hidden: true
-              },
-              // 问专家
-              {
-                path: '/station/expert',
-                component: () => import('@/views/system/expert/index'),
-                hidden: true
-              },
+      // 学农技
+      {
+        path: '/station/tech',
+        component: () => import('@/views/system/tech/index'),
+        hidden: true
+      },
+       // 问答
+      {
+        path: '/station/question',
+        component: () => import('@/views/system/question/index'),
+        hidden: true
+      },
+       // 随时问
+      {
+        path: '/station/free',
+        component: () => import('@/views/system/free/index'),
+        hidden: true
+      },
+       // 问专家
+      {
+        path: '/station/expert',
+        component: () => import('@/views/system/expert/index'),
+        hidden: true
+      },
+      //驿站信息
+      {
+        path: '/post',
+        component: Layout,
+        hidden: true,
+        children: [
+          {
+            path: '/post/station_submit',
+            component: () => import('@/views/system/info/index'),
+            hidden: true
+          },
+          {
+            path: '/post/station_audit',
+            component: () => import('@/views/system/info/audit'),
+            hidden: true
+          },
+        ]
+      },
     ]
   },
   {

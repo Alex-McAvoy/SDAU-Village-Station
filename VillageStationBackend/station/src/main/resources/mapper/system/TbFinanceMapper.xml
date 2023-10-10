@@ -1,3 +1,44 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -102,4 +143,58 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             #{newsId}
         </foreach>
     </delete>
+
+ <select id="selectTbFinanceFirstColumnsList" parameterType="TbFinance" resultMap="TbFinanceResult">
+        <include refid="selectTbFinanceVo"/>
+        <!--        <where>-->
+        <!--            <if test="title != null  and title != ''"> and title = #{title}</if>-->
+        <!--            <if test="content != null  and content != ''"> and content = #{content}</if>-->
+        <!--            <if test="firstColumn != null  and firstColumn != ''"> and first_column = #{firstColumn}</if>-->
+        <!--            <if test="secondColumn != null  and secondColumn != ''"> and second_column = #{secondColumn}</if>-->
+        <!--            <if test="sort != null  and sort != ''"> and sort = #{sort}</if> -->
+        <!--        </where>-->
+        where first_column = "0"
+    </select>
+
+    <update id="updateTbFinanceFirstColumns" parameterType="TbFinance">
+        update tb_finance
+        <trim prefix="SET" suffixOverrides=",">
+            <!--            <if test="title != null">title = #{title},</if>-->
+            <!--            <if test="content != null">content = #{content},</if>-->
+            <!--            <if test="delFlag != null">del_flag = #{delFlag},</if>-->
+            <!--            <if test="createBy != null">create_by = #{createBy},</if>-->
+            <!--            <if test="createTime != null">create_time = #{createTime},</if>-->
+            <!--            <if test="updateBy != null">update_by = #{updateBy},</if>-->
+            <!--            <if test="updateTime != null">update_time = #{updateTime},</if>-->
+            <if test="firstColumn != null">firstColumn = '1',</if>
+            <!--            <if test="firstColumn != null">first_column = #{firstColumn},</if>-->
+            <!--            <if test="secondColumn != null">second_column = #{secondColumn},</if>-->
+            <!--            <if test="sort != null">sort = #{sort},</if>-->
+        </trim>
+        where news_id = #{newsId}
+    </update>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

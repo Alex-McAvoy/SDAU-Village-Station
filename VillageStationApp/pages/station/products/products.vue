@@ -31,7 +31,7 @@
 									{{ item.title }}
 								</view>
 								<view class="main_content"><u-parse
-										:content="item.content"></u-parse></view>
+										:content="fixedSize(item.content)"></u-parse></view>
 								<image :src="item.remark"
 									style="width: 350px;height: 180px; padding-left: 5vh; padding-right: 5vh; "></image>
 								<!-- <u-album :urls="urls1" keyName="src2" style="margin-bottom: 8px;"></u-album> -->
@@ -125,6 +125,13 @@
 				this.ids = selection.map(item => item.newsId)
 				this.single = selection.length !== 1
 				this.multiple = !selection.length
+			},
+			fixedSize(content) {
+				if (content != null) {
+					if (content.length < 35) return content;
+					else return content.substring(0, 35) + "...."
+				}
+				return content;
 			},
 		}
 	}

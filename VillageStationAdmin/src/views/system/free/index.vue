@@ -57,8 +57,8 @@
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="ID" align="center" prop="askFreeId" />
       <el-table-column label="标题" align="center" prop="title" />
-      <el-table-column label="内容" align="center" prop="content" />
-      <el-table-column label="备注" align="center" prop="remark" />
+      <el-table-column label="内容" align="center" prop="content" :formatter="formatterEmployment"/>
+      <!-- <el-table-column label="备注" align="center" prop="remark" /> -->
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -88,7 +88,7 @@
     />
 
     <!-- 添加或修改随时问对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
+    <el-dialog :title="title" :visible.sync="open" width="1400px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="标题" prop="title">
           <el-input v-model="form.title" type="textarea" placeholder="请输入内容" />
@@ -96,12 +96,12 @@
         <el-form-item label="内容">
           <editor v-model="form.content" :min-height="192"/>
         </el-form-item>
-        <el-form-item label="删除标志" prop="delFlag">
+        <!-- <el-form-item label="删除标志" prop="delFlag">
           <el-input v-model="form.delFlag" placeholder="请输入删除标志" />
         </el-form-item>
         <el-form-item label="备注" prop="remark">
           <el-input v-model="form.remark" type="textarea" placeholder="请输入内容" />
-        </el-form-item>
+        </el-form-item> -->
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -113,6 +113,7 @@
 
 <script>
 import { listFree, getFree, delFree, addFree, updateFree } from "@/api/system/free";
+import {fixedSize} from '@/utils/fixedSize';
 
 export default {
   name: "Free",
@@ -250,7 +251,11 @@ export default {
       this.download('system/free/export', {
         ...this.queryParams
       }, `free_${new Date().getTime()}.xlsx`)
-    }
+    },
+    formatterEmployment(str){
+      console.log(str.content)
+      return fixedSize(str.content);
+    },
   }
 };
 </script>

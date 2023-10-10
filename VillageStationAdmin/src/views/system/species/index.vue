@@ -81,9 +81,9 @@
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="ID" align="center" prop="newsId" />
       <el-table-column label="标题" align="center" prop="title" />
-      <el-table-column label="内容" align="center" prop="content" />
-      <!-- <el-table-column label="备注" align="center" prop="remark" />
-      <el-table-column label="一级栏目编码" align="center" prop="firstColumn" />
+      <el-table-column label="内容" align="center" prop="content" :formatter="formatterEmployment"/>
+      <el-table-column label="备注" align="center" prop="remark" />
+      <!-- <el-table-column label="一级栏目编码" align="center" prop="firstColumn" />
       <el-table-column label="二级栏目编码" align="center" prop="secondColumn" />
       <el-table-column label="排序" align="center" prop="sort" /> -->
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
@@ -115,7 +115,7 @@
     />
 
     <!-- 添加或修改新品种对话框 -->
-    <el-dialog :title="title" :visible.sync="open"  width="400px" append-to-body>
+    <el-dialog :title="title" :visible.sync="open"  width="1400px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="标题" prop="title">
           <el-input v-model="form.title" type="textarea" placeholder="请输入内容" />
@@ -125,11 +125,11 @@
         </el-form-item>
         <!-- <el-form-item label="删除标志" prop="delFlag">
           <el-input v-model="form.delFlag" placeholder="请输入删除标志" />
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="备注" prop="remark">
           <el-input v-model="form.remark" type="textarea" placeholder="请输入内容" />
         </el-form-item>
-        <el-form-item label="一级栏目编码" prop="firstColumn">
+        <!-- <el-form-item label="一级栏目编码" prop="firstColumn">
           <el-input v-model="form.firstColumn" placeholder="请输入一级栏目编码" />
         </el-form-item>
         <el-form-item label="二级栏目编码" prop="secondColumn">
@@ -150,6 +150,7 @@
 
 <script>
 import { listSpecies, getSpecies, delSpecies, addSpecies, updateSpecies } from "@/api/system/species";
+import {fixedSize} from '@/utils/fixedSize';
 
 export default {
   name: "Species",
@@ -296,7 +297,11 @@ export default {
       this.download('system/species/export', {
         ...this.queryParams
       }, `species_${new Date().getTime()}.xlsx`)
-    }
+    },
+    formatterEmployment(str){
+      console.log(str.content)
+      return fixedSize(str.content);
+    },
   }
 };
 </script>
