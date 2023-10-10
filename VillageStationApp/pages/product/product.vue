@@ -17,13 +17,13 @@
 		</view>
 		<!-- 农产品展示 -->
 		<view style=" border-radius: 10px; background-color: white;  margin:15px">
-		<view class="module" style="margin-bottom:20px">
-			<image src="/static/images/station/station/nl.png"
-				style="margin:8px 8px 0px 8px; width: 20px; height: 20px;">
-			</image>
-			<u-text style="font-weight: 20px;" margin="8px 0px 0px 0px" text="热销农产" bold size="22"></u-text>
-		</view>
-		<!-- 热销农产详情 -->
+			<view class="module" style="margin-bottom:20px">
+				<image src="/static/images/station/station/nl.png"
+					style="margin:8px 8px 0px 8px; width: 20px; height: 20px;">
+				</image>
+				<u-text style="font-weight: 20px;" margin="8px 0px 0px 0px" text="热销农产" bold size="22"></u-text>
+			</view>
+			<!-- 热销农产详情 -->
 			<view class="u-page" v-for="item in newsList.slice(0, 3)">
 				<view class="u-demo-block" @click="getOneList(item.newsId)">
 					<view class="album">
@@ -34,7 +34,7 @@
 						</view>
 						<view class="album__content">
 							<view class="station_title">{{ item.title }}</view>
-							<view class="main_content"><u-parse :content="item.content"></u-parse></view>							
+							<view class="main_content"><u-parse :content="fixedSize(item.content)"></u-parse></view>
 						</view>
 					</view>
 				</view>
@@ -42,29 +42,29 @@
 		</view>
 		<!-- 优品动态 -->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
-		<view class="module" style="margin-bottom:20px">
-			<image src="/static/images/station/station/nl.png"
-				style="margin:8px 8px 0px 8px; width: 20px; height: 20px;">
-			</image>
-			<u-text style="font-weight: 20px;" margin="8px 0px 0px 0px" text="优品动态" bold size="22"></u-text>
-		</view>
-		<!-- 优品动态详情 -->
-		<view class="u-page" v-for="item in newsList.slice(3, 6)">
-			<view class="u-demo-block" @click="getOneList(item.newsId)">
-				<view class="album">
-					<view class="album__avatar">
-						<image :src="item.remark"
-							style="margin-left: 15px; width: 70px; height: 80px;border-radius: 8px; overflow: hidden;">
-						</image>
-					</view>
-					<view class="album__content">
-						<view class="station_title">{{ item.title }}</view>
-						<view class="main_content"><u-parse :content="item.content"></u-parse></view>
+			<view class="module" style="margin-bottom:20px">
+				<image src="/static/images/station/station/nl.png"
+					style="margin:8px 8px 0px 8px; width: 20px; height: 20px;">
+				</image>
+				<u-text style="font-weight: 20px;" margin="8px 0px 0px 0px" text="优品动态" bold size="22"></u-text>
+			</view>
+			<!-- 优品动态详情 -->
+			<view class="u-page" v-for="item in newsList.slice(3, 6)">
+				<view class="u-demo-block" @click="getOneList(item.newsId)">
+					<view class="album">
+						<view class="album__avatar">
+							<image :src="item.remark"
+								style="margin-left: 15px; width: 70px; height: 80px;border-radius: 8px; overflow: hidden;">
+							</image>
+						</view>
+						<view class="album__content">
+							<view class="station_title">{{ item.title }}</view>
+							<view class="main_content"><u-parse :content="fixedSize(item.content)"></u-parse></view>
+						</view>
 					</view>
 				</view>
 			</view>
 		</view>
-	</view>
 	</view>
 </template>
 
@@ -93,7 +93,7 @@
 			this.getList();
 		},
 		methods: {
-			getOneList(id){
+			getOneList(id) {
 				// console.log(id)
 				uni.navigateTo({
 					url: "/pages/product/productdetail?id=" + id
@@ -121,6 +121,13 @@
 				this.single = selection.length !== 1
 				this.multiple = !selection.length
 			},
+			fixedSize(content) {
+				if (content != null) {
+					if (content.length < 25) return content;
+					else return content.substring(0, 25) + "...."
+				}
+				return content;
+			},
 		}
 	}
 </script>
@@ -130,13 +137,16 @@
 	@import url("../../static/css/nav_bar.css")
 </style>
 <style lang="scss">
-	@import url("../../static/css/text.css");	/* 顶部样式 */
+	@import url("../../static/css/text.css");
+
+	/* 顶部样式 */
 	.index_head {
 		color: azure;
 		height: 100px;
 		padding: 0px 15px 0px 15px;
-		background: linear-gradient(#00ae67, #00ae67, #00ae67, #00ae67,#2ed573, #7bed9f, #f1f2f6);
+		background: linear-gradient(#00ae67, #00ae67, #00ae67, #00ae67, #2ed573, #7bed9f, #f1f2f6);
 	}
+
 	.contain {
 		display: flex;
 		align-items: center;
@@ -153,7 +163,7 @@
 		align-items: flex-start;
 
 		&__avatar {
-			background-color:#fff;
+			background-color: #fff;
 			padding: 5px;
 			border-radius: 3px;
 		}

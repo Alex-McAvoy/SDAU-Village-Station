@@ -2,6 +2,7 @@ package com.ruoyi.system.service;
 
 import java.util.List;
 import com.ruoyi.system.domain.TbFinance;
+import com.ruoyi.system.domain.TbOtherColumns;
 
 /**
  * 金融Service接口
@@ -66,4 +67,10 @@ public interface ITbFinanceService
      * @return 结果
      */
     public int deleteTbFinanceByNewsId(Long newsId);
+
+//    获取全部未审核
+    List<TbFinance> selectTbFinanceFirstColumnsList(TbFinance tbFinance);
+
+    //修改remark
+    public int updateTbFinanceFirstColumns(TbFinance tbFinance);
 }

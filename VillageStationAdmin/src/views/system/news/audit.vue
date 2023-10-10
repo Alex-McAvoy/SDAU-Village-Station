@@ -1,19 +1,87 @@
 <template>
   <div class="app-container">
-    <el-upload ref="upload" :limit="1" accept=".jpg, .png" :action="upload.url" :headers="upload.headers"
-      :file-list="upload.fileList" :on-progress="handleFileUploadProgress" :on-success="handleFileSuccess"
-      :auto-upload="false">
-      <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
-      <el-button style="margin-left: 10px;" size="small" type="success" :loading="upload.isUploading"
-        @click="submitUpload">上传到服务器</el-button>
-      <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-    </el-upload>
+    <el-table v-loading="loading" :data="columnsList" @selection-change="handleSelectionChange">
+      <el-table-column type="selection" width="55" align="center" />
+      <el-table-column label="ID" align="center" prop="newsId" />
+      <el-table-column label="标题" align="center" prop="title" />
+      <el-table-column label="内容" align="center" prop="content" />
+      <!-- <el-table-column label="备注" align="center" prop="remark" /> -->
+      <el-table-column label="一级栏目编码" align="center" prop="firstColumn" :formatter="showType"/>
+      <el-table-column label="二级栏目编码" align="center" prop="secondColumn" :formatter="showType2"/>
+      <el-table-column label="排序" align="center" prop="sort" />
+      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+        <template slot-scope="scope">
+          <el-button
+            size="mini"
+            type="text"
+            icon="el-icon-more"
+            @click="handleDetail(scope.row)"
+            v-hasPermi="['system:columns:edit']"
+          >详情</el-button>
+          <el-button
+            size="mini"
+            type="text"
+            icon="el-icon-edit"
+            @click="handlePass(scope.row)"
+            v-hasPermi="['system:columns:edit']"
+          >通过</el-button>
+          <el-button
+            size="mini"
+            type="text"
+            icon="el-icon-delete"
+            @click="handleRefuse(scope.row)"
+            v-hasPermi="['system:columns:remove']"
+          >拒绝</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+    
+    <pagination
+      v-show="total>0"
+      :total="total"
+      :page.sync="queryParams.pageNum"
+      :limit.sync="queryParams.pageSize"
+      @pagination="getList"
+    />
+     <el-dialog :title="title" :visible.sync="open" width="1400px" append-to-body>
+      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+        <el-form-item label="标题" prop="title">
+          <el-input v-model="form.title" type="textarea"/>
+        </el-form-item>
+        <el-form-item label="内容">
+          <editor v-model="form.content" :min-height="192"/>
+        </el-form-item>
+        <!-- <el-form-item label="删除标志" prop="delFlag">
+          <el-input v-model="form.delFlag" placeholder="请输入删除标志" />
+        </el-form-item> -->
+        <el-form-item label="备注" prop="remark">
+          <el-input v-model="form.remark" type="textarea"/>
+        </el-form-item>
+        <el-form-item label="二级栏目编码" prop="secondColumn" width="1300px">
+          <el-select v-model="form.secondColumn" placeholder="请选择二级栏目编码">
+            <el-option label="金融助农" value="4"></el-option>
+            <el-option label="业务新闻" value="5"></el-option>
+            <el-option label="相关案例" value="6"></el-option>
+          </el-select>
+        </el-form-item>
+        <!-- <el-form-item label="排序" prop="sort">
+          <el-input v-model="form.sort" placeholder="请输入排序" />
+        </el-form-item> -->
+        
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="submitForm">确 定</el-button>
+        <el-button @click="cancel">取 消</el-button>
+      </div>
+       
+    </el-dialog>
   </div>
 </template>
 
 <script>
-import { listColumnsRemark, getColumns, delColumns, addColumns, updateColumns } from "@/api/system/news";
-import { getToken } from "@/utils/auth";
+import { listColumnsRemark, delColumns, addColumns, updateColumns } from "@/api/system/news";
+import {fixedSize} from '@/utils/fixedSize';
+
 export default {
   name: "Columns",
   data() {
@@ -56,21 +124,11 @@ export default {
       },
       // 表单参数
       form: {
-        remark: 0,//0表示未审核，1表示已经审核
+        remark:0,//0表示未审核，1表示已经审核
       },
       // 表单校验
       rules: {
-      },// 上传参数
-      upload: {
-        // 是否禁用上传
-        isUploading: false,
-        // 设置上传的请求头部
-        headers: { Authorization: "Bearer " + getToken() },
-        // 上传的地址
-        url: process.env.VUE_APP_BASE_API + "/common/upload",
-        // 上传的文件列表
-        fileList: []
-      },
+      }
     };
   },
   created() {
@@ -94,7 +152,7 @@ export default {
         this.loading = false;
       });
     },
-    // 表单重置
+     // 表单重置
     reset() {
       this.form = {
         newsId: null,
@@ -120,7 +178,7 @@ export default {
     // 多选框选中数据
     handleSelectionChange(selection) {
       this.ids = selection.map(item => item.newsId)
-      this.single = selection.length !== 1
+      this.single = selection.length!==1
       this.multiple = !selection.length
     },
     /** 通过按钮操作 */
@@ -133,9 +191,18 @@ export default {
         this.getList();
       });
     },
+    // 详情按钮操作
+    handleDetail(row) {
+      console.log(row)
+      updateColumns(row).then(response => {
+        this.$modal.msgSuccess("修改成功");
+        this.open = false;
+        this.getList();
+      });
+    },
     /** 提交按钮 */
     submitForm() {
-      this.form.remark = 0;
+      this.form.remark=0;
       this.$refs["form"].validate(valid => {
         if (valid) {
           if (this.form.newsId != null) {
@@ -157,30 +224,27 @@ export default {
     /** 拒绝按钮操作 */
     handleRefuse(row) {
       const newsIds = row.newsId || this.ids;
-      this.$modal.confirm('是否确认拒绝其它栏目  热销农产：编号为"' + newsIds + '"的数据项？').then(function () {
+      this.$modal.confirm('是否确认拒绝其它栏目  热销农产：编号为"' + newsIds + '"的数据项？').then(function() {
         return delColumns(newsIds);
       }).then(() => {
         this.getList();
         this.$modal.msgSuccess("拒绝成功!");
-      }).catch(() => { });
-    }, handleAdd() {
-      this.upload.fileList = [];
-    }, handleUpdate(row) {
-      this.upload.fileList = [{ name: this.form.fileName, url: this.form.filePath }];
-    },// 文件提交处理
-    submitUpload() {
-      this.$refs.upload.submit();
+      }).catch(() => {});
     },
-    // 文件上传中处理
-    handleFileUploadProgress(event, file, fileList) {
-      this.upload.isUploading = true;
+    formatterEmployment(str){
+      console.log(str.content)
+      return fixedSize(str.content);
     },
-    // 文件上传成功处理
-    handleFileSuccess(response, file, fileList) {
-      this.upload.isUploading = false;
-      this.form.filePath = response.url;
-      this.msgSuccess(response.msg);
-    }
+    showType(str){
+      console.log(str.firstColumn);
+      var list=['新闻资讯','金融资讯'];
+      return list[str.firstColumn];
+    },
+    showType2(str){
+      console.log(str.secondColumn);
+      var list=['政策法规','三农资讯','科技动态','典型案例','金融助农','业务新闻','相关案例'];
+      return list[str.secondColumn];
+    },
   }
 };
 </script>

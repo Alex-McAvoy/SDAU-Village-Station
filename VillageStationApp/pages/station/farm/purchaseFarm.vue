@@ -15,8 +15,8 @@
 			<view class="main_title">
 				{{ item.title }}
 			</view>
-			<view class="main_content" ><u-parse :content="item.content"></u-parse></view>
-			<image src="../../../static/images/station/purchaseFarm/manure.jpeg"
+			<view class="main_content" ><u-parse :content="fixedSize(item.content)"></u-parse></view>
+			<image :src="item.remark"
 				style="width: 150px;height: 150px; padding-top: 1vh;"></image>
 		</view>
 	</view>
@@ -84,6 +84,13 @@
 			},
 			scrolltolower() {
 				this.loadmore()
+			},
+			fixedSize(content) {
+				if (content != null) {
+					if (content.length < 35) return content;
+					else return content.substring(0, 35) + "...."
+				}
+				return content;
 			},
 		}
 	}

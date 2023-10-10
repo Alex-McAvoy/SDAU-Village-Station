@@ -38,8 +38,7 @@
 								<view class="main_title">
 									{{ item.title }}
 								</view>
-								<view class="main_content"><u-parse
-										:content="item.content"></u-parse></view>
+								<view class="main_content"><u-parse :content="fixedSize(item.content)"></u-parse></view>
 							</view>
 						</view>
 					</view>
@@ -55,16 +54,31 @@
 				<u-form-item label="内容">
 					<u-input v-model="form.content" placeholder="请输入内容" />
 				</u-form-item>
-				<u-form-item label="类型"  borderBottom ref="item2">
+				<u-form-item label="类型" borderBottom ref="item2">
 					<u-radio-group v-model="form.firstColumn">
 						<u-radio :customStyle="{marginRight: '16px'}" v-for="(item, index) in selectType" :key="index"
 							:label="item.name" :name="item.name">
 						</u-radio>
 					</u-radio-group>
 				</u-form-item>
+				<u-form-item>
+						<u-upload
+							ref="upload"
+							:max-upload-count="1"
+							:file-accept="'image/jpeg,image/png'"
+							:url="upload.url"
+							:header="upload.headers"
+							:default-file-list.sync="upload.fileList"
+							:process-style="{ color: '#409EFF' }"
+							@progress="handleFileUploadProgress"
+							@success="handleFileSuccess"
+							:auto-upload="false"
+						>
+						</u-upload>
+				</u-form-item>
 			</u-form>
 		</u-modal>
-    
+
 		<u-button class="custom-style" color="#eeeeee " type="primary" shape="circle"
 			style="  width: 100px; height: 100px; position: fixed;bottom: 50px;right: 30px; font-size: 50px;color:#00ae67;opacity: 0.5;"
 			@click="handleAdd">+
@@ -84,6 +98,11 @@
 	export default {
 		data() {
 			return {
+				upload: {
+				    url: 'http://your-upload-url', // 替换为你的上传接口地址
+				    headers: {}, // 替换为你需要的请求头信息
+				    fileList: [], // 用于存储上传成功的文件列表
+				},
 				form: {},
 				current: 0,
 				text: '000',
@@ -117,11 +136,32 @@
 			this.checked(0);
 		},
 		methods: {
+			handleAdd() {
+			      this.upload.fileList = [];
+			    },
+			
+			handeUpdate(row) {
+			    this.upload.fileList = [
+			    { name: this.form.fileName, url: this.form.filePath },
+			      ];
+			    },
+			// 文件提交处理
+			submitUpload() {
+			    this.$refs.upload.submit();
+			    },
+			// 文件上传中处理
+			handleFileUploadProgress(event, file, fileList) {
+			    this.upload.isUploading = true;
+			},
+			// 文件上传成功处理
+			handleFileSuccess(response, file, fileList) {
+			    this.upload.isUploading = false;
+			    this.form.filePath = response.url; 
+			},
 			checked(index) {
 				this.isActive = index;
 				console.log(this.isActive);
-				listByColumn(this.isActive).then(response => {					
-					console.log(response);
+				listByColumn(this.isActive).then(response => {
 					this.channelList = response.rows;
 					this.total = response.total;
 					this.loading = false;
@@ -154,18 +194,26 @@
 			},
 			//跳转详情页
 			skip(item) {
-				getApp().globalData.item=item;
+				getApp().globalData.item = item;
 				console.log(getApp().globalData.item);
 				uni.navigateTo({
 					url: "channel_detail"
-				}) 
-			}
+				})
+			},
+			fixedSize(content) {
+				if (content != null) {
+					if (content.length < 35) return content;
+					else return content.substring(0, 35) + "...."
+				}
+				return content;
+			},
 		}
 	}
 </script>
 
 <style lang="scss">
 	@import url("../../../static/css/text.css");
+
 	.album {
 		@include flex;
 		align-items: flex-start;

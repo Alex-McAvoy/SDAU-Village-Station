@@ -171,6 +171,7 @@
 
 <script>
 import { listNotice, getNotice, delNotice, addNotice, updateNotice } from "@/api/system/notice";
+import {fixedSize} from '@/utils/fixedSize';
 
 export default {
   name: "Notice",
@@ -306,7 +307,11 @@ export default {
         this.getList();
         this.$modal.msgSuccess("删除成功");
       }).catch(() => {});
-    }
+    },
+    formatterEmployment(str){
+      console.log(str.content)
+      return fixedSize(str.content);
+    },
   }
 };
 </script>

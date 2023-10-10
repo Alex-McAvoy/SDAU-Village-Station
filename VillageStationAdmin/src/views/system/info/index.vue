@@ -1,18 +1,15 @@
-
-
-
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="标题" prop="title">
+      <el-form-item label="一级栏目编码" prop="firstColumn">
         <el-input
-          v-model="queryParams.title"
+          v-model="queryParams.firstColumn"
           placeholder="请输入一级栏目编码"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <!-- <el-form-item label="二级栏目编码" prop="secondColumn">
+      <el-form-item label="二级栏目编码" prop="secondColumn">
         <el-input
           v-model="queryParams.secondColumn"
           placeholder="请输入二级栏目编码"
@@ -20,14 +17,6 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="排序" prop="sort">
-        <el-input
-          v-model="queryParams.sort"
-          placeholder="请输入排序"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item> -->
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
         <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
@@ -42,7 +31,7 @@
           icon="el-icon-plus"
           size="mini"
           @click="handleAdd"
-          v-hasPermi="['system:finance:add']"
+          v-hasPermi="['system:info:add']"
         >新增</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -53,7 +42,7 @@
           size="mini"
           :disabled="single"
           @click="handleUpdate"
-          v-hasPermi="['system:finance:edit']"
+          v-hasPermi="['system:info:edit']"
         >修改</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -64,7 +53,7 @@
           size="mini"
           :disabled="multiple"
           @click="handleDelete"
-          v-hasPermi="['system:finance:remove']"
+          v-hasPermi="['system:info:remove']"
         >删除</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -74,20 +63,20 @@
           icon="el-icon-download"
           size="mini"
           @click="handleExport"
-          v-hasPermi="['system:finance:export']"
+          v-hasPermi="['system:info:export']"
         >导出</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
-    <el-table v-loading="loading" :data="financeList" @selection-change="handleSelectionChange">
+    <el-table v-loading="loading" :data="infoList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="ID" align="center" prop="newsId" />
       <el-table-column label="标题" align="center" prop="title" />
       <el-table-column label="内容" align="center" prop="content" :formatter="formatterEmployment"/>
       <el-table-column label="备注" align="center" prop="remark" />
-      <el-table-column label="一级栏目编码" align="center" prop="firstColumn"/>
-      <el-table-column label="二级栏目编码" align="center" prop="secondColumn" :formatter="showType2"/>
+      <el-table-column label="一级栏目编码" align="center" prop="firstColumn" />
+      <!-- <el-table-column label="二级栏目编码" align="center" prop="secondColumn" /> -->
       <!-- <el-table-column label="排序" align="center" prop="sort" /> -->
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
@@ -96,14 +85,14 @@
             type="text"
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
-            v-hasPermi="['system:finance:edit']"
+            v-hasPermi="['system:info:edit']"
           >修改</el-button>
           <el-button
             size="mini"
             type="text"
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
-            v-hasPermi="['system:finance:remove']"
+            v-hasPermi="['system:info:remove']"
           >删除</el-button>
         </template>
       </el-table-column>
@@ -117,7 +106,7 @@
       @pagination="getList"
     />
 
-    <!-- 添加或修改金融对话框 -->
+    <!-- 添加或修改驿站信息对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="1400px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="标题" prop="title">
@@ -135,13 +124,9 @@
         <el-form-item label="一级栏目编码" prop="firstColumn">
           <el-input v-model="form.firstColumn" placeholder="请输入一级栏目编码" />
         </el-form-item>
-        <el-form-item label="二级栏目编码" prop="secondColumn" width="1300px">
-          <el-select v-model="form.secondColumn" placeholder="请选择二级栏目编码">
-            <el-option label="金融助农" value="0"></el-option>
-            <el-option label="业务新闻" value="1"></el-option>
-            <el-option label="相关案例" value="2"></el-option>
-          </el-select>
-        </el-form-item>
+        <!-- <el-form-item label="二级栏目编码" prop="secondColumn">
+          <el-input v-model="form.secondColumn" placeholder="请输入二级栏目编码" />
+        </el-form-item> -->
         <!-- <el-form-item label="排序" prop="sort">
           <el-input v-model="form.sort" placeholder="请输入排序" />
         </el-form-item> -->
@@ -155,11 +140,11 @@
 </template>
 
 <script>
-import { listFinance, getFinance, delFinance, addFinance, updateFinance } from "@/api/system/finance";
+import { listInfo, getInfo, delInfo, addInfo, updateInfo } from "@/api/system/info";
 import {fixedSize} from '@/utils/fixedSize';
 
 export default {
-  name: "Finance",
+  name: "Info",
   data() {
     return {
       // 遮罩层
@@ -174,8 +159,8 @@ export default {
       showSearch: true,
       // 总条数
       total: 0,
-      // 金融表格数据
-      financeList: [],
+      // 驿站信息表格数据
+      infoList: [],
       // 弹出层标题
       title: "",
       // 是否显示弹出层
@@ -201,11 +186,11 @@ export default {
     this.getList();
   },
   methods: {
-    /** 查询金融列表 */
+    /** 查询驿站信息列表 */
     getList() {
       this.loading = true;
-      listFinance(this.queryParams).then(response => {
-        this.financeList = response.rows;
+      listInfo(this.queryParams).then(response => {
+        this.infoList = response.rows;
         this.total = response.total;
         this.loading = false;
       });
@@ -226,8 +211,8 @@ export default {
         createTime: null,
         updateBy: null,
         updateTime: null,
-        remark: null,
-        firstColumn: 0,
+        remark: 0,
+        firstColumn: null,
         secondColumn: null,
         sort: null
       };
@@ -253,16 +238,16 @@ export default {
     handleAdd() {
       this.reset();
       this.open = true;
-      this.title = "添加金融";
+      this.title = "添加驿站信息";
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
       this.reset();
       const newsId = row.newsId || this.ids
-      getFinance(newsId).then(response => {
+      getInfo(newsId).then(response => {
         this.form = response.data;
         this.open = true;
-        this.title = "修改金融";
+        this.title = "修改驿站信息";
       });
     },
     /** 提交按钮 */
@@ -270,13 +255,13 @@ export default {
       this.$refs["form"].validate(valid => {
         if (valid) {
           if (this.form.newsId != null) {
-            updateFinance(this.form).then(response => {
+            updateInfo(this.form).then(response => {
               this.$modal.msgSuccess("修改成功");
               this.open = false;
               this.getList();
             });
           } else {
-            addFinance(this.form).then(response => {
+            addInfo(this.form).then(response => {
               this.$modal.msgSuccess("新增成功");
               this.open = false;
               this.getList();
@@ -288,8 +273,8 @@ export default {
     /** 删除按钮操作 */
     handleDelete(row) {
       const newsIds = row.newsId || this.ids;
-      this.$modal.confirm('是否确认删除金融编号为"' + newsIds + '"的数据项？').then(function() {
-        return delFinance(newsIds);
+      this.$modal.confirm('是否确认删除驿站信息编号为"' + newsIds + '"的数据项？').then(function() {
+        return delInfo(newsIds);
       }).then(() => {
         this.getList();
         this.$modal.msgSuccess("删除成功");
@@ -297,17 +282,13 @@ export default {
     },
     /** 导出按钮操作 */
     handleExport() {
-      this.download('system/finance/export', {
+      this.download('system/info/export', {
         ...this.queryParams
-      }, `finance_${new Date().getTime()}.xlsx`)
+      }, `info_${new Date().getTime()}.xlsx`)
     },
     formatterEmployment(str){
+      console.log(str.content)
       return fixedSize(str.content);
-    },
-    showType2(str){
-      console.log(str.secondColumn);
-      var list=['金融助农','业务新闻','相关案例'];
-      return list[str.secondColumn];
     },
   }
 };

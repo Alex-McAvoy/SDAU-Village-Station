@@ -25,7 +25,7 @@
 									{{ item.title }}
 								</view>
 								<view class="main_content"><u-parse
-										:content="item.content"></u-parse></view>
+										:content="fixedSize(item.content)"></u-parse></view>
 								<u-album keyName="src2" style="margin-bottom: 8px;"></u-album>
 								<image :src="item.remark"
 									style="width: 300px;height: 150px; padding-left: 5vh; padding-right: 5vh;"></image>
@@ -90,7 +90,14 @@
 				uni.navigateTo({
 					url: "species_detail"
 				}) 
-			}
+			},
+			fixedSize(content) {
+				if (content != null) {
+					if (content.length < 35) return content;
+					else return content.substring(0, 35) + "...."
+				}
+				return content;
+			},
 		}
 	}
 </script>

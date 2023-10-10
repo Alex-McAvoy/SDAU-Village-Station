@@ -81,11 +81,11 @@
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="ID" align="center" prop="articleId" />
       <el-table-column label="标题" align="center" prop="title" />
-      <el-table-column label="内容" align="center" prop="content" />
+      <el-table-column label="内容" align="center" prop="content" :formatter="formatterEmployment" />
       <el-table-column label="备注" align="center" prop="remark" />
-      <el-table-column label="一级栏目编码" align="center" prop="firstColumn" />
+      <!-- <el-table-column label="一级栏目编码" align="center" prop="firstColumn" /> -->
       <el-table-column label="二级栏目编码" align="center" prop="secondColumn" />
-      <el-table-column label="排序" align="center" prop="sort" />
+      <!-- <el-table-column label="排序" align="center" prop="sort" /> -->
       <el-table-column label="来源" align="center" prop="source" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
@@ -116,7 +116,7 @@
     />
 
     <!-- 添加或修改学农技对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
+    <el-dialog :title="title" :visible.sync="open" width="1400px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="标题" prop="title">
           <el-input v-model="form.title" type="textarea" placeholder="请输入内容" />
@@ -124,21 +124,30 @@
         <el-form-item label="内容">
           <editor v-model="form.content" :min-height="192"/>
         </el-form-item>
-        <el-form-item label="删除标志" prop="delFlag">
+        <!-- <el-form-item label="删除标志" prop="delFlag">
           <el-input v-model="form.delFlag" placeholder="请输入删除标志" />
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="备注" prop="remark">
           <el-input v-model="form.remark" type="textarea" placeholder="请输入内容" />
         </el-form-item>
-        <el-form-item label="一级栏目编码" prop="firstColumn">
+        <!-- <el-form-item label="一级栏目编码" prop="firstColumn">
           <el-input v-model="form.firstColumn" placeholder="请输入一级栏目编码" />
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="二级栏目编码" prop="secondColumn">
-          <el-input v-model="form.secondColumn" placeholder="请输入二级栏目编码" />
+          <el-select v-model="form.secondColumn" placeholder="请选择二级栏目编码" width="1300px">
+            <el-option label="水稻" value="0"></el-option>
+            <el-option label="小麦" value="1"></el-option>
+            <el-option label="蔬菜" value="2"></el-option>
+            <el-option label="果树" value="3"></el-option>
+            <el-option label="植保" value="4"></el-option>
+            <el-option label="禽畜" value="5"></el-option>
+            <el-option label="农机装备" value="6"></el-option>
+            <el-option label="水产" value="7"></el-option>
+          </el-select>
         </el-form-item>
-        <el-form-item label="排序" prop="sort">
+        <!-- <el-form-item label="排序" prop="sort">
           <el-input v-model="form.sort" placeholder="请输入排序" />
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="来源" prop="source">
           <el-input v-model="form.source" type="textarea" placeholder="请输入内容" />
         </el-form-item>
@@ -153,6 +162,7 @@
 
 <script>
 import { listTech, getTech, delTech, addTech, updateTech } from "@/api/system/tech";
+import {fixedSize} from '@/utils/fixedSize';
 
 export default {
   name: "Tech",
@@ -298,7 +308,12 @@ export default {
       this.download('system/tech/export', {
         ...this.queryParams
       }, `tech_${new Date().getTime()}.xlsx`)
-    }
+    },
+    formatterEmployment(str){
+      console.log(str.content)
+      return fixedSize(str.content);
+    },
+
   }
 };
 </script>
