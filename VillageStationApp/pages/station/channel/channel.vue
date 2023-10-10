@@ -17,7 +17,7 @@
 		<view class="tab_nav">
 			<view class="navTitle" v-for="(item,index) in navList" :key="index">
 				<view :class="{'active':isActive === index}" @click="checked(index)">
-					{{item.title}}
+					{{ item.title }}
 				</view>
 			</view>
 		</view>
@@ -162,7 +162,6 @@
 				this.isActive = index;
 				console.log(this.isActive);
 				listByColumn(this.isActive).then(response => {
-					console.log(response);
 					this.channelList = response.rows;
 					this.total = response.total;
 					this.loading = false;
@@ -190,7 +189,6 @@
 				console.log(this.form)
 				addChannel(this.form).then(response => {
 					this.$modal.msgSuccess("发布成功");
-					this.show = false;
 					this.checked(0);
 				});
 			},

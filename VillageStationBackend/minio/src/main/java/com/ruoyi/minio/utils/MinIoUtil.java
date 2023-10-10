@@ -109,11 +109,13 @@ public class MinIoUtil {
         for (MultipartFile file : multipartFile) {
             String fileName = file.getOriginalFilename();
             String[] split = fileName.split("\\.");
+            String suffix = split[split.length-1];
             if (split.length > 1) {
-                fileName = split[0] + "_" + System.currentTimeMillis() + "." + split[1];
+                fileName = RenameUntil.generatePrefix() + "." + suffix;
             } else {
-                fileName = fileName + System.currentTimeMillis();
+                fileName = RenameUntil.generatePrefix();
             }
+            System.out.println(fileName);
             InputStream in = null;
             try {
                 in = file.getInputStream();

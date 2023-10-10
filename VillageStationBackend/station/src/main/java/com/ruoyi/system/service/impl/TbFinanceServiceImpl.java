@@ -13,7 +13,7 @@ import com.ruoyi.system.service.ITbFinanceService;
  * 金融Service业务层处理
  * 
  * @author ruoyi
- * @date 2023-10-10
+ * @date 2023-10-09
  */
 @Service
 public class TbFinanceServiceImpl implements ITbFinanceService 
@@ -33,18 +33,18 @@ public class TbFinanceServiceImpl implements ITbFinanceService
         return tbFinanceMapper.selectTbFinanceByNewsId(newsId);
     }
 
-    //获取全部未审核金融信息
+    /**
+     * 根据firstColumn查询金融
+     *
+     * @param firstColumn
+     * @return 金融
+     */
     @Override
-    public List<TbFinance> selectTbFinanceFirstColumnsList(TbFinance tbFinance) {
-        return tbFinanceMapper.selectTbFinanceFirstColumnsList(tbFinance);
+    public List<TbFinance> selectTbFinanceByFirstColumn(String firstColumn)
+    {
+        return tbFinanceMapper.selectTbFinanceByFirstColumn(firstColumn);
     }
 
-    //修改未审核金融信息
-    @Override
-    public int updateTbFinanceFirstColumns(TbFinance tbFinance) {
-        tbFinance.setUpdateTime(DateUtils.getNowDate());
-        return tbFinanceMapper.updateTbFinanceFirstColumns(tbFinance);
-    }
 
 
     /**
@@ -107,5 +107,18 @@ public class TbFinanceServiceImpl implements ITbFinanceService
     public int deleteTbFinanceByNewsId(Long newsId)
     {
         return tbFinanceMapper.deleteTbFinanceByNewsId(newsId);
+    }
+
+//获取全部未审核金融信息
+    @Override
+    public List<TbFinance> selectTbFinanceFirstColumnsList(TbFinance tbFinance) {
+        return tbFinanceMapper.selectTbFinanceFirstColumnsList(tbFinance);
+    }
+
+    //修改未审核金融信息
+    @Override
+    public int updateTbFinanceFirstColumns(TbFinance tbFinance) {
+        tbFinance.setUpdateTime(DateUtils.getNowDate());
+        return tbFinanceMapper.updateTbFinanceFirstColumns(tbFinance);
     }
 }

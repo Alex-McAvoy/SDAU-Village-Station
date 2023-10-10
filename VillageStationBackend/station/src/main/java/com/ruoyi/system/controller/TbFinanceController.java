@@ -1,3 +1,4 @@
+
 package com.ruoyi.system.controller;
 
 import java.util.List;
@@ -22,12 +23,11 @@ import com.ruoyi.system.domain.TbFinance;
 import com.ruoyi.system.service.ITbFinanceService;
 import com.ruoyi.common.utils.poi.ExcelUtil;
 import com.ruoyi.common.core.page.TableDataInfo;
-
 /**
  * 金融Controller
  * 
  * @author ruoyi
- * @date 2023-10-10
+ * @date 2023-10-09
  */
 @RestController
 @RequestMapping("/system/finance")
@@ -48,26 +48,6 @@ public class TbFinanceController extends BaseController
         return getDataTable(list);
     }
 
-    //    获取全部未审核的金融信息
-    @PreAuthorize("@ss.hasPermi('system:finance:list')")
-    @GetMapping("/getFirstColumns")
-    public TableDataInfo getRemark(TbFinance tbFinance)
-    {
-//        System.out.println("123"/;
-        startPage();
-
-        List<TbFinance> list = tbFinanceService.selectTbFinanceFirstColumnsList(tbFinance);
-        return getDataTable(list);
-    }
-
-    //修改firstColumns
-    @PreAuthorize("@ss.hasPermi('system:finance:edit')")
-    @PutMapping("/")
-    public AjaxResult eidtFirstColumns(@RequestBody TbFinance tbFinance)
-    {
-        return toAjax(tbFinanceService.updateTbFinanceFirstColumns(tbFinance));
-    }
-
     /**
      * 导出金融列表
      */
@@ -85,11 +65,22 @@ public class TbFinanceController extends BaseController
      * 获取金融详细信息
      */
     @PreAuthorize("@ss.hasPermi('system:finance:query')")
-    @GetMapping(value = "/{newsId}")
+    @GetMapping(value = "/id/{newsId}")
     public AjaxResult getInfo(@PathVariable("newsId") Long newsId)
     {
         return success(tbFinanceService.selectTbFinanceByNewsId(newsId));
     }
+
+    /**
+     * 根据firstColumn获取金融详细信息
+     */
+    @PreAuthorize("@ss.hasPermi('system:finance:query')")
+    @GetMapping(value = "/column/{firstColumn}")
+    public AjaxResult getFirstColumnInfo(@PathVariable("firstColumn") String firstColumn)
+    {
+        return success(tbFinanceService.selectTbFinanceByFirstColumn(firstColumn));
+    }
+
 
     /**
      * 新增金融
@@ -123,4 +114,29 @@ public class TbFinanceController extends BaseController
     {
         return toAjax(tbFinanceService.deleteTbFinanceByNewsIds(newsIds));
     }
+
+ //    获取全部未审核的金融信息
+    @PreAuthorize("@ss.hasPermi('system:finance:list')")
+    @GetMapping("/getFirstColumns")
+    public TableDataInfo getRemark(TbFinance tbFinance)
+    {
+//        System.out.println("123"/;
+        startPage();
+
+        List<TbFinance> list = tbFinanceService.selectTbFinanceFirstColumnsList(tbFinance);
+        return getDataTable(list);
+    }
+
+    //修改firstColumns
+    @PreAuthorize("@ss.hasPermi('system:finance:edit')")
+    @PutMapping("/")
+    public AjaxResult eidtFirstColumns(@RequestBody TbFinance tbFinance)
+    {
+        return toAjax(tbFinanceService.updateTbFinanceFirstColumns(tbFinance));
+    }
 }
+
+
+
+
+

@@ -129,7 +129,7 @@
     <el-dialog :title="title" :visible.sync="open" width="1400px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="标题" prop="title">
-          <el-input v-model="form.title" type="textarea" placeholder="请输入内容" />
+          <el-input v-model="form.title" type="textarea" />
         </el-form-item>
         <el-form-item label="内容">
           <editor v-model="form.content" :min-height="192"/>

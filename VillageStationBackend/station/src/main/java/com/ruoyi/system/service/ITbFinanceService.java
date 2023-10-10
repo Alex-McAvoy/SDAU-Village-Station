@@ -8,7 +8,7 @@ import com.ruoyi.system.domain.TbOtherColumns;
  * 金融Service接口
  * 
  * @author ruoyi
- * @date 2023-10-10
+ * @date 2023-10-09
  */
 public interface ITbFinanceService 
 {
@@ -20,11 +20,13 @@ public interface ITbFinanceService
      */
     public TbFinance selectTbFinanceByNewsId(Long newsId);
 
-    //    获取全部未审核
-    List<TbFinance> selectTbFinanceFirstColumnsList(TbFinance tbFinance);
-
-    //修改remark
-    public int updateTbFinanceFirstColumns(TbFinance tbFinance);
+    /**
+     * 查询根据firstColumn查金融信息
+     *
+     * @param firstColumn
+     * @return 金融
+     */
+    public List<TbFinance> selectTbFinanceByFirstColumn(String firstColumn);
 
     /**
      * 查询金融列表
@@ -65,4 +67,10 @@ public interface ITbFinanceService
      * @return 结果
      */
     public int deleteTbFinanceByNewsId(Long newsId);
+
+//    获取全部未审核
+    List<TbFinance> selectTbFinanceFirstColumnsList(TbFinance tbFinance);
+
+    //修改remark
+    public int updateTbFinanceFirstColumns(TbFinance tbFinance);
 }

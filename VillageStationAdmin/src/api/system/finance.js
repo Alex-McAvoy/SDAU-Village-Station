@@ -1,32 +1,24 @@
-import request from '@/utils/request'
-
-// 查询金融列表
+import request from '@/utils/request'// 查询金融列表
 export function listFinance(query) {
   return request({
     url: '/system/finance/list',
     method: 'get',
     params: query
   })
-}
-
-//未审核
+}// 查询金融详细
+export function getFinance(newsId) {
+  return request({
+    url: '/system/finance/' + newsId,
+    method: 'get'
+  })
+}//未审核
 export function listFirstColums(query) {
   return request({
     url: '/system/finance/getFirstColumns',
     method: 'get',
     params: query
   })
-}
-
-// 查询金融详细
-export function getFinance(newsId) {
-  return request({
-    url: '/system/finance/' + newsId,
-    method: 'get'
-  })
-}
-
-// 新增金融
+}// 新增金融
 export function addFinance(data) {
   return request({
     url: '/system/finance',

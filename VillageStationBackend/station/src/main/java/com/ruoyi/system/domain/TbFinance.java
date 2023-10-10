@@ -1,3 +1,14 @@
+
+
+
+
+
+
+
+
+
+
+
 package com.ruoyi.system.domain;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -9,7 +20,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * 金融对象 tb_finance
  * 
  * @author ruoyi
- * @date 2023-10-10
+ * @date 2023-10-09
  */
 public class TbFinance extends BaseEntity
 {

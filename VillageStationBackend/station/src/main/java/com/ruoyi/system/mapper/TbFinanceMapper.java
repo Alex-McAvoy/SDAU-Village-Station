@@ -2,30 +2,31 @@ package com.ruoyi.system.mapper;
 
 import java.util.List;
 import com.ruoyi.system.domain.TbFinance;
-import com.ruoyi.system.domain.TbOtherColumns;
-
-/**
+import com.ruoyi.system.domain.TbOtherColumns;/**
  * 金融Mapper接口
  * 
  * @author ruoyi
  * @date 2023-10-10
  */
 public interface TbFinanceMapper 
-{
-    /**
+{/**
      * 查询金融
      * 
      * @param newsId 金融主键
      * @return 金融
      */
-    public TbFinance selectTbFinanceByNewsId(Long newsId);
-
-    //获取全部未审核金融
+    public TbFinance selectTbFinanceByNewsId(Long newsId);//获取全部未审核金融
     public List<TbFinance> selectTbFinanceFirstColumnsList(TbFinance tbFinance);
 
     //修改未审核
     public int updateTbFinanceFirstColumns(TbFinance tbFinance);
-
+    /**
+     * 查询根据firstColumn查金融信息
+     *
+     * @param firstColumn 金融
+     * @return 金融
+     */
+    public List<TbFinance> selectTbFinanceByFirstColumn(String firstColumn);
     /**
      * 查询金融列表
      * 
@@ -42,7 +43,7 @@ public interface TbFinanceMapper
      */
     public int insertTbFinance(TbFinance tbFinance);
 
-    /**
+     /**
      * 修改金融
      * 
      * @param tbFinance 金融

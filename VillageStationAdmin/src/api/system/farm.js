@@ -12,7 +12,7 @@ export function listFarm(query) {
 // 查询买农资详细
 export function getFarm(newsId) {
   return request({
-    url: '/system/farm/' + newsId,
+    url: '/system/farm/news/' + newsId,
     method: 'get'
   })
 }

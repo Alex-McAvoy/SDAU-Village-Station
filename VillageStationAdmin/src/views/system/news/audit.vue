@@ -15,7 +15,7 @@
             size="mini"
             type="text"
             icon="el-icon-more"
-            @click="handlePass(scope.row)"
+            @click="handleDetail(scope.row)"
             v-hasPermi="['system:columns:edit']"
           >详情</el-button>
           <el-button
@@ -43,6 +43,38 @@
       :limit.sync="queryParams.pageSize"
       @pagination="getList"
     />
+     <el-dialog :title="title" :visible.sync="open" width="1400px" append-to-body>
+      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+        <el-form-item label="标题" prop="title">
+          <el-input v-model="form.title" type="textarea"/>
+        </el-form-item>
+        <el-form-item label="内容">
+          <editor v-model="form.content" :min-height="192"/>
+        </el-form-item>
+        <!-- <el-form-item label="删除标志" prop="delFlag">
+          <el-input v-model="form.delFlag" placeholder="请输入删除标志" />
+        </el-form-item> -->
+        <el-form-item label="备注" prop="remark">
+          <el-input v-model="form.remark" type="textarea"/>
+        </el-form-item>
+        <el-form-item label="二级栏目编码" prop="secondColumn" width="1300px">
+          <el-select v-model="form.secondColumn" placeholder="请选择二级栏目编码">
+            <el-option label="金融助农" value="4"></el-option>
+            <el-option label="业务新闻" value="5"></el-option>
+            <el-option label="相关案例" value="6"></el-option>
+          </el-select>
+        </el-form-item>
+        <!-- <el-form-item label="排序" prop="sort">
+          <el-input v-model="form.sort" placeholder="请输入排序" />
+        </el-form-item> -->
+        
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="submitForm">确 定</el-button>
+        <el-button @click="cancel">取 消</el-button>
+      </div>
+       
+    </el-dialog>
   </div>
 </template>
 
@@ -152,6 +184,15 @@ export default {
     /** 通过按钮操作 */
     handlePass(row) {
       row.remark = 1;
+      console.log(row)
+      updateColumns(row).then(response => {
+        this.$modal.msgSuccess("修改成功");
+        this.open = false;
+        this.getList();
+      });
+    },
+    // 详情按钮操作
+    handleDetail(row) {
       console.log(row)
       updateColumns(row).then(response => {
         this.$modal.msgSuccess("修改成功");
