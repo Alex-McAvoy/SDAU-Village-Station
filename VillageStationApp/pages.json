@@ -278,7 +278,8 @@
 		}, {
 			"pagePath": "pages/station/station",
 			"iconPath": "static/images/tabbar/station_.png",
-			"selectedIconPath": "static/images/tabbar/station_.png"
+			"selectedIconPath": "static/images/tabbar/station_.png",
+			"iconWidth": "60px"
 		}, {
 			"pagePath": "pages/expert/expert",
 			"iconPath": "static/images/tabbar/expert.png",
