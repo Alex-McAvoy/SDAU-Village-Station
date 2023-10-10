@@ -12,7 +12,7 @@ export function listQuestion(query) {
 // 查询评论/问答详细
 export function getQuestion(questionId) {
   return request({
-    url: '/system/question/' + questionId,
+    url: '/system/question/onequestion/' + questionId,
     method: 'get'
   })
 }
