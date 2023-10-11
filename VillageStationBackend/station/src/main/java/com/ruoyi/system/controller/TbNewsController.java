@@ -2,6 +2,8 @@ package com.ruoyi.system.controller;
 
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+
+import com.ruoyi.system.service.ITbNewsService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +18,7 @@ import com.ruoyi.common.annotation.Log;
 import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.enums.BusinessType;
-import com.ruoyi.system.domain.TbOtherColumns;
-import com.ruoyi.system.service.ITbOtherColumnsService;
+import com.ruoyi.system.domain.TbNews;
 import com.ruoyi.common.utils.poi.ExcelUtil;
 import com.ruoyi.common.core.page.TableDataInfo;
 
@@ -28,95 +29,43 @@ import com.ruoyi.common.core.page.TableDataInfo;
  * @date 2023-10-02
  */
 @RestController
-@RequestMapping("/system/columns")
+@RequestMapping("/system/news")
 public class TbNewsController extends BaseController
 {
     @Autowired
-    private ITbOtherColumnsService tbOtherColumnsService;
+    private ITbNewsService tbNewsService;
 
     /**
      * 查询新闻列表
-     * @param tbOtherColumns
+     * @param tbNews
      * @return com.ruoyi.common.core.page.TableDataInfo
      * @author Alex McAvoy
      * @date 2023/10/9 15:32:18
      */
-    @PreAuthorize("@ss.hasPermi('system:columns:list')")
+    @PreAuthorize("@ss.hasPermi('system:news:list')")
     @GetMapping("/list")
-    public TableDataInfo list(TbOtherColumns tbOtherColumns)
+    public TableDataInfo list(TbNews tbNews)
     {
         startPage();
-        List<TbOtherColumns> list = tbOtherColumnsService.selectTbOtherColumnsList(tbOtherColumns);
-        return getDataTable(list);
-    }
-
-    /**
-     * 获取全部未审核的新闻
-     * @param tbOtherColumns
-     * @return com.ruoyi.common.core.page.TableDataInfo
-     * @author Alex McAvoy
-     * @date 2023/10/9 15:32:34
-     */
-    @PreAuthorize("@ss.hasPermi('system:columns:list')")
-    @GetMapping("/getRemark")
-    public TableDataInfo getRemark(TbOtherColumns tbOtherColumns)
-    {
-        System.out.println("123");
-        startPage();
-
-        List<TbOtherColumns> list = tbOtherColumnsService.selectTbOtherColumnsRemarkList(tbOtherColumns);
-        return getDataTable(list);
-    }
-
-    /**
-     * 通过一级栏目、二级栏目获取新闻
-     * @param firstColumn
-     * @param secondColumn
-     * @return com.ruoyi.common.core.page.TableDataInfo
-     * @author Alex McAvoy
-     * @date 2023/10/9 15:32:55
-     */
-    @PreAuthorize("@ss.hasPermi('system:columns:query')")
-    @GetMapping("/getNewsByColumn/{firstColumn}/{secondColumn}")
-    public TableDataInfo getNewsByColumn(@PathVariable("firstColumn") String firstColumn,@PathVariable("secondColumn") String secondColumn)
-    {
-        System.out.println(firstColumn+"  "+secondColumn);
-        List<TbOtherColumns> list = tbOtherColumnsService.selectTbOtherColumnsByColumn(firstColumn,secondColumn);
-        return getDataTable(list);
-    }
-
-    /**
-     * 通过一级栏目获取新闻
-     * @param firstColumn
-     * @return com.ruoyi.common.core.page.TableDataInfo
-     * @author Alex McAvoy
-     * @date 2023/10/9 15:33:06
-     */
-    @PreAuthorize("@ss.hasPermi('system:columns:query')")
-    @GetMapping("/getNewsByColumn/{firstColumn}")
-    public TableDataInfo getNewsByFirstColumn(@PathVariable("firstColumn") String firstColumn)
-    {
-        System.out.println("2323424");
-        System.out.println(firstColumn);
-        List<TbOtherColumns> list = tbOtherColumnsService.selectTbOtherColumnsByFirstColumn(firstColumn);
+        List<TbNews> list = tbNewsService.selectTbOtherColumnsList(tbNews);
         return getDataTable(list);
     }
 
     /**
      * 导出其它栏目
      * @param response
-     * @param tbOtherColumns
+     * @param tbNews
      * @return void
      * @author Alex McAvoy
      * @date 2023/10/9 15:35:53
      */
-    @PreAuthorize("@ss.hasPermi('system:columns:export')")
+    @PreAuthorize("@ss.hasPermi('system:news:export')")
     @Log(title = "导出其它栏目", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public void export(HttpServletResponse response, TbOtherColumns tbOtherColumns)
+    public void export(HttpServletResponse response, TbNews tbNews)
     {
-        List<TbOtherColumns> list = tbOtherColumnsService.selectTbOtherColumnsList(tbOtherColumns);
-        ExcelUtil<TbOtherColumns> util = new ExcelUtil<TbOtherColumns>(TbOtherColumns.class);
+        List<TbNews> list = tbNewsService.selectTbOtherColumnsList(tbNews);
+        ExcelUtil<TbNews> util = new ExcelUtil<TbNews>(TbNews.class);
         util.exportExcel(response, list, "其它栏目 数据");
     }
 
@@ -127,55 +76,41 @@ public class TbNewsController extends BaseController
      * @author Alex McAvoy
      * @date 2023/10/9 15:35:43
      */
-    @PreAuthorize("@ss.hasPermi('system:columns:query')")
+    @PreAuthorize("@ss.hasPermi('system:news:query')")
     @GetMapping(value = "getById/{newsId}")
     public AjaxResult getInfo(@PathVariable("newsId") Long newsId)
     {
-        return success(tbOtherColumnsService.selectTbOtherColumnsByNewsId(newsId));
+        return success(tbNewsService.selectTbOtherColumnsByNewsId(newsId));
     }
 
     /**
      * 新增新闻
-     * @param tbOtherColumns
+     * @param tbNews
      * @return com.ruoyi.common.core.domain.AjaxResult
      * @author Alex McAvoy
      * @date 2023/10/9 15:35:17
      */
-    @PreAuthorize("@ss.hasPermi('system:columns:add')")
+    @PreAuthorize("@ss.hasPermi('system:news:add')")
     @Log(title = "新增新闻", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResult add(@RequestBody TbOtherColumns tbOtherColumns)
+    public AjaxResult add(@RequestBody TbNews tbNews)
     {
-        return toAjax(tbOtherColumnsService.insertTbOtherColumns(tbOtherColumns));
+        return toAjax(tbNewsService.insertTbOtherColumns(tbNews));
     }
 
     /**
      * 修改其它栏目
-     * @param tbOtherColumns
+     * @param tbNews
      * @return com.ruoyi.common.core.domain.AjaxResult
      * @author Alex McAvoy
      * @date 2023/10/9 15:34:59
      */
-    @PreAuthorize("@ss.hasPermi('system:columns:edit')")
+    @PreAuthorize("@ss.hasPermi('system:news:edit')")
     @Log(title = "修改其它栏目", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult edit(@RequestBody TbOtherColumns tbOtherColumns)
+    public AjaxResult edit(@RequestBody TbNews tbNews)
     {
-        return toAjax(tbOtherColumnsService.updateTbOtherColumns(tbOtherColumns));
-    }
-
-    /**
-     * 修改remark
-     * @param tbOtherColumns
-     * @return com.ruoyi.common.core.domain.AjaxResult
-     * @author Alex McAvoy
-     * @date 2023/10/9 15:34:47
-     */
-    @PreAuthorize("@ss.hasPermi('system:columns:edit')")
-    @PutMapping("/")
-    public AjaxResult eidtRemark(@RequestBody TbOtherColumns tbOtherColumns)
-    {
-        return toAjax(tbOtherColumnsService.updateTbOtherColumnsRemark(tbOtherColumns));
+        return toAjax(tbNewsService.updateTbOtherColumns(tbNews));
     }
 
     /**
@@ -185,11 +120,60 @@ public class TbNewsController extends BaseController
      * @author Alex McAvoy
      * @date 2023/10/9 15:33:36
      */
-    @PreAuthorize("@ss.hasPermi('system:columns:remove')")
+    @PreAuthorize("@ss.hasPermi('system:news:remove')")
     @Log(title = "删除其它栏目", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{newsIds}")
     public AjaxResult remove(@PathVariable Long[] newsIds)
     {
-        return toAjax(tbOtherColumnsService.deleteTbOtherColumnsByNewsIds(newsIds));
+        return toAjax(tbNewsService.deleteTbOtherColumnsByNewsIds(newsIds));
     }
+
+
+    /**
+     * 获取已审核，分类为secondColumn的新闻
+     * @param firstColumn 是否审核
+     * @param secondColumn 新闻分类
+     * @return com.ruoyi.common.core.page.TableDataInfo
+     * @author Alex McAvoy
+     * @date 2023/10/9 15:32:55
+     */
+    @PreAuthorize("@ss.hasPermi('system:news:list:checked')")
+    @GetMapping("/getListByColumn/{firstColumn}/{secondColumn}")
+    public TableDataInfo getNewsByColumn(@PathVariable("firstColumn") String firstColumn,@PathVariable("secondColumn") String secondColumn)
+    {
+        List<TbNews> list = tbNewsService.selectTbNewsByColumn(firstColumn,secondColumn);
+        return getDataTable(list);
+    }
+
+    /**
+     * 获取全部未审核的新闻
+     * @param tbNews
+     * @return com.ruoyi.common.core.page.TableDataInfo
+     * @author Alex McAvoy
+     * @date 2023/10/9 15:32:34
+     */
+    @PreAuthorize("@ss.hasPermi('system:news:list:unchecked')")
+    @GetMapping("/getFirstColumns")
+    public TableDataInfo getRemark(TbNews tbNews)
+    {
+        startPage();
+        List<TbNews> list = tbNewsService.selectTbNewsFirstColumnsList(tbNews);
+        return getDataTable(list);
+    }
+
+
+    /**
+     * 修改审核/未审核
+     * @param tbNews
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/9 15:34:47
+     */
+    @PreAuthorize("@ss.hasPermi('system:news:check')")
+    @PutMapping("/check")
+    public AjaxResult eidtRemark(@RequestBody TbNews tbNews)
+    {
+        return toAjax(tbNewsService.updateTbNewsFirstColumns(tbNews));
+    }
+
 }

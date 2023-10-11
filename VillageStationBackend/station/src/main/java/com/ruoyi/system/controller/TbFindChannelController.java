@@ -25,14 +25,13 @@ import com.ruoyi.common.core.page.TableDataInfo;
 
 /**
  * 找渠道Controller
- * 
+ *
  * @author ruoyi
  * @date 2023-10-05
  */
 @RestController
 @RequestMapping("/system/channel")
-public class TbFindChannelController extends BaseController
-{
+public class TbFindChannelController extends BaseController {
     @Autowired
     private ITbFindChannelService tbFindChannelService;
 
@@ -41,19 +40,9 @@ public class TbFindChannelController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:channel:list')")
     @GetMapping("/list")
-    public TableDataInfo list(TbFindChannel tbFindChannel)
-    {
+    public TableDataInfo list(TbFindChannel tbFindChannel) {
         startPage();
         List<TbFindChannel> list = tbFindChannelService.selectTbFindChannelList(tbFindChannel);
-        return getDataTable(list);
-    }
-
-    @PreAuthorize("@ss.hasPermi('system:channel:list')")
-    @GetMapping("/getListByColumn/{firstColumn}")
-    public TableDataInfo getListByColumn(@PathVariable("firstColumn") String firstColumn)
-    {
-        startPage();
-        List<TbFindChannel> list = tbFindChannelService.selectTbFindChannelListByColumn(firstColumn);
         return getDataTable(list);
     }
 
@@ -63,8 +52,7 @@ public class TbFindChannelController extends BaseController
     @PreAuthorize("@ss.hasPermi('system:channel:export')")
     @Log(title = "找渠道", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public void export(HttpServletResponse response, TbFindChannel tbFindChannel)
-    {
+    public void export(HttpServletResponse response, TbFindChannel tbFindChannel) {
         List<TbFindChannel> list = tbFindChannelService.selectTbFindChannelList(tbFindChannel);
         ExcelUtil<TbFindChannel> util = new ExcelUtil<TbFindChannel>(TbFindChannel.class);
         util.exportExcel(response, list, "找渠道数据");
@@ -75,8 +63,7 @@ public class TbFindChannelController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:channel:query')")
     @GetMapping(value = "/{newsId}")
-    public AjaxResult getInfo(@PathVariable("newsId") Long newsId)
-    {
+    public AjaxResult getInfo(@PathVariable("newsId") Long newsId) {
         return success(tbFindChannelService.selectTbFindChannelByNewsId(newsId));
     }
 
@@ -86,8 +73,7 @@ public class TbFindChannelController extends BaseController
     @PreAuthorize("@ss.hasPermi('system:channel:add')")
     @Log(title = "找渠道", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResult add(@RequestBody TbFindChannel tbFindChannel)
-    {
+    public AjaxResult add(@RequestBody TbFindChannel tbFindChannel) {
         return toAjax(tbFindChannelService.insertTbFindChannel(tbFindChannel));
     }
 
@@ -97,8 +83,7 @@ public class TbFindChannelController extends BaseController
     @PreAuthorize("@ss.hasPermi('system:channel:edit')")
     @Log(title = "找渠道", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult edit(@RequestBody TbFindChannel tbFindChannel)
-    {
+    public AjaxResult edit(@RequestBody TbFindChannel tbFindChannel) {
         return toAjax(tbFindChannelService.updateTbFindChannel(tbFindChannel));
     }
 
@@ -107,9 +92,55 @@ public class TbFindChannelController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:channel:remove')")
     @Log(title = "找渠道", businessType = BusinessType.DELETE)
-	@DeleteMapping("/{newsIds}")
-    public AjaxResult remove(@PathVariable Long[] newsIds)
-    {
+    @DeleteMapping("/{newsIds}")
+    public AjaxResult remove(@PathVariable Long[] newsIds) {
         return toAjax(tbFindChannelService.deleteTbFindChannelByNewsIds(newsIds));
+    }
+
+    /**
+     * 获取已审核，分类为secondColumn的渠道
+     *
+     * @param firstColumn  是否审核
+     * @param secondColumn 渠道分类
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 11:12:59
+     */
+    @PreAuthorize("@ss.hasPermi('system:channel:list:checked')")
+    @GetMapping("/getListByColumn/{firstColumn}/{secondColumn}")
+    public TableDataInfo getListByColumn(@PathVariable("firstColumn") String firstColumn, @PathVariable("secondColumn") String secondColumn) {
+        startPage();
+        List<TbFindChannel> list = tbFindChannelService.selectTbFindChannelListByColumn(firstColumn, secondColumn);
+        return getDataTable(list);
+    }
+
+    /**
+     * 获取全部未审核的渠道信息
+     *
+     * @param tbFindChannel 渠道对象
+     * @return com.ruoyi.common.core.page.TableDataInfo
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:45:54
+     */
+    @PreAuthorize("@ss.hasPermi('system:channel:list:unchecked')")
+    @GetMapping("/getFirstColumns")
+    public TableDataInfo getRemark(TbFindChannel tbFindChannel) {
+        startPage();
+        List<TbFindChannel> list = tbFindChannelService.selectTbFindChannelFirstColumnsList(tbFindChannel);
+        return getDataTable(list);
+    }
+
+    /**
+     * 修改审核/未审核
+     *
+     * @param tbFindChannel 渠道对象
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PreAuthorize("@ss.hasPermi('system:channel:check')")
+    @PutMapping("/check")
+    public AjaxResult eidtFirstColumns(@RequestBody TbFindChannel tbFindChannel) {
+        return toAjax(tbFindChannelService.updateTbFindChannelFirstColumns(tbFindChannel));
     }
 }

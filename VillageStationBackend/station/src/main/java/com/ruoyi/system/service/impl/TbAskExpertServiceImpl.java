@@ -106,4 +106,21 @@ public class TbAskExpertServiceImpl implements ITbAskExpertService
     {
         return tbAskExpertMapper.deleteTbAskExpertByAskExpertsId(askExpertsId);
     }
+
+    @Override
+    public List<TbAskExpert> selectTbAskExpertByColumn(String firstColumn, String dictValue) {
+        return tbAskExpertMapper.selectTbAskExpertByColumn(firstColumn, dictValue);
+    }
+
+    @Override
+    public List<TbAskExpert> selectTbAskExpertFirstColumnsList(TbAskExpert tbAskExpert) {
+        return tbAskExpertMapper.selectTbAskExpertFirstColumnsList(tbAskExpert);
+    }
+
+    @Override
+    public int updateTbAskExpertFirstColumns(TbAskExpert tbAskExpert) {
+        tbAskExpert.setUpdateTime(DateUtils.getNowDate());
+        return tbAskExpertMapper.updateTbAskExpertFirstColumns(tbAskExpert);
+    }
+
 }

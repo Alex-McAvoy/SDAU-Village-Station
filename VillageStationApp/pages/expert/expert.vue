@@ -7,13 +7,13 @@
 				<u-col span="7">
 					<u-search :show-action="false"></u-search>
 				</u-col>
-				<u-col span="2">天气</u-col>
 			</u-row>
 		</div>
 
 		<!-- 专家 -->
 		<view class="main_context first_main_context" style="margin-top: 100px;">
-			<view> <!-- 主体框 -->
+			<!-- 主体框 -->
+			<view>
 				<u-row gutter="16">
 					<u-col span="2" style="padding-left:10px;margin-right: 8px;">
 						<image src="/static/images/index/index_news.png" style="height:25px;width:25px;" />
@@ -23,23 +23,25 @@
 					</u-col>
 				</u-row>
 			</view>
-			<view> <!-- 栏目标签 -->
-				<u-tabs :list="list" :is-scroll="true" lineColor="#2ed573" @change="change"></u-tabs>
+			<!-- 栏目标签 -->
+			<view>
+				<u-tabs :list="expertBarList" :is-scroll="true" lineColor="#2ed573" @change="getExpertList"></u-tabs>
 			</view>
-			<div v-for="oneexpert in expert" :key="oneexpert.id">
-				<view style="margin-top: 10px;" @click="goToDetailPage1(oneexpert.askExpertsId)">
+			<!-- 专家列表 -->
+			<div v-for="item in expertList">
+				<view style="margin-top: 10px;" @click="goExpertDetail(item)">
 					<view>
 						<view style="display: flex;">
 							<div>
-								<image :src="oneexpert.remark"
+								<image :src="item.remark"
 									style="width:140px;height:180px;margin:3px;border-radius: 10px;" />
 							</div>
 							<div>
 								<div class="main_title">
-									{{ oneexpert.expertName }}
+									{{ item.expertName }}
 								</div>
 								<div class="main_content">
-									{{ fixedSize(oneexpert.introduction) }}
+									{{ fixedSize(item.introduction) }}
 								</div>
 							</div>
 						</view>
@@ -52,80 +54,58 @@
 </template>
 <script>
 	import {
-		expertList,
-		listExpert,
-		getExpert,
-		delExpert,
-		addExpert,
-		updateExpert
+		getExpertListByColumn
 	} from "@/api/station/expert.js";
 	export default {
-		onLoad: function() {},
 		data() {
-			return {
-				expert: [],
-				cur: 0,
-				text: '000',
-				textList: ['1', '2', '6'],
-				list: [{
-					name: '农学专家',
-				}, {
-					name: '林学专家'
-				}, {
-					name: '园艺专家'
-				}, {
-					name: '植保专家'
-				},{
-					name: '动物专家'
-				},{
-					name: '信息专家'
-				},{
-					name: '农机专家'
-				},{
-					name: '食科专家'
-				},
-				],
+			return {				
+				expertList: [],
+				expertBarList: [{
+						name: '农学专家',
+						index: 0
+					}, {
+						name: '林学专家',
+						index: 1
+					}, {
+						name: '园艺专家',
+						index: 2
+					}, {
+						name: '植保专家',
+						index: 3
+					}, {
+						name: '动物专家',
+						index: 4
+					}, {
+						name: '信息专家',
+						index: 5
+					}, {
+						name: '农机专家',
+						index: 6
+					}, {
+						name: '食科专家',
+						index: 7
+					}
+				]
 			}
 		},
 		created() {
-			this.change(0)
+			this.getExpertList({index:0})
 		},
 		methods: {
-			//跳转专家详情
-			goToDetailPage1(id) {
-				uni.navigateTo({
-					url: "/pages/station/askExperts/shr?id=" + id
-				})
-			},
-			handleSelect(key, keyPath) {
-				// console.log(key, keyPath);
-			},
-			change(index) {
-				let tmp = 0
-				if (index != 0) {
-					tmp = index.index
-				}
-
-				// 后期该处需修改！！！
-				if (index.index === 3) {
-					tmp = 6
-				}
-				expertList(tmp).then(response => {
-					console.log(response)
-					this.expert = response.data;
-					// this.total = response.total;
+			getExpertList(item) {
+				getExpertListByColumn(1,item.index).then(response => {
+					this.expertList = response.data;
 					this.loading = false;
 				});
 			},
-			expertdetail(id) {
-				console.log(id)
+			goExpertDetail(item) {
+				getApp().globalData.item = item;
 				uni.navigateTo({
-					url: "/pages/expert/expert_detail?id=" + id
+					url: "/pages/expert/expert_detail"
 				})
-
 			},
 			fixedSize(content) {
-				return content.substring(0, 25) + "..."
+				return content.substring(0, 80) + "..."
 			},
 		}
 	}

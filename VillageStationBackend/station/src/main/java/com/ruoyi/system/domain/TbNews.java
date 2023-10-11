@@ -19,7 +19,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * @author ruoyi
  * @date 2023-10-02
  */
-public class TbOtherColumns extends BaseEntity
+public class TbNews extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 

@@ -1,31 +1,21 @@
 <template>
 	<view>
-		<!-- 头部 -->
-		<view
-			style=" display: flex; align-items: center;  background-color: white; justify-content: space-between; margin-bottom: 10px;">
-			<!-- 定位 -->
-			<view style="margin-left: 1vh; align-items: center; margin-bottom: 10px;">
-				<image src="../../../static/images/station/freeAsk/location.png" style="width: 15px; height: 15px;"></image>
-				<span style="color:#2ed573 ; margin-left: 5px; ">泰安</span>
-			</view>
-			<!-- 搜索框 -->
-			<view style="width: 80%; height: 20px; margin-bottom: 20px; ">
-				<u-search placeholder="搜索" v-model="keyword" actionText=""></u-search>
-			</view>
-		</view>
+
 		<!-- 轮播图 -->
 		<view style="margin: 15px;border-radius: 5px; overflow: hidden;">
 			<u-swiper :list="list1"></u-swiper>
 		</view>
 		<!-- 主体内容一 -->
 		<div v-for="askquestion in askquestions" :key="askquestion.id">
-			<view style=" margin: 15px; border-radius: 5px;  background-color: white; margin-top: 10px; " @click="goToDetailPage(askquestion.askFreeId)">
+			<view style=" margin: 15px; border-radius: 5px;  background-color: white; margin-top: 10px; "
+				@click="goToDetailPage(askquestion.askFreeId)">
 				<view class="u-page">
 					<view class="u-demo-block">
 						<view class="u-demo-block__content">
 							<view class="album">
 								<view class="album__avatar">
-									<image src="/static/images/icon.jpg" mode="" style="width: 32px;height: 32px; "></image>
+									<image src="/static/images/icon.jpg" mode="" style="width: 32px;height: 32px; ">
+									</image>
 								</view>
 								<view class="album__content">
 									<div class="ask_title">
@@ -59,14 +49,13 @@
 
 <script>
 	import {
-		listfreeAsk,
-		addAskQuestion
+		getFreeAskListByColumn,
+		addFreeAsk
 	} from "@/api/station/freeAsk.js";
-	
+
 	export default {
 		data() {
 			return {
-
 				//弹出框
 				show: false,
 				title: '添加问题',
@@ -84,9 +73,9 @@
 				urls1: [{
 					src2: '../../../static/images/station/freeAsk/apple.jpg',
 				}],
-				questions:{
-					title:'',
-					content:'',
+				questions: {
+					title: '',
+					content: '',
 				},
 			}
 		},
@@ -95,32 +84,23 @@
 		},
 		methods: {
 			goToDetailPage(id) {
-			    // console.log(id);
-			    uni.navigateTo({
-			      url: "/pages/station/freeAsk/freeAskdetail?id="+id
-			    });
-			  },
+				uni.navigateTo({
+					url: "/pages/station/freeAsk/freeAskDetail?id=" + id
+				});
+			},
 			//获取随时问问题列表
 			getList() {
 				this.loading = true;
-				listfreeAsk(this.queryParams).then(response => {
-					// console.log(response)
-					this.askquestions = response.rows;
-					// // this.total = response.total;
+				getFreeAskListByColumn(1).then(response => {
+					this.askquestions = response.data;
 					this.loading = false;
 				});
 			},
 			confirm() {
-				// console.log(this.questions)
-				addAskQuestion(this.questions).then(response => {
-					// console.log(response)
+				addFreeAsk(this.questions).then(response => {
 					this.getList();
-					// this.question = response.data;
-					// this.total = response.total;
 					this.loading = false;
-					// console.log(this.question);
 					this.show = false;
-					
 				});
 			},
 			open() {
@@ -142,6 +122,7 @@
 
 <style lang="scss">
 	@import url("../../../static/css/text.css");
+
 	.album {
 		@include flex;
 		align-items: flex-start;

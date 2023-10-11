@@ -28,7 +28,7 @@ import com.ruoyi.common.core.page.TableDataInfo;
  * @date 2023-10-09
  */
 @RestController
-@RequestMapping("/system/training")
+@RequestMapping("/system/offline_training")
 public class TbOfflineTrainingController extends BaseController
 {
     @Autowired
@@ -100,5 +100,49 @@ public class TbOfflineTrainingController extends BaseController
     public AjaxResult remove(@PathVariable Long[] newsIds)
     {
         return toAjax(tbOfflineTrainingService.deleteTbOfflineTrainingByNewsIds(newsIds));
+    }
+
+    /**
+     * 获取已审核secondColumn的培训
+     *
+     * @param firstColumn  是否审核
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 11:12:59
+     */
+    @PreAuthorize("@ss.hasPermi('system:training:list:checked')")
+    @GetMapping(value = "/getListByColumn/{firstColumn}")
+    public AjaxResult getProductsByColumn(@PathVariable("firstColumn") String firstColumn) {
+        return success(tbOfflineTrainingService.selectTbOfflineTrainingByColumn(firstColumn));
+    }
+
+    /**
+     * 获取全部未审核的培训信息
+     *
+     * @param tbOfflineTraining 培训对象
+     * @return com.ruoyi.common.core.page.TableDataInfo
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:45:54
+     */
+    @PreAuthorize("@ss.hasPermi('system:training:list:unchecked')")
+    @GetMapping("/getFirstColumns")
+    public TableDataInfo getRemark(TbOfflineTraining tbOfflineTraining) {
+        startPage();
+        List<TbOfflineTraining> list = tbOfflineTrainingService.selectTbOfflineTrainingFirstColumnsList(tbOfflineTraining);
+        return getDataTable(list);
+    }
+
+    /**
+     * 修改审核/未审核
+     *
+     * @param tbOfflineTraining 培训对象
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PreAuthorize("@ss.hasPermi('system:training:check')")
+    @PutMapping("/check")
+    public AjaxResult eidtFirstColumns(@RequestBody TbOfflineTraining tbOfflineTraining) {
+        return toAjax(tbOfflineTrainingService.updateTbOfflineTrainingFirstColumns(tbOfflineTraining));
     }
 }

@@ -116,7 +116,7 @@
 			loginSuccess(result) {
 				// 设置用户信息
 				this.$store.dispatch('GetInfo').then(res => {
-					this.$tab.reLaunch('/pages/station/station')
+					this.$tab.reLaunch('/pages/station/station/station')
 				})
 			}
 		}

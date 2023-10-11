@@ -2,6 +2,7 @@ package com.ruoyi.system.mapper;
 
 import java.util.List;
 import com.ruoyi.system.domain.TbOfflineTraining;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 线下培训Mapper接口
@@ -58,4 +59,10 @@ public interface TbOfflineTrainingMapper
      * @return 结果
      */
     public int deleteTbOfflineTrainingByNewsIds(Long[] newsIds);
+
+    public List<TbOfflineTraining> selectTbOfflineTrainingByColumn(@Param("firstColumn")String firstColumn);
+
+    public List<TbOfflineTraining> selectTbOfflineTrainingFirstColumnsList(TbOfflineTraining tbOfflineTraining);
+
+    public int updateTbOfflineTrainingFirstColumns(TbOfflineTraining tbOfflineTraining);
 }

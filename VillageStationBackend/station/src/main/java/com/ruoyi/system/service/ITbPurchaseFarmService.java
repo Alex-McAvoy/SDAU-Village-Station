@@ -11,14 +11,6 @@ import com.ruoyi.system.domain.TbPurchaseFarm;
  */
 public interface ITbPurchaseFarmService 
 {
-    /**
-     * 查询农资一级列表(类型)
-     *
-     * @param firstColumn 农资一级列表(类型)
-     * @return 买农资
-     */
-    public List<TbPurchaseFarm> selectTbPurchaseFarmByFirstColumn(String firstColumn);
-
 
     /**
      * 查询买农资
@@ -67,4 +59,10 @@ public interface ITbPurchaseFarmService
      * @return 结果
      */
     public int deleteTbPurchaseFarmByNewsId(Long newsId);
+
+    public List<TbPurchaseFarm> selectTbPurchaseFarmByColumn(String firstColumn, String secondColumn);
+
+    public List<TbPurchaseFarm> selectTbPurchaseFarmFirstColumnsList(TbPurchaseFarm tbPurchaseFarm);
+
+    public int updateTbPurchaseFarmFirstColumns(TbPurchaseFarm tbPurchaseFarm);
 }

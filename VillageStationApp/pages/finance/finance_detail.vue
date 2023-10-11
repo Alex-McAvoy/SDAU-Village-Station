@@ -1,67 +1,63 @@
 <template>
-	<view style="border-radius: 10px; background-color: white; margin:8px 15px; height: 90%;" :model="finance">
-
-		<view> <!-- 主体框 -->  
-				 
-					<view >{{ finance.title }}</view>  
-					<view >{{ finance.content }}</view> 
-				
-					<image :src="finance.remark" style="width:160px;height:160px;border-radius: 10px;"/>
+	<view>
+		 <view class="tab_nav" style="border-radius: 10px; background-color: white;  margin:8px 15px; height: 100vh;">
+		 <view class="title">{{ title }}</view>
+		 <u-text color="#909090" align="center" text="管理员 | 2023-10-06 16:57" bold size="13"></u-text>
+		<view class="news">
+			<view class="new_img">
+				<image :src="remark" alt=""
+					style="width:100%;height: 200px;overflow: hidden">
+			</view>
+			<view class="new_text"><u-parse :content="content"></u-parse></view>
 		</view>
- 
+		</view>
 	</view>
 </template>
 
-
 <script>
-	import {
-		listFinance,
-		getFinance,
-		addFinance,
-		updateFinance,
-		delFinance,
-		getfirstColumnFinance,
-	} from "@/api/system/finance.js";
-	
 	export default {
 		onLoad: function() {},
 		data() {
 			return {
 				loading: false,
-				finance: [],
-				firstColumn: '',
+				title: '',
+				content: '',
+				remark: '',
+				createTime: ''
 			}
 		},
 		created() {
-			this.getList2();
+		    this.getList(); 
 		}, 
 		methods: {
-			//根据问题id获取评论
-			getList2() { 
-				this.loading = true; 
-				this.finance =getApp().globalData.item;
-				console.log(getApp().globalData.item)
-			 
-			},
-			
-		}
+			getList() { 
+				this.loading = true;  
+				var finance_detail = getApp().globalData.item;
+				this.title = finance_detail.title;
+				this.content = finance_detail.content;
+				this.remark = finance_detail.remark;
+				this.createTime = finance_detail.createTime;
+			    this.loading = false;
+			    },
+			} 
 	}
 </script>
 
 <style>
-	@import url("../../static/css/text.css"); 
-
-	.finance_img {
+	.title {
+		font-size: 21px;
+		margin:15px;
+		text-align: center;
+	}
+	.new_img {
 		display: flex;
 		justify-content: center;
 		margin: 15px;
 	}
-
-	.finance_img {
-		display: flex;
-		justify-content: left;
-		margin: 15px;
-		padding: 5px 0 0 5px;
-	} 
-	
+	.new_text {
+		margin: 20px 15px 15px 15px;
+		padding-bottom: 5px;
+		letter-spacing: 0.07em;
+		line-height: 1.30em;
+	}
 </style>

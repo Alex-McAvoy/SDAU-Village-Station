@@ -2,6 +2,7 @@ package com.ruoyi.system.mapper;
 
 import java.util.List;
 import com.ruoyi.system.domain.TbNewSpecies;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 新品种Mapper接口
@@ -58,4 +59,10 @@ public interface TbNewSpeciesMapper
      * @return 结果
      */
     public int deleteTbNewSpeciesByNewsIds(Long[] newsIds);
+
+    public List<TbNewSpecies> selectTbNewSpeciesByColumn(@Param("firstColumn")String firstColumn);
+
+    public List<TbNewSpecies> selectTbNewSpeciesFirstColumnsList(TbNewSpecies tbNewSpecies);
+
+    public int updateTbNewSpeciesFirstColumns(TbNewSpecies tbNewSpecies);
 }

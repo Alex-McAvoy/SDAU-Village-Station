@@ -58,4 +58,10 @@ public interface ITbOfflineTrainingService
      * @return 结果
      */
     public int deleteTbOfflineTrainingByNewsId(Long newsId);
+
+    public List<TbOfflineTraining> selectTbOfflineTrainingByColumn(String firstColumn);
+
+    public List<TbOfflineTraining> selectTbOfflineTrainingFirstColumnsList(TbOfflineTraining tbOfflineTraining);
+
+    public int updateTbOfflineTrainingFirstColumns(TbOfflineTraining tbOfflineTraining);
 }

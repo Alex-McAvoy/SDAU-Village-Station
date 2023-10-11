@@ -18,11 +18,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="userId"    column="user_id"    />
         <result property="direction"    column="direction"    />
         <result property="researchIntroduction"    column="research_introduction"    />
+        <result property="firstColumn"    column="first_column"    />
     </resultMap>
 
     <sql id="selectTbAskExpertVo">
         select ask_experts_id, expert_name, introduction, dict_value,
-               del_flag, create_by, create_time, update_by, update_time, remark, user_id ,direction,research_introduction
+               del_flag, create_by, create_time, update_by, update_time,
+                remark, user_id ,direction,research_introduction,first_column
         from tb_ask_expert
     </sql>
 
@@ -80,6 +82,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="researchIntroduction != null">#{researchIntroduction},</if>
          </trim>
     </insert>
+
     <update id="updateTbAskExpert" parameterType="TbAskExpert">
         update tb_ask_expert
         <trim prefix="SET" suffixOverrides=",">
@@ -99,8 +102,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where ask_experts_id = #{askExpertsId}
     </update>
 
-
-
     <delete id="deleteTbAskExpertByAskExpertsId" parameterType="Long">
         delete from tb_ask_expert where ask_experts_id = #{askExpertsId}
     </delete>
@@ -111,4 +112,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             #{askExpertsId}
         </foreach>
     </delete>
+
+
+    <select id="selectTbAskExpertByColumn"  resultMap="TbAskExpertResult">
+        <include refid="selectTbAskExpertVo"/>
+        where first_column = #{firstColumn} AND dict_value = #{dictValue}
+    </select>
+
+    <select id="selectTbAskExpertFirstColumnsList" parameterType="String"
+            resultMap="TbAskExpertResult">
+        <include refid="selectTbAskExpertVo"/>
+        where first_column = 0
+    </select>
+
+    <update id="updateTbAskExpertFirstColumns"  parameterType="TbAskExpert">
+        UPDATE tb_ask_expert
+        <trim prefix="SET" suffixOverrides=",">
+            first_column = '1'
+        </trim>
+        WHERE ask_experts_id = #{askExpertsId}
+    </update>
 </mapper>

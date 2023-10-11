@@ -1,18 +1,6 @@
 <template>
 	<view>
-		<!-- 搜索框-->
-		<view style=" display: flex; align-items: center;  background-color: white; justify-content: space-between;">
-			<!-- 定位 -->
-			<view style="margin-left: 1vh; align-items: center; margin-bottom: 10px;">
-				<image src="../../../static/images/station/onlinebase/location.png" style="width: 15px; height: 15px;">
-				</image>
-				<span style="color:#00ae67  ; margin-left: 5px; ">泰安</span>
-			</view>
-			<!-- 搜索框 -->
-			<view style="width: 80%; height: 20px; margin-bottom: 20px; ">
-				<u-search placeholder="搜索" actionText=""></u-search>
-			</view>
-		</view>
+
 		<!-- 导航栏 -->
 		<view class="tab_nav">
 			<view class="navTitle" v-for="(item,index) in navList" :key="index">
@@ -62,19 +50,11 @@
 					</u-radio-group>
 				</u-form-item>
 				<u-form-item>
-						<u-upload
-							ref="upload"
-							:max-upload-count="1"
-							:file-accept="'image/jpeg,image/png'"
-							:url="upload.url"
-							:header="upload.headers"
-							:default-file-list.sync="upload.fileList"
-							:process-style="{ color: '#409EFF' }"
-							@progress="handleFileUploadProgress"
-							@success="handleFileSuccess"
-							:auto-upload="false"
-						>
-						</u-upload>
+					<u-upload ref="upload" :max-upload-count="1" :file-accept="'image/jpeg,image/png'" :url="upload.url"
+						:header="upload.headers" :default-file-list.sync="upload.fileList"
+						:process-style="{ color: '#409EFF' }" @progress="handleFileUploadProgress"
+						@success="handleFileSuccess" :auto-upload="false">
+					</u-upload>
 				</u-form-item>
 			</u-form>
 		</u-modal>
@@ -88,20 +68,17 @@
 
 <script>
 	import {
-		listChannel,
+		getChannelListByColumns,
 		getChannel,
-		delChannel,
-		addChannel,
-		updateChannel,
-		listByColumn
-	} from "@/api/system/channel";
+		addChannel
+	} from "@/api/station/channel";
 	export default {
 		data() {
 			return {
 				upload: {
-				    url: 'http://your-upload-url', // 替换为你的上传接口地址
-				    headers: {}, // 替换为你需要的请求头信息
-				    fileList: [], // 用于存储上传成功的文件列表
+					url: 'http://your-upload-url', // 替换为你的上传接口地址
+					headers: {}, // 替换为你需要的请求头信息
+					fileList: [], // 用于存储上传成功的文件列表
 				},
 				form: {},
 				current: 0,
@@ -132,36 +109,40 @@
 			}
 		},
 		created() {
-			this.loading = true;
-			this.checked(0);
+			this.getList();
 		},
 		methods: {
 			handleAdd() {
-			      this.upload.fileList = [];
-			    },
-			
+				this.upload.fileList = [];
+			},
 			handeUpdate(row) {
-			    this.upload.fileList = [
-			    { name: this.form.fileName, url: this.form.filePath },
-			      ];
-			    },
+				this.upload.fileList = [{
+					name: this.form.fileName,
+					url: this.form.filePath
+				}, ];
+			},
 			// 文件提交处理
 			submitUpload() {
-			    this.$refs.upload.submit();
-			    },
+				this.$refs.upload.submit();
+			},
 			// 文件上传中处理
 			handleFileUploadProgress(event, file, fileList) {
-			    this.upload.isUploading = true;
+				this.upload.isUploading = true;
 			},
 			// 文件上传成功处理
 			handleFileSuccess(response, file, fileList) {
-			    this.upload.isUploading = false;
-			    this.form.filePath = response.url; 
+				this.upload.isUploading = false;
+				this.form.filePath = response.url;
+			},
+			getList() {
+				getChannelListByColumns(1, 0).then(response => {
+					this.channelList = response.rows;
+					this.loading = false;
+				});
 			},
 			checked(index) {
 				this.isActive = index;
-				console.log(this.isActive);
-				listByColumn(this.isActive).then(response => {
+				getChannelListByColumns(1, index).then(response => {
 					this.channelList = response.rows;
 					this.total = response.total;
 					this.loading = false;
@@ -186,7 +167,6 @@
 			},
 			/** 提交按钮 */
 			submitForm() {
-				console.log(this.form)
 				addChannel(this.form).then(response => {
 					this.$modal.msgSuccess("发布成功");
 					this.checked(0);
@@ -195,7 +175,6 @@
 			//跳转详情页
 			skip(item) {
 				getApp().globalData.item = item;
-				console.log(getApp().globalData.item);
 				uni.navigateTo({
 					url: "channel_detail"
 				})

@@ -45,19 +45,6 @@ public class TbQuestionServiceImpl implements ITbQuestionService
     }
 
     /**
-     * 查询父id对应的评论/问答
-     *
-     * @param parentId
-     * @return 评论/问答
-     */
-    @Override
-    public List<TbQuestion> selectTbQuestionByParentId(Long parentId)
-    {
-        return tbQuestionMapper.selectTbQuestionByParentId(parentId);
-    }
-
-
-    /**
      * 查询评论/问答列表
      *
      * @param tbQuestion 评论/问答
@@ -116,5 +103,27 @@ public class TbQuestionServiceImpl implements ITbQuestionService
     public int deleteTbQuestionByQuestionId(Long questionId)
     {
         return tbQuestionMapper.deleteTbQuestionByQuestionId(questionId);
+    }
+
+    @Override
+    public List<TbQuestion> selectTbQuestionByParentId(Long parentId, String firstColumn)
+    {
+        return tbQuestionMapper.selectTbQuestionByParentId(parentId,firstColumn);
+    }
+
+    @Override
+    public List<TbQuestion> selectTbQuestionByColumn(Long expertId, String firstColumn) {
+        return tbQuestionMapper.selectTbQuestionByColumn(expertId, firstColumn);
+    }
+
+    @Override
+    public List<TbQuestion> selectTbQuestionFirstColumnsList(TbQuestion tbQuestion) {
+        return tbQuestionMapper.selectTbQuestionFirstColumnsList(tbQuestion);
+    }
+
+    @Override
+    public int updateTbQuestionFirstColumns(TbQuestion tbQuestion) {
+        tbQuestion.setUpdateTime(DateUtils.getNowDate());
+        return tbQuestionMapper.updateTbQuestionFirstColumns(tbQuestion);
     }
 }

@@ -93,4 +93,20 @@ public class TbNewSpeciesServiceImpl implements ITbNewSpeciesService
     {
         return tbNewSpeciesMapper.deleteTbNewSpeciesByNewsId(newsId);
     }
+
+    @Override
+    public List<TbNewSpecies> selectTbNewSpeciesByColumn(String firstColumn) {
+        return tbNewSpeciesMapper.selectTbNewSpeciesByColumn(firstColumn);
+    }
+
+    @Override
+    public List<TbNewSpecies> selectTbNewSpeciesFirstColumnsList(TbNewSpecies tbNewSpecies) {
+        return tbNewSpeciesMapper.selectTbNewSpeciesFirstColumnsList(tbNewSpecies);
+    }
+
+    @Override
+    public int updateTbNewSpeciesFirstColumns(TbNewSpecies tbNewSpecies) {
+        tbNewSpecies.setUpdateTime(DateUtils.getNowDate());
+        return tbNewSpeciesMapper.updateTbNewSpeciesFirstColumns(tbNewSpecies);
+    }
 }

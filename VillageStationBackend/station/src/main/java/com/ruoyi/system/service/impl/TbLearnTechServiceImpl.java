@@ -21,18 +21,6 @@ public class TbLearnTechServiceImpl implements ITbLearnTechService
     private TbLearnTechMapper tbLearnTechMapper;
 
     /**
-     * 查询学农技二级列表(类型)
-     *
-     * @param firstColumn 农技一级列表(类型)
-     * @return 学农技
-     */
-    @Override
-    public List<TbLearnTech> selectTbLearnTechByFirstColumn(String firstColumn)
-    {
-        return tbLearnTechMapper.selectTbLearnTechByFirstColumn( firstColumn );
-    }
-
-    /**
      * 查询学农技
      * 
      * @param articleId 学农技主键
@@ -104,5 +92,21 @@ public class TbLearnTechServiceImpl implements ITbLearnTechService
     public int deleteTbLearnTechByArticleId(Long articleId)
     {
         return tbLearnTechMapper.deleteTbLearnTechByArticleId(articleId);
+    }
+
+    @Override
+    public List<TbLearnTech> selectTbLearnTechByColumn(String firstColumn, String secondColumn) {
+        return tbLearnTechMapper.selectTbLearnTechByColumn(firstColumn, secondColumn);
+    }
+
+    @Override
+    public List<TbLearnTech> selectTbLearnTechFirstColumnsList(TbLearnTech tbLearnTech) {
+        return tbLearnTechMapper.selectTbLearnTechFirstColumnsList(tbLearnTech);
+    }
+
+    @Override
+    public int updateTbLearnTechFirstColumns(TbLearnTech tbLearnTech) {
+        tbLearnTech.setUpdateTime(DateUtils.getNowDate());
+        return tbLearnTechMapper.updateTbLearnTechFirstColumns(tbLearnTech);
     }
 }

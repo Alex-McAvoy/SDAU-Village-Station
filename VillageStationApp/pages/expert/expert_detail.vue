@@ -16,7 +16,7 @@
 				</u-col>
 			</u-row>
 		</view>
-		<!-- 下面这些还需要吗？ -->
+		
 		<view :model="datailList" >
 		<view class="sub_content"><strong>研究方向</strong>：{{ datailList.direction }}</view>
 		</view>

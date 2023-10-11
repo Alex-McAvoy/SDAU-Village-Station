@@ -45,11 +45,6 @@ public class TbAskFreeServiceImpl implements ITbAskFreeService
         return tbAskFreeMapper.selectTbAskFreeByParentId(parentId);
     }
 
-
-
-
-
-
     /**
      * 查询随时问列表
      * 
@@ -110,5 +105,21 @@ public class TbAskFreeServiceImpl implements ITbAskFreeService
     public int deleteTbAskFreeByAskFreeId(Long askFreeId)
     {
         return tbAskFreeMapper.deleteTbAskFreeByAskFreeId(askFreeId);
+    }
+
+    @Override
+    public List<TbAskFree> selectTbAskFreeByColumn(String firstColumn) {
+        return tbAskFreeMapper.selectTbAskFreeByColumn(firstColumn);
+    }
+
+    @Override
+    public List<TbAskFree> selectTbAskFreeFirstColumnsList(TbAskFree tbAskFree) {
+        return tbAskFreeMapper.selectTbAskFreeFirstColumnsList(tbAskFree);
+    }
+
+    @Override
+    public int updateTbAskFreeFirstColumns(TbAskFree tbAskFree) {
+        tbAskFree.setUpdateTime(DateUtils.getNowDate());
+        return tbAskFreeMapper.updateTbAskFreeFirstColumns(tbAskFree);
     }
 }

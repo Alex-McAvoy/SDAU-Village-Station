@@ -97,4 +97,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             #{newsId}
         </foreach>
     </delete>
+
+    <select id="selectTbOfflineTrainingByColumn"  resultMap="TbOfflineTrainingResult">
+        <include refid="selectTbOfflineTrainingVo"/>
+        where first_column = #{firstColumn}
+    </select>
+
+    <select id="selectTbOfflineTrainingFirstColumnsList" parameterType="String"
+            resultMap="TbOfflineTrainingResult">
+        <include refid="selectTbOfflineTrainingVo"/>
+        where first_column = 0
+    </select>
+
+    <update id="updateTbOfflineTrainingFirstColumns"  parameterType="TbLearnTech">
+        update tb_offine_training
+        <trim prefix="SET" suffixOverrides=",">
+            first_column = 1
+        </trim>
+        where news_id = #{newsId}
+    </update>
 </mapper>

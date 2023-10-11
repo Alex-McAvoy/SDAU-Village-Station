@@ -2,6 +2,7 @@ package com.ruoyi.system.mapper;
 
 import java.util.List;
 import com.ruoyi.system.domain.TbAskExpert;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 问专家Mapper接口
@@ -66,4 +67,12 @@ public interface TbAskExpertMapper
      * @return 结果
      */
     public int deleteTbAskExpertByAskExpertsIds(Long[] askExpertsIds);
+
+
+    public List<TbAskExpert> selectTbAskExpertByColumn(@Param("firstColumn") String firstColumn, @Param("dictValue")String dictValue);
+
+    public List<TbAskExpert> selectTbAskExpertFirstColumnsList(TbAskExpert tbAskExpert);
+
+    public int updateTbAskExpertFirstColumns(TbAskExpert tbAskExpert);
+
 }

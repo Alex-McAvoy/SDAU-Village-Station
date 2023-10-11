@@ -62,15 +62,7 @@ public class TbAskFreeController extends BaseController
     {
         return success(tbAskFreeService.selectTbAskFreeByAskFreeId(askFreeId));
     }
-    /**
-     * 获取父id对应的评论
-     */
-    @PreAuthorize("@ss.hasPermi('system:free:query')")
-    @GetMapping(value = "/parent/{parentId}")
-    public AjaxResult getParentQuestioInfo(@PathVariable("parentId") Long parentId)
-    {
-        return success(tbAskFreeService.selectTbAskFreeByParentId(parentId));
-    }
+
     /**
      * 新增随时问
      */
@@ -103,5 +95,59 @@ public class TbAskFreeController extends BaseController
     public AjaxResult remove(@PathVariable Long[] askFreeIds)
     {
         return toAjax(tbAskFreeService.deleteTbAskFreeByAskFreeIds(askFreeIds));
+    }
+
+    /**
+     * 获取父id对应的评论
+     */
+    @PreAuthorize("@ss.hasPermi('system:free:query')")
+    @GetMapping(value = "/parent/{parentId}")
+    public AjaxResult getParentQuestioInfo(@PathVariable("parentId") Long parentId)
+    {
+        return success(tbAskFreeService.selectTbAskFreeByParentId(parentId));
+    }
+
+    /**
+     * 获取已审核的随时问
+     *
+     * @param firstColumn  是否审核
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 11:12:59
+     */
+    @PreAuthorize("@ss.hasPermi('system:free:list:checked')")
+    @GetMapping(value = "/getListByColumn/{firstColumn}")
+    public AjaxResult getProductsByColumn(@PathVariable("firstColumn") String firstColumn) {
+        return success(tbAskFreeService.selectTbAskFreeByColumn(firstColumn));
+    }
+
+    /**
+     * 获取全部未审核的随时问问题
+     *
+     * @param tbAskFree 随时问对象
+     * @return com.ruoyi.common.core.page.TableDataInfo
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:45:54
+     */
+    @PreAuthorize("@ss.hasPermi('system:free:list:unchecked')")
+    @GetMapping("/getFirstColumns")
+    public TableDataInfo getRemark(TbAskFree tbAskFree) {
+        startPage();
+        List<TbAskFree> list = tbAskFreeService.selectTbAskFreeFirstColumnsList(tbAskFree);
+        return getDataTable(list);
+    }
+
+    /**
+     * 修改审核/未审核
+     *
+     * @param tbAskFree 随时问对象
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PreAuthorize("@ss.hasPermi('system:free:check')")
+    @PutMapping("/check")
+    public AjaxResult eidtFirstColumns(@RequestBody TbAskFree tbAskFree) {
+        return toAjax(tbAskFreeService.updateTbAskFreeFirstColumns(tbAskFree));
     }
 }

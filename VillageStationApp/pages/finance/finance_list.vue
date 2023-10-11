@@ -1,15 +1,16 @@
 <template>
 	<view class="body">
-		<view> <!-- 栏目标签 -->
+		<!-- 栏目标签 -->
+		<view> 
 			<u-sticky bgColor="#fff">
-				<u-tabs :list="list" :is-scroll="true" lineColor="#2ed573" @change="change"
+				<u-tabs :list="financeBarList" :is-scroll="true" lineColor="#2ed573" @change="getFinanceList"
 					style="margin:0px 25px"></u-tabs>
 			</u-sticky>
 		</view>
 		<view style="border-radius: 10px; background-color: white;margin:15px;">
-			<view class="news" v-for="item in newsList" @click="skip(item)">
+			<view class="news" v-for="item in financeList" @click="goFinanceDetail(item)">
 				<view class="new_img">
-					<image src="/static/images/index/news_cover.png" alt=""
+					<image :src="item.remark" alt=""
 						style="width:100%;height: 70px;overflow: hidden">
 				</view>
 				<view class="new_title">{{ item.title }}</view>
@@ -20,83 +21,55 @@
 		</view>
 	</view>
 </template>
-
 <script>
 	import {
-		listColumns,
-		getColumns,
-		Columns
-	} from "@/api/system/user.js";
+		getExpertListByColumn,
+	} from "@/api/system/finance.js";
+
 	export default {
-		onLoad: function() {},
 		data() {
 			return {
-				newsList: [],
-				current: 0,
-				text: '000',
-				textList: ['1', '2', '3'],
-				list: [{
-					name: '政策法规',
-				}, {
-					name: '三农资讯',
-				}, {
-					name: '科技动态',
-				}, {
-					name: '典型案例',
-				}],
+				loading: false,
+				financeBarList: [{
+						name: ' 金融助农 ',
+						index: 0
+					}, {
+						name: ' 业务新闻 ',
+						index:1
+					}, {
+						name: ' 相关案例 ',
+						index:2
+					},
+				],
+				financeList: [],
 			}
 		},
 		created() {
-			this.change({
-				index: 0
-			});
+			this.getFinanceList({index:0});
 		},
 		methods: {
-			handleSelect(key, keyPath) {
-				console.log(key, keyPath);
-			},
-			/** 查询其它栏目*/
-			getList() {
+			getFinanceList(item) {
 				this.loading = true;
-				listColumns(this.queryParams).then(response => {
-					this.newsList = response.rows;
-					console.log(this.newsList);
+				getExpertListByColumn(1,item.index).then(response => {
+					this.financeList = response.data;
 					this.loading = false;
 				});
 			},
-			// 多选框选中数据
-			handleSelectionChange(selection) {
-				this.ids = selection.map(item => item.newsId)
-				this.single = selection.length !== 1
-				this.multiple = !selection.length
-			},
-			change(index) {
-				console.log(index.index)
-				this.current = index;
-				//请求 firstColumn=’新闻资讯‘ secondColumn=index.name
-				this.loading = true;
-				Columns(0, index.index).then(response => {
-					this.newsList = response.rows;
-					console.log(response);
-					this.loading = false;
-				});
+			goFinanceDetail(item) {
+				getApp().globalData.item = item;
+				uni.navigateTo({
+					url: "/pages/finance/finance_detail"
+				})
 			},
 			fixedSize(content) {
 				return content.substring(0, 25) + "...."
 			},
-			skip(item) {
-				console.log(item);
-				getApp().globalData.item = item;
-				console.log(getApp().globalData.item);
-				uni.navigateTo({
-					url: "news_detail"
-				})
-			}
+
 		}
 	}
 </script>
 
-<style src="../../../static/css/index.css">
+<style src="../../static/css/index.css">
 </style>
 <style>
 	.news {

@@ -2,6 +2,7 @@ package com.ruoyi.system.controller;
 
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,14 +24,13 @@ import com.ruoyi.common.core.page.TableDataInfo;
 
 /**
  * 推优品Controller
- * 
+ *
  * @author ruoyi
  * @date 2023-10-04
  */
 @RestController
 @RequestMapping("/system/products")
-public class TbRecommendProductsController extends BaseController
-{
+public class TbRecommendProductsController extends BaseController {
     @Autowired
     private ITbRecommendProductsService tbRecommendProductsService;
 
@@ -39,8 +39,7 @@ public class TbRecommendProductsController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:products:list')")
     @GetMapping("/list")
-    public TableDataInfo list(TbRecommendProducts tbRecommendProducts)
-    {
+    public TableDataInfo list(TbRecommendProducts tbRecommendProducts) {
         startPage();
         List<TbRecommendProducts> list = tbRecommendProductsService.selectTbRecommendProductsList(tbRecommendProducts);
         return getDataTable(list);
@@ -52,8 +51,7 @@ public class TbRecommendProductsController extends BaseController
     @PreAuthorize("@ss.hasPermi('system:products:export')")
     @Log(title = "推优品", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public void export(HttpServletResponse response, TbRecommendProducts tbRecommendProducts)
-    {
+    public void export(HttpServletResponse response, TbRecommendProducts tbRecommendProducts) {
         List<TbRecommendProducts> list = tbRecommendProductsService.selectTbRecommendProductsList(tbRecommendProducts);
         ExcelUtil<TbRecommendProducts> util = new ExcelUtil<TbRecommendProducts>(TbRecommendProducts.class);
         util.exportExcel(response, list, "推优品数据");
@@ -64,19 +62,8 @@ public class TbRecommendProductsController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:products:query')")
     @GetMapping(value = "getById/{newsId}")
-    public AjaxResult getInfo(@PathVariable("newsId") Long newsId)
-    {
+    public AjaxResult getInfo(@PathVariable("newsId") Long newsId) {
         return success(tbRecommendProductsService.selectTbRecommendProductsByNewsId(newsId));
-    }
-//
-//        通过一级栏目 优品 二级栏目来获取优品
-
-    @PreAuthorize("@ss.hasPermi('system:products:query')")
-    @GetMapping(value = "/getNewsByColumn/{firstColumn}/{secondColumn}")
-    public AjaxResult getProductsByColumn(@PathVariable("firstColumn") String firstColumn,@PathVariable("secondColumn") String secondColumn)
-    {
-        System.out.println(firstColumn+" "+secondColumn);
-        return success(tbRecommendProductsService.selectTbRecommendProductsByColumn(firstColumn,secondColumn));
     }
 
     /**
@@ -85,8 +72,7 @@ public class TbRecommendProductsController extends BaseController
     @PreAuthorize("@ss.hasPermi('system:products:add')")
     @Log(title = "推优品", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResult add(@RequestBody TbRecommendProducts tbRecommendProducts)
-    {
+    public AjaxResult add(@RequestBody TbRecommendProducts tbRecommendProducts) {
         return toAjax(tbRecommendProductsService.insertTbRecommendProducts(tbRecommendProducts));
     }
 
@@ -96,8 +82,7 @@ public class TbRecommendProductsController extends BaseController
     @PreAuthorize("@ss.hasPermi('system:products:edit')")
     @Log(title = "推优品", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult edit(@RequestBody TbRecommendProducts tbRecommendProducts)
-    {
+    public AjaxResult edit(@RequestBody TbRecommendProducts tbRecommendProducts) {
         return toAjax(tbRecommendProductsService.updateTbRecommendProducts(tbRecommendProducts));
     }
 
@@ -106,9 +91,53 @@ public class TbRecommendProductsController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:products:remove')")
     @Log(title = "推优品", businessType = BusinessType.DELETE)
-	@DeleteMapping("/{newsIds}")
-    public AjaxResult remove(@PathVariable Long[] newsIds)
-    {
+    @DeleteMapping("/{newsIds}")
+    public AjaxResult remove(@PathVariable Long[] newsIds) {
         return toAjax(tbRecommendProductsService.deleteTbRecommendProductsByNewsIds(newsIds));
+    }
+
+    /**
+     * 获取已审核，分类为secondColumn的优品
+     *
+     * @param firstColumn  是否审核
+     * @param secondColumn 优品分类
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 11:12:59
+     */
+    @PreAuthorize("@ss.hasPermi('system:products:list:checked')")
+    @GetMapping(value = "/getListByColumn/{firstColumn}/{secondColumn}")
+    public AjaxResult getProductsByColumn(@PathVariable("firstColumn") String firstColumn, @PathVariable("secondColumn") String secondColumn) {
+        return success(tbRecommendProductsService.selectTbRecommendProductsByColumn(firstColumn, secondColumn));
+    }
+
+    /**
+     * 获取全部未审核的优品信息
+     *
+     * @param tbRecommendProducts 优品对象
+     * @return com.ruoyi.common.core.page.TableDataInfo
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:45:54
+     */
+    @PreAuthorize("@ss.hasPermi('system:products:list:unchecked')")
+    @GetMapping("/getFirstColumns")
+    public TableDataInfo getRemark(TbRecommendProducts tbRecommendProducts) {
+        startPage();
+        List<TbRecommendProducts> list = tbRecommendProductsService.selectTbRecommendProductsFirstColumnsList(tbRecommendProducts);
+        return getDataTable(list);
+    }
+
+    /**
+     * 修改审核/未审核
+     *
+     * @param tbRecommendProducts 优品对象
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PreAuthorize("@ss.hasPermi('system:products:check')")
+    @PutMapping("/check")
+    public AjaxResult eidtFirstColumns(@RequestBody TbRecommendProducts tbRecommendProducts) {
+        return toAjax(tbRecommendProductsService.updateTbRecommendProductsFirstColumns(tbRecommendProducts));
     }
 }

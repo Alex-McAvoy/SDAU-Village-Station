@@ -2,6 +2,7 @@ package com.ruoyi.system.controller;
 
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,14 +24,13 @@ import com.ruoyi.common.core.page.TableDataInfo;
 
 /**
  * 买农资Controller
- * 
+ *
  * @author ruoyi
  * @date 2023-10-06
  */
 @RestController
 @RequestMapping("/system/farm")
-public class TbPurchaseFarmController extends BaseController
-{
+public class TbPurchaseFarmController extends BaseController {
     @Autowired
     private ITbPurchaseFarmService tbPurchaseFarmService;
 
@@ -39,8 +39,7 @@ public class TbPurchaseFarmController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:farm:list')")
     @GetMapping("/list")
-    public TableDataInfo list(TbPurchaseFarm tbPurchaseFarm)
-    {
+    public TableDataInfo list(TbPurchaseFarm tbPurchaseFarm) {
         startPage();
         List<TbPurchaseFarm> list = tbPurchaseFarmService.selectTbPurchaseFarmList(tbPurchaseFarm);
         return getDataTable(list);
@@ -52,31 +51,18 @@ public class TbPurchaseFarmController extends BaseController
     @PreAuthorize("@ss.hasPermi('system:farm:export')")
     @Log(title = "买农资", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public void export(HttpServletResponse response, TbPurchaseFarm tbPurchaseFarm)
-    {
+    public void export(HttpServletResponse response, TbPurchaseFarm tbPurchaseFarm) {
         List<TbPurchaseFarm> list = tbPurchaseFarmService.selectTbPurchaseFarmList(tbPurchaseFarm);
         ExcelUtil<TbPurchaseFarm> util = new ExcelUtil<TbPurchaseFarm>(TbPurchaseFarm.class);
         util.exportExcel(response, list, "买农资数据");
     }
 
     /**
-     * 获取学农技一级列表(类型)
-     */
-    @PreAuthorize("@ss.hasPermi('system:farm:query')")
-    @GetMapping(value = "/column/{firstColumn}")
-    public AjaxResult getInfo(@PathVariable("firstColumn") String firstColumn)
-    {
-        return success(tbPurchaseFarmService.selectTbPurchaseFarmByFirstColumn(firstColumn));
-    }
-
-
-    /**
      * 获取买农资详细信息
      */
     @PreAuthorize("@ss.hasPermi('system:farm:query')")
     @GetMapping(value = "/news/{newsId}")
-    public AjaxResult getInfo(@PathVariable("newsId") Long newsId)
-    {
+    public AjaxResult getInfo(@PathVariable("newsId") Long newsId) {
         return success(tbPurchaseFarmService.selectTbPurchaseFarmByNewsId(newsId));
     }
 
@@ -86,8 +72,7 @@ public class TbPurchaseFarmController extends BaseController
     @PreAuthorize("@ss.hasPermi('system:farm:add')")
     @Log(title = "买农资", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResult add(@RequestBody TbPurchaseFarm tbPurchaseFarm)
-    {
+    public AjaxResult add(@RequestBody TbPurchaseFarm tbPurchaseFarm) {
         return toAjax(tbPurchaseFarmService.insertTbPurchaseFarm(tbPurchaseFarm));
     }
 
@@ -97,8 +82,7 @@ public class TbPurchaseFarmController extends BaseController
     @PreAuthorize("@ss.hasPermi('system:farm:edit')")
     @Log(title = "买农资", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult edit(@RequestBody TbPurchaseFarm tbPurchaseFarm)
-    {
+    public AjaxResult edit(@RequestBody TbPurchaseFarm tbPurchaseFarm) {
         return toAjax(tbPurchaseFarmService.updateTbPurchaseFarm(tbPurchaseFarm));
     }
 
@@ -107,9 +91,53 @@ public class TbPurchaseFarmController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:farm:remove')")
     @Log(title = "买农资", businessType = BusinessType.DELETE)
-	@DeleteMapping("/{newsIds}")
-    public AjaxResult remove(@PathVariable Long[] newsIds)
-    {
+    @DeleteMapping("/{newsIds}")
+    public AjaxResult remove(@PathVariable Long[] newsIds) {
         return toAjax(tbPurchaseFarmService.deleteTbPurchaseFarmByNewsIds(newsIds));
+    }
+
+    /**
+     * 获取已审核，分类为secondColumn的农资
+     *
+     * @param firstColumn  是否审核
+     * @param secondColumn 农资分类
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 11:12:59
+     */
+    @PreAuthorize("@ss.hasPermi('system:farm:list:checked')")
+    @GetMapping(value = "/getListByColumn/{firstColumn}/{secondColumn}")
+    public AjaxResult getListByColumn(@PathVariable("firstColumn") String firstColumn, @PathVariable("secondColumn") String secondColumn) {
+        return success(tbPurchaseFarmService.selectTbPurchaseFarmByColumn(firstColumn, secondColumn));
+    }
+
+    /**
+     * 获取全部未审核的农资信息
+     *
+     * @param tbPurchaseFarm 农资对象
+     * @return com.ruoyi.common.core.page.TableDataInfo
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:45:54
+     */
+    @PreAuthorize("@ss.hasPermi('system:farm:list:unchecked')")
+    @GetMapping("/getFirstColumns")
+    public TableDataInfo getRemark(TbPurchaseFarm tbPurchaseFarm) {
+        startPage();
+        List<TbPurchaseFarm> list = tbPurchaseFarmService.selectTbPurchaseFarmFirstColumnsList(tbPurchaseFarm);
+        return getDataTable(list);
+    }
+
+    /**
+     * 修改审核/未审核
+     *
+     * @param tbPurchaseFarm 农资对象
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PreAuthorize("@ss.hasPermi('system:farm:check')")
+    @PutMapping("/check")
+    public AjaxResult eidtFirstColumns(@RequestBody TbPurchaseFarm tbPurchaseFarm) {
+        return toAjax(tbPurchaseFarmService.updateTbPurchaseFarmFirstColumns(tbPurchaseFarm));
     }
 }

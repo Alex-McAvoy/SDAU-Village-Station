@@ -95,7 +95,18 @@ public class TbFindChannelServiceImpl implements ITbFindChannelService
     }
 
     @Override
-    public List<TbFindChannel> selectTbFindChannelListByColumn(String firstColumn) {
-        return tbFindChannelMapper.selectTbFindChannelListByColumn(firstColumn);
+    public List<TbFindChannel> selectTbFindChannelListByColumn(String firstColumn, String secondColumn) {
+        return tbFindChannelMapper.selectTbFindChannelListByColumn(firstColumn, secondColumn);
+    }
+
+    @Override
+    public List<TbFindChannel> selectTbFindChannelFirstColumnsList(TbFindChannel tbFindChannel) {
+        return tbFindChannelMapper.selectTbFindChannelFirstColumnsList(tbFindChannel);
+    }
+
+    @Override
+    public int updateTbFindChannelFirstColumns(TbFindChannel tbFindChannel) {
+        tbFindChannel.setUpdateTime(DateUtils.getNowDate());
+        return tbFindChannelMapper.updateTbFindChannelFirstColumns(tbFindChannel);
     }
 }

@@ -59,5 +59,11 @@ public interface ITbFindChannelService
      */
     public int deleteTbFindChannelByNewsId(Long newsId);
 
-    List<TbFindChannel> selectTbFindChannelListByColumn(String firstColumn);
+    List<TbFindChannel> selectTbFindChannelListByColumn(String firstColumn, String secondColumn);
+
+    //获取全部未审核
+    List<TbFindChannel> selectTbFindChannelFirstColumnsList(TbFindChannel tbFindChannel);
+
+    //修改remark
+    public int updateTbFindChannelFirstColumns(TbFindChannel tbFindChannel);
 }

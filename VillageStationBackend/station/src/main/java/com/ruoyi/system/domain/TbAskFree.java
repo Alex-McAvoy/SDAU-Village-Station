@@ -34,16 +34,14 @@ public class TbAskFree extends BaseEntity
     /** 父ID */
     private Long parentId;
 
-    @Override
-    public String toString() {
-        return "TbAskFree{" +
-                "askFreeId=" + askFreeId +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", delFlag='" + delFlag + '\'' +
-                ", userId=" + userId +
-                ", parentId=" + parentId +
-                '}';
+    private String firstColumn;
+
+    public String getFirstColumn() {
+        return firstColumn;
+    }
+
+    public void setFirstColumn(String firstColumn) {
+        this.firstColumn = firstColumn;
     }
 
     public Long getParentId() {
@@ -99,4 +97,16 @@ public class TbAskFree extends BaseEntity
         return delFlag;
     }
 
+    @Override
+    public String toString() {
+        return "TbAskFree{" +
+                "askFreeId=" + askFreeId +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", delFlag='" + delFlag + '\'' +
+                ", userId=" + userId +
+                ", parentId=" + parentId +
+                ", firstColumn='" + firstColumn + '\'' +
+                '}';
+    }
 }

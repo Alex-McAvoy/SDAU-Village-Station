@@ -93,4 +93,20 @@ public class TbOfflineTrainingServiceImpl implements ITbOfflineTrainingService
     {
         return tbOfflineTrainingMapper.deleteTbOfflineTrainingByNewsId(newsId);
     }
+
+    @Override
+    public List<TbOfflineTraining> selectTbOfflineTrainingByColumn(String firstColumn) {
+        return tbOfflineTrainingMapper.selectTbOfflineTrainingByColumn(firstColumn);
+    }
+
+    @Override
+    public List<TbOfflineTraining> selectTbOfflineTrainingFirstColumnsList(TbOfflineTraining tbOfflineTraining) {
+        return tbOfflineTrainingMapper.selectTbOfflineTrainingFirstColumnsList(tbOfflineTraining);
+    }
+
+    @Override
+    public int updateTbOfflineTrainingFirstColumns(TbOfflineTraining tbOfflineTraining) {
+        tbOfflineTraining.setUpdateTime(DateUtils.getNowDate());
+        return tbOfflineTrainingMapper.updateTbOfflineTrainingFirstColumns(tbOfflineTraining);
+    }
 }

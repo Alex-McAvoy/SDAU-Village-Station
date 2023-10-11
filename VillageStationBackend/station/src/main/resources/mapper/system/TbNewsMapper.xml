@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ruoyi.system.mapper.TbOtherColumnsMapper">
+<mapper namespace="com.ruoyi.system.mapper.TbNewsMapper">
     
-    <resultMap type="TbOtherColumns" id="TbOtherColumnsResult">
+    <resultMap type="TbNews" id="TbNewsResult">
         <result property="newsId"    column="news_id"    />
         <result property="title"    column="title"    />
         <result property="content"    column="content"    />
@@ -19,12 +19,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="sort"    column="sort"    />
     </resultMap>
 
-    <sql id="selectTbOtherColumnsVo">
+    <sql id="selectTbNewsVo">
         select news_id, title, content, del_flag, create_by, create_time, update_by, update_time, remark, first_column, second_column, sort from tb_news
     </sql>
 
-    <select id="selectTbOtherColumnsList" parameterType="TbOtherColumns" resultMap="TbOtherColumnsResult">
-        <include refid="selectTbOtherColumnsVo"/>
+    <select id="selectTbOtherColumnsList" parameterType="TbNews" resultMap="TbNewsResult">
+        <include refid="selectTbNewsVo"/>
         <where>
             <if test="title != null  and title != ''"> and title = #{title}</if>
             <if test="content != null  and content != ''"> and content = #{content}</if>
@@ -34,35 +34,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </where>
     </select>
 
-    <select id="selectTbOtherColumnsRemarkList" parameterType="TbOtherColumns" resultMap="TbOtherColumnsResult">
-        <include refid="selectTbOtherColumnsVo"/>
-<!--        <where>-->
-<!--            <if test="title != null  and title != ''"> and title = #{title}</if>-->
-<!--            <if test="content != null  and content != ''"> and content = #{content}</if>-->
-<!--            <if test="firstColumn != null  and firstColumn != ''"> and first_column = #{firstColumn}</if>-->
-<!--            <if test="secondColumn != null  and secondColumn != ''"> and second_column = #{secondColumn}</if>-->
-<!--            <if test="sort != null  and sort != ''"> and sort = #{sort}</if> -->
-<!--        </where>-->
-        where remark = "0"
-    </select>
-
-    <select id="selectTbOtherColumnsByColumn"  resultMap="TbOtherColumnsResult">
-        <include refid="selectTbOtherColumnsVo"/>
-        where first_column = #{firstColumn} AND second_column = #{secondColumn}
-    </select>
-
-    <select id="selectTbOtherColumnsByTopColumn"  resultMap="TbOtherColumnsResult">
-        <include refid="selectTbOtherColumnsVo"/>
-        where firstColumn = #{firstColumn}
-    </select>
-
-
-    <select id="selectTbOtherColumnsByNewsId" parameterType="Long" resultMap="TbOtherColumnsResult">
-        <include refid="selectTbOtherColumnsVo"/>
+    <select id="selectTbOtherColumnsByNewsId" parameterType="Long" resultMap="TbNewsResult">
+        <include refid="selectTbNewsVo"/>
         where news_id = #{newsId}
     </select>
         
-    <insert id="insertTbOtherColumns" parameterType="TbOtherColumns" useGeneratedKeys="true" keyProperty="newsId">
+    <insert id="insertTbOtherColumns" parameterType="TbNews" useGeneratedKeys="true" keyProperty="newsId">
         insert into tb_news
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="title != null">title,</if>
@@ -92,7 +69,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          </trim>
     </insert>
 
-    <update id="updateTbOtherColumns" parameterType="TbOtherColumns">
+    <update id="updateTbOtherColumns" parameterType="TbNews">
         update tb_news
         <trim prefix="SET" suffixOverrides=",">
             <if test="title != null">title = #{title},</if>
@@ -110,25 +87,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where news_id = #{newsId}
     </update>
 
-
-    <update id="updateTbOtherColumnsRemark" parameterType="TbOtherColumns">
-        update tb_news
-        <trim prefix="SET" suffixOverrides=",">
-<!--            <if test="title != null">title = #{title},</if>-->
-<!--            <if test="content != null">content = #{content},</if>-->
-<!--            <if test="delFlag != null">del_flag = #{delFlag},</if>-->
-<!--            <if test="createBy != null">create_by = #{createBy},</if>-->
-<!--            <if test="createTime != null">create_time = #{createTime},</if>-->
-<!--            <if test="updateBy != null">update_by = #{updateBy},</if>-->
-<!--            <if test="updateTime != null">update_time = #{updateTime},</if>-->
-            <if test="remark != null">remark = '1',</if>
-<!--            <if test="firstColumn != null">first_column = #{firstColumn},</if>-->
-<!--            <if test="secondColumn != null">second_column = #{secondColumn},</if>-->
-<!--            <if test="sort != null">sort = #{sort},</if>-->
-        </trim>
-        where news_id = #{newsId}
-    </update>
-
     <delete id="deleteTbOtherColumnsByNewsId" parameterType="Long">
         delete from tb_news where news_id = #{newsId}
     </delete>
@@ -139,4 +97,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             #{newsId}
         </foreach>
     </delete>
+
+    <select id="selectTbNewsByColumn"  resultMap="TbNewsResult">
+        <include refid="selectTbNewsVo"/>
+        where first_column = #{firstColumn} AND second_column = #{secondColumn}
+    </select>
+
+    <select id="selectTbNewsFirstColumnsList" parameterType="String"
+            resultMap="TbNewsResult">
+        <include refid="selectTbNewsVo"/>
+        where first_column = 0
+    </select>
+
+    <update id="updateTbNewsFirstColumns"  parameterType="TbLearnTech">
+        update tb_news
+        <trim prefix="SET" suffixOverrides=",">
+            first_column = 1
+        </trim>
+        where news_id = #{newsId}
+    </update>
+
 </mapper>

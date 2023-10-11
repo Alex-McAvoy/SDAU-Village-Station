@@ -1,34 +1,33 @@
 <template>
 	<view>
+		<!-- 问题框 -->
 		<view>
-			<view style="background-color: white; margin: 15px; border-radius: 10px ;display: flex;" :model="askdetailquestions">
+			<view style="background-color: white; margin: 15px; border-radius: 10px ;display: flex;" :model="question">
 				<image src="../../../static/images/index/index_query2.png" mode="" style="width: 20px;height: 20px; margin-top: 8px;margin-left: 10px;"></image>
 				<view label="标题">
 					<div class="ask_title">
-						{{askdetailquestions.title}}
+						{{question.title}}
+					</div>
+					<div class="ask_title">
+						{{question.content}}
 					</div>
 				</view>
-			<!-- 	<view label="内容">
-					<div style="margin: 10px; margin-left: 20px; font-size:20px;">
-						{{askdetailquestions.content}}
-					</div>
-				</view> -->
 			</view>
-			
 		</view>
+		
+		
 		<!-- 回答框 -->
 		<view >
-			<view style="background-color: white; margin: 15px; display: flex; padding-bottom: 20px; border-radius: 5px;" :model="askdetailquestions">
-				<image src="../../../static/images/index/index_query1.png"" mode="" style="width: 20px;height: 20px; margin-top: 2px;margin-left: 10px;"></image>
+			<view style="background-color: white; margin: 15px; display: flex; padding-bottom: 20px; border-radius: 5px;" >
+				<image src="../../../static/images/index/index_query1.png" mode="" style="width: 20px;height: 20px; margin-top: 2px;margin-left: 10px;"></image>
 				<view style="font-size: 20px;margin-left: 15px;color: gray;" >
 					回复
 				</view>
 			</view>
 		</view>
-
-		<div v-for="onedetailQuery in detailQuerys" :key="onedetailQuery.id">
+		
+		<div v-for="item in reviews" :key="item.id">
 			<view style=" margin: 15px; border-radius: 5px;  background-color: white;display: flex;margin-top: -8px;">
-				
 				<view class="u-page">
 					<view class="u-demo-block">
 						<view class="u-demo-block__content">
@@ -38,20 +37,20 @@
 									<image src="/static/images/icon.jpg" mode=""
 										style="width: 36px;height: 36px; margin: 5px;margin-left: 15px; border-radius: 100px;"></image>
 								</view>
-
+			
 								<div style="margin-top: 15px; ">
-									<view style="background-color: white;border-radius: 10px ; " :model="detailQuerys ">
+									<view style="background-color: white;border-radius: 10px; ">
 										<view>
 											<text class="ask_title">小明</text>
 										</view>
 										<view style="font-size: 15px; margin: 5px 0 5px 0;" label="评论">
 											<div class="ask_content">
-												{{onedetailQuery.content}}
+												{{item.content}}
 											</div>
 										</view>
 									</view>
 									<view style="margin-left: 10px;">
-										<span style="color:#D3D3D3;font-size: 10px;">2023-10-02 08:00:00</span>
+										<span style="color:#D3D3D3;font-size: 10px;">{{item.createTime}}</span>
 									</view>
 								</div>
 							</view>
@@ -60,12 +59,11 @@
 				</view>
 			</view>
 		</div>
-
-
-		<view>
+		
+		<!-- <view>
 			<u-modal :showCancelButton='true' :show="show" :title="title" @cancel="cancel" @confirm="confirm">
 				<div style="width: 90%;">
-					<u--input placeholder="请输入内容" style="margin-top: 20px; " v-model="detailQuerys.query"></u--input>
+					<u--input placeholder="请输入内容" style="margin-top: 20px; " v-model=""></u--input>
 				</div>
 			</u-modal>
 		</view>
@@ -74,15 +72,15 @@
 			<u-button class="custom-style" color="#00ae67 " type="primary" shape="circle"
 				style="  width: 80px; height: 80px; position: fixed;bottom: 80px;right: 30px; font-size: 20px;">评论
 			</u-button>
-		</view>
+		</view> -->
 	</view>
 </template>
 
 <script>
 	import {
-		getAskQuestiondetail,
-		addAskdetailQuestion,
-		getAskdetailQuery,
+		addFreeAsk,
+		getAskQuestionDetail,
+		getAskQuestionReview
 	} from "@/api/station/freeAsk.js";
 
 	export default {
@@ -93,44 +91,36 @@
 				show: false,
 				title: '添加评论',
 				//问题id
-				askquestionId: '',
-				askdetailquestions: {
+				questionId: '',
+				question: {
 					title: '',
 					content: '',
+					createTime: ''
 				},
-				detailQuerys: {
-					content: '',
-				}
+				reviews: []
 			};
 		},
 		created() {
-			this.getAskQuestion1(this.askquestionId);
-			this.getAskdetailQuery2(this.askquestionId);
+			this.getQuestion(this.questionId);
+			this.getReview(this.questionId);
 		},
 		onLoad(options) {
-			this.askquestionId = options.id;
+			this.questionId = options.id;
 		},
 		methods: {
-			//根据问题id获取评论
-			getAskdetailQuery2(askquestionId) {
-				// console.log(askquestionId)
+			//根据随时问问题id获取详情
+			getQuestion(questionId) {
 				this.loading = true;
-				getAskdetailQuery(askquestionId).then(response => {
-					// console.log(response)
-					// // 	// if(response.rows.questionId != null)
-					// 		// console.log(response),
-					this.detailQuerys = response.data;
-					// 		 // console.log(this.detailquestions),
-					// 	// this.total = response.total;
+				getAskQuestionDetail(questionId).then(response => {
+					this.question = response.data;
 					this.loading = false;
 				});
 			},
-			//根据随时问问题id获取详情
-			getAskQuestion1(askquestionId) {
+			//根据问题id获取评论
+			getReview(questionId) {
 				this.loading = true;
-				getAskQuestiondetail(askquestionId).then(response => {
-					// console.log(response)
-					this.askdetailquestions = response.data;
+				getAskQuestionReview(questionId).then(response => {
+					this.reviews = response.data;
 					this.loading = false;
 				});
 			},
@@ -142,22 +132,7 @@
 				this.show = false;
 			},
 			confirm() {
-				var temp = {
-					"content": this.detailQuerys.query,
-					"parentId": this.askquestionId,
-				}
-				// console.log(JSON.stringify(temp)),
-				addAskdetailQuestion(JSON.stringify(temp)).then(response => {
-					this.getAskdetailQuery2(this.askquestionId);
-					// console.log(response)
-					// 	// 	// this.question = response.data;
-					// 	// 	// this.total = response.total;
-					this.loading = false;
-					// 	// 	// console.log(this.question);
-					this.show = false;
-					// });
-					// });
-				});
+				
 			},
 		},
 	}

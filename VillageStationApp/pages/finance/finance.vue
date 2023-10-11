@@ -7,7 +7,6 @@
 				<u-col span="7">
 					<u-search :show-action="false"></u-search>
 				</u-col>
-				<u-col span="2">天气</u-col>
 			</u-row>
 		</div>
 
@@ -42,8 +41,9 @@
 		</view>
 		<!-- 金融资讯 -->
 		<view class="main_context">
-			<view> <!-- 主体框 -->
-				<u-row gutter="16"  @click="goFinanceList">
+			<!-- 主体框 -->
+			<view> 
+				<u-row gutter="16" @click="goFinanceList">
 					<u-col span="2" style="padding-left:10px;margin-right: 8px;">
 						<image src="/static/images/index/index_news.png" style="height:25px;width:25px;" />
 					</u-col>
@@ -55,25 +55,24 @@
 					</u-col>
 				</u-row>
 			</view>
-			<view> <!-- 栏目标签 -->
-				<u-tabs :list="list" :is-scroll="true" lineColor="#2ed573"
-					@change="change"></u-tabs>
+			<!-- 栏目标签 -->
+			<view> 
+				<u-tabs :list="financeBarList" :is-scroll="true" lineColor="#2ed573" @change="getFinanceList"></u-tabs>
 			</view>
-			
+
 			<view style="border-radius: 10px; background-color: white;margin:15px;">
-				<view class="financenews" v-for="item in financeList" @click="go(item)">
-					<view class="new_img" >
-						<image src="/static/images/index/news_cover.png" alt=""
-							style="width:100%;height: 70px;overflow: hidden">
+				<view class="financenews" v-for="item in financeList" @click="goFinanceDetail(item)">
+					<view class="new_img">
+						<image :src="item.remark" alt=""
+							style="width:100%;height: 150px;overflow: hidden">
 					</view>
 					<view class="new_title" :model="financeList">{{ item.title }}</view>
-	
 				</view>
 			</view>
-			
+
 		</view>
 
-		<!-- 视频 -->
+		<!-- 金融产品介绍 -->
 		<view class="main_context first_main_context">
 			<!-- 顶部栏 -->
 			<u-row gutter="16">
@@ -107,76 +106,43 @@
 </template>
 <script>
 	import {
-		listFinance,
-		getFinance,
-		addFinance,
-		updateFinance,
-		delFinance,
-		getfirstColumnFinance,
+		getExpertListByColumn,
 	} from "@/api/system/finance.js";
 
 	export default {
 		onLoad: function() {},
 		data() {
 			return {
-				cur: 0,
-				text: '000',
-				textList: ['0', '1', '2'],
-				list: [{
+				financeBarList: [{
 					name: ' 金融助农 ',
+					index: 0
 				}, {
-					name: ' 业务新闻 '
+					name: ' 业务新闻 ',
+					index:1
 				}, {
-					name: ' 相关案例 '
+					name: ' 相关案例 ',
+					index:2
 				}, ],
 				financeList: []
 			}
 		},
 		created() {
-			this.change(0)
+			this.getFinanceList({index:0})
 		},
 		methods: {
-			handleSelect(key, keyPath) {
-				console.log(key, keyPath);
-			},
-			change(index) {
-				// console.log(index.index)
-				// this.loading = true;
-				var temp = 0
-				if( index != 0){
-					temp = index.index
-				}
-				getfirstColumnFinance(temp).then(response => {
+			getFinanceList(item) {
+				getExpertListByColumn(1,item.index).then(response => {
 					this.financeList = response.data
 					this.loading = false;
 				});
 			},
-			goFinanceList(row) {
-				
+			goFinanceList() {
 				uni.navigateTo({
-					url: "finance_detail"
+					url: "/pages/finance/finance_list"
 				})
 			},
-			// getData(index){
-			// 	console.log(index)
-			// },
-			// skip(item) {
-			// 	getApp().globalData.item = item;
-			// 	uni.navigateTo({
-			// 		url: "/pages/finance/finance_detail"
-			// 	})
-			// },
-			skip(item){
-				console.log(item)
-				uni.navigateTo({
-					url: "/pages/finance/expert_detail?id=" + item
-				})
-				
-			},
-			go(item) {
-				getApp().globalData.item=item;
-				
-				console.log(getApp().globalData.item)
+			goFinanceDetail(item) {
+				getApp().globalData.item = item;
 				uni.navigateTo({
 					url: "/pages/finance/finance_detail"
 				})

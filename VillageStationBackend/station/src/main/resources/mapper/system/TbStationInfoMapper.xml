@@ -34,20 +34,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </where>
     </select>
 
-
-
-
-
     <select id="selectTbStationInfoByNewsId" parameterType="Long" resultMap="TbStationInfoResult">
         <include refid="selectTbStationInfoVo"/>
         where news_id = #{newsId}
     </select>
 
-    <select id="selectTbStationInfoByFirstColumn" parameterType="String" resultMap="TbStationInfoResult">
-        <include refid="selectTbStationInfoVo"/>
-        where first_column = #{firstColumn}
-    </select>
-        
     <insert id="insertTbStationInfo" parameterType="TbStationInfo" useGeneratedKeys="true" keyProperty="newsId">
         insert into tb_station_info
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -96,20 +87,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where news_id = #{newsId}
     </update>
 
-
-    <select id="selectTbStationInfoRemarkList" parameterType="TbStationInfo" resultMap="TbStationInfoResult">
-        <include refid="selectTbStationInfoVo"/>
-        where remark = "0"
-    </select>
-
-    <update id="updateTTbStationInfoRemark" parameterType="TbStationInfo">
-        update tb_station_info
-        <trim prefix="SET" suffixOverrides=",">
-            <if test="remark != null">remark = '1',</if>
-        </trim>
-        where news_id = #{newsId}
-    </update>
-
     <delete id="deleteTbStationInfoByNewsId" parameterType="Long">
         delete from tb_station_info where news_id = #{newsId}
     </delete>
@@ -120,4 +97,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             #{newsId}
         </foreach>
     </delete>
+
+    <select id="selectTbStationInfoByColumn" parameterType="String" resultMap="TbStationInfoResult">
+        <include refid="selectTbStationInfoVo"/>
+        where first_column = #{firstColumn}
+    </select>
+
+    <select id="selectTbStationInfoFirstColumnsList" parameterType="TbStationInfo" resultMap="TbStationInfoResult">
+        <include refid="selectTbStationInfoVo"/>
+        where first_column = 0
+    </select>
+
+    <update id="updateTbStationFirstColumns" parameterType="TbStationInfo">
+        update tb_station_info
+        <trim prefix="SET" suffixOverrides=",">
+            first_column = '1'
+        </trim>
+        where news_id = #{newsId}
+    </update>
+
 </mapper>

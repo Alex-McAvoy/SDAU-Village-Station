@@ -16,10 +16,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="remark"    column="remark"    />
         <result property="parentId"    column="parent_id"    />
         <result property="userId"    column="user_id"    />
+        <result property="firstColumn"    column="first_column"    />
     </resultMap>
 
     <sql id="selectTbAskFreeVo">
-        select ask_free_id, title, content, del_flag, create_by, create_time, update_by, update_time, remark,parent_id,user_id from tb_ask_free
+        select ask_free_id, title, content, del_flag, create_by, create_time, update_by, update_time, remark,parent_id,user_id,first_column from tb_ask_free
     </sql>
 
     <select id="selectTbAskFreeList" parameterType="TbAskFree" resultMap="TbAskFreeResult">
@@ -35,12 +36,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectTbAskFreeVo"/>
         where ask_free_id = #{askFreeId}
     </select>
-
-    <select id="selectTbAskFreeByParentId" parameterType="Long" resultMap="TbAskFreeResult">
-        <include refid="selectTbAskFreeVo"/>
-        where parent_id = #{askFreeId}
-    </select>
-
 
     <insert id="insertTbAskFree" parameterType="TbAskFree" useGeneratedKeys="true" keyProperty="askFreeId">
         insert into tb_ask_free
@@ -95,4 +90,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             #{askFreeId}
         </foreach>
     </delete>
+
+    <select id="selectTbAskFreeByParentId" parameterType="Long" resultMap="TbAskFreeResult">
+        <include refid="selectTbAskFreeVo"/>
+        where parent_id = #{askFreeId} AND first_column = 1
+    </select>
+
+    <select id="selectTbAskFreeByColumn"  resultMap="TbAskFreeResult">
+        <include refid="selectTbAskFreeVo"/>
+        where first_column = #{firstColumn} AND parent_id is null
+    </select>
+
+    <select id="selectTbAskFreeFirstColumnsList" parameterType="String"
+            resultMap="TbAskFreeResult">
+        <include refid="selectTbAskFreeVo"/>
+        where first_column = 0
+    </select>
+
+    <update id="updateTbAskFreeFirstColumns"  parameterType="TbAskFree">
+        update tb_ask_free
+        <trim prefix="SET" suffixOverrides=",">
+            first_column = '1'
+        </trim>
+        where ask_free_id = #{askFreeId}
+    </update>
 </mapper>

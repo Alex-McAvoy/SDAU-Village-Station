@@ -62,4 +62,8 @@ public interface TbRecommendProductsMapper
 
 
     public List<TbRecommendProducts> selectTbRecommendProductsByColumn(@Param("firstColumn")String firstColumn, @Param("secondColumn")String secondColumn);
+
+    public List<TbRecommendProducts> selectTbRecommendProductsFirstColumnsList(TbRecommendProducts tbRecommendProducts);
+
+    public int updateTbRecommendProductsFirstColumns(TbRecommendProducts tbRecommendProducts);
 }

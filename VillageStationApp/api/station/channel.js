@@ -1,20 +1,11 @@
 import request from '@/utils/request'
 
-// 查询找渠道列表
-export function listChannel(query) {
-  return request({
-    url: '/system/channel/list',
-    method: 'get',
-    params: query
-  })
-}
 
-//找渠道具体栏目
-export function listByColumn(firstColumn) {
-	 
+// 查询已审核的分类渠道
+export function getChannelListByColumns(firstColumn,secondColumn) { 
   return request({
-    url: '/system/channel/getListByColumn/'+firstColumn,
-    method: 'get', 
+    url: '/system/channel/getListByColumn/' + firstColumn+'/'+secondColumn,
+    method: 'get'
   })
 }
 

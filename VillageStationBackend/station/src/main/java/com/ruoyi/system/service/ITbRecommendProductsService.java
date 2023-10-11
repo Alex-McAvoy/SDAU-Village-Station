@@ -59,6 +59,9 @@ public interface ITbRecommendProductsService
      */
     public int deleteTbRecommendProductsByNewsId(Long newsId);
 
-    //通过两级栏目来获取信息
     public List<TbRecommendProducts> selectTbRecommendProductsByColumn(String firstColumn, String secondColumn);
+
+    List<TbRecommendProducts> selectTbRecommendProductsFirstColumnsList(TbRecommendProducts tbRecommendProducts);
+
+    public int updateTbRecommendProductsFirstColumns(TbRecommendProducts tbRecommendProducts);
 }

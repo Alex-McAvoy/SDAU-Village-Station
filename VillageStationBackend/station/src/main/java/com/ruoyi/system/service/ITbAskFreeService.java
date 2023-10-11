@@ -72,4 +72,10 @@ public interface ITbAskFreeService
      * @return 结果
      */
     public int deleteTbAskFreeByAskFreeId(Long askFreeId);
+
+    public List<TbAskFree> selectTbAskFreeByColumn(String firstColumn);
+
+    public List<TbAskFree> selectTbAskFreeFirstColumnsList(TbAskFree tbAskFree);
+
+    public int updateTbAskFreeFirstColumns(TbAskFree tbAskFree);
 }

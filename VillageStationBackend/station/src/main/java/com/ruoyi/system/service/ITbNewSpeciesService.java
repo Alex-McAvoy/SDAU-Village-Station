@@ -58,4 +58,10 @@ public interface ITbNewSpeciesService
      * @return 结果
      */
     public int deleteTbNewSpeciesByNewsId(Long newsId);
+
+    public List<TbNewSpecies> selectTbNewSpeciesByColumn(String firstColumn);
+
+    List<TbNewSpecies> selectTbNewSpeciesFirstColumnsList(TbNewSpecies tbNewSpecies);
+
+    public int updateTbNewSpeciesFirstColumns(TbNewSpecies tbNewSpecies);
 }

@@ -20,21 +20,6 @@ public class TbPurchaseFarmServiceImpl implements ITbPurchaseFarmService
     @Autowired
     private TbPurchaseFarmMapper tbPurchaseFarmMapper;
 
-
-    /**
-     * 查询买农资一级列表(类型)
-     *
-     * @param firstColumn  农资一级列表(类型)
-     * @return 买农资
-     */
-    @Override
-    public List<TbPurchaseFarm> selectTbPurchaseFarmByFirstColumn(String firstColumn)
-    {
-        return tbPurchaseFarmMapper.selectTbPurchaseFarmByFirstColumn(firstColumn);
-    }
-
-
-
     /**
      * 查询买农资
      * 
@@ -107,5 +92,21 @@ public class TbPurchaseFarmServiceImpl implements ITbPurchaseFarmService
     public int deleteTbPurchaseFarmByNewsId(Long newsId)
     {
         return tbPurchaseFarmMapper.deleteTbPurchaseFarmByNewsId(newsId);
+    }
+
+    @Override
+    public List<TbPurchaseFarm> selectTbPurchaseFarmByColumn(String firstColumn, String secondColumn) {
+        return tbPurchaseFarmMapper.selectTbPurchaseFarmByColumn(firstColumn, secondColumn);
+    }
+
+    @Override
+    public List<TbPurchaseFarm> selectTbPurchaseFarmFirstColumnsList(TbPurchaseFarm tbPurchaseFarm) {
+        return tbPurchaseFarmMapper.selectTbPurchaseFarmFirstColumnsList(tbPurchaseFarm);
+    }
+
+    @Override
+    public int updateTbPurchaseFarmFirstColumns(TbPurchaseFarm tbPurchaseFarm) {
+        tbPurchaseFarm.setUpdateTime(DateUtils.getNowDate());
+        return tbPurchaseFarmMapper.updateTbPurchaseFarmFirstColumns(tbPurchaseFarm);
     }
 }

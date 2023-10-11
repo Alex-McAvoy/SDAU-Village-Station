@@ -4,7 +4,6 @@ package com.ruoyi.system.controller;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ruoyi.system.domain.TbOtherColumns;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -72,17 +71,6 @@ public class TbFinanceController extends BaseController
     }
 
     /**
-     * 根据firstColumn获取金融详细信息
-     */
-    @PreAuthorize("@ss.hasPermi('system:finance:query')")
-    @GetMapping(value = "/column/{firstColumn}")
-    public AjaxResult getFirstColumnInfo(@PathVariable("firstColumn") String firstColumn)
-    {
-        return success(tbFinanceService.selectTbFinanceByFirstColumn(firstColumn));
-    }
-
-
-    /**
      * 新增金融
      */
     @PreAuthorize("@ss.hasPermi('system:finance:add')")
@@ -115,21 +103,47 @@ public class TbFinanceController extends BaseController
         return toAjax(tbFinanceService.deleteTbFinanceByNewsIds(newsIds));
     }
 
- //    获取全部未审核的金融信息
-    @PreAuthorize("@ss.hasPermi('system:finance:list')")
+    /**
+     * 获取已审核的分类金融信息
+     *
+     * @param firstColumn  是否审核
+     * @param secondColumn  类型
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 11:12:59
+     */
+    @PreAuthorize("@ss.hasPermi('system:finance:list:checked')")
+    @GetMapping(value = "/getListByColumn/{firstColumn}/{secondColumn}")
+    public AjaxResult getFirstColumnInfo(@PathVariable("firstColumn") String firstColumn, @PathVariable("secondColumn") String secondColumn)
+    {
+        return success(tbFinanceService.selectTbFinanceByFirstColumn(firstColumn, secondColumn));
+    }
+
+    /**
+     * 获取全部未审核的金融信息
+     * @param tbFinance 金融信息对象
+     * @return com.ruoyi.common.core.page.TableDataInfo
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:45:54
+     */
+    @PreAuthorize("@ss.hasPermi('system:finance:list:unchecked')")
     @GetMapping("/getFirstColumns")
     public TableDataInfo getRemark(TbFinance tbFinance)
     {
-//        System.out.println("123"/;
         startPage();
-
         List<TbFinance> list = tbFinanceService.selectTbFinanceFirstColumnsList(tbFinance);
         return getDataTable(list);
     }
 
-    //修改firstColumns
-    @PreAuthorize("@ss.hasPermi('system:finance:edit')")
-    @PutMapping("/")
+    /**
+     * 修改审核/未审核
+     * @param tbFinance 金融信息对象
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PreAuthorize("@ss.hasPermi('system:finance:check')")
+    @PutMapping("/check")
     public AjaxResult eidtFirstColumns(@RequestBody TbFinance tbFinance)
     {
         return toAjax(tbFinanceService.updateTbFinanceFirstColumns(tbFinance));

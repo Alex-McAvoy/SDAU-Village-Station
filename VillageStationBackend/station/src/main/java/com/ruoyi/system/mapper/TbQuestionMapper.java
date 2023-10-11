@@ -2,6 +2,7 @@ package com.ruoyi.system.mapper;
 
 import java.util.List;
 import com.ruoyi.system.domain.TbQuestion;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 评论/问答Mapper接口
@@ -29,14 +30,6 @@ public interface TbQuestionMapper
      * @return 评论/问答
      */
     public List<TbQuestion> selectTbQuestionByQuestionId(Long questionId);
-
-    /**
-     * 查询父id的评论/问答
-     *
-     * @param parentId 父ID
-     * @return 评论/问答
-     */
-    public List<TbQuestion> selectTbQuestionByParentId(Long parentId);
 
 
     /**
@@ -78,4 +71,12 @@ public interface TbQuestionMapper
      * @return 结果
      */
     public int deleteTbQuestionByQuestionIds(Long[] questionIds);
+
+    public List<TbQuestion> selectTbQuestionByParentId(@Param("parentId")Long parentId,@Param("firstColumn")String firstColumn);
+
+    public List<TbQuestion> selectTbQuestionByColumn(@Param("expertId") Long expertId, @Param("firstColumn") String firstColumn);
+
+    public List<TbQuestion> selectTbQuestionFirstColumnsList(TbQuestion tbQuestion);
+
+    public int updateTbQuestionFirstColumns(TbQuestion tbQuestion);
 }

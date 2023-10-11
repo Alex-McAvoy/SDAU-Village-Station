@@ -67,4 +67,10 @@ public interface ITbAskExpertService
      * @return 结果
      */
     public int deleteTbAskExpertByAskExpertsId(Long askExpertsId);
+
+    public List<TbAskExpert> selectTbAskExpertByColumn(String firstColumn, String dictValue);
+
+    List<TbAskExpert> selectTbAskExpertFirstColumnsList(TbAskExpert tbAskExpert);
+
+    public int updateTbAskExpertFirstColumns(TbAskExpert tbAskExpert);
 }

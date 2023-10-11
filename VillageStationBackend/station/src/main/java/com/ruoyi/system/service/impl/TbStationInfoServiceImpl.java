@@ -2,7 +2,6 @@ package com.ruoyi.system.service.impl;
 
 import java.util.List;
 import com.ruoyi.common.utils.DateUtils;
-import com.ruoyi.system.domain.TbOtherColumns;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.system.mapper.TbStationInfoMapper;
@@ -34,22 +33,6 @@ public class TbStationInfoServiceImpl implements ITbStationInfoService
     }
 
     /**
-     * 根据FirstColumn查询驿站信息
-     *
-     * @param firstColumn 驿站信息主键
-     * @return 驿站信息
-     */
-    @Override
-    public List<TbStationInfo> selectTbStationInfoByFirstColumn(String firstColumn)
-    {
-        return tbStationInfoMapper.selectTbStationInfoByFirstColumn(firstColumn);
-    }
-
-
-
-
-
-    /**
      * 查询驿站信息列表
      * 
      * @param tbStationInfo 驿站信息
@@ -60,20 +43,6 @@ public class TbStationInfoServiceImpl implements ITbStationInfoService
     {
         return tbStationInfoMapper.selectTbStationInfoList(tbStationInfo);
     }
-
-    //修改未审核
-    @Override
-    public int updateTbStationInfoRemark(TbStationInfo tbStationInfo) {
-        tbStationInfo.setUpdateTime(DateUtils.getNowDate());
-        return tbStationInfoMapper.updateTbStationInfoRemark(tbStationInfo);
-    }
-
-    //获取全部未审核站信息
-    @Override
-    public List<TbStationInfo> selectTbStationInfoRemarkList(TbStationInfo tbStationInfo) {
-        return tbStationInfoMapper.selectTbStationInfoRemarkList(tbStationInfo);
-    }
-
 
     /**
      * 新增驿站信息
@@ -124,4 +93,24 @@ public class TbStationInfoServiceImpl implements ITbStationInfoService
     {
         return tbStationInfoMapper.deleteTbStationInfoByNewsId(newsId);
     }
+
+
+    @Override
+    public List<TbStationInfo> selectTbStationInfoByColumn(String firstColumn)
+    {
+        return tbStationInfoMapper.selectTbStationInfoByColumn(firstColumn);
+    }
+
+    @Override
+    public List<TbStationInfo> selectTbStationInfoFirstColumnsList(TbStationInfo tbStationInfo) {
+        tbStationInfo.setUpdateTime(DateUtils.getNowDate());
+        return tbStationInfoMapper.selectTbStationInfoFirstColumnsList(tbStationInfo);
+    }
+
+    @Override
+    public int updateTbStationFirstColumns(TbStationInfo tbStationInfo) {
+        return tbStationInfoMapper.updateTbStationFirstColumns(tbStationInfo);
+    }
+
+
 }

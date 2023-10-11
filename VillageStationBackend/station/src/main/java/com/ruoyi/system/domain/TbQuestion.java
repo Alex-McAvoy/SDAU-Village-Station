@@ -27,22 +27,28 @@ public class TbQuestion extends BaseEntity
     @Excel(name = "表名")
     private String tableName;
 
-    @Override
-    public String toString() {
-        return "TbQuestion{" +
-                "questionId=" + questionId +
-                ", question='" + question + '\'' +
-                ", delFlag='" + delFlag + '\'' +
-                ", tableName='" + tableName + '\'' +
-                ", parentId=" + parentId +
-                ", expertId=" + expertId +
-                ", questionTitle='" + questionTitle + '\'' +
-                '}';
-    }
-
     /** 父ID */
     @Excel(name = "父ID")
     private Long parentId;
+
+    /** 专家id */
+    @Excel(name = "专家ID")
+    private Long expertId;
+
+    /** 问题title */
+    @Excel(name = "专家ID")
+    private String questionTitle;
+
+    @Excel(name = "审核字段")
+    private String firstColumn;
+
+    public String getFirstColumn() {
+        return firstColumn;
+    }
+
+    public void setFirstColumn(String firstColumn) {
+        this.firstColumn = firstColumn;
+    }
 
     public Long getQuestionId() {
         return questionId;
@@ -100,12 +106,17 @@ public class TbQuestion extends BaseEntity
         this.questionTitle = questionTitle;
     }
 
-    /** 专家id */
-    @Excel(name = "专家ID")
-    private Long expertId;
-    /** 问题title */
-    @Excel(name = "专家ID")
-    private String questionTitle;
-
-
+    @Override
+    public String toString() {
+        return "TbQuestion{" +
+                "questionId=" + questionId +
+                ", question='" + question + '\'' +
+                ", delFlag='" + delFlag + '\'' +
+                ", tableName='" + tableName + '\'' +
+                ", parentId=" + parentId +
+                ", expertId=" + expertId +
+                ", questionTitle='" + questionTitle + '\'' +
+                ", firstColumn='" + firstColumn + '\'' +
+                '}';
+    }
 }

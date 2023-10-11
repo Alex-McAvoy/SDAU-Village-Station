@@ -7,13 +7,14 @@
 					<u-col span="3">乡村驿站&nbsp;</u-col>
 					<u-col span="7">
 						<u-search :show-action="false"></u-search>
-					</u-col <u-col span="2">天气</u-col>
+					</u-col <u-col span="2"></u-col>
 				</u-row>
 			</div> <!-- 2 九宫格 -->
+			<!-- 九宫格 -->
 			<view
 				style="border-radius: 10px; background-color: white;margin:105px 15px 15px 10px;padding-top:8px;padding-bottom: 8px;">
 				<u-grid :border="false" col="4">
-					<u-grid-item v-for="(listItem,listIndex) in list" :key="listIndex">
+					<u-grid-item v-for="(listItem,listIndex) in barList" :key="listIndex">
 						<view @click="$goBack(2,listItem.route)">
 							<u-image :customStyle="{paddingTop:20+'rpx'}" :src="listItem.src" :height="40" :width="30"
 								style="display: flex;justify-content: center;align-items: center;"></u-image>
@@ -25,9 +26,43 @@
 				<u-toast ref="uToast" />
 			</view>
 		</view>
-		<!-- 3 问专家 -->
+
+		<!-- 驿站信息 -->
+		<view style="border-radius: 10px; background-color: white;  margin:15px">
+			<view class="askexperts-bar" style="font-size: 100px;" @click="goStationInfoList">
+				<image src="/static/images/station/station/ncp.png" style="margin:8px; width:40px; height: 25px;">
+				</image>
+				<u-text style="font-weight: 20px;" margin="8px 0 2px 0" bold size="22" text="驿站信息"></u-text>
+				<u-col span="1">
+					<image src="/static/images/index/arrow_right.png" style="height:20px;width:35px;" />
+				</u-col>
+			</view>
+			<view class="u-page" v-for="item in Array.from(Info).slice(0,2)" @click="goStationInfoDetail(item)">
+				<view class="u-demo-block">
+					<view class="album">
+						<view class="album__avatar">
+							<image margin="30px 0px 8px 0px" :src="item.remark"
+								style="margin-top: 15px;border-radius: 8px; overflow: hidden;width: 100px;height: 70px;">
+							</image>
+						</view>
+						<view class="album__content">
+							<u-text style="padding-right: 8px;" margin="20px 0px 8px 0px" :text="item.title" bold
+								size="17"></u-text>
+							<div>
+								<view style="display: flex; margin-top:10px;">
+									<u--text color="#909090 " margin="0 0 8px 0"
+										:text="fixedSize(item.content)"></u--text>
+								</view>
+							</div>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		
+		<!-- 问专家 -->
 		<view style="border-radius: 10px; background-color: white;margin:15px">
-			<view class="askexperts-bar" style="font-size: 100px;" @click="goExpert">
+			<view class="askexperts-bar" style="font-size: 100px;" @click="goExpertList">
 				<image src="/static/images/station/station/wd.png" style="margin:8px; width:30px; height: 25px;">
 				</image>
 				<u-text style="font-weight: 20px;" margin="8px 0 4px 0" bold size="22" text="问专家"></u-text>
@@ -43,7 +78,7 @@
 								style="margin:8px; width:100px; height: 100px;border-radius: 100%;">
 							</image>
 						</view>
-						<view class="album__content" @click="goToDetailPage1(expert.askExpertsId)">
+						<view class="album__content" @click="goExpertDetail(expert.askExpertsId)">
 							<view class="sub_title" margin="10px 0 20px 0" bold size="20">{{expert.expertName}}</view>
 							<div style="margin-right: 10px;">
 								<span
@@ -55,9 +90,10 @@
 				</view>
 			</view>
 		</view>
-		<!-- 4 随时问 -->
+		
+		<!-- 随时问 -->
 		<view style="border-radius: 10px; background-color: white;  margin:15px;">
-			<view class="askexperts-bar" @click="goAskfree">
+			<view class="askexperts-bar" @click="goFreeAsk">
 				<image src="/static/images/station/station/cjwt.png" style="margin:8px; width:30px; height: 25px;">
 				</image>
 				<u-text style="font-weight: 20px;" margin="8px 0 8px 0" bold size="22" text="随时问"></u-text>
@@ -66,7 +102,7 @@
 				</u-col>
 			</view>
 			<u-gap height="10"></u-gap>
-			<view class="u-page" v-for="askquestion in Array.from(askquestions).slice(0,2)">
+			<view class="u-page" v-for="item in Array.from(askQuestions).slice(0,2)">
 				<view class="album">
 					<view class="album__content">
 						<view class="u-page">
@@ -77,12 +113,12 @@
 											<image src="/static/images/icon.jpg" mode=""
 												style="width: 32px;height: 32px; "></image>
 										</view>
-										<view class="album__content" @click="goToDetailPage3(askquestion.askFreeId)">
+										<view class="album__content" @click="goFreeAskDetail(item.askFreeId)">
 											<div class="ask_title">
-												{{askquestion.title}}
+												{{item.title}}
 											</div>
 											<div class="ask_content">
-												{{askquestion.content}}
+												{{item.content}}
 											</div>
 										</view>
 									</view>
@@ -95,9 +131,10 @@
 			</view>
 			<u-divider></u-divider>
 		</view>
-		<!-- 5 学农技 -->
+		
+		<!-- 学农技 -->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
-			<view class="askexperts-bar" @click="goLearntec">
+			<view class="askexperts-bar" @click="goLearnTech">
 				<image src="/static/images/station/station/ncxfy.png" style="margin:8px; width:30px; height: 25px;">
 				</image>
 				<u-text style="font-weight: 20px;" margin="8px 0 8px 0" bold size="22" text="学农技"></u-text>
@@ -105,19 +142,19 @@
 					<image src="/static/images/index/arrow_right.png" style="height:20px;width:35px;" />
 				</u-col>
 			</view>
-			<u-tabs :list="list1" :is-scroll="true" @click="checkedtechnology" lineColor="#2ed573"></u-tabs>
-			<view class="u-page" v-for="onetechdetail in Array.from(techdetails).slice(0,2)"
-				@click="goToDetailPage5(onetechdetail.articleId)">
+			<u-tabs :list="techBarList" :is-scroll="true" @click="getTechList" lineColor="#2ed573"></u-tabs>
+			<view class="u-page" v-for="item in Array.from(techDetails).slice(0,2)"
+				@click="goTechDetail(item)">
 				<view class="u-demo-block">
 					<view class="album">
 						<view class="album__avatar">
-							<image margin="30px 0px 8px 0px" :src="onetechdetail.remark"
+							<image margin="30px 0px 8px 0px" :src="item.remark"
 								style="margin-top: 15px;border-radius: 8px; overflow: hidden;width: 100px;height: 70px;">
 							</image>
 						</view>
 						<view class="album__content">
 							<view style="padding-right: 8px;" margin="20px 0px 8px 0px" bold size="17">
-								{{fixedSize(onetechdetail.content)}}
+								{{fixedSize(item.content)}}
 							</view>
 							<div>
 								<view style="display: flex; margin-top:10px;">
@@ -131,9 +168,10 @@
 				</view>
 			</view>
 		</view>
-		<!-- 6 买农资-->
+		
+		<!-- 买农资-->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
-			<view class="askexperts-bar" @click="goPurchaseFarm">
+			<view class="askexperts-bar" @click="goFarm">
 				<image src="/static/images/station/station/ncp.png" style="margin:8px; width:40px; height: 25px;">
 				</image>
 				<u-text style="font-weight: 20px;" margin="8px 0 2px 0" bold size="22" text="买农资"></u-text>
@@ -141,8 +179,8 @@
 					<image src="/static/images/index/arrow_right.png" style="height:20px;width:35px;" />
 				</u-col>
 			</view>
-			<u-tabs :list="list5" @click="checkedFarm" lineColor="#2ed573" lineWidth="60" :current="0"></u-tabs>
-			<view class="u-page" v-for="item in Array.from(farmList).slice(0,2)" @click="gopurchasefarm_detail(item)">
+			<u-tabs :list="farmBarList" @click="getFarmList" lineColor="#2ed573" lineWidth="60" :current="0"></u-tabs>
+			<view class="u-page" v-for="item in Array.from(farmList).slice(0,2)" @click="goFarmDetail(item.newsId)">
 				<view class="u-demo-block">
 					<view class="album">
 						<view class="album__avatar">
@@ -165,7 +203,8 @@
 			</view>
 
 		</view>
-		<!-- 7 找渠道-->
+		
+		<!-- 找渠道-->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="askexperts-bar" style="font-size: 100px;" @click="goChannel">
 				<image src="/static/images/station/station/qdgl.png" style="margin:8px; width:30px; height: 25px;">
@@ -176,9 +215,9 @@
 				</u-col>
 			</view>
 
-			<u-tabs :list="list3" @click="checkedChannel" lineColor="#2ed573" lineWidth="60" :current="0"></u-tabs>
+			<u-tabs :list="channelBarList" @click="getChannelList" lineColor="#2ed573" lineWidth="60" :current="0"></u-tabs>
 
-			<view class="u-page" v-for="item in Array.from(channelList).slice(0, 2)" @click="gochannel_detail(item)">
+			<view class="u-page" v-for="item in Array.from(channelList).slice(0, 2)" @click="goChannelDetail(item)">
 				<view class="u-demo-block">
 					<view class="album">
 						<view class="album__avatar">
@@ -201,7 +240,8 @@
 			</view>
 
 		</view>
-		<!-- 8 推优品-->
+		
+		<!-- 推优品-->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="askexperts-bar" style="font-size: 100px;" @click="goProducts">
 				<image src="/static/images/station/station/nl.png" style="margin:8px; width:30px; height: 25px;">
@@ -211,9 +251,9 @@
 					<image src="/static/images/index/arrow_right.png" style="height:20px;width:35px;" />
 				</u-col>
 			</view>
-			<u-tabs :list="list5" @click="checked" lineColor="#2ed573" lineWidth="60" :current="0"></u-tabs>
+			<u-tabs :list="productBarList" @click="getProductList" lineColor="#2ed573" lineWidth="60" :current="0"></u-tabs>
 
-			<view class="u-page" v-for="item in productsList" @click="goProducts_detail(item)">
+			<view class="u-page" v-for="item in Array.from(productsList).slice(0, 2)" @click="goProductsDetail(item)">
 				<view class="u-demo-block">
 					<view class="album">
 						<view class="album__avatar">
@@ -235,7 +275,8 @@
 				</view>
 			</view>
 		</view>
-		<!-- 9 新品种-->
+		
+		<!-- 新品种-->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="askexperts-bar" style="font-size: 100px;" @click="goNewspecies">
 				<image src="/static/images/station/station/zzpz.png" style="margin:8px; width:30px; height: 25px;">
@@ -245,7 +286,7 @@
 					<image src="/static/images/index/arrow_right.png" style="height:20px;width:35px;" />
 				</u-col>
 			</view>
-			<view class="u-page" v-for="item in Array.from(speciesList).slice(0,1)" @click="goNewspeciesDetail(item)">
+			<view class="u-page" v-for="item in Array.from(speciesList).slice(0,2)" @click="goNewspeciesDetail(item)">
 				<view class="u-demo-block">
 					<view class="album">
 						<view class="album__avatar">
@@ -267,12 +308,13 @@
 				</view>
 			</view>
 		</view>
-		<!-- 10 在线基地-->
+		
+		<!-- 在线基地-->
 		<view style="border-radius: 10px; background-color: white;  margin:15px" @click="goOnlinebase">
 			<view class="askexperts-bar" style="font-size: 100px;">
 				<image src="/static/images/station/station/dt.png" style="margin:8px; width:30px; height: 25px;">
 				</image>
-				<u-text style="font-weight: 20px;" margin="8px 0 4px 0" bold size="22" text="寻基地"></u-text>
+				<u-text style="font-weight: 20px;" margin="8px 0 4px 0" bold size="22" text="寻驿站"></u-text>
 				<u-col span="1">
 					<image src="/static/images/index/arrow_right.png" style="height:20px;width:35px;" />
 				</u-col>
@@ -285,56 +327,36 @@
 </template>
 <script>
 	import {
-		listfreeAsk,
-		addAskQuestion
-	} from "@/api/station/freeAsk.js";
-	
-	import {
-		expertList,
-		listExpert,
-		getExpert,
-		delExpert,
-		addExpert,
-		updateExpert
-	} from "@/api/station/expert.js";
-
-	import {
 		UList,
 		UAvatar,
 		UText,
 		UIcon,
 	} from 'uview-ui';
-	
 	import {
-		getTechdetail,
+		getStationListByColumn
+	} from "@/api/station/station.js";
+	import {
+		getExpertListByColumn
+	} from "@/api/station/expert.js";
+	import {
+		getFreeAskListByColumn
+	} from "@/api/station/freeAsk.js";
+    import {
+		getTechListByColumns,
 	} from "@/api/station/tech.js";
-	
-	import {
-		listProducts,
-		getProducts,
-		getProductsByColumns
-	} from "@/api/system/products";
-	
-	import {
-		listChannel,
-		getChannel,
-		delChannel,
-		addChannel,
-		updateChannel,
-		listByColumn
-	} from "@/api/system/channel";
-	
-	import {
-		listFarm,
-		getFarm,
-		getInfo
+    import {
+		getFarmListByColumn
 	} from "@/api/station/farm";
-	
 	import {
-		listSpecies,
-		getSpecies
-	} from "@/api/system/species";
-	
+		getChannelListByColumns
+	} from "@/api/station/channel";
+	import {
+		getProductsByColumns
+	} from "@/api/station/products";
+	import {
+		getSpeciesListByColumn
+	} from "@/api/station/species";
+
 	export default {
 		components: {
 			UList,
@@ -344,31 +366,7 @@
 		},
 		data() {
 			return {
-				askquestions: {
-					title: '',
-					content: '',
-				},
-				experts: {
-					expertName: '',
-					introduction: '',
-					remark: '',
-				},
-				isActive: 0,
-				current: 0,
-				text: '000',
-				// 找渠道
-				channelList: [],
-				// 推优品
-				productsList: [],
-				// 买农资
-				farmList: [],
-				speciesList: [],
-				value1: 0,
-				src: "/static/images/station/station/sg.png",
-				src1: "/static/images/station/station/gl.png",
-				src2: "/static/images/station/station/sg.png",
-				src3: "/static/images/station/station/gl.png",
-				list: [{
+				barList: [{ //导航栏
 						src: "/static/images/station/station/wd.png",
 						title: '问专家',
 						route: '/pages/station/askExperts/askExpert'
@@ -409,271 +407,293 @@
 						route: '/pages/station/onlinebase'
 					},
 				],
-				expertsList: [],
-				list1: [{
+				Info: { // 驿站信息
+					title: '',
+					content: '',
+					secondColumn: '',
+				},
+				experts: { // 专家
+					expertName: '',
+					introduction: '',
+					remark: '',
+				},
+				askQuestions: { // 随时问
+					title: '',
+					content: '',
+				},
+				techBarList: [{ //学农技导航栏
 						name: '水稻',
-						firstColumn: '0',
+						index: '0',
 					}, {
 						name: '小麦',
-						firstColumn: '1',
+						index: '1',
 					}, {
 						name: '蔬菜',
-						firstColumn: '2',
+						index: '2',
 					}, {
 						name: '果树',
-						firstColumn: '3',
+						index: '3',
 					}, {
 						name: '植保',
-						firstColumn: '4',
+						index: '4',
 					}, {
 						name: '禽畜',
-						firstColumn: '5',
+						index: '5',
 					},
 					{
 						name: '农机',
-						firstColumn: '6',
+						index: '6',
 					},
 					{
 						name: '水产',
-						firstColumn: '7',
+						index: '7',
 					},
 				],
-				list2: [{
-					index: 0,
-					title: '节肥增效'
-				}, {
-					index: 1,
-					title: "虫害防控"
-				}, {
-					index: 2,
-					title: "农机装备"
-				}, {
-					index: 3,
-					title: "种子树苗"
-				}],
-				list3: [{
-					index: 0,
-					name: '供应'
-				}, {
-					index: 1,
-					name: "求购"
-				}],
-				list5: [{
-					index: 0,
-					name: '我的优品'
-				}, {
-					index: 1,
-					name: "品牌展示"
-				}],
-				urls: [
-					'https://zhcz01.oss-cn-beijing.aliyuncs.com/7252903bf220591b9a8e9b7b91aa9f6.png',
-
-				],
-				albumWidth: 0,
-				urls2: [
-					'/static/images/station/station/sg.png',
-					'/static/images/station/station/gl.png',
-					'/static/images/station/station/sg.png',
-				],
-				techdetails: {
+				techDetails: { //学农技
 					content: '',
 					remark: '',
+				},
+				farmBarList: [{ //买农资导航栏
+						index: 0,
+						name: "节肥增效"
+					}, {
+						index: 1,
+						name: "虫害防控"
+					}, {
+						index: 2,
+						name: "农机装备"
+					}, {
+						index: 3,
+						name: "种子树苗"
+				}],
+				farmList: { // 买农资
+					remark: '',
+					title: '',
+					content: ''
+				}, 
+				channelBarList: [{ //找渠道导航栏
+						index: 0,
+						name: '供应'
+					}, {
+						index: 1,
+						name: "求购"
+					}
+				],
+				channelList: { // 找渠道
+					remark: '',
+					title: '',
+					content: ''
+				}, 
+				productBarList: [{ //推优品导航栏
+						name: '优品品类',
+						index: 0
+					}, {
+						name: "优品品牌",
+						index: 1
+					},
+				],
+				productsList: { // 推优品
+					remark: '',
+					title: '',
+					content: ''
+				}, 
+				speciesList: { //新品种
+					remark: '',
+					title: '',
+					content: ''
 				}
 			}
 		},
-		onLoad() {
-			this.loadmore()
-		},
 		created() {
-			this.checkedtechnology({
-				firstColumn: 0
-			});
-			this.checked({
-				index: 0
-			});
-			this.checkedChannel({
-				index: 0
-			});
-			this.checkedFarm({
-				index: 0
-			});
-			this.getList();
-			this.getList1();
-			this.getList2();
+			this.getStationList();
+			this.getExpertList();
+			this.getFreeAskList();
+			this.getTechList({index:0});
+			this.getFarmList({index:0});
+			this.getChannelList({index:0});
+			this.getProductList({index:0});
+			this.getSpeciesList();
 		},
 		methods: {
-			goToDetailPage5(id) {
-				uni.navigateTo({
-					url: "/pages/station/learningTechnology/techdetail?id=" + id
-				});
-			},
-			goToDetailPage3(id) {
-				uni.navigateTo({
-					url: "/pages/station/freeAsk/freeAskdetail?id=" + id
-				});
-			},
-			//获取问答列表
-			getList2() {
+			//获取驿站信息列表
+			getStationList() {
 				this.loading = true;
-				listfreeAsk(this.queryParams).then(response => {
-					this.askquestions = response.rows;
+				getStationListByColumn(1).then(response => {
+					this.Info = response.data;
 					this.loading = false;
 				});
 			},
-			fixedSize(content) {
-				return content.substring(0, 25) + "...."
+			//跳转驿站信息列表页
+			goStationInfoList(){
+				uni.navigateTo({
+					url: "/pages/station/station/station_info_list"
+				});
+			},
+			//跳转驿站信息详情页
+			goStationInfoDetail(item) {
+				getApp().globalData.item = item;
+				uni.navigateTo({
+					url: "/pages/station/station/station_info_detail"
+				})
 			},
 			//获取专家列表
-			getList1() {
+			getExpertList() {
 				this.loading = true;
-				listExpert(this.queryParams).then(response => {
-					this.experts = response.rows;
+				getExpertListByColumn(1,2).then(response => {
+					this.experts = response.data;
 					this.loading = false;
 				});
+			},
+			//跳转问专家
+			goExpertList() {
+				uni.navigateTo({
+					url: "/pages/station/askExperts/askExpert"
+				})
 			},
 			//跳转专家详情页面
-			goToDetailPage1(id) {
+			goExpertDetail(id) {
 				uni.navigateTo({
-					url: "/pages/station/askExperts/shr?id=" + id
+					url: "/pages/station/askExperts/expert_detail?id=" + id
 				});
 			},
-			// 控制显示字的长度
-			fixedSize(content) {
-				return content.substring(0, 25) + "..."
-			},
-			// 跳转问专家
-			goExpert() {
-				uni.navigateTo({
-					url: "askExperts/askExpert"
-				})
-			},
-			goAskfree() {
-				uni.navigateTo({
-					url: "freeAsk/freeAsk"
-				})
-			},
-			goLearntec() {
-				uni.navigateTo({
-					url: "learningTechnology/learningTechnology"
-				})
-			},
-			// goLearntec_detail
-			goLearntec_detail(firstColumn) {
-				getApp().globalData.firstColumn = firstColumn;
-				uni.navigateTo({
-					url: "learningTechnology/techdetail"
-				})
-			},
-			goPurchaseFarm() {
-				uni.navigateTo({
-					url: "farm/purchaseFarm"
-				})
-			},
-			gopurchasefarm_detail(item) {
-				getApp().globalData.item = item;
-				uni.navigateTo({
-					url: "products/products_detail"
-				})
-			},
-
-			goChannel() {
-				uni.navigateTo({
-					url: "channel/channel"
-				})
-			},
-			goProducts_detail(item) {
-				getApp().globalData.item = item;
-				uni.navigateTo({
-					url: "products/products_detail"
-				})
-			},
-			gochannel_detail(item) {
-				getApp().globalData.item = item;
-				uni.navigateTo({
-					url: "channel/channel_detail"
-				})
-			},
-			goProducts() {
-				uni.navigateTo({
-					url: "products/products"
-				})
-			},
-			goNewspecies() {
-				uni.navigateTo({
-					url: "newsSpecies/newspecies"
-				})
-			},
-			goOnlinebase() {
-				uni.navigateTo({
-					url: "onlinebase"
-				})
-			},
-
-			// 导航栏跳转
-			// 学农技导航栏
-			// 推优品导航栏
-			checked(index) {
-				getProductsByColumns(1, index.index + 2).then(response => {
-					this.productsList = response.data;
+			//获取随时问列表
+			getFreeAskList() {
+				this.loading = true;
+				getFreeAskListByColumn(1).then(response => {
+					this.askQuestions = response.data;
 					this.loading = false;
 				});
 			},
-			// 学农技导航栏
-			checkedtechnology(firstColumn) {
-				getTechdetail(firstColumn.firstColumn).then(response => {
-					this.techdetails = response.data;
+			//跳转随时问
+			goFreeAsk() {
+				uni.navigateTo({
+					url: "/pages/station/freeAsk/freeAsk"
+				})
+			},
+			//跳转随时问详情页
+			goFreeAskDetail(id) {
+				uni.navigateTo({
+					url: "/pages/station/freeAsk/freeAskDetail?id=" + id
+				});
+			},
+			//获取学农技列表
+			getTechList(item) {
+				getTechListByColumns(1,item.index).then(response => {
+					this.techDetails = response.data;
 					this.total = response.total;
 					this.loading = false;
 				});
 			},
-			// 找渠道导航栏
-			checkedChannel(index) {
-				listByColumn(index.index).then(response => {
+			//跳转学农技
+			goLearnTech() {
+				uni.navigateTo({
+					url: "/pages/station/learningTechnology/learningTechnology"
+				})
+			},
+			//跳转学农技详情页
+			goTechDetail(item) {
+				getApp().globalData.techItem = item;
+				uni.navigateTo({
+					url: "/pages/station/learningTechnology/tech_detail"
+				});
+			},
+			//获取买农资列表
+			getFarmList(item) {
+				getFarmListByColumn(1, item.index).then(response => {
+					this.farmList = response.data;
+					this.total = response.total;
+					this.loading = false;
+				});
+			},			
+			//跳转买农资
+			goFarm() {
+				uni.navigateTo({
+					url: "/pages/station/farm/purchaseFarm"
+				})
+			},
+			//跳转买农资详情页
+			goFarmDetail(id) {
+				uni.navigateTo({
+					url: "/pages/station/farm/farm_detail?id=" + id
+				});
+			},
+			//获取找渠道列表
+			getChannelList(item) {
+				getChannelListByColumns(1,item.index).then(response => {
 					this.channelList = response.rows;
 					this.total = response.total;
 					this.loading = false;
 				});
 			},
-			// 买农资导航栏
-			checkedFarm(index) {
-				getInfo(index.index).then(response => {
-					this.farmList = response.data;
-					this.total = response.total;
+			//跳转到找渠道
+			goChannel() {
+				uni.navigateTo({
+					url: "/pages/station/channel/channel"
+				})
+			},
+			//跳转到找渠道详情页
+			goChannelDetail(item) {
+				getApp().globalData.item = item;
+				uni.navigateTo({
+					url: "/pages/station/channel/channel_detail"
+				})
+			},
+			//获取推优品列表
+			getProductList(item) {
+				getProductsByColumns(1, item.index).then(response => {
+					this.productsList = response.data;
 					this.loading = false;
 				});
 			},
-			/** 查询新品种列表 */
-			getList() {
+			//跳转到推优品
+			goProducts() {
+				uni.navigateTo({
+					url: "/pages/station/products/products"
+				})
+			},
+			//跳转到推优品详情页
+			goProductsDetail(item) {
+				getApp().globalData.item = item;
+				uni.navigateTo({
+					url: "/pages/station/products/products_detail"
+				})
+			},
+			//获取新品种列表
+			getSpeciesList() {
 				this.loading = true;
-				listSpecies(this.queryParams).then(response => {
-					this.speciesList = response.rows;
+				getSpeciesListByColumn(1).then(response => {
+					this.speciesList = response.data;
 					this.total = response.total;
 					this.loading = false;
 				});
 			},
-			redirectTo(route) {
-				// 进行跳转逻辑
-				// 例如使用 Vue Router 跳转到指定路径
-				this.$router.push(route);
+			//跳转到新品种
+			goNewspecies() {
+				uni.navigateTo({
+					url: "/pages/station/newsSpecies/newspecies"
+				})
 			},
-			loadmore() {
-				for (let i = 0; i < 2; i++) {
-					this.expertsList.push({
-						url: this.urls[uni.$u.random(0, this.urls.length - 1)]
-					})
-				}
-			},
+			//跳转到新品种详情页
 			goNewspeciesDetail(item) {
 				getApp().globalData.item = item;
 				uni.navigateTo({
-					url: "newsSpecies/species_detail"
+					url: "/pages/station/newsSpecies/species_detail"
 				})
 			},
-
-		},
+			//跳转到寻驿站
+			goOnlinebase() {
+				uni.navigateTo({
+					url: "/pages/station/onlinebase"
+				})
+			},
+			// 控制显示文本长度
+			fixedSize(content) {
+				return content.substring(0, 25) + "..."
+			}
+		}
 	}
 </script>
-<style src="../../static/css/text.css"></style>
+<style src="../../../static/css/text.css"></style>
 <style>
 	/* 导航栏字体样式 */
 	::v-deep .u-tabs__wrapper__nav__item__text {
@@ -700,7 +720,7 @@
 	}
 </style>
 <style lang="scss">
-	@import url("../../static/css/nav_bar.css");
+	@import url("../../../static/css/nav_bar.css");
 
 	/* 顶部样式 */
 	.index_head {

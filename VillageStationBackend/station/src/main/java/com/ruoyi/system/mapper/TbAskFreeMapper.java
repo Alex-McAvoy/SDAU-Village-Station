@@ -2,6 +2,7 @@ package com.ruoyi.system.mapper;
 
 import java.util.List;
 import com.ruoyi.system.domain.TbAskFree;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 随时问Mapper接口
@@ -26,11 +27,6 @@ public interface TbAskFreeMapper
      * @return 随时问
      */
     public List<TbAskFree> selectTbAskFreeByParentId(Long parentId);
-
-
-
-
-
 
 
     /**
@@ -72,4 +68,10 @@ public interface TbAskFreeMapper
      * @return 结果
      */
     public int deleteTbAskFreeByAskFreeIds(Long[] askFreeIds);
+
+    public List<TbAskFree> selectTbAskFreeByColumn(@Param("firstColumn")String firstColumn);
+
+    public List<TbAskFree> selectTbAskFreeFirstColumnsList(TbAskFree tbAskFree);
+
+    public int updateTbAskFreeFirstColumns(TbAskFree tbAskFree);
 }

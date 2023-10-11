@@ -2,31 +2,32 @@
 	<view class="u-page">
 		<!-- 导航栏 -->
 		<view style=" margin: 15px; border-radius: 5px; background-color: white;">
-		<view class="tab_nav">
-			<view class="navTitle" v-for="(item,index) in navList" :key="index">
-				<view :class="{'active':isActive === index}" @click="checked(index)">
-					{{item.title}}
+			<view class="tab_nav">
+				<view class="navTitle" v-for="(item,index) in navList" :key="index">
+					<view :class="{'active':isActive === index}" @click="checked(index)">
+						{{item.title}}
+					</view>
 				</view>
 			</view>
-		</view>
 		</view>
 		<!-- 内容一 -->
 		<view class="album__content" v-for="item in farmList" @click="goToDetailPage(item.newsId)">
 			<view class="main_title">
 				{{ item.title }}
 			</view>
-			<view class="main_content" ><u-parse :content="fixedSize(item.content)"></u-parse></view>
-			<image :src="item.remark"
-				style="width: 150px;height: 150px; padding-top: 1vh;"></image>
+			<view class="main_content"><u-parse :content="fixedSize(item.content)"></u-parse></view>
+			<image :src="item.remark" style="width: 150px;height: 150px; padding-top: 1vh;"></image>
 		</view>
 	</view>
 </template>
 
 <script>
-	import { listFarm, getFarm, getInfo} from "@/api/station/farm";
+	import {
+		getFarm,
+		getFarmListByColumn
+	} from "@/api/station/farm";
 	export default {
 		name: "Farm",
-		onLoad: function() {},
 		data() {
 			return {
 				form: {},
@@ -42,10 +43,10 @@
 				}, {
 					index: 1,
 					title: "虫害防控"
-				},{
+				}, {
 					index: 2,
 					title: "农机装备"
-				},{
+				}, {
 					index: 3,
 					title: "种子树苗"
 				}],
@@ -53,26 +54,29 @@
 		},
 		created() {
 			this.loading = true;
-			this.checked(0);
+			this.getList();
 		},
 		methods: {
 			//跳转详情页
 			goToDetailPage(id) {
-				// console.log(id);
 				uni.navigateTo({
 					url: "/pages/station/farm/farm_detail?id=" + id
 				});
 			},
-			click(item) {
-				console.log('item', item);
-			},
 			/** 查询买农资列表 */
 			checked(index) {
 				this.isActive = index;
-				getInfo(index).then(response => {
-					// console.log(response);
+				getFarmListByColumn(1, index).then(response => {
 					this.farmList = response.data;
 					this.total = response.total;
+					this.loading = false;
+				});
+			},
+			/** 查询其它栏目*/
+			getList() {
+				this.loading = true;
+				getFarmListByColumn(1, 0).then(response => {
+					this.farmList = response.data;
 					this.loading = false;
 				});
 			},
@@ -98,6 +102,7 @@
 
 <style lang="scss">
 	@import url("../../../static/css/text.css");
+
 	.album__content {
 		margin: 15px;
 		// border-bottom: 1px solid #979797;
@@ -142,11 +147,12 @@
 		margin-left: 3vh !important;
 		margin-top: 1vh;
 	}
+
 	.active {
 		position: relative;
 		color: #00ae67;
 	}
-	
+
 	.active::after {
 		content: "";
 		position: absolute;

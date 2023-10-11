@@ -14,21 +14,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="parentId"    column="parent_id"    />
         <result property="expertId"    column="expert_id"    />
         <result property="questionTitle"    column="question_title"    />
+        <result property="firstColumn"    column="first_column"    />
     </resultMap>
 
     <sql id="selectTbQuestionVo">
         select question_id, question, del_flag, create_by, create_time, table_name, parent_id, expert_id,question_title from tb_question
     </sql>
 
-
-
-
     <select id="selectTbQuestionList" parameterType="TbQuestion" resultMap="TbQuestionResult">
         <include refid="selectTbQuestionVo"/>
         <where>  
             <if test="question != null  and question != ''"> and question = #{question}</if>
             <if test="tableName != null  and tableName != ''"> and table_name like concat('%', #{tableName}, '%')</if>
-            <if test="parentId != null "> and parent_id = #{parentId}</if>
         </where>
     </select>
 
@@ -40,11 +37,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectTbQuestionByExpertId" parameterType="Long" resultMap="TbQuestionResult">
         <include refid="selectTbQuestionVo"/>
         where expert_id = #{expertId} and parent_id is NULL
-    </select>
-
-    <select id="selectTbQuestionByParentId" parameterType="Long" resultMap="TbQuestionResult">
-        <include refid="selectTbQuestionVo"/>
-        WHERE parent_id = #{questionId}
     </select>
 
     <insert id="insertTbQuestion" parameterType="TbQuestion" useGeneratedKeys="true" keyProperty="questionId">
@@ -94,4 +86,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             #{questionId}
         </foreach>
     </delete>
+
+    <select id="selectTbQuestionByParentId" resultMap="TbQuestionResult">
+        <include refid="selectTbQuestionVo"/>
+        WHERE parent_id = #{parentId} AND first_column = #{firstColumn}
+    </select>
+
+    <select id="selectTbQuestionByColumn"  resultMap="TbQuestionResult">
+        <include refid="selectTbQuestionVo"/>
+        where expert_id = #{expertId} AND first_column = #{firstColumn} AND parent_id is null
+    </select>
+
+    <select id="selectTbQuestionFirstColumnsList" parameterType="String"
+            resultMap="TbQuestionResult">
+        <include refid="selectTbQuestionVo"/>
+        where first_column = 0
+    </select>
+
+    <update id="updateTbQuestionFirstColumns"  parameterType="TbRecommendProducts">
+        update tb_question
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="firstColumn != null">firstColumn = '1',</if>
+        </trim>
+    </update>
 </mapper>

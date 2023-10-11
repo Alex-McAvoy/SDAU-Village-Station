@@ -12,14 +12,6 @@ import com.ruoyi.system.domain.TbLearnTech;
 public interface ITbLearnTechService 
 {
     /**
-     * 查询学农技一级列表(类型)
-     *
-     * @param firstColumn 学农技一级列表(类型)
-     * @return 学农技
-     */
-    public List<TbLearnTech> selectTbLearnTechByFirstColumn(String firstColumn);
-
-    /**
      * 查询学农技
      * 
      * @param articleId 学农技主键
@@ -66,4 +58,10 @@ public interface ITbLearnTechService
      * @return 结果
      */
     public int deleteTbLearnTechByArticleId(Long articleId);
+
+    public List<TbLearnTech> selectTbLearnTechByColumn(String firstColumn, String secondColumn);
+
+    List<TbLearnTech> selectTbLearnTechFirstColumnsList(TbLearnTech tbLearnTech);
+
+    public int updateTbLearnTechFirstColumns(TbLearnTech tbLearnTech);
 }

@@ -2,7 +2,6 @@ package com.ruoyi.system.mapper;
 
 import java.util.List;
 
-import com.ruoyi.system.domain.TbOtherColumns;
 import com.ruoyi.system.domain.TbStationInfo;
 
 /**
@@ -22,30 +21,12 @@ public interface TbStationInfoMapper
     public TbStationInfo selectTbStationInfoByNewsId(Long newsId);
 
     /**
-     * 根据FirstColumn查询驿站信息
-     *
-     * @param firstColumn
-     * @return 驿站信息
-     */
-    public List<TbStationInfo> selectTbStationInfoByFirstColumn(String firstColumn);
-
-
-
-    /**
      * 查询驿站信息列表
      * 
      * @param tbStationInfo 驿站信息
      * @return 驿站信息集合
      */
     public List<TbStationInfo> selectTbStationInfoList(TbStationInfo tbStationInfo);
-
-    //修改未审核
-    public int updateTbStationInfoRemark(TbStationInfo tbStationInfo);
-
-
-    //获取全部未审核驿站信息新闻
-    public List<TbStationInfo> selectTbStationInfoRemarkList(TbStationInfo tbStationInfo);
-
 
     /**
      * 新增驿站信息
@@ -78,4 +59,12 @@ public interface TbStationInfoMapper
      * @return 结果
      */
     public int deleteTbStationInfoByNewsIds(Long[] newsIds);
+
+
+    public List<TbStationInfo> selectTbStationInfoByColumn(String firstColumn);
+
+    public List<TbStationInfo>  selectTbStationInfoFirstColumnsList(TbStationInfo tbStationInfo);
+
+    public int updateTbStationFirstColumns(TbStationInfo tbStationInfo);
+
 }

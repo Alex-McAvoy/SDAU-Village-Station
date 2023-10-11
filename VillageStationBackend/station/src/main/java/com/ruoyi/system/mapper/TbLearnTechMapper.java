@@ -2,6 +2,7 @@ package com.ruoyi.system.mapper;
 
 import java.util.List;
 import com.ruoyi.system.domain.TbLearnTech;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 学农技Mapper接口
@@ -11,14 +12,6 @@ import com.ruoyi.system.domain.TbLearnTech;
  */
 public interface TbLearnTechMapper 
 {
-
-    /**
-     * 查询学农技一级列表(类型)
-     *
-     * @param firstColumn  农技一级列表(类型)
-     * @return 学农技
-     */
-    public List<TbLearnTech> selectTbLearnTechByFirstColumn(String firstColumn);
 
     /**
      * 查询学农技
@@ -35,9 +28,6 @@ public interface TbLearnTechMapper
      * @return 学农技集合
      */
     public List<TbLearnTech> selectTbLearnTechList(TbLearnTech tbLearnTech);
-
-
-
 
     /**
      * 新增学农技
@@ -70,4 +60,10 @@ public interface TbLearnTechMapper
      * @return 结果
      */
     public int deleteTbLearnTechByArticleIds(Long[] articleIds);
+
+    public List<TbLearnTech> selectTbLearnTechByColumn(@Param("firstColumn")String firstColumn, @Param("secondColumn")String secondColumn);
+
+    public List<TbLearnTech> selectTbLearnTechFirstColumnsList(TbLearnTech tbLearnTech);
+
+    public int updateTbLearnTechFirstColumns(TbLearnTech tbLearnTech);
 }

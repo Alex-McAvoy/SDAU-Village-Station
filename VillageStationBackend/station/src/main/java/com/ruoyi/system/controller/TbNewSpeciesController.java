@@ -101,4 +101,49 @@ public class TbNewSpeciesController extends BaseController
     {
         return toAjax(tbNewSpeciesService.deleteTbNewSpeciesByNewsIds(newsIds));
     }
+
+    /**
+     * 获取已审核，分类为secondColumn的品种
+     * @param firstColumn 是否审核
+     * @param secondColumn 品种分类
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 11:12:59
+     */
+    @PreAuthorize("@ss.hasPermi('system:species:list:checked')")
+    @GetMapping(value = "/getListByColumn/{firstColumn}")
+    public AjaxResult getProductsByColumn(@PathVariable("firstColumn") String firstColumn)
+    {
+        return success(tbNewSpeciesService.selectTbNewSpeciesByColumn(firstColumn));
+    }
+
+    /**
+     * 获取全部未审核的品种信息
+     * @param tbNewSpecies 品种对象
+     * @return com.ruoyi.common.core.page.TableDataInfo
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:45:54
+     */
+    @PreAuthorize("@ss.hasPermi('system:species:list:unchecked')")
+    @GetMapping("/getFirstColumns")
+    public TableDataInfo getRemark(TbNewSpecies tbNewSpecies)
+    {
+        startPage();
+        List<TbNewSpecies> list = tbNewSpeciesService.selectTbNewSpeciesFirstColumnsList(tbNewSpecies);
+        return getDataTable(list);
+    }
+
+    /**
+     * 修改审核/未审核
+     * @param tbNewSpecies 品种对象
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PreAuthorize("@ss.hasPermi('system:species:check')")
+    @PutMapping("/check")
+    public AjaxResult eidtFirstColumns(@RequestBody TbNewSpecies tbNewSpecies)
+    {
+        return toAjax(tbNewSpeciesService.updateTbNewSpeciesFirstColumns(tbNewSpecies));
+    }
 }

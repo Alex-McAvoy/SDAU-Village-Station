@@ -2,7 +2,9 @@ package com.ruoyi.system.mapper;
 
 import java.util.List;
 import com.ruoyi.system.domain.TbFinance;
-import com.ruoyi.system.domain.TbOtherColumns;/**
+import org.apache.ibatis.annotations.Param;
+
+/**
  * 金融Mapper接口
  * 
  * @author ruoyi
@@ -15,18 +17,8 @@ public interface TbFinanceMapper
      * @param newsId 金融主键
      * @return 金融
      */
-    public TbFinance selectTbFinanceByNewsId(Long newsId);//获取全部未审核金融
-    public List<TbFinance> selectTbFinanceFirstColumnsList(TbFinance tbFinance);
+    public TbFinance selectTbFinanceByNewsId(Long newsId);
 
-    //修改未审核
-    public int updateTbFinanceFirstColumns(TbFinance tbFinance);
-    /**
-     * 查询根据firstColumn查金融信息
-     *
-     * @param firstColumn 金融
-     * @return 金融
-     */
-    public List<TbFinance> selectTbFinanceByFirstColumn(String firstColumn);
     /**
      * 查询金融列表
      * 
@@ -66,4 +58,10 @@ public interface TbFinanceMapper
      * @return 结果
      */
     public int deleteTbFinanceByNewsIds(Long[] newsIds);
+
+    public List<TbFinance> selectTbFinanceByFirstColumn(@Param("firstColumn")String firstColumn, @Param("secondColumn")String secondColumn);
+
+    public List<TbFinance> selectTbFinanceFirstColumnsList(TbFinance tbFinance);
+
+    public int updateTbFinanceFirstColumns(TbFinance tbFinance);
 }

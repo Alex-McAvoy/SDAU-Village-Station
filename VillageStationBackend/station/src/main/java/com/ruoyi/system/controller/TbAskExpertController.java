@@ -46,7 +46,6 @@ public class TbAskExpertController extends BaseController
         return getDataTable(list);
     }
 
-
     /**
      * 导出问专家列表
      */
@@ -115,5 +114,47 @@ public class TbAskExpertController extends BaseController
         return toAjax(tbAskExpertService.deleteTbAskExpertByAskExpertsIds(askExpertsIds));
     }
 
+    /**
+     * 获取已审核，分类为secondColumn的专家
+     * @param firstColumn 是否审核
+     * @param dictValue 专家分类
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 11:12:59
+     */
+    @PreAuthorize("@ss.hasPermi('system:expert:list:checked')")
+    @GetMapping(value = "/getListByColumn/{firstColumn}/{dictValue}")
+    public AjaxResult getProductsByColumn(@PathVariable("firstColumn") String firstColumn,@PathVariable("dictValue") String dictValue)
+    {
+        return success(tbAskExpertService.selectTbAskExpertByColumn(firstColumn,dictValue));
+    }
+    /**
+     * 获取全部未审核的专家信息
+     * @param tbAskExpert 专家对象
+     * @return com.ruoyi.common.core.page.TableDataInfo
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:45:54
+     */
+    @PreAuthorize("@ss.hasPermi('system:expert:list:unchecked')")
+    @GetMapping("/getFirstColumns")
+    public TableDataInfo getRemark(TbAskExpert tbAskExpert)
+    {
+        startPage();
+        List<TbAskExpert> list = tbAskExpertService.selectTbAskExpertFirstColumnsList(tbAskExpert);
+        return getDataTable(list);
+    }
 
+    /**
+     * 修改审核/未审核
+     * @param tbAskExpert 专家对象
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PreAuthorize("@ss.hasPermi('system:expert:check')")
+    @PutMapping("/check")
+    public AjaxResult eidtFirstColumns(@RequestBody TbAskExpert tbAskExpert)
+    {
+        return toAjax(tbAskExpertService.updateTbAskExpertFirstColumns(tbAskExpert));
+    }
 }

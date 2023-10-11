@@ -1,7 +1,7 @@
 <template>
 	<view class="sub_main" style="border-radius: 10px; background-color: white;  margin:8px 15px; height: 100vh;">
 		 <view class="sub_title">{{ title }}</view>
-		 <view class="sub_note">管理员 | 2023-10-06 16:57</view>
+		 <view class="sub_note">管理员 | {{createTime}}</view>
 		<view class="news">
 			<view class="new_img">
 				<image :src="imgUrl" alt=""
@@ -20,7 +20,8 @@
 				loading: false,
 				title: '',
 				content: '',
-				imgUrl:'/static/images/station/products/peach.jpg',
+				imgUrl:'',
+				createTime: ''
 			}
 		},
 		created() {
@@ -33,10 +34,10 @@
 			getList() { 
 				this.loading = true;  
 				var products_detail = getApp().globalData.item;
-				console.log(products_detail);
 				this.title = products_detail.title;
 				this.content = products_detail.content;
 				this.imgUrl = products_detail.remark;
+				this.createTime = products_detail.createTime;
 			    this.loading = false;
 			    },
 			} 

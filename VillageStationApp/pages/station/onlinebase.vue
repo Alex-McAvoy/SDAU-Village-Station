@@ -253,7 +253,7 @@
 	import * as echarts from 'echarts';
 	// Vue.prototype.$echarts = echarts;
 	const jsonData = require('../../static/map/ShanDong.json');
-	
+
 	export default {
 
 		mounted() {

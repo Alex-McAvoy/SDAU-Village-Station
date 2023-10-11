@@ -3,115 +3,139 @@
 		<!-- 头部 -->
 		<view style="margin: 15px; border-radius: 10px; overflow: hidden; background-color: white;">
 			<u-grid :border="false" col="4">
-				<u-grid-item v-for="(listItem,listIndex) in list" :key="listIndex">
-					<u-icon :customStyle="{paddingTop:20+'rpx'}" :name="listItem.name" :size="22" color="#2ed573"
-						@click="click(listItem.firstColumn)"></u-icon>
-					<text class="grid-text">{{listItem.title}}</text>
+				<u-grid-item v-for="(item,index) in list">
+					<view @click="click(item.index)">
+						<u-image :customStyle="{paddingTop:20+'rpx'}" :src="item.src" :height="40" :width="30"
+							style=" margin-bottom: 10px; margin-top: 10px ; display: flex;justify-content: center;align-items: center;"
+							@click="click(item.dictValue)"></u-image>
+						<span class="grid-text" style="color:#9f9f9f;font-size: 15px; margin:15px">{{item.title}}</span>
+					</view>
 				</u-grid-item>
 			</u-grid>
 			<u-toast ref="uToast" />
 		</view>
-		<!-- 内容一 -->
-		<div v-for="onetechdetail in techdetails" :key="onetechdetail.title">
-			<div style=" background-color: white;margin: 15px; border-radius: 10px;" @click="goToDetailPage(onetechdetail.articleId)">
-				<div style="display: flex; margin-left: 20px; margin-top: 20px;">	
-					<image :src="onetechdetail.remark" style="margin-top: 10px; border-radius: 15px; height: 100px; width: 130px;">
-					</image>
-<!-- 					<image src="../../../static/images/station/channel/demand.jpg" style="margin-top: 10px; border-radius: 15px; height: 100px; width: 130px; margin-left: 15px;">
-					</image> -->
-				</div>
-				<view style="margin-left: 20px;">
-					<div type="primary" class="main_content">{{fixedSize(onetechdetail.content)}}</div>
-					<view style="display: flex; margin-top: 3vh;">
-						<u--text color="#909090 " margin="0 0 8px 0" text="中国政府网 "></u--text>
-						<u--text color="#909090 " margin="0 0 8px 0" text="342人阅读" style="justify-content:end;"></u--text>
+		<!-- 详情展示 -->
+		<view v-for="item in techList" @click="skip(item)">
+			<view style=" margin: 15px; border-radius: 5px;  background-color: white;">
+				<view>
+					<view style=" margin: 15px;">
+						<view>
+							<view>
+								<view>
+									<view class="main_title">
+										{{ item.title }}
+									</view>
+									<image :src="item.remark"
+										style="width: 350px;height: 180px; padding-left: 5vh; padding-right: 5vh; ">
+									</image>
+									<view class="main_content"><u-parse :content="fixedSize(item.content)"></u-parse>
+									
+								<!-- 	<view style="display: flex; margin-top: 3vh;">
+										<u--text color="#2ed573" margin="0 0 8px 0" text="学农网 "></u--text>
+										<image src="../../../static/images/station/learningTechnology/see.png"
+											style="width: 15px;height: 10px;margin-top: 6px;margin-left: 135px;">
+										</image>
+										<u--text color="#909090 " margin="0 10px 8px 2px" text="342人阅读"
+											style="justify-content:end;"></u--text>
+									</view> -->
+	
+								</view>
+							</view>
+						</view>
 					</view>
 				</view>
-			</div>
-		</div>	
-		
+			</view>
+		</view>
+	</view>
+
 	</view>
 </template>
 
 <script>
 	import {
-		getTechdetail,
+		getTechListByColumns
 	} from "@/api/station/tech.js"
 
 	export default {
 		data() {
 			return {
 				//标题
-				title:'',
 				list: [{
-						name: 'bag-fill',
+						src: "/static/images/station/learningTechnology/shuid.png",
 						title: '水稻',
-						firstColumn:'0',
+						index: '0',
 					},
 					{
-						name: 'bookmark-fill',
+						src: "/static/images/station/learningTechnology/xm.png",
 						title: '小麦',
-						firstColumn:'1',
+						index: '1',
 					},
 					{
-						name: 'setting-fill',
+						src: "/static/images/station/learningTechnology/shuc.png",
 						title: '蔬菜',
-						firstColumn:'2',
+						index: '2',
 					},
 					{
-						name: 'coupon-fill',
+						src: "/static/images/station/learningTechnology/gs.png",
 						title: '果树',
-						firstColumn:'3',
+						index: '3',
 					},
 					{
-						name: 'pushpin-fill',
+						src: "/static/images/station/learningTechnology/zb.png",
 						title: '植保',
-						firstColumn:'4',
+						index: '4',
 					},
 					{
-						name: 'grid-fill',
+						src: "/static/images/station/learningTechnology/sc.png",
 						title: '禽畜',
-						firstColumn:'5',
+						index: '5',
 					},
 					{
-						name: 'car-fill',
-						title: '农机装备',
-						firstColumn:'6',
+						src: "/static/images/station/learningTechnology/nj.png",
+						title: '农机',
+						index: '6',
 					},
 					{
-						name: 'integral-fill',
+						src: "/static/images/station/learningTechnology/shuic.png",
 						title: '水产',
-						firstColumn:'7',
+						index: '7',
 					},
 				],
-			techdetails: {
-				content:'',
-			}
+				techList: {
+					title: '',
+					content: '',
+					remark: ''
+				}
 			}
 		},
 		created() {
-			this.click(0)
+			this.getList()
 		},
 		methods: {
-			goToDetailPage(id) {
-				// console.log(id);
+			skip(item) {
+				getApp().globalData.techItem = item;
 				uni.navigateTo({
-					url: "/pages/station/learningTechnology/techdetail?id=" + id
+					url: "tech_detail"
+				})
+			},
+			click(index) {
+				//获取作物详情
+				getTechListByColumns(1, index).then(response => {
+					this.techList = response.data;
+					this.loading = false;
 				});
 			},
-			click(firstColumn) {
-				//获取作物详情
-				getTechdetail(firstColumn).then(response => {
-					// console.log(response)
-						this.techdetails = response.data;
-						// this.total = response.total;
-						this.loading = false;
+			getList() {
+				this.loading = true;
+				getTechListByColumns(1, 0).then(response => {
+					this.techList = response.data;
+					this.loading = false;
 				});
 			},
 			fixedSize(content) {
 				if (content != null) {
 					if (content.length < 35) return content;
-					else return content.substring(0, 35) + "...."
+					else return content.substring(0, 50) + "...."
 				}
 				return content;
 			},
@@ -121,6 +145,7 @@
 
 <style lang="scss">
 	@import url("../../../static/css/text.css");
+
 	.grid-text {
 		font-size: 14px;
 		color: #222325;
@@ -129,7 +154,8 @@
 		box-sizing: border-box;
 		/* #endif */
 	}
-	.uni-image{
+
+	.uni-image {
 		width: 10px;
 		height: 10px;
 	}

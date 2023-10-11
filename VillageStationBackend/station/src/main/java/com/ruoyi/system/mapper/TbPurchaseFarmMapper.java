@@ -2,6 +2,7 @@ package com.ruoyi.system.mapper;
 
 import java.util.List;
 import com.ruoyi.system.domain.TbPurchaseFarm;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 买农资Mapper接口
@@ -11,15 +12,6 @@ import com.ruoyi.system.domain.TbPurchaseFarm;
  */
 public interface TbPurchaseFarmMapper 
 {
-
-    /**
-     * 查询买农资一级列表(类型)
-     *
-     * @param firstColumn  农资一级列表(类型)
-     * @return 学农技
-     */
-    public List<TbPurchaseFarm> selectTbPurchaseFarmByFirstColumn(String firstColumn);
-
     /**
      * 查询买农资
      * 
@@ -67,4 +59,10 @@ public interface TbPurchaseFarmMapper
      * @return 结果
      */
     public int deleteTbPurchaseFarmByNewsIds(Long[] newsIds);
+
+    public List<TbPurchaseFarm> selectTbPurchaseFarmByColumn(@Param("firstColumn")String firstColumn, @Param("secondColumn")String secondColumn);
+
+    public List<TbPurchaseFarm> selectTbPurchaseFarmFirstColumnsList(TbPurchaseFarm tbPurchaseFarm);
+
+    public int updateTbPurchaseFarmFirstColumns(TbPurchaseFarm tbPurchaseFarm);
 }

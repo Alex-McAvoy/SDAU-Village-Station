@@ -3,7 +3,6 @@ package com.ruoyi.system.controller;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ruoyi.system.domain.TbOtherColumns;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,26 +47,6 @@ public class TbStationInfoController extends BaseController
         return getDataTable(list);
     }
 
-    //修改remark
-    @PreAuthorize("@ss.hasPermi('system:info:edit')")
-    @PutMapping("/")
-    public AjaxResult eidtRemark(@RequestBody TbStationInfo tbStationInfo)
-    {
-        return toAjax(tbStationInfoService.updateTbStationInfoRemark(tbStationInfo));
-    }
-
-    /*获取全部未审核的驿站信息新闻*/
-    @PreAuthorize("@ss.hasPermi('system:info:list')")
-    @GetMapping("/getRemark")
-    public TableDataInfo getRemark(TbStationInfo tbStationInfo)
-    {
-        System.out.println("123");
-        startPage();
-        List<TbStationInfo> list = tbStationInfoService.selectTbStationInfoRemarkList(tbStationInfo);
-        return getDataTable(list);
-    }
-
-
     /*导出驿站信息列表*/
     @PreAuthorize("@ss.hasPermi('system:info:export')")
     @Log(title = "驿站信息", businessType = BusinessType.EXPORT)
@@ -88,19 +67,6 @@ public class TbStationInfoController extends BaseController
     {
         return success(tbStationInfoService.selectTbStationInfoByNewsId(newsId));
     }
-
-    /**
-     * 根据FirstColumn查询驿站信息
-     */
-    @PreAuthorize("@ss.hasPermi('system:info:query')")
-    @GetMapping(value = "/column/{firstColumn}")
-    public AjaxResult getInfo(@PathVariable("firstColumn") String firstColumn)
-    {
-        return success(tbStationInfoService.selectTbStationInfoByFirstColumn(firstColumn));
-    }
-
-
-
 
     /**
      * 新增驿站信息
@@ -133,5 +99,50 @@ public class TbStationInfoController extends BaseController
     public AjaxResult remove(@PathVariable Long[] newsIds)
     {
         return toAjax(tbStationInfoService.deleteTbStationInfoByNewsIds(newsIds));
+    }
+
+    /**
+     * 获取已审核的驿站信息
+     *
+     * @param firstColumn  是否审核
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 11:12:59
+     */
+    @PreAuthorize("@ss.hasPermi('system:info:list:checked')")
+    @GetMapping(value = "/getListByColumn/{firstColumn}")
+    public AjaxResult getInfo(@PathVariable("firstColumn") String firstColumn)
+    {
+        return success(tbStationInfoService.selectTbStationInfoByColumn(firstColumn));
+    }
+
+    /**
+     * 获取全部未审核的驿站信息
+     * @param tbStationInfo 驿站信息对象
+     * @return com.ruoyi.common.core.page.TableDataInfo
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:45:54
+     */
+    @PreAuthorize("@ss.hasPermi('system:free:list:unchecked')")
+    @GetMapping("/getFirstColumns")
+    public TableDataInfo getRemark(TbStationInfo tbStationInfo)
+    {
+        startPage();
+        List<TbStationInfo> list = tbStationInfoService.selectTbStationInfoFirstColumnsList(tbStationInfo);
+        return getDataTable(list);
+    }
+
+    /**
+     * 修改审核/未审核
+     * @param tbStationInfo 驿站信息对象
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PreAuthorize("@ss.hasPermi('system:free:check')")
+    @PutMapping("/check")
+    public AjaxResult eidtRemark(@RequestBody TbStationInfo tbStationInfo)
+    {
+        return toAjax(tbStationInfoService.updateTbStationFirstColumns(tbStationInfo));
     }
 }

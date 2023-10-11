@@ -2,7 +2,6 @@ package com.ruoyi.system.service.impl;
 
 import java.util.List;
 import com.ruoyi.common.utils.DateUtils;
-import com.ruoyi.system.domain.TbOtherColumns;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.system.mapper.TbFinanceMapper;
@@ -32,19 +31,6 @@ public class TbFinanceServiceImpl implements ITbFinanceService
     {
         return tbFinanceMapper.selectTbFinanceByNewsId(newsId);
     }
-
-    /**
-     * 根据firstColumn查询金融
-     *
-     * @param firstColumn
-     * @return 金融
-     */
-    @Override
-    public List<TbFinance> selectTbFinanceByFirstColumn(String firstColumn)
-    {
-        return tbFinanceMapper.selectTbFinanceByFirstColumn(firstColumn);
-    }
-
 
 
     /**
@@ -109,13 +95,17 @@ public class TbFinanceServiceImpl implements ITbFinanceService
         return tbFinanceMapper.deleteTbFinanceByNewsId(newsId);
     }
 
-//获取全部未审核金融信息
+    @Override
+    public List<TbFinance> selectTbFinanceByFirstColumn(String firstColumn, String secondColumn)
+    {
+        return tbFinanceMapper.selectTbFinanceByFirstColumn(firstColumn, secondColumn);
+    }
+
     @Override
     public List<TbFinance> selectTbFinanceFirstColumnsList(TbFinance tbFinance) {
         return tbFinanceMapper.selectTbFinanceFirstColumnsList(tbFinance);
     }
 
-    //修改未审核金融信息
     @Override
     public int updateTbFinanceFirstColumns(TbFinance tbFinance) {
         tbFinance.setUpdateTime(DateUtils.getNowDate());

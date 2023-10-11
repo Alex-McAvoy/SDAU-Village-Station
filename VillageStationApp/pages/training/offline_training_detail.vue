@@ -5,7 +5,7 @@
 		 <u-text color="#909090" align="center" text="管理员 | 2023-10-06 16:57" bold size="13"></u-text>
 		<view class="news">
 			<view class="new_img">
-				<image src="/static/images/index/news_cover.png" alt=""
+				<image :src="remark" alt=""
 					style="width:100%;height: 200px;overflow: hidden">
 			</view>
 			<view class="new_text"><u-parse :content="content"></u-parse></view>
@@ -22,6 +22,7 @@
 				loading: false,
 				title: '',
 				content: '',
+				remark: ''
 			}
 		},
 		created() {
@@ -30,9 +31,10 @@
 		methods: {
 			getList() { 
 				this.loading = true;  
-				var education_detail = getApp().globalData.item;
-				this.title = education_detail.title;
-				this.content = education_detail.content;
+				var train_detail = getApp().globalData.item;
+				this.title = train_detail.title;
+				this.content = train_detail.content;
+				this.remark = train_detail.remark
 			    this.loading = false;
 			    },
 			} 

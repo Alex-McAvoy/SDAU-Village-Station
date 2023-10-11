@@ -28,14 +28,6 @@ public interface ITbQuestionService
     public List<TbQuestion> selectTbQuestionByQuestionId(Long questionId);
 
     /**
-     * 查询评论/问答
-     *
-     * @param parentId 父ID
-     * @return 评论/问答
-     */
-    public List<TbQuestion> selectTbQuestionByParentId(Long parentId);
-
-    /**
      * 查询评论/问答列表
      * 
      * @param tbQuestion 评论/问答
@@ -74,4 +66,12 @@ public interface ITbQuestionService
      * @return 结果
      */
     public int deleteTbQuestionByQuestionId(Long questionId);
+
+    public List<TbQuestion> selectTbQuestionByParentId(Long parentId,  String firstColumn);
+
+    public List<TbQuestion> selectTbQuestionByColumn(Long expertId, String firstColumn);
+
+    public List<TbQuestion> selectTbQuestionFirstColumnsList(TbQuestion tbQuestion);
+
+    public int updateTbQuestionFirstColumns(TbQuestion tbQuestion);
 }

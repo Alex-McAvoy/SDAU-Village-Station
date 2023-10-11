@@ -121,14 +121,9 @@
 
 <script>
 	import {
-		getoneQuery,
-		adddetailQuestion,
-		getoneQuestion,
-		listQuestion,
-		getQuestion,
-		delQuestion,
-		addQuestion,
-		updateQuestion
+		getOneQuestion,
+		getOneQuery,
+		addComment
 	} from "@/api/station/question.js";
 
 	export default {
@@ -151,46 +146,29 @@
 			};
 		},
 		created() {
-			this.getQuestion1(this.onequestionId);
-			// this.adddetailQuestion1();
-			this.getoneQuery2(this.onequestionId);
-			// console.log(this.onequestionId)
+			this.getQuestion(this.onequestionId);
+			this.getComment(this.onequestionId);
 		},
 		onLoad(options) {
 			this.onequestionId = options.id;
 		},
 		methods: {
-			//根据问题id获取评论
-			getoneQuery2(onequestionId) {
-				this.loading = true;
-				getoneQuery(onequestionId).then(response => {
-					// console.log(response),
-					// if(response.rows.questionId != null)
-						// console.log(response),
-						this.detailquestions = response.data;
-						 // console.log(this.detailquestions),
-					// this.total = response.total;
-					this.loading = false;
-				});
-			},
 			//根据问题id获取问题
-			getQuestion1(onequestionId) {
+			getQuestion(onequestionId) {
 				this.loading = true;
-				// console.log(response)
-				// getoneQuestion(onequestionId).then(response => {
-				// 	console.log(response),
-				// // 		// this.questions = response.data;
-				// // 	// this.total = response.total;
-				// // 	this.loading = false;
-				// });
-				getoneQuestion(onequestionId).then(response => {
-					// console.log(response.data[0])
+				getOneQuestion(onequestionId).then(response => {
 					this.questions = response.data[0];
-					// 	// this.total = response.total;
 					this.loading = false;
 				});
 			},
-			
+			//根据问题id获取评论
+			getComment(onequestionId) {
+				this.loading = true;
+				getOneQuery(onequestionId, 1).then(response => {
+					this.detailquestions = response.data;
+					this.loading = false;
+				});
+			},
 			//弹出框
 			open() {
 				this.show = true;
@@ -204,15 +182,9 @@
 					"question": this.detailquestions.question,
 					"parentId": this.onequestionId,
 				}
-				// console.log(JSON.stringify(temp)),
-					adddetailQuestion(JSON.stringify(temp)).then(response => {
-						// 	// console.log(response)
-						// 	// this.question = response.data;
-						// 	// this.total = response.total;
+					addComment(JSON.stringify(temp)).then(response => {
 						this.loading = false;
-						// 	// console.log(this.question);
 						this.show = false;
-						// });
 					});
 			},
 		}
