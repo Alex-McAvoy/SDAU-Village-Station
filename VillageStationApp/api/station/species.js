@@ -16,9 +16,27 @@ export function getSpeciesDetails(newsId) {
 	})
 }
 
+// 更新阅读量
 export function updateSpeciesReading(data) {
 	return request({
 		url: '/system/species/updateReading',
+		method: 'put',
+		data: data
+	})
+}
+// 更新点赞量
+export function addSpeciesLikes(data) {
+	return request({
+		url: '/system/species/addLikes',
+		method: 'put',
+		data: data
+	})
+}
+
+// 更新收藏量
+export function addSpeciesCollect(data) {
+	return request({
+		url: '/system/species/addCollect',
 		method: 'put',
 		data: data
 	})

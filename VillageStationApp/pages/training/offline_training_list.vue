@@ -3,8 +3,7 @@
 		<view style="border-radius: 10px; background-color: white;margin:15px;">
 			<view class="news" v-for="item in train" @click="goOfflineTrainingDetail(item)">
 				<view class="new_img">
-					<image :src="item.remark" alt=""
-						style="width:100%;height: 70px;overflow: hidden">
+					<image :src="item.remark" alt="" style="width:100%;height: 70px;overflow: hidden">
 				</view>
 				<view class="new_title">{{ item.title }}</view>
 				<view class="new_origin">
@@ -17,6 +16,7 @@
 <script>
 	import {
 		getOfflineTrainingListByColumn,
+		updateOfflineTrainingReading
 	} from "@/api/system/offline_training.js";
 
 	export default {
@@ -39,6 +39,7 @@
 			},
 			goOfflineTrainingDetail(item) {
 				getApp().globalData.item = item;
+				updateFinanceReading(item).then(response => {})
 				uni.navigateTo({
 					url: "/pages/training/offline_training_detail"
 				})

@@ -78,6 +78,8 @@ public class TbLearnTechController extends BaseController {
         String nickname = SecurityContextHolder.getContext().getAuthentication().getName();
         tbLearnTech.setCreateBy(nickname);
         tbLearnTech.setReading((long) 0);
+        tbLearnTech.setCollect((long) 0);
+        tbLearnTech.setLikes((long) 0);
         tbLearnTech.setFirstColumn("0");
         return toAjax(tbLearnTechService.insertTbLearnTech(tbLearnTech));
     }
@@ -159,5 +161,29 @@ public class TbLearnTechController extends BaseController {
     public AjaxResult updateReading(@RequestBody TbLearnTech tbLearnTech)
     {
         return toAjax(tbLearnTechService.updateReading(tbLearnTech));
+    }
+
+    /**
+     * 点赞量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/addLikes")
+    public AjaxResult addLikes(@RequestBody TbLearnTech tbLearnTech)
+    {
+        return toAjax(tbLearnTechService.addLikes(tbLearnTech));
+    }
+
+    /**
+     * 收藏量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/addCollect")
+    public AjaxResult addCollect(@RequestBody TbLearnTech tbLearnTech)
+    {
+        return toAjax(tbLearnTechService.addCollect(tbLearnTech));
     }
 }

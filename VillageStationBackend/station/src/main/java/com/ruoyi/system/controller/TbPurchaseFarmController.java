@@ -78,6 +78,8 @@ public class TbPurchaseFarmController extends BaseController {
         String nickname = SecurityContextHolder.getContext().getAuthentication().getName();
         tbPurchaseFarm.setCreateBy(nickname);
         tbPurchaseFarm.setReading((long) 0);
+        tbPurchaseFarm.setCollect((long) 0);
+        tbPurchaseFarm.setLikes((long) 0);
         tbPurchaseFarm.setFirstColumn("0");
         return toAjax(tbPurchaseFarmService.insertTbPurchaseFarm(tbPurchaseFarm));
     }
@@ -157,5 +159,29 @@ public class TbPurchaseFarmController extends BaseController {
     public AjaxResult updateReading(@RequestBody TbPurchaseFarm tbPurchaseFarm)
     {
         return toAjax(tbPurchaseFarmService.updateReading(tbPurchaseFarm));
+    }
+
+    /**
+     * 点赞量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/addLikes")
+    public AjaxResult addLikes(@RequestBody TbPurchaseFarm tbPurchaseFarm)
+    {
+        return toAjax(tbPurchaseFarmService.addLikes(tbPurchaseFarm));
+    }
+
+    /**
+     * 收藏量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/addCollect")
+    public AjaxResult addCollect(@RequestBody TbPurchaseFarm tbPurchaseFarm)
+    {
+        return toAjax(tbPurchaseFarmService.addCollect(tbPurchaseFarm));
     }
 }

@@ -113,4 +113,14 @@ public class TbFindChannelServiceImpl implements ITbFindChannelService
     public int updateReading(TbFindChannel tbFindChannel) {
         return tbFindChannelMapper.updateReading(tbFindChannel);
     }
+
+    @Override
+    public int addLikes(TbFindChannel tbFindChannel) {
+        return tbFindChannelMapper.addLikes(tbFindChannel);
+    }
+
+    @Override
+    public int addCollect(TbFindChannel tbFindChannel) {
+        return tbFindChannelMapper.addCollect(tbFindChannel);
+    }
 }

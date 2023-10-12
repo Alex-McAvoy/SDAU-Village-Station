@@ -82,6 +82,8 @@ public class TbFinanceController extends BaseController
         String nickname = SecurityContextHolder.getContext().getAuthentication().getName();
         tbFinance.setCreateBy(nickname);
         tbFinance.setReading((long) 0);
+        tbFinance.setCollect((long) 0);
+        tbFinance.setLikes((long) 0);
         tbFinance.setFirstColumn("0");
         return toAjax(tbFinanceService.insertTbFinance(tbFinance));
     }
@@ -163,6 +165,30 @@ public class TbFinanceController extends BaseController
     public AjaxResult updateReading(@RequestBody TbFinance tbFinance)
     {
         return toAjax(tbFinanceService.updateReading(tbFinance));
+    }
+
+    /**
+     * 点赞量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/addLikes")
+    public AjaxResult addLikes(@RequestBody TbFinance tbFinance)
+    {
+        return toAjax(tbFinanceService.addLikes(tbFinance));
+    }
+
+    /**
+     * 收藏量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/addCollect")
+    public AjaxResult addCollect(@RequestBody TbFinance tbFinance)
+    {
+        return toAjax(tbFinanceService.addCollect(tbFinance));
     }
 }
 

@@ -108,4 +108,14 @@ public class TbRecommendProductsServiceImpl implements ITbRecommendProductsServi
     public int updateReading(TbRecommendProducts tbRecommendProducts) {
         return tbRecommendProductsMapper.updateReading(tbRecommendProducts);
     }
+
+    @Override
+    public int addLikes(TbRecommendProducts tbRecommendProducts) {
+        return tbRecommendProductsMapper.addLikes(tbRecommendProducts);
+    }
+
+    @Override
+    public int addCollect(TbRecommendProducts tbRecommendProducts) {
+        return tbRecommendProductsMapper.addCollect(tbRecommendProducts);
+    }
 }

@@ -50,4 +50,12 @@ public class TbLearnTech extends BaseEntity
     /** 阅读量 */
     @Excel(name = "阅读量")
     private Long reading;
+
+    /** 点赞量 */
+    @Excel(name = "点赞量")
+    private Long likes;
+
+    /** 收藏量 */
+    @Excel(name = "收藏量")
+    private Long collect;
 }

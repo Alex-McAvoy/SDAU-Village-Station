@@ -68,4 +68,8 @@ public interface TbRecommendProductsMapper
     public int updateTbRecommendProductsFirstColumns(TbRecommendProducts tbRecommendProducts);
 
     public int updateReading(TbRecommendProducts tbRecommendProducts);
+
+    public int addLikes(TbRecommendProducts tbRecommendProducts);
+
+    public int addCollect(TbRecommendProducts tbRecommendProducts);
 }

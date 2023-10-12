@@ -25,7 +25,8 @@
 
 <script>
 	import {
-		getNewsListByColumn
+		getNewsListByColumn,
+		updateNewsReading
 	} from "@/api/system/news.js";
 	
 	export default {
@@ -61,6 +62,8 @@
 			},
 			goNewsDetail(item) {
 				getApp().globalData.item = item;
+				updateNewsReading(item).then(response => {
+				})
 				uni.navigateTo({
 					url: "/pages/index/news/news_detail"
 				})

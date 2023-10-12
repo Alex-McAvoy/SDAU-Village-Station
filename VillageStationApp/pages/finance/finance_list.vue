@@ -1,7 +1,7 @@
 <template>
 	<view class="body">
 		<!-- 栏目标签 -->
-		<view> 
+		<view>
 			<u-sticky bgColor="#fff">
 				<u-tabs :list="financeBarList" :is-scroll="true" lineColor="#2ed573" @change="getFinanceList"
 					style="margin:0px 25px"></u-tabs>
@@ -10,8 +10,7 @@
 		<view style="border-radius: 10px; background-color: white;margin:15px;">
 			<view class="news" v-for="item in financeList" @click="goFinanceDetail(item)">
 				<view class="new_img">
-					<image :src="item.remark" alt=""
-						style="width:100%;height: 70px;overflow: hidden">
+					<image :src="item.remark" alt="" style="width:100%;height: 70px;overflow: hidden">
 				</view>
 				<view class="new_title">{{ item.title }}</view>
 				<view class="new_origin">
@@ -23,7 +22,8 @@
 </template>
 <script>
 	import {
-		getExpertListByColumn,
+		getFinanceListByColumn,
+		updateFinanceReading
 	} from "@/api/system/finance.js";
 
 	export default {
@@ -31,32 +31,34 @@
 			return {
 				loading: false,
 				financeBarList: [{
-						name: ' 金融助农 ',
-						index: 0
-					}, {
-						name: ' 业务新闻 ',
-						index:1
-					}, {
-						name: ' 相关案例 ',
-						index:2
-					},
-				],
+					name: ' 金融助农 ',
+					index: 0
+				}, {
+					name: ' 业务新闻 ',
+					index: 1
+				}, {
+					name: ' 相关案例 ',
+					index: 2
+				}, ],
 				financeList: [],
 			}
 		},
 		created() {
-			this.getFinanceList({index:0});
+			this.getFinanceList({
+				index: 0
+			});
 		},
 		methods: {
 			getFinanceList(item) {
 				this.loading = true;
-				getExpertListByColumn(1,item.index).then(response => {
+				getFinanceListByColumn(1, item.index).then(response => {
 					this.financeList = response.data;
 					this.loading = false;
 				});
 			},
 			goFinanceDetail(item) {
 				getApp().globalData.item = item;
+				updateFinanceReading(item).then(response => {})
 				uni.navigateTo({
 					url: "/pages/finance/finance_detail"
 				})

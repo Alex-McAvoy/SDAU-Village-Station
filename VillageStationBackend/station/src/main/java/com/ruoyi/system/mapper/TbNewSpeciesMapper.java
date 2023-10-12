@@ -67,4 +67,8 @@ public interface TbNewSpeciesMapper
     public int updateTbNewSpeciesFirstColumns(TbNewSpecies tbNewSpecies);
 
     public int updateReading(TbNewSpecies tbNewSpecies);
+
+    public int addLikes(TbNewSpecies tbNewSpecies);
+
+    public int addCollect(TbNewSpecies tbNewSpecies);
 }

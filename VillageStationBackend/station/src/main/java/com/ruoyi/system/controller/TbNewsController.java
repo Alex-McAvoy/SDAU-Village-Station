@@ -100,6 +100,8 @@ public class TbNewsController extends BaseController
         String nickname = SecurityContextHolder.getContext().getAuthentication().getName();
         tbNews.setCreateBy(nickname);
         tbNews.setReading((long) 0);
+        tbNews.setCollect((long) 0);
+        tbNews.setLikes((long) 0);
         tbNews.setFirstColumn("0");
 
         String content = tbNews.getContent();
@@ -202,5 +204,29 @@ public class TbNewsController extends BaseController
     public AjaxResult updateReading(@RequestBody TbNews tbNews)
     {
         return toAjax(tbNewsService.updateReading(tbNews));
+    }
+
+    /**
+     * 点赞量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/addLikes")
+    public AjaxResult addLikes(@RequestBody TbNews tbNews)
+    {
+        return toAjax(tbNewsService.addLikes(tbNews));
+    }
+
+    /**
+     * 收藏量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/addCollect")
+    public AjaxResult addCollect(@RequestBody TbNews tbNews)
+    {
+        return toAjax(tbNewsService.addCollect(tbNews));
     }
 }

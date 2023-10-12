@@ -117,4 +117,14 @@ public class TbStationInfoServiceImpl implements ITbStationInfoService
         return tbStationInfoMapper.updateReading(tbStationInfo);
     }
 
+    @Override
+    public int addLikes(TbStationInfo tbStationInfo) {
+        return tbStationInfoMapper.addLikes(tbStationInfo);
+    }
+
+    @Override
+    public int addCollect(TbStationInfo tbStationInfo) {
+        return tbStationInfoMapper.addCollect(tbStationInfo);
+    }
+
 }

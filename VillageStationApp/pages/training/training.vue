@@ -26,7 +26,7 @@
 				</u-row>
 			</view>
 			<view> <!-- 栏目标签 -->
-				<u-tabs :list="onlineTrainingList" :is-scroll="true"  lineColor="#2ed573"></u-tabs>
+				<u-tabs :list="onlineTrainingList" :is-scroll="true" lineColor="#2ed573"></u-tabs>
 			</view>
 			<view class="flex_row video_list">
 				<view class="video_list_item">
@@ -48,13 +48,12 @@
 		<!-- 线下培训 -->
 		<view class="main_context first_main_context">
 			<view> <!-- 主体框 -->
-				<u-row gutter="16"  @click="goOfflineTrainingList">
+				<u-row gutter="16" @click="goOfflineTrainingList">
 					<u-col span="2" style="padding-left:10px;margin-right: 8px;">
 						<image src="/static/images/index/index_news.png" style="height:25px;width:25px;" />
 					</u-col>
 					<u-col span="9" class="bar" style="margin-left:-25px">
-						<u-text style="font-weight: 20px;" margin="0px 0px 0px 0px" text="线下培训" bold
-							size="22"></u-text>
+						<u-text style="font-weight: 20px;" margin="0px 0px 0px 0px" text="线下培训" bold size="22"></u-text>
 					</u-col>
 
 					<u-col span="1">
@@ -66,8 +65,7 @@
 			<view class="news" v-for="item in train.slice(0,2)" @click="goOfflineTrainingDetail(item)">
 
 				<view class="new_img">
-					<img :src="item.remark" alt=""
-						style="width:100%;height: auto;overflow: hidden">
+					<img :src="item.remark" alt="" style="width:100%;height: auto;overflow: hidden">
 				</view>
 
 				<view class="new_title" style="width:100%">{{item.title}}</view>
@@ -83,6 +81,7 @@
 <script>
 	import {
 		getOfflineTrainingListByColumn,
+		updateOfflineTrainingReading
 	} from "@/api/system/offline_training.js";
 
 
@@ -127,6 +126,7 @@
 			},
 			goOfflineTrainingDetail(item) {
 				getApp().globalData.item = item;
+				updateOfflineTrainingReading(item).then(response => {})
 				uni.navigateTo({
 					url: "/pages/training/offline_training_detail"
 				})

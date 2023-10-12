@@ -17,9 +17,27 @@ export function getTechDetail(articleId) {
   })
 }
 
+// 更新阅读量
 export function updateTechReading(data) {
 	return request({
 		url: '/system/tech/updateReading',
+		method: 'put',
+		data: data
+	})
+}
+// 更新点赞量
+export function addTechLikes(data) {
+	return request({
+		url: '/system/tech/addLikes',
+		method: 'put',
+		data: data
+	})
+}
+
+// 更新收藏量
+export function addTechCollect(data) {
+	return request({
+		url: '/system/tech/addCollect',
 		method: 'put',
 		data: data
 	})

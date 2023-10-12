@@ -2,6 +2,7 @@ package com.ruoyi.system.controller;
 
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,14 +25,13 @@ import com.ruoyi.common.core.page.TableDataInfo;
 
 /**
  * 新品种Controller
- * 
+ *
  * @author ruoyi
  * @date 2023-10-05
  */
 @RestController
 @RequestMapping("/system/species")
-public class TbNewSpeciesController extends BaseController
-{
+public class TbNewSpeciesController extends BaseController {
     @Autowired
     private ITbNewSpeciesService tbNewSpeciesService;
 
@@ -40,8 +40,7 @@ public class TbNewSpeciesController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:species:list')")
     @GetMapping("/list")
-    public TableDataInfo list(TbNewSpecies tbNewSpecies)
-    {
+    public TableDataInfo list(TbNewSpecies tbNewSpecies) {
         startPage();
         List<TbNewSpecies> list = tbNewSpeciesService.selectTbNewSpeciesList(tbNewSpecies);
         return getDataTable(list);
@@ -53,8 +52,7 @@ public class TbNewSpeciesController extends BaseController
     @PreAuthorize("@ss.hasPermi('system:species:export')")
     @Log(title = "新品种", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public void export(HttpServletResponse response, TbNewSpecies tbNewSpecies)
-    {
+    public void export(HttpServletResponse response, TbNewSpecies tbNewSpecies) {
         List<TbNewSpecies> list = tbNewSpeciesService.selectTbNewSpeciesList(tbNewSpecies);
         ExcelUtil<TbNewSpecies> util = new ExcelUtil<TbNewSpecies>(TbNewSpecies.class);
         util.exportExcel(response, list, "新品种数据");
@@ -65,8 +63,7 @@ public class TbNewSpeciesController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:species:query')")
     @GetMapping(value = "/{newsId}")
-    public AjaxResult getInfo(@PathVariable("newsId") Long newsId)
-    {
+    public AjaxResult getInfo(@PathVariable("newsId") Long newsId) {
         return success(tbNewSpeciesService.selectTbNewSpeciesByNewsId(newsId));
     }
 
@@ -76,12 +73,13 @@ public class TbNewSpeciesController extends BaseController
     @PreAuthorize("@ss.hasPermi('system:species:add')")
     @Log(title = "新品种", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResult add(@RequestBody TbNewSpecies tbNewSpecies)
-    {
+    public AjaxResult add(@RequestBody TbNewSpecies tbNewSpecies) {
 
         String nickname = SecurityContextHolder.getContext().getAuthentication().getName();
         tbNewSpecies.setCreateBy(nickname);
         tbNewSpecies.setReading((long) 0);
+        tbNewSpecies.setCollect((long) 0);
+        tbNewSpecies.setLikes((long) 0);
         tbNewSpecies.setFirstColumn("0");
         return toAjax(tbNewSpeciesService.insertTbNewSpecies(tbNewSpecies));
     }
@@ -92,8 +90,7 @@ public class TbNewSpeciesController extends BaseController
     @PreAuthorize("@ss.hasPermi('system:species:edit')")
     @Log(title = "新品种", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult edit(@RequestBody TbNewSpecies tbNewSpecies)
-    {
+    public AjaxResult edit(@RequestBody TbNewSpecies tbNewSpecies) {
         return toAjax(tbNewSpeciesService.updateTbNewSpecies(tbNewSpecies));
     }
 
@@ -102,29 +99,28 @@ public class TbNewSpeciesController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:species:remove')")
     @Log(title = "新品种", businessType = BusinessType.DELETE)
-	@DeleteMapping("/{newsIds}")
-    public AjaxResult remove(@PathVariable Long[] newsIds)
-    {
+    @DeleteMapping("/{newsIds}")
+    public AjaxResult remove(@PathVariable Long[] newsIds) {
         return toAjax(tbNewSpeciesService.deleteTbNewSpeciesByNewsIds(newsIds));
     }
 
     /**
      * 获取已审核，分类为secondColumn的品种
-     * @param firstColumn 是否审核
-     * @param secondColumn 品种分类
+     *
+     * @param firstColumn  是否审核
      * @return com.ruoyi.common.core.domain.AjaxResult
      * @author Alex McAvoy
      * @date 2023/10/11 11:12:59
      */
     @PreAuthorize("@ss.hasPermi('system:species:list:checked')")
     @GetMapping(value = "/getListByColumn/{firstColumn}")
-    public AjaxResult getProductsByColumn(@PathVariable("firstColumn") String firstColumn)
-    {
+    public AjaxResult getProductsByColumn(@PathVariable("firstColumn") String firstColumn) {
         return success(tbNewSpeciesService.selectTbNewSpeciesByColumn(firstColumn));
     }
 
     /**
      * 获取全部未审核的品种信息
+     *
      * @param tbNewSpecies 品种对象
      * @return com.ruoyi.common.core.page.TableDataInfo
      * @author Alex McAvoy
@@ -132,8 +128,7 @@ public class TbNewSpeciesController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:species:list:unchecked')")
     @GetMapping("/getFirstColumns")
-    public TableDataInfo getRemark(TbNewSpecies tbNewSpecies)
-    {
+    public TableDataInfo getRemark(TbNewSpecies tbNewSpecies) {
         startPage();
         List<TbNewSpecies> list = tbNewSpeciesService.selectTbNewSpeciesFirstColumnsList(tbNewSpecies);
         return getDataTable(list);
@@ -141,6 +136,7 @@ public class TbNewSpeciesController extends BaseController
 
     /**
      * 修改审核/未审核
+     *
      * @param tbNewSpecies 品种对象
      * @return com.ruoyi.common.core.domain.AjaxResult
      * @author Alex McAvoy
@@ -148,18 +144,43 @@ public class TbNewSpeciesController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('system:species:check')")
     @PutMapping("/check")
-    public AjaxResult eidtFirstColumns(@RequestBody TbNewSpecies tbNewSpecies)
-    {
+    public AjaxResult eidtFirstColumns(@RequestBody TbNewSpecies tbNewSpecies) {
         return toAjax(tbNewSpeciesService.updateTbNewSpeciesFirstColumns(tbNewSpecies));
-    }    /**
- * 阅读量
- * @return com.ruoyi.common.core.domain.AjaxResult
- * @author Alex McAvoy
- * @date 2023/10/11 10:47:52
- */
-@PutMapping("/updateReading")
-public AjaxResult updateReading(@RequestBody TbNewSpecies tbNewSpecies)
-{
-    return toAjax(tbNewSpeciesService.updateReading(tbNewSpecies));
-}
+    }
+
+    /**
+     * 阅读量
+     *
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/updateReading")
+    public AjaxResult updateReading(@RequestBody TbNewSpecies tbNewSpecies) {
+        return toAjax(tbNewSpeciesService.updateReading(tbNewSpecies));
+    }
+
+    /**
+     * 点赞量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/addLikes")
+    public AjaxResult addLikes(@RequestBody TbNewSpecies tbNewSpecies)
+    {
+        return toAjax(tbNewSpeciesService.addLikes(tbNewSpecies));
+    }
+
+    /**
+     * 收藏量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/addCollect")
+    public AjaxResult addCollect(@RequestBody TbNewSpecies tbNewSpecies)
+    {
+        return toAjax(tbNewSpeciesService.addCollect(tbNewSpecies));
+    }
 }

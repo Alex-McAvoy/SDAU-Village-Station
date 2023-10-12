@@ -68,4 +68,9 @@ public interface ITbStationInfoService
     public int updateTbStationFirstColumns(TbStationInfo tbStationInfo);
 
     public int updateReading(TbStationInfo tbStationInfo);
+
+    public int addLikes(TbStationInfo tbStationInfo);
+
+    public int addCollect(TbStationInfo tbStationInfo);
+
 }

@@ -67,4 +67,8 @@ public interface TbFindChannelMapper {
     public int updateTbFindChannelFirstColumns(TbFindChannel tbFindChannel);
 
     public int updateReading(TbFindChannel tbFindChannel);
+
+    public int addLikes(TbFindChannel tbFindChannel);
+
+    public int addCollect(TbFindChannel tbFindChannel);
 }

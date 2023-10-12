@@ -77,8 +77,8 @@
 					<view class="new_img">
 						<img :src="item.remark" alt="" style="width:100%;height: auto;overflow: hidden">
 					</view>
-					<view class="new_title" style="width:100%">{{ fixedSize(item.content) }}</view>
-					<view class="new_origin"></view>
+					<view class="new_title" style="width:100%">{{item.title}}</view>
+					<view class="new_origin">{{ fixedSize(item.content) }}</view>
 				</view>
 			</view>
 		</view>
@@ -112,8 +112,8 @@
 					<view class="new_img">
 						<img :src="item.remark" alt="" style="width:100%;height: auto;overflow: hidden">
 					</view>
-					<view class="new_title" style="width:100%">{{ fixedSize(item.introduction) }}</view>
-					<view class="new_origin"></view>
+					<view class="new_title" style="width:100%">{{item.expertName}}</view>
+					<view class="new_origin">{{ fixedSize(item.introduction) }}</view>
 				</view>
 			</view>
 		</view>
@@ -137,7 +137,7 @@
 			<!-- 栏目标签 -->
 			<view>
 				<u-tabs :list="trainingList" :is-scroll="true" v-on:click="" lineColor="#2ed573"
-					@change="change"></u-tabs>
+					@change="getOfflineTrainingList"></u-tabs>
 			</view>
 			<view>
 				<view class="news" v-for="item in offlineTrain.slice(0,2)" @click="goOfflineTrainingDetail(item)">
@@ -155,16 +155,19 @@
 </template>
 <script>
 	import {
-		getNewsListByColumn
+		getNewsListByColumn,
+		updateNewsReading
 	} from "@/api/system/news.js";
 	import {
-		getProductsByColumns
+		getProductsByColumns,
+		updateProductsReading
 	} from "@/api/station/products";
 	import {
-		getExpertListByColumn
+		getExpertListByColumn,
 	} from "@/api/station/expert.js";
 	import {
 		getOfflineTrainingListByColumn,
+		updateOfflineTrainingReading
 	} from "@/api/system/offline_training.js";
 
 	export default {
@@ -254,6 +257,8 @@
 			},
 			goNewsDetail(item) {
 				getApp().globalData.item = item;
+				updateNewsReading(item).then(response => {
+				})
 				uni.navigateTo({
 					url: "/pages/index/news/news_detail"
 				})
@@ -272,6 +277,8 @@
 			},
 			getProductDetail(item) {
 				getApp().globalData.item = item
+				updateProductsReading(item).then(response => {
+				})
 				uni.navigateTo({
 					url: "/pages/station/products/products_detail"
 				})
@@ -307,6 +314,8 @@
 			},
 			goOfflineTrainingDetail(item) {
 				getApp().globalData.item = item;
+				updateOfflineTrainingReading(item).then(response => {
+				})
 				uni.navigateTo({
 					url: "/pages/training/offline_training_detail"
 				})

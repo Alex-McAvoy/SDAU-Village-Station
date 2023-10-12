@@ -78,6 +78,8 @@ public class TbRecommendProductsController extends BaseController {
         String nickname = SecurityContextHolder.getContext().getAuthentication().getName();
         tbRecommendProducts.setCreateBy(nickname);
         tbRecommendProducts.setReading((long) 0);
+        tbRecommendProducts.setCollect((long) 0);
+        tbRecommendProducts.setLikes((long) 0);
         tbRecommendProducts.setFirstColumn("0");
         return toAjax(tbRecommendProductsService.insertTbRecommendProducts(tbRecommendProducts));
     }
@@ -157,5 +159,29 @@ public class TbRecommendProductsController extends BaseController {
     public AjaxResult updateReading(@RequestBody TbRecommendProducts tbRecommendProducts)
     {
         return toAjax(tbRecommendProductsService.updateReading(tbRecommendProducts));
+    }
+
+    /**
+     * 点赞量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/addLikes")
+    public AjaxResult addLikes(@RequestBody TbRecommendProducts tbRecommendProducts)
+    {
+        return toAjax(tbRecommendProductsService.addLikes(tbRecommendProducts));
+    }
+
+    /**
+     * 收藏量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/addCollect")
+    public AjaxResult addCollect(@RequestBody TbRecommendProducts tbRecommendProducts)
+    {
+        return toAjax(tbRecommendProductsService.addCollect(tbRecommendProducts));
     }
 }

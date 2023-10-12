@@ -79,6 +79,8 @@ public class TbFindChannelController extends BaseController {
         String nickname = SecurityContextHolder.getContext().getAuthentication().getName();
         tbFindChannel.setCreateBy(nickname);
         tbFindChannel.setReading((long) 0);
+        tbFindChannel.setCollect((long) 0);
+        tbFindChannel.setLikes((long) 0);
         tbFindChannel.setFirstColumn("0");
         return toAjax(tbFindChannelService.insertTbFindChannel(tbFindChannel));
     }
@@ -160,5 +162,29 @@ public class TbFindChannelController extends BaseController {
     public AjaxResult updateReading(@RequestBody TbFindChannel tbFindChannel)
     {
         return toAjax(tbFindChannelService.updateReading(tbFindChannel));
+    }
+
+    /**
+     * 点赞量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/addLikes")
+    public AjaxResult addLikes(@RequestBody TbFindChannel tbFindChannel)
+    {
+        return toAjax(tbFindChannelService.addLikes(tbFindChannel));
+    }
+
+    /**
+     * 收藏量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/addCollect")
+    public AjaxResult addCollect(@RequestBody TbFindChannel tbFindChannel)
+    {
+        return toAjax(tbFindChannelService.addCollect(tbFindChannel));
     }
 }

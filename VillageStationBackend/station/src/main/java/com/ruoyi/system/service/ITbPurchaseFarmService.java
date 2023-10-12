@@ -67,4 +67,8 @@ public interface ITbPurchaseFarmService
     public int updateTbPurchaseFarmFirstColumns(TbPurchaseFarm tbPurchaseFarm);
 
     public int updateReading(TbPurchaseFarm tbPurchaseFarm);
+
+    public int addLikes(TbPurchaseFarm tbPurchaseFarm);
+
+    public int addCollect(TbPurchaseFarm tbPurchaseFarm);
 }

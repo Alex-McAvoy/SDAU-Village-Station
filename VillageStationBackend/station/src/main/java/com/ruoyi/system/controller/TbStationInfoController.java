@@ -80,6 +80,8 @@ public class TbStationInfoController extends BaseController
         String nickname = SecurityContextHolder.getContext().getAuthentication().getName();
         tbStationInfo.setCreateBy(nickname);
         tbStationInfo.setReading((long) 0);
+        tbStationInfo.setCollect((long) 0);
+        tbStationInfo.setLikes((long) 0);
         tbStationInfo.setFirstColumn("0");
         return toAjax(tbStationInfoService.insertTbStationInfo(tbStationInfo));
     }
@@ -161,6 +163,30 @@ public class TbStationInfoController extends BaseController
     public AjaxResult updateReading(@RequestBody TbStationInfo tbStationInfo)
     {
         return toAjax(tbStationInfoService.updateReading(tbStationInfo));
+    }
+
+    /**
+     * 点赞量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/addLikes")
+    public AjaxResult addLikes(@RequestBody TbStationInfo tbStationInfo)
+    {
+        return toAjax(tbStationInfoService.addLikes(tbStationInfo));
+    }
+
+    /**
+     * 收藏量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/addCollect")
+    public AjaxResult addCollect(@RequestBody TbStationInfo tbStationInfo)
+    {
+        return toAjax(tbStationInfoService.addCollect(tbStationInfo));
     }
 
 }

@@ -115,4 +115,14 @@ public class TbFinanceServiceImpl implements ITbFinanceService
     public int updateReading(TbFinance tbFinance) {
         return tbFinanceMapper.updateReading(tbFinance);
     }
+
+    @Override
+    public int addLikes(TbFinance tbFinance) {
+        return tbFinanceMapper.addLikes(tbFinance);
+    }
+
+    @Override
+    public int addCollect(TbFinance tbFinance) {
+        return tbFinanceMapper.addCollect(tbFinance);
+    }
 }

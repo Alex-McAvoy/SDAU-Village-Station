@@ -114,4 +114,14 @@ public class TbLearnTechServiceImpl implements ITbLearnTechService
     public int updateReading(TbLearnTech tbLearnTech) {
         return tbLearnTechMapper.updateReading(tbLearnTech);
     }
+
+    @Override
+    public int addLikes(TbLearnTech tbLearnTech) {
+        return tbLearnTechMapper.addLikes(tbLearnTech);
+    }
+
+    @Override
+    public int addCollect(TbLearnTech tbLearnTech) {
+        return tbLearnTechMapper.addCollect(tbLearnTech);
+    }
 }

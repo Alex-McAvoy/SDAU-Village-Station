@@ -114,4 +114,14 @@ public class TbPurchaseFarmServiceImpl implements ITbPurchaseFarmService
     public int updateReading(TbPurchaseFarm tbPurchaseFarm) {
         return tbPurchaseFarmMapper.updateReading(tbPurchaseFarm);
     }
+
+    @Override
+    public int addLikes(TbPurchaseFarm tbPurchaseFarm) {
+        return tbPurchaseFarmMapper.addLikes(tbPurchaseFarm);
+    }
+
+    @Override
+    public int addCollect(TbPurchaseFarm tbPurchaseFarm) {
+        return tbPurchaseFarmMapper.addCollect(tbPurchaseFarm);
+    }
 }

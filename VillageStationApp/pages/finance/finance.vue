@@ -106,7 +106,8 @@
 </template>
 <script>
 	import {
-		getExpertListByColumn,
+		getFinanceListByColumn,
+		updateFinanceReading
 	} from "@/api/system/finance.js";
 
 	export default {
@@ -131,7 +132,7 @@
 		},
 		methods: {
 			getFinanceList(item) {
-				getExpertListByColumn(1,item.index).then(response => {
+				getFinanceListByColumn(1,item.index).then(response => {
 					this.financeList = response.data
 					this.loading = false;
 				});
@@ -143,6 +144,8 @@
 			},
 			goFinanceDetail(item) {
 				getApp().globalData.item = item;
+				updateFinanceReading(item).then(response => {
+				})
 				uni.navigateTo({
 					url: "/pages/finance/finance_detail"
 				})

@@ -41,4 +41,8 @@ public interface TbNewsMapper
 
     public int updateReading(TbNews tbNews);
 
+    public int addLikes(TbNews tbNews);
+
+    public int addCollect(TbNews tbNews);
+
 }

@@ -67,4 +67,8 @@ public interface TbOfflineTrainingMapper
     public int updateTbOfflineTrainingFirstColumns(TbOfflineTraining tbOfflineTraining);
 
     public int updateReading(TbOfflineTraining tbOfflineTraining);
+
+    public int addLikes(TbOfflineTraining tbOfflineTraining);
+
+    public int addCollect(TbOfflineTraining tbOfflineTraining);
 }

@@ -16,9 +16,27 @@ export function getInfoDetail(newsId) {
 	})
 }
 
+// 更新阅读量
 export function updateInfoReading(data) {
 	return request({
 		url: '/system/info/updateReading',
+		method: 'put',
+		data: data
+	})
+}
+// 更新点赞量
+export function addInfoLikes(data) {
+	return request({
+		url: '/system/info/addLikes',
+		method: 'put',
+		data: data
+	})
+}
+
+// 更新收藏量
+export function addInfoCollect(data) {
+	return request({
+		url: '/system/info/addCollect',
 		method: 'put',
 		data: data
 	})

@@ -617,7 +617,7 @@
 			},
 			//跳转学农技详情页
 			goTechDetail(item) {
-				getApp().globalData.techItem = item;
+				getApp().globalData.item = item;
 				updateTechReading(item).then(response => {
 				})
 				uni.navigateTo({

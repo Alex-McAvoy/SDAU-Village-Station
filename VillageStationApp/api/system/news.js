@@ -7,3 +7,36 @@ export function getNewsListByColumn(firstColumn, secondColumn) {
     method: 'get'
   })
 }
+
+export function getNews(newsId) {
+  return request({
+    url: '/system/news/getById/' + newsId,
+    method: 'get'
+  })
+}
+
+// 更新阅读量
+export function updateNewsReading(data) {
+	return request({
+		url: '/system/news/updateReading',
+		method: 'put',
+		data: data
+	})
+}
+// 更新点赞量
+export function addNewsLikes(data) {
+	return request({
+		url: '/system/news/addLikes',
+		method: 'put',
+		data: data
+	})
+}
+
+// 更新收藏量
+export function addNewsCollect(data) {
+	return request({
+		url: '/system/news/addCollect',
+		method: 'put',
+		data: data
+	})
+}

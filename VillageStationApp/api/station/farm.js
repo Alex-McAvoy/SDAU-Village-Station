@@ -17,6 +17,7 @@ export function getFarm(newsId) {
   })
 }
 
+// 更新阅读量
 export function updateFarmReading(data) {
 	return request({
 		url: '/system/farm/updateReading',
@@ -25,3 +26,20 @@ export function updateFarmReading(data) {
 	})
 }
 
+// 更新点赞量
+export function addFarmLikes(data) {
+	return request({
+		url: '/system/farm/addLikes',
+		method: 'put',
+		data: data
+	})
+}
+
+// 更新收藏量
+export function addFarmCollect(data) {
+	return request({
+		url: '/system/farm/addCollect',
+		method: 'put',
+		data: data
+	})
+}

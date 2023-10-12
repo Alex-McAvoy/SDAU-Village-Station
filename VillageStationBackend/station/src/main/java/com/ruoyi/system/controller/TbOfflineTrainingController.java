@@ -82,6 +82,8 @@ public class TbOfflineTrainingController extends BaseController
         String nickname = SecurityContextHolder.getContext().getAuthentication().getName();
         tbOfflineTraining.setCreateBy(nickname);
         tbOfflineTraining.setReading((long) 0);
+        tbOfflineTraining.setCollect((long) 0);
+        tbOfflineTraining.setLikes((long) 0);
         tbOfflineTraining.setFirstColumn("0");
         return toAjax(tbOfflineTrainingService.insertTbOfflineTraining(tbOfflineTraining));
     }
@@ -161,5 +163,29 @@ public class TbOfflineTrainingController extends BaseController
     public AjaxResult updateReading(@RequestBody TbOfflineTraining tbOfflineTraining)
     {
         return toAjax(tbOfflineTrainingService.updateReading(tbOfflineTraining));
+    }
+
+    /**
+     * 点赞量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/addLikes")
+    public AjaxResult addLikes(@RequestBody TbOfflineTraining tbOfflineTraining)
+    {
+        return toAjax(tbOfflineTrainingService.addLikes(tbOfflineTraining));
+    }
+
+    /**
+     * 收藏量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/addCollect")
+    public AjaxResult addCollect(@RequestBody TbOfflineTraining tbOfflineTraining)
+    {
+        return toAjax(tbOfflineTrainingService.addCollect(tbOfflineTraining));
     }
 }

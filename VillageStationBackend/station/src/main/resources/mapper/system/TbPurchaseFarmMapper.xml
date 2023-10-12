@@ -18,10 +18,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="secondColumn"    column="second_column"    />
         <result property="sort"    column="sort"    />
         <result property="reading"    column="reading"    />
+        <result property="collect"    column="collect"    />
+        <result property="likes"    column="likes"    />
     </resultMap>
 
     <sql id="selectTbPurchaseFarmVo">
-        select news_id, title, content, del_flag, create_by, create_time, update_by, update_time, remark, first_column, second_column, sort,reading from tb_purchase_farm
+        select news_id, title, content, del_flag, create_by, create_time, update_by, update_time, remark, first_column, second_column, sort,reading,collect,likes from tb_purchase_farm
     </sql>
 
     <select id="selectTbPurchaseFarmList" parameterType="TbPurchaseFarm" resultMap="TbPurchaseFarmResult">
@@ -54,6 +56,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="firstColumn != null">first_column,</if>
             <if test="secondColumn != null">second_column,</if>
             <if test="sort != null">sort,</if>
+            <if test="reading != null">reading,</if>
+            <if test="collect != null">collect,</if>
+            <if test="likes != null">likes,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="title != null">#{title},</if>
@@ -67,6 +72,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="firstColumn != null">#{firstColumn},</if>
             <if test="secondColumn != null">#{secondColumn},</if>
             <if test="sort != null">#{sort},</if>
+            <if test="reading != null">#{reading},</if>
+            <if test="collect != null">#{collect},</if>
+            <if test="likes != null">#{likes},</if>
          </trim>
     </insert>
 
@@ -123,6 +131,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         update tb_purchase_farm
         <trim prefix="SET" suffixOverrides=",">
             reading = reading + 1
+        </trim>
+        where news_id = #{newsId}
+    </update>
+
+    <update id="addLikes" parameterType="TbPurchaseFarm">
+        update tb_purchase_farm
+        <trim prefix="SET" suffixOverrides=",">
+            likes = likes + 1
+        </trim>
+        where news_id = #{newsId}
+    </update>
+
+    <update id="addCollect" parameterType="TbPurchaseFarm">
+        update tb_purchase_farm
+        <trim prefix="SET" suffixOverrides=",">
+            collect = collect + 1
         </trim>
         where news_id = #{newsId}
     </update>

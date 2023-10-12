@@ -43,9 +43,28 @@ export function delChannel(newsId) {
   })
 }
 
+// 更新阅读量
 export function updateChannelReading(data) {
 	return request({
 		url: '/system/channel/updateReading',
+		method: 'put',
+		data: data
+	})
+}
+
+// 更新点赞量
+export function addChannelLikes(data) {
+	return request({
+		url: '/system/channel/addLikes',
+		method: 'put',
+		data: data
+	})
+}
+
+// 更新收藏量
+export function addChannelCollect(data) {
+	return request({
+		url: '/system/channel/addCollect',
 		method: 'put',
 		data: data
 	})

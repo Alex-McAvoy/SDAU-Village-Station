@@ -14,7 +14,7 @@
 		<view style="margin: 100px 5px 5px 10px;border-radius: 5px; overflow: hidden;">
 			<u-swiper :list="sildeImg" height="180px"></u-swiper>
 		</view>
-		
+
 		<!-- 优品品类 -->
 		<view style=" border-radius: 10px; background-color: white;  margin:15px">
 			<view class="module" style="margin-bottom:20px">
@@ -23,7 +23,7 @@
 				</image>
 				<u-text style="font-weight: 20px;" margin="8px 0px 0px 0px" text="优品品类" bold size="22"></u-text>
 			</view>
-			
+
 			<view class="u-page" v-for="item in Array.from(productList1).slice(0, 3)">
 				<view class="u-demo-block" @click="getProductDetail(item)">
 					<view class="album">
@@ -40,7 +40,7 @@
 				</view>
 			</view>
 		</view>
-		
+
 		<!-- 优品品牌 -->
 		<view style="border-radius: 10px; background-color: white;  margin:15px">
 			<view class="module" style="margin-bottom:20px">
@@ -49,7 +49,7 @@
 				</image>
 				<u-text style="font-weight: 20px;" margin="8px 0px 0px 0px" text="优品品牌" bold size="22"></u-text>
 			</view>
-			
+
 			<view class="u-page" v-for="item in Array.from(productList2).slice(0, 3)">
 				<view class="u-demo-block" @click="getProductDetail(item)">
 					<view class="album">
@@ -71,9 +71,10 @@
 
 <script>
 	import {
-		getProductsByColumns
+		getProductsByColumns,
+		updateProductsReading
 	} from "@/api/station/products";
-	
+
 	export default {
 		name: "Product",
 		onLoad: function() {},
@@ -104,17 +105,18 @@
 		methods: {
 			getList() {
 				this.loading = true;
-				getProductsByColumns(1,0).then(response => {
+				getProductsByColumns(1, 0).then(response => {
 					this.productList1 = response.data;
 					this.loading = false;
 				});
-				getProductsByColumns(1,1).then(response => {
+				getProductsByColumns(1, 1).then(response => {
 					this.productList2 = response.data;
 					this.loading = false;
 				});
 			},
 			getProductDetail(item) {
 				getApp().globalData.item = item
+				updateProductsReading(item).then(response => {})
 				uni.navigateTo({
 					url: "/pages/station/products/products_detail"
 				})

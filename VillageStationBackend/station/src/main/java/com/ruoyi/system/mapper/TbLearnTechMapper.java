@@ -68,4 +68,8 @@ public interface TbLearnTechMapper
     public int updateTbLearnTechFirstColumns(TbLearnTech tbLearnTech);
 
     public int updateReading(TbLearnTech tbLearnTech);
+
+    public int addLikes(TbLearnTech tbLearnTech);
+
+    public int addCollect(TbLearnTech tbLearnTech);
 }

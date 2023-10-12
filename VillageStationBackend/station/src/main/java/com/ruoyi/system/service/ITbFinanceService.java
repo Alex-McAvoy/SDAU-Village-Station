@@ -66,4 +66,8 @@ public interface ITbFinanceService
     public int updateTbFinanceFirstColumns(TbFinance tbFinance);
 
     public int updateReading(TbFinance tbFinance);
+
+    public int addLikes(TbFinance tbFinance);
+
+    public int addCollect(TbFinance tbFinance);
 }
