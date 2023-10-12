@@ -71,5 +71,9 @@ public interface TbLearnTechMapper
 
     public int addLikes(TbLearnTech tbLearnTech);
 
+    public int subLikes(TbLearnTech tbLearnTech);
+
     public int addCollect(TbLearnTech tbLearnTech);
+
+    public int subCollect(TbLearnTech tbLearnTech);
 }

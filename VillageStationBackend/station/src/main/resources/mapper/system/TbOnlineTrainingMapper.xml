@@ -18,10 +18,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="secondColumn"    column="second_column"    />
         <result property="sort"    column="sort"    />
         <result property="video"    column="video"    />
+        <result property="reading"    column="reading"    />
+        <result property="collect"    column="collect"    />
+        <result property="likes"    column="likes"    />
     </resultMap>
 
     <sql id="selectTbOnlineTrainingVo">
-        select news_id, title, content, del_flag, create_by, create_time, update_by, update_time, remark, first_column, second_column, sort, video from tb_online_training
+        select news_id, title, content, del_flag, create_by, create_time, update_by, update_time, remark, first_column, second_column, sort, video,reading,collect,likes from tb_online_training
     </sql>
 
     <select id="selectTbOnlineTrainingList" parameterType="TbOnlineTraining" resultMap="TbOnlineTrainingResult">
@@ -32,6 +35,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="firstColumn != null  and firstColumn != ''"> and first_column = #{firstColumn}</if>
             <if test="secondColumn != null  and secondColumn != ''"> and second_column = #{secondColumn}</if>
             <if test="sort != null  and sort != ''"> and sort = #{sort}</if>
+            <if test="video != null  and video != ''"> and video = #{video}</if>
+            <if test="video != null  and video != ''"> and video = #{video}</if>
             <if test="video != null  and video != ''"> and video = #{video}</if>
         </where>
     </select>
@@ -56,6 +61,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="secondColumn != null">second_column,</if>
             <if test="sort != null">sort,</if>
             <if test="video != null">video,</if>
+            <if test="reading != null">reading,</if>
+            <if test="collect != null">collect,</if>
+            <if test="likes != null">likes,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="title != null">#{title},</if>
@@ -70,6 +78,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="secondColumn != null">#{secondColumn},</if>
             <if test="sort != null">#{sort},</if>
             <if test="video != null">#{video},</if>
+            <if test="reading != null">#{reading},</if>
+            <if test="collect != null">#{collect},</if>
+            <if test="likes != null">#{likes},</if>
          </trim>
     </insert>
 
@@ -102,4 +113,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             #{newsId}
         </foreach>
     </delete>
+
+
+
+    <update id="updateReading" parameterType="TbOnlineTraining">
+        update tb_online_training
+        <trim prefix="SET" suffixOverrides=",">
+            reading = reading + 1
+        </trim>
+        where news_id = #{newsId}
+    </update>
+
+    <update id="addLikes" parameterType="TbOnlineTraining">
+        update tb_online_training
+        <trim prefix="SET" suffixOverrides=",">
+            likes = likes + 1
+        </trim>
+        where news_id = #{newsId}
+    </update>
+
+    <update id="subLikes" parameterType="TbOnlineTraining">
+        update tb_online_training
+        <trim prefix="SET" suffixOverrides=",">
+            likes = likes - 1
+        </trim>
+        where news_id = #{newsId}
+    </update>
+
+    <update id="addCollect" parameterType="TbOnlineTraining">
+        update tb_online_training
+        <trim prefix="SET" suffixOverrides=",">
+            collect = collect + 1
+        </trim>
+        where news_id = #{newsId}
+    </update>
+
+    <update id="subCollect" parameterType="TbOnlineTraining">
+        update tb_online_training
+        <trim prefix="SET" suffixOverrides=",">
+            collect = collect - 1
+        </trim>
+        where news_id = #{newsId}
+    </update>
 </mapper>

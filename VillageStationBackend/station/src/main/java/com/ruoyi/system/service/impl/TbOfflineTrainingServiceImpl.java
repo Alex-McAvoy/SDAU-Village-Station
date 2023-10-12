@@ -115,7 +115,17 @@ public class TbOfflineTrainingServiceImpl implements ITbOfflineTrainingService {
     }
 
     @Override
+    public int subLikes(TbOfflineTraining tbOfflineTraining) {
+        return tbOfflineTrainingMapper.subLikes(tbOfflineTraining);
+    }
+
+    @Override
     public int addCollect(TbOfflineTraining tbOfflineTraining) {
         return tbOfflineTrainingMapper.addCollect(tbOfflineTraining);
+    }
+
+    @Override
+    public int subCollect(TbOfflineTraining tbOfflineTraining) {
+        return tbOfflineTrainingMapper.subCollect(tbOfflineTraining);
     }
 }

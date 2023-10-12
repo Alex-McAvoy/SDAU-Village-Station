@@ -32,11 +32,25 @@ export function addInfoLikes(data) {
 		data: data
 	})
 }
+export function subInfoLikes(data) {
+	return request({
+		url: '/system/info/subLikes',
+		method: 'put',
+		data: data
+	})
+}
 
 // 更新收藏量
 export function addInfoCollect(data) {
 	return request({
 		url: '/system/info/addCollect',
+		method: 'put',
+		data: data
+	})
+}
+export function subInfoCollect(data) {
+	return request({
+		url: '/system/info/subCollect',
 		method: 'put',
 		data: data
 	})

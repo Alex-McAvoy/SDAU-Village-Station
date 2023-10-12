@@ -142,10 +142,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where news_id = #{newsId}
     </update>
 
+    <update id="subLikes" parameterType="TbNewSpecies">
+        update tb_new_species
+        <trim prefix="SET" suffixOverrides=",">
+            likes = likes - 1
+        </trim>
+        where news_id = #{newsId}
+    </update>
+
     <update id="addCollect" parameterType="TbNewSpecies">
         update tb_new_species
         <trim prefix="SET" suffixOverrides=",">
             collect = collect + 1
+        </trim>
+        where news_id = #{newsId}
+    </update>
+
+    <update id="subCollect" parameterType="TbNewSpecies">
+        update tb_new_species
+        <trim prefix="SET" suffixOverrides=",">
+            collect = collect - 1
         </trim>
         where news_id = #{newsId}
     </update>

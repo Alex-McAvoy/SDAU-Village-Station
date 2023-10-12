@@ -60,11 +60,25 @@ export function addChannelLikes(data) {
 		data: data
 	})
 }
+export function subChannelLikes(data) {
+	return request({
+		url: '/system/channel/subLikes',
+		method: 'put',
+		data: data
+	})
+}
 
 // 更新收藏量
 export function addChannelCollect(data) {
 	return request({
 		url: '/system/channel/addCollect',
+		method: 'put',
+		data: data
+	})
+}
+export function subChannelCollect(data) {
+	return request({
+		url: '/system/channel/subCollect',
 		method: 'put',
 		data: data
 	})

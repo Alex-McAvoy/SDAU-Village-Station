@@ -70,5 +70,9 @@ public interface TbPurchaseFarmMapper
 
     public int addLikes(TbPurchaseFarm tbPurchaseFarm);
 
+    public int subLikes(TbPurchaseFarm tbPurchaseFarm);
+
     public int addCollect(TbPurchaseFarm tbPurchaseFarm);
+
+    public int subCollect(TbPurchaseFarm tbPurchaseFarm);
 }

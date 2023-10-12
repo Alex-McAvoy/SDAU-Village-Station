@@ -179,6 +179,12 @@ public class TbFinanceController extends BaseController
         return toAjax(tbFinanceService.addLikes(tbFinance));
     }
 
+    @PutMapping("/subLikes")
+    public AjaxResult subLikes(@RequestBody TbFinance tbFinance)
+    {
+        return toAjax(tbFinanceService.subLikes(tbFinance));
+    }
+
     /**
      * 收藏量
      * @return com.ruoyi.common.core.domain.AjaxResult
@@ -189,6 +195,11 @@ public class TbFinanceController extends BaseController
     public AjaxResult addCollect(@RequestBody TbFinance tbFinance)
     {
         return toAjax(tbFinanceService.addCollect(tbFinance));
+    }
+    @PutMapping("/subCollect")
+    public AjaxResult subCollect(@RequestBody TbFinance tbFinance)
+    {
+        return toAjax(tbFinanceService.subCollect(tbFinance));
     }
 }
 

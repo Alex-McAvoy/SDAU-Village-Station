@@ -70,5 +70,9 @@ public interface ITbPurchaseFarmService
 
     public int addLikes(TbPurchaseFarm tbPurchaseFarm);
 
+    public int subLikes(TbPurchaseFarm tbPurchaseFarm);
+
     public int addCollect(TbPurchaseFarm tbPurchaseFarm);
+
+    public int subCollect(TbPurchaseFarm tbPurchaseFarm);
 }

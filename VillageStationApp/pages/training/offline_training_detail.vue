@@ -10,9 +10,9 @@
 				<view class="new_text"><u-parse :content="item.content"></u-parse></view>
 			</view>
 			<u-tabbar :fixed="true" :placeholder="true" :safeAreaInsetBottom="true">
-				<u-tabbar-item :text="reading" icon="eye"></u-tabbar-item>
-				<u-tabbar-item text="点赞" icon="thumb-up"></u-tabbar-item>
-				<u-tabbar-item text="收藏" icon="star"></u-tabbar-item>
+				<u-tabbar-item :text="reading" :icon="eye"></u-tabbar-item>
+				<u-tabbar-item :text="likes" :icon="thumbup" @click="clickLikes"></u-tabbar-item>
+				<u-tabbar-item :text="collect" :icon="star" @click="clickCollect"></u-tabbar-item>
 			</u-tabbar>
 		</view>
 	</view>
@@ -20,7 +20,11 @@
 
 <script>
 	import {
-		getOfflineTraining
+		getOfflineTraining,
+		addOfflineTrainingLikes,
+		subOfflineTrainingLikes,
+		addOfflineTrainingCollect,
+		subOfflineTrainingCollect,
 	} from "@/api/system/offline_training.js"
 	export default {
 		onLoad: function() {},
@@ -28,7 +32,14 @@
 			return {
 				loading: false,
 				item: '',
-				reading: ''
+				reading: '',
+				likes: '',
+				collect: '',
+				eye: '/static/images/tabbar/eye.png',
+				thumbup: '/static/images/tabbar/unlikes.png',
+				star: '/static/images/tabbar/uncollect.png',
+				likesClickCount: 0,
+				collectClickCount: 0
 			}
 		},
 		created() {
@@ -40,11 +51,36 @@
 				var id = getApp().globalData.item.newsId
 				getOfflineTraining(id).then(response => {
 					this.item = response.data;
-					this.reading = response.data.reading.toString()
-					this.loading = false;
+					this.reading = (response.data.reading + 1).toString()
+					this.likes = response.data.likes.toString()
+					this.collect = response.data.collect.toString()
 				});
 				this.loading = false;
 			},
+			clickLikes() {
+				if (this.likesClickCount % 2 == 0) { // 点赞
+					this.thumbup = '/static/images/tabbar/likes.png'
+					this.likes = (parseInt(this.likes) + 1).toString()
+					addOfflineTrainingLikes(this.item).then(response => {})
+				} else { // 取消点赞
+					this.thumbup = '/static/images/tabbar/unlikes.png'
+					this.likes = (parseInt(this.likes) - 1).toString()
+					subOfflineTrainingLikes(this.item).then(response => {})
+				}
+				this.likesClickCount += 1
+			},
+			clickCollect() {
+				if (this.collectClickCount % 2 == 0) { // 收藏
+					this.star = '/static/images/tabbar/collect.png'
+					this.collect = (parseInt(this.collect) + 1).toString()
+					addOfflineTrainingCollect(this.item).then(response => {})
+				} else { // 取消收藏
+					this.star = '/static/images/tabbar/uncollect.png'
+					this.collect = (parseInt(this.collect) - 1).toString()
+					subOfflineTrainingCollect(this.item).then(response => {})
+				}
+				this.collectClickCount += 1
+			}
 		}
 	}
 </script>
@@ -66,4 +102,4 @@
 		margin: 20px 15px 15px 15px;
 		padding-bottom: 5px;
 	}
-</style>
+</style>      

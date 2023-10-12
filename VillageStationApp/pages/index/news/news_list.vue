@@ -11,7 +11,7 @@
 		<view style="border-radius: 10px; background-color: white;margin:15px;">
 			<view class="news" v-for="item in newsList" @click="goNewsDetail(item)">
 				<view class="new_img">
-					<image src="/static/images/index/news_cover.png" alt=""
+					<image :src="item.remark" alt=""
 						style="width:100%;height: 70px;overflow: hidden">
 				</view>
 				<view class="new_title">{{ item.title }}</view>

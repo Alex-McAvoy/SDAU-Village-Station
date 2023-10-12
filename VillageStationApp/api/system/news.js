@@ -31,11 +31,25 @@ export function addNewsLikes(data) {
 		data: data
 	})
 }
+export function subNewsLikes(data) {
+	return request({
+		url: '/system/news/subLikes',
+		method: 'put',
+		data: data
+	})
+}
 
 // 更新收藏量
 export function addNewsCollect(data) {
 	return request({
 		url: '/system/news/addCollect',
+		method: 'put',
+		data: data
+	})
+}
+export function subNewsCollect(data) {
+	return request({
+		url: '/system/news/subCollect',
 		method: 'put',
 		data: data
 	})

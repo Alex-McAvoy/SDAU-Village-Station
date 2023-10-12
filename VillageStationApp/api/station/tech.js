@@ -33,11 +33,25 @@ export function addTechLikes(data) {
 		data: data
 	})
 }
+export function subTechLikes(data) {
+	return request({
+		url: '/system/tech/subLikes',
+		method: 'put',
+		data: data
+	})
+}
 
 // 更新收藏量
 export function addTechCollect(data) {
 	return request({
 		url: '/system/tech/addCollect',
+		method: 'put',
+		data: data
+	})
+}
+export function subTechCollect(data) {
+	return request({
+		url: '/system/tech/subCollect',
 		method: 'put',
 		data: data
 	})

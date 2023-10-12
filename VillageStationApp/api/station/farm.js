@@ -34,11 +34,25 @@ export function addFarmLikes(data) {
 		data: data
 	})
 }
+export function subFarmLikes(data) {
+	return request({
+		url: '/system/farm/subLikes',
+		method: 'put',
+		data: data
+	})
+}
 
 // 更新收藏量
 export function addFarmCollect(data) {
 	return request({
 		url: '/system/farm/addCollect',
+		method: 'put',
+		data: data
+	})
+}
+export function subFarmCollect(data) {
+	return request({
+		url: '/system/farm/subCollect',
 		method: 'put',
 		data: data
 	})

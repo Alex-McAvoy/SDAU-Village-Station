@@ -175,6 +175,11 @@ public class TbFindChannelController extends BaseController {
     {
         return toAjax(tbFindChannelService.addLikes(tbFindChannel));
     }
+    @PutMapping("/subLikes")
+    public AjaxResult subLikes(@RequestBody TbFindChannel tbFindChannel)
+    {
+        return toAjax(tbFindChannelService.subLikes(tbFindChannel));
+    }
 
     /**
      * 收藏量
@@ -186,5 +191,10 @@ public class TbFindChannelController extends BaseController {
     public AjaxResult addCollect(@RequestBody TbFindChannel tbFindChannel)
     {
         return toAjax(tbFindChannelService.addCollect(tbFindChannel));
+    }
+    @PutMapping("/subCollect")
+    public AjaxResult subCollect(@RequestBody TbFindChannel tbFindChannel)
+    {
+        return toAjax(tbFindChannelService.subCollect(tbFindChannel));
     }
 }

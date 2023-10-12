@@ -35,11 +35,25 @@ export function addFinanceLikes(data) {
 		data: data
 	})
 }
+export function subFinanceLikes(data) {
+	return request({
+		url: '/system/finance/subLikes',
+		method: 'put',
+		data: data
+	})
+}
 
 // 更新收藏量
 export function addFinanceCollect(data) {
 	return request({
 		url: '/system/finance/addCollect',
+		method: 'put',
+		data: data
+	})
+}
+export function subFinanceCollect(data) {
+	return request({
+		url: '/system/finance/subCollect',
 		method: 'put',
 		data: data
 	})

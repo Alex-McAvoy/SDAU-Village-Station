@@ -74,7 +74,6 @@ public class TbPurchaseFarmController extends BaseController {
     @Log(title = "买农资", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody TbPurchaseFarm tbPurchaseFarm) {
-
         String nickname = SecurityContextHolder.getContext().getAuthentication().getName();
         tbPurchaseFarm.setCreateBy(nickname);
         tbPurchaseFarm.setReading((long) 0);
@@ -172,6 +171,11 @@ public class TbPurchaseFarmController extends BaseController {
     {
         return toAjax(tbPurchaseFarmService.addLikes(tbPurchaseFarm));
     }
+    @PutMapping("/subLikes")
+    public AjaxResult subLikes(@RequestBody TbPurchaseFarm tbPurchaseFarm)
+    {
+        return toAjax(tbPurchaseFarmService.subLikes(tbPurchaseFarm));
+    }
 
     /**
      * 收藏量
@@ -183,5 +187,10 @@ public class TbPurchaseFarmController extends BaseController {
     public AjaxResult addCollect(@RequestBody TbPurchaseFarm tbPurchaseFarm)
     {
         return toAjax(tbPurchaseFarmService.addCollect(tbPurchaseFarm));
+    }
+    @PutMapping("/subCollect")
+    public AjaxResult subCollect(@RequestBody TbPurchaseFarm tbPurchaseFarm)
+    {
+        return toAjax(tbPurchaseFarmService.subCollect(tbPurchaseFarm));
     }
 }

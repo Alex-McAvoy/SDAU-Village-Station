@@ -37,8 +37,7 @@
 			<view v-for="item in newsList"><!-- 栏目内容 -->
 				<view class="news" @click="goNewsDetail(item)">
 					<view class="new_img">
-						<img src="http://paper.people.com.cn/rmrb/images/2023-09/16/01/rmrb2023091601p27_b.jpg" alt=""
-							style="width:100%;height: auto;overflow: hidden">
+						<img :src="item.remark" alt="" style="width:100%;height: auto;overflow: hidden">
 					</view>
 					<view class="new_title" style="width:100%">{{item.title}}</view>
 					<view class="new_origin"><span class="origin">来源</span><span>中国政府网</span>
@@ -137,10 +136,10 @@
 			<!-- 栏目标签 -->
 			<view>
 				<u-tabs :list="trainingList" :is-scroll="true" v-on:click="" lineColor="#2ed573"
-					@change="getOfflineTrainingList"></u-tabs>
+					@change="offlineTrainingTab"></u-tabs>
 			</view>
 			<view>
-				<view class="news" v-for="item in offlineTrain.slice(0,2)" @click="goOfflineTrainingDetail(item)">
+				<view class="news" v-for="item in train.slice(0,2)" @click="goOfflineTrainingDetail(item)">
 					<view class="new_img">
 						<img :src="item.remark" alt="" style="width:100%;height: auto;overflow: hidden">
 					</view>
@@ -169,6 +168,10 @@
 		getOfflineTrainingListByColumn,
 		updateOfflineTrainingReading
 	} from "@/api/system/offline_training.js";
+	import {
+		listOnlineTraining,
+		updateOnlineTrainingReading
+	} from "@/api/system/online_training.js";
 
 	export default {
 		data() {
@@ -228,7 +231,8 @@
 				newsList: [],
 				productList: [],
 				expertList: [],
-				offlineTrain: [],
+				train: [],
+				trainIndex: 0
 			}
 		},
 		created() {
@@ -241,7 +245,9 @@
 			this.getExpertList({
 				index: 0
 			})
-			this.getOfflineTrainingList();
+			this.offlineTrainingTab({
+				index: 0
+			});
 		},
 		methods: {
 			getNewsList(item) {
@@ -257,8 +263,7 @@
 			},
 			goNewsDetail(item) {
 				getApp().globalData.item = item;
-				updateNewsReading(item).then(response => {
-				})
+				updateNewsReading(item).then(response => {})
 				uni.navigateTo({
 					url: "/pages/index/news/news_detail"
 				})
@@ -277,8 +282,7 @@
 			},
 			getProductDetail(item) {
 				getApp().globalData.item = item
-				updateProductsReading(item).then(response => {
-				})
+				updateProductsReading(item).then(response => {})
 				uni.navigateTo({
 					url: "/pages/station/products/products_detail"
 				})
@@ -300,25 +304,44 @@
 					url: "/pages/expert/expert_detail"
 				})
 			},
-			getOfflineTrainingList() {
+			offlineTrainingTab(item) {
+				this.trainIndex = item.index;
+				if (item.index == 1) {
+					this.loading = true;
+					getOfflineTrainingListByColumn(1, item.index).then(response => {
+						this.train = response.data
+						this.loading = false;
+					});
+				} else {
+					this.getList();
+				}
+			},
+			getList() {
 				this.loading = true;
-				getOfflineTrainingListByColumn(1).then(response => {
-					this.offlineTrain = response.data
+				listOnlineTraining(this.queryParams).then(response => {
+					this.train = response.rows;
+					this.total = response.total;
 					this.loading = false;
 				});
 			},
-			goOfflineTrainingList() {
+			goTrainingList() {
 				uni.switchTab({
 					url: "/pages/training/training"
 				})
 			},
 			goOfflineTrainingDetail(item) {
 				getApp().globalData.item = item;
-				updateOfflineTrainingReading(item).then(response => {
-				})
-				uni.navigateTo({
-					url: "/pages/training/offline_training_detail"
-				})
+				if (this.trainIndex == 1) {
+					updateOfflineTrainingReading(item).then(response => {})
+					uni.navigateTo({
+						url: "/pages/training/offline_training_detail"
+					})
+				} else {
+					updateOnlineTrainingReading(item).then(response => {})
+					uni.navigateTo({
+						url: "/pages/training/online_training_detail"
+					})
+				}
 			},
 			fixedSize(content) {
 				return content.substring(0, 25) + "..."

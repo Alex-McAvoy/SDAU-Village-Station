@@ -30,11 +30,25 @@ export function addOfflineTrainingLikes(data) {
 		data: data
 	})
 }
+export function subOfflineTrainingLikes(data) {
+	return request({
+		url: '/system/offline_training/subLikes',
+		method: 'put',
+		data: data
+	})
+}
 
 // 更新收藏量
 export function addOfflineTrainingCollect(data) {
 	return request({
 		url: '/system/offline_training/addCollect',
+		method: 'put',
+		data: data
+	})
+}
+export function subOfflineTrainingCollect(data) {
+	return request({
+		url: '/system/offline_training/subCollect',
 		method: 'put',
 		data: data
 	})

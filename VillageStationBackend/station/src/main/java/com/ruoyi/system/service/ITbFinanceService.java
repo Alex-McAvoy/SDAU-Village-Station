@@ -69,5 +69,9 @@ public interface ITbFinanceService
 
     public int addLikes(TbFinance tbFinance);
 
+    public int subLikes(TbFinance tbFinance);
+
     public int addCollect(TbFinance tbFinance);
+
+    public int subCollect(TbFinance tbFinance);
 }

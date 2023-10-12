@@ -147,10 +147,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where article_id = #{articleId}
     </update>
 
+    <update id="subLikes" parameterType="TbLearnTech">
+        update tb_learn_tech
+        <trim prefix="SET" suffixOverrides=",">
+            likes = likes - 1
+        </trim>
+        where article_id = #{articleId}
+    </update>
+
     <update id="addCollect" parameterType="TbLearnTech">
         update tb_learn_tech
         <trim prefix="SET" suffixOverrides=",">
             collect = collect + 1
+        </trim>
+        where article_id = #{articleId}
+    </update>
+
+    <update id="subCollect" parameterType="TbLearnTech">
+        update tb_learn_tech
+        <trim prefix="SET" suffixOverrides=",">
+            collect = collect - 1
         </trim>
         where article_id = #{articleId}
     </update>

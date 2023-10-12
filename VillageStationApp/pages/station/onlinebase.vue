@@ -5,126 +5,62 @@
 				class="echarts"></view>
 		</view>
 
-		<!-- <view class="content">
-		        
-		        <view class="echarts" :prop="option" :change:prop="echarts.updateEcharts" 
-		            id="echart">
-		        </view>
-		       
-		    </view> -->
-
 		<!-- 内容1 -->
-		<view class="album__content" style="background-color: white; display: flex; margin: 15px">
-			<!-- 左 -->
-			<view style="margin-top: 15px; margin-left: 15px">
-				<!-- 左上 -->
-				<view style="margin-right: 15px; width: 220px; height: 20px">
-					<u--text text="江苏(姜堰)现代农业 (稻麦) 科技综合示范基地" bold size="11"></u--text>
-				</view>
-				<!-- 左下 -->
-				<view style="margin-top: 3vh; display: flex">
-					<view>
-						<image src="../../static/images/station/onlinebase/location.png"
-							style="width: 13px; height: 15px; margin-top: 10px"></image>
-					</view>
-					<view style="
-              margin-left: 2vh;
-              width: 150px;
-              height: 20px;
-              margin-top: 10px;
-            ">
-						<u--text text="泰州市农业开发区江苏红旗种业" size="10"></u--text>
-					</view>
-				</view>
-			</view>
-			<!-- 右 -->
-			<view style="margin-right: 15px">
-				<!-- 右上 -->
-				<view style="margin-top: 15px">
-					<button style="
-              font-size: 11px;
-              background-color: #00ae67;
-              color: white;
-              width: 80px;
-              height: 30px;
-            ">
-						查看详情
-					</button>
-				</view>
-				<!-- 右下 -->
-				<view>
-					<button type="primary" style="
-              font-size: 11px;
-              margin-bottom: 15px;
-              margin-top: 10px;
-              width: 80px;
-              height: 30px;
-            ">
-						去这里
-					</button>
-				</view>
-			</view>
-		</view>
-		<!-- 内容2 -->
-		<view class="album__content" style="background-color: white; display: flex; margin: 15px">
-			<!-- 左 -->
-			<view style="margin-top: 15px; margin-left: 15px">
-				<!-- 左上 -->
-				<view style="margin-right: 15px; width: 220px; height: 20px">
-					<u--text text="江苏(姜堰)现代农业 (稻麦) 科技综合示范基地" bold size="11"></u--text>
-				</view>
-				<!-- 左下 -->
-				<view style="margin-top: 3vh; display: flex">
-					<view>
-						<image src="../../static/images/station/onlinebase/location.png"
-							style="width: 13px; height: 15px; margin-top: 10px"></image>
-					</view>
-					<view style="
-              margin-left: 2vh;
-              margin-top: 10px;
-              width: 150px;
-              height: 20px;
-            ">
-						<u--text text="泰州市农业开发区江苏红旗种业" size="10"></u--text>
-					</view>
-				</view>
-			</view>
-			<!-- 右 -->
-			<view style="margin-right: 15px">
-				<!-- 右上 -->
-				<view style="margin-top: 15px">
-					<button style="
-              font-size: 11px;
-              background-color: #00ae67;
-              color: white;
-              width: 80px;
-              height: 30px;
-            ">
-						查看详情
-					</button>
-				</view>
-				<!-- 右下 -->
-				<view>
-					<button type="primary" style="
-              font-size: 11px;
-              margin-bottom: 15px;
-              margin-top: 10px;
-              width: 80px;
-              height: 30px;
-            ">
-						去这里
-					</button>
-				</view>
-			</view>
-		</view>
+<div style="background-color: white;  border-radius: 15px; margin: 40px; border: 1px solid gainsboro;">
+			<div v-for="oneCity in city" :key="oneCity.id">
+				<u-collapse @change="change(oneCity)" style="background-color: white; margin: 15px;">
+					<u-collapse-item :title="oneCity.deptName" >
+						<view v-for="oneStation in station" :key="oneStation.id">
+							<u-row  style=" margin-bottom: 10px;border-bottom: 1px solid gainsboro; border-radius: 10px;">
+								<u-col :span="6" style="margin-left: 5px;font-size: 15px;text-align: center; ">{{oneStation.deptName}} </u-col>
+								  <u-col :span="3" style="flex-direction: column;">
+								    <u-col  style="margin-bottom: 10px;"><button style="font-size: 11px; width: 80px;height: 30px; background-color: #00ae67;color: white;">查看详情</button></u-col>
+								    <u-col style="margin-bottom: 5px;"><button style=" font-size: 11px;width: 80px;height: 30px; background-color: #00ae67;color: white;">想去这里</button></u-col>
+								  </u-col>
+								
+							</u-row>
+							
+						</view>
+					</u-collapse-item>
+				</u-collapse>
+			</div>
+		</div>
 	</view>
 </template>
 
 <script>
+	import {
+		citytList,
+		listStation
+	} from "@/api/station/onlinebase.js";
 	export default {
 		// name: "LineEcharts",
 		data() {
 			return {
+				total:0,
+				
+				myChart: '',
+				mp: {
+					"济南市": 101,
+					"青岛市": 102,
+					"淄博市": 200,
+					"枣庄市": 201,
+					"东营市": 202,
+					"烟台市": 203,
+					"潍坊市": 204,
+					"济宁市": 205,
+					"泰安市": 206,
+					"威海市": 207,
+					"日照市": 208,
+					"临沂市": 209,
+					"德州市": 210,
+					"聊城市": 211,
+					"滨州市": 212,
+					"菏泽市": 213,
+				},
+				city: [],
+				// 配置数据
+				station: [],
 				// 配置数据
 				option: {
 					grid: {
@@ -242,8 +178,32 @@
 		},
 
 		methods: {
+			change(oneCity) {
+				listStation({
+					"parentId": oneCity.deptId
+				}).then(response => {
+					// console.log(oneCity.deptId)
+					// console.log(response)
+					this.station = response.data;
+			
+					// this.loading = false;
+				});
+			},
 			// 动态改变配置数据
-			changeOption() {},
+			changeOption() {},						
+			onViewClick(options) {
+				
+				this.$emit("getClickData",options)
+				console.log(options)
+				let cityId = this.mp[options];
+					listStation({
+						"parentId": cityId
+					}).then(response => {
+						this.city = response.data;
+						console.log(this.city)
+					})
+				
+			}
 		},
 	};
 </script>
@@ -253,9 +213,13 @@
 	import * as echarts from 'echarts';
 	// Vue.prototype.$echarts = echarts;
 	const jsonData = require('../../static/map/ShanDong.json');
-
+	
 	export default {
-
+			data() {
+				return {
+					clickData:'111'
+				}
+			},
 		mounted() {
 			let that = this;
 			// 通过nextTick异步画图
@@ -276,20 +240,42 @@
 		},
 
 		methods: {
+			
+						
+			// change(oneCity) {
+			// 	listStation({
+			// 		"parentId": oneCity.deptId
+			// 	}).then(response => {
+			// 		// console.log(oneCity.deptId)
+			// 		// console.log(response)
+			// 		this.station = response.data;
+			
+			// 		// this.loading = false;
+			// 	});
+			// },
 			// 初始化
 			mYChartmap() {
 				this.myChart = echarts.init(document.getElementById('echartsmap'))
 				this.myChart.setOption(this.option);
 				echarts.registerMap('shandong', jsonData)
 
-				this.myChart.on('click', function(params) {
+				this.myChart.on('click',(params) => {
 					// console.log("111")
+					// console.log(params.name)
+					this.clickData = params.name
+					// console.log(this.clickData)
 				})
-				this.myChart.on('click', function(params) {
-					const idx = params.dataIndex;
-					console.log(idx, params.name, params.value);
-					// to do
-				})
+				
+				// this.myChart.on('click', (params) => {
+				// 	let cityId = this.mp[params.name];
+				// 	// console.log(cityId)
+				// 	// listStation({
+				// 	// 	"parentId": cityId
+				// 	// }).then(response => {
+				// 	// 	this.city = response.data;
+				// 	// 	console.log(this.city)
+				// 	// })
+				// })
 
 
 
@@ -298,7 +284,6 @@
 					this.myChart.resize()
 				});
 			},
-
 			// 监听配置数据变化，并重新渲染
 			updateEcharts(newValue, oldValue, ownerInstance, instance) {
 				if (this.myChart) {
@@ -308,10 +293,16 @@
 				myChart.setOption(newValue)
 			},
 			onClick(event, ownerInstance) {
+				 // console.log(this.clickData)
+				if(!this.clickData){
+					return
+				}
+				ownerInstance.callMethod('onViewClick',this.clickData)
+				
 				// 调用 service 层的方法
-				ownerInstance.callMethod('onViewClick', {
-					test: 'test'
-				})
+				// ownerInstance.callMethod('onViewClick', {
+				// 	test: 'test'
+				// })
 			},
 		},
 
@@ -347,4 +338,34 @@
 		width: 100%;
 		height: 500rpx;
 	}
+::v-deep.u-collapse-item__content__text {
+		height:auto  !important;
+	}
+::v-deep.u-collapse-item__content {
+		height:auto  !important;
+	}
+::v-deep.u-collapse-item {
+		height:auto  !important;
+	}
+::v-deep.u-collapse {
+		height:auto  !important;
+	}
+	
+::v-deep	.content-class{
+	height: auto !important;
+}
+ ::v-deep.u-row{
+ 	height: auto !important;
+ }
+
+::v-deep.u-col{
+	height: auto !important;
+}
+::v-deep.u-col-6{
+	height: auto !important;
+}
+
+::v-deep.u-col-3{
+	height: auto !important;
+}
 </style>

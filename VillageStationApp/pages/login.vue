@@ -34,9 +34,6 @@
 				<text @click="handleUserAgrement" class="text-color">《用户协议》</text>
 				<text @click="handlePrivacy" class="text-color">《隐私协议》</text>
 			</view>
-			<view class="xieyi text-cente">
-				<text @click="back" class="text-color">返回主页</text>
-			</view>
 		</view>
 
 	</view>

@@ -71,6 +71,10 @@ public interface TbStationInfoMapper
 
     public int addLikes(TbStationInfo tbStationInfo);
 
+    public int subLikes(TbStationInfo tbStationInfo);
+
     public int addCollect(TbStationInfo tbStationInfo);
+
+    public int subCollect(TbStationInfo tbStationInfo);
 
 }

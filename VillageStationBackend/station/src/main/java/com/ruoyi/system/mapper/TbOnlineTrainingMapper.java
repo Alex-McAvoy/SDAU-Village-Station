@@ -58,4 +58,14 @@ public interface TbOnlineTrainingMapper
      * @return 结果
      */
     public int deleteTbOnlineTrainingByNewsIds(Long[] newsIds);
+
+    public int updateReading(TbOnlineTraining tbOnlineTraining);
+
+    public int addLikes(TbOnlineTraining tbOnlineTraining);
+
+    public int subLikes(TbOnlineTraining tbOnlineTraining);
+
+    public int addCollect(TbOnlineTraining tbOnlineTraining);
+
+    public int subCollect(TbOnlineTraining tbOnlineTraining);
 }

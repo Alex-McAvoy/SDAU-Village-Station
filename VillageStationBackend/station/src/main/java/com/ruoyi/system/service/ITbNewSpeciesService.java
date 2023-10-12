@@ -69,5 +69,9 @@ public interface ITbNewSpeciesService
 
     public int addLikes(TbNewSpecies tbNewSpecies);
 
+    public int subLikes(TbNewSpecies tbNewSpecies);
+
     public int addCollect(TbNewSpecies tbNewSpecies);
+
+    public int subCollect(TbNewSpecies tbNewSpecies);
 }

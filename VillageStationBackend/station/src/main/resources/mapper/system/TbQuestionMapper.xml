@@ -50,6 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="parentId != null">parent_id,</if>
             <if test="expertId != null">expert_id,</if>
             <if test="questionTitle != null">question_title,</if>
+            <if test="firstColumn != null">first_column,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="question != null">#{question},</if>
@@ -60,6 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="parentId != null">#{parentId},</if>
             <if test="expertId != null">#{expertId},</if>
             <if test="questionTitle != null">#{questionTitle},</if>
+            <if test="firstColumn != null">#{firstColumn},</if>
          </trim>
     </insert>
 

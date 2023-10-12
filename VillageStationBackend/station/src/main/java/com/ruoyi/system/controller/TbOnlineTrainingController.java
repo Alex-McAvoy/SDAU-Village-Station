@@ -4,6 +4,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -77,6 +78,16 @@ public class TbOnlineTrainingController extends BaseController
     @PostMapping
     public AjaxResult add(@RequestBody TbOnlineTraining tbOnlineTraining)
     {
+        String nickname = SecurityContextHolder.getContext().getAuthentication().getName();
+        tbOnlineTraining.setCreateBy(nickname);
+        tbOnlineTraining.setReading((long) 0);
+        tbOnlineTraining.setCollect((long) 0);
+        tbOnlineTraining.setLikes((long) 0);
+
+        String content = tbOnlineTraining.getContent();
+        content = content.replace("&lt;", "<");
+        content = content.replace("&gt;", ">");
+        tbOnlineTraining.setContent(content);
         return toAjax(tbOnlineTrainingService.insertTbOnlineTraining(tbOnlineTraining));
     }
 
@@ -88,6 +99,10 @@ public class TbOnlineTrainingController extends BaseController
     @PutMapping
     public AjaxResult edit(@RequestBody TbOnlineTraining tbOnlineTraining)
     {
+        String content = tbOnlineTraining.getContent();
+        content = content.replace("&lt;", "<");
+        content = content.replace("&gt;", ">");
+        tbOnlineTraining.setContent(content);
         return toAjax(tbOnlineTrainingService.updateTbOnlineTraining(tbOnlineTraining));
     }
 
@@ -100,5 +115,52 @@ public class TbOnlineTrainingController extends BaseController
     public AjaxResult remove(@PathVariable Long[] newsIds)
     {
         return toAjax(tbOnlineTrainingService.deleteTbOnlineTrainingByNewsIds(newsIds));
+    }
+
+
+    /**
+     * 阅读量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/updateReading")
+    public AjaxResult updateReading(@RequestBody TbOnlineTraining tbOnlineTraining)
+    {
+        return toAjax(tbOnlineTrainingService.updateReading(tbOnlineTraining));
+    }
+
+    /**
+     * 点赞量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/addLikes")
+    public AjaxResult addLikes(@RequestBody TbOnlineTraining tbOnlineTraining)
+    {
+        return toAjax(tbOnlineTrainingService.addLikes(tbOnlineTraining));
+    }
+    @PutMapping("/subLikes")
+    public AjaxResult subLikes(@RequestBody TbOnlineTraining tbOnlineTraining)
+    {
+        return toAjax(tbOnlineTrainingService.subLikes(tbOnlineTraining));
+    }
+
+    /**
+     * 收藏量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/addCollect")
+    public AjaxResult addCollect(@RequestBody TbOnlineTraining tbOnlineTraining)
+    {
+        return toAjax(tbOnlineTrainingService.addCollect(tbOnlineTraining));
+    }
+    @PutMapping("/subCollect")
+    public AjaxResult subCollect(@RequestBody TbOnlineTraining tbOnlineTraining)
+    {
+        return toAjax(tbOnlineTrainingService.subCollect(tbOnlineTraining));
     }
 }

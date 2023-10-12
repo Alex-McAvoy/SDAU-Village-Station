@@ -6,14 +6,13 @@
 			"^u-(.*)": "@/node_modules/uview-ui/components/u-$1/u-$1.vue"
 		}
 	},
-	"pages": [
-		{
+	"pages": [{
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "首页",
 				"navigationStyle": "custom"
 			}
-		},{
+		}, {
 			"path": "pages/login",
 			"style": {
 				"navigationBarTitleText": "登录"
@@ -133,7 +132,7 @@
 			"style": {
 				"navigationBarTitleText": "详细新闻"
 			}
-		}, 
+		},
 		{
 			"path": "pages/training/training",
 			"style": {
@@ -150,6 +149,16 @@
 			"path": "pages/training/offline_training_list",
 			"style": {
 				"navigationBarTitleText": "培训列表"
+			}
+		}, {
+			"path": "pages/training/online_training_detail",
+			"style": {
+				"navigationBarTitleText": "线上培训详情"
+			}
+		}, {
+			"path": "pages/training/online_training_list",
+			"style": {
+				"navigationBarTitleText": "线上培训列表"
 			}
 		},
 		{
@@ -190,7 +199,7 @@
 
 
 
-		 {
+		{
 			"path": "pages/work/index",
 			"style": {
 				"navigationBarTitleText": "工作台"

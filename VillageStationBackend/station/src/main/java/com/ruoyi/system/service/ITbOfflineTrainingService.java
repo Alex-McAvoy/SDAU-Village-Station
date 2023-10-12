@@ -69,6 +69,10 @@ public interface ITbOfflineTrainingService
 
     public int addLikes(TbOfflineTraining tbOfflineTraining);
 
+    public int subLikes(TbOfflineTraining tbOfflineTraining);
+
     public int addCollect(TbOfflineTraining tbOfflineTraining);
+
+    public int subCollect(TbOfflineTraining tbOfflineTraining);
 
 }

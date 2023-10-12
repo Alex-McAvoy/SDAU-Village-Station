@@ -124,4 +124,13 @@ public class TbNewSpeciesServiceImpl implements ITbNewSpeciesService
     public int addCollect(TbNewSpecies tbNewSpecies) {
         return tbNewSpeciesMapper.addCollect(tbNewSpecies);
     }
+    @Override
+    public int subLikes(TbNewSpecies tbNewSpecies) {
+        return tbNewSpeciesMapper.subLikes(tbNewSpecies);
+    }
+
+    @Override
+    public int subCollect(TbNewSpecies tbNewSpecies) {
+        return tbNewSpeciesMapper.subCollect(tbNewSpecies);
+    }
 }

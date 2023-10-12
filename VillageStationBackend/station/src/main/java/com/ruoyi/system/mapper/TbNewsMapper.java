@@ -43,6 +43,10 @@ public interface TbNewsMapper
 
     public int addLikes(TbNews tbNews);
 
+    public int subLikes(TbNews tbNews);
+
     public int addCollect(TbNews tbNews);
+
+    public int subCollect(TbNews tbNews);
 
 }

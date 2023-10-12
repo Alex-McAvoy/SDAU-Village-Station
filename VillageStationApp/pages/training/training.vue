@@ -11,8 +11,7 @@
 		</div>
 		<!-- 线上培训 -->
 		<view class="main_context first_main_context" style="margin-top: 100px;">
-
-			<view> <!-- 主体框 -->
+			<view @click="goOnlineDetail()"> <!-- 主体框 -->
 				<u-row gutter="16">
 					<u-col span="2" style="padding-left:10px;margin-right: 8px;">
 						<image src="/static/images/index/index_news.png" style="height:25px;width:25px;" />
@@ -25,26 +24,40 @@
 					</u-col>
 				</u-row>
 			</view>
-			<view> <!-- 栏目标签 -->
+			<!-- 栏目标签 -->
+			<!-- <view> 
 				<u-tabs :list="onlineTrainingList" :is-scroll="true" lineColor="#2ed573"></u-tabs>
-			</view>
-			<view class="flex_row video_list">
-				<view class="video_list_item">
-					<view class="flex_col">
-						<image src="/static/images/index/index_video.jpg" style="width:100%;height:120px;margin:3px" />
-					</view>
-					<view class="common_text_size">苹果种植技术</view>
+			</view> -->
+			<view class="flex_row video_list"><!-- 视频列表 -->
+				<!-- 单个视频 -->
+				<view class=""
+					style="width:100%; padding-bottom: 5px; border-bottom: 1px solid #cbcbcb; margin-top: 4px;"
+					v-for="item in Array.from(trainingList).slice(0,2)" @click="goOnlineTrainingDetail(item)"
+					>
+					<!-- 标题+封面 -->
+					<u-row style="height: 75px; margin-left: 10px;">
+						<u-col span="8">
+							<u--text :text="item.title"></u--text>
+						</u-col>
+						<u-col span="4" class="flex_col">
+							<image :src="item.remark" style="height:70px;width:100%;max-width:150px; object-fit: cover;">
+						</u-col>
+					</u-row>
+					<!-- 时间+播放图标 -->
+					<u-row style="height: 25px; margin-left: 10px;">
+						<u-col span="8">
+							<u--text color="#cbcbcb" :text="item.createTime"></u--text>
+						</u-col>
+						<u-col span="4" style="display:flex;flex-direction: row-reverse ;padding-left:50px; ">
+							<image src="../../static/images/training/show.png" style="margin-top: 10px;height: 20px;width: 20px;">
+							</image>
+						</u-col>
+					</u-row>
 				</view>
-				<view class="video_list_item">
-					<view class="flex_col">
-						<image src="/static/images/index/index_video.jpg" style="width:100%;height:120px;margin:3px" />
-					</view>
-					<view class="common_text_size">虫害防治技术</view>
-				</view>
-			</view>
-
-
+ 
+			</view> 
 		</view>
+
 		<!-- 线下培训 -->
 		<view class="main_context first_main_context">
 			<view> <!-- 主体框 -->
@@ -61,21 +74,15 @@
 					</u-col>
 				</u-row>
 			</view>
-
 			<view class="news" v-for="item in train.slice(0,2)" @click="goOfflineTrainingDetail(item)">
-
 				<view class="new_img">
 					<img :src="item.remark" alt="" style="width:100%;height: auto;overflow: hidden">
 				</view>
-
 				<view class="new_title" style="width:100%">{{item.title}}</view>
 				<view class="new_origin"><span class="origin">来源</span><span>中国政府网</span>
 				</view>
-
 			</view>
 		</view>
-	</view>
-
 	</view>
 </template>
 <script>
@@ -83,8 +90,11 @@
 		getOfflineTrainingListByColumn,
 		updateOfflineTrainingReading
 	} from "@/api/system/offline_training.js";
-
-
+	import {
+		listOnlineTraining,
+		getOnlineTraining,
+		updateOnlineTrainingReading
+	} from "@/api/system/online_training";
 	export default {
 		onLoad: function() {},
 		data() {
@@ -106,12 +116,22 @@
 					index: 4
 				}, ],
 				train: [],
+				trainingList: [],
 			}
 		},
 		created() {
 			this.getOfflineTrainingList();
+			this.getList();
 		},
 		methods: {
+			getList() {
+				this.loading = true;
+				listOnlineTraining(this.queryParams).then(response => {
+					this.trainingList = response.rows;
+					this.total = response.total;
+					this.loading = false;
+				});
+			},
 			getOfflineTrainingList() {
 				this.loading = true;
 				getOfflineTrainingListByColumn(1).then(response => {
@@ -119,16 +139,28 @@
 					this.loading = false;
 				});
 			},
-			goOfflineTrainingList() {
+			goOfflineTrainingList() {//跳转线下列表
 				uni.navigateTo({
 					url: "/pages/training/offline_training_list"
 				})
 			},
-			goOfflineTrainingDetail(item) {
+			goOfflineTrainingDetail(item) {//跳转线下详情
 				getApp().globalData.item = item;
-				updateOfflineTrainingReading(item).then(response => {})
+				updateOfflineTrainingReading(item).then(response => {
+				})
 				uni.navigateTo({
 					url: "/pages/training/offline_training_detail"
+				})
+			},goOnlineDetail() {//跳转线上列表
+				uni.navigateTo({
+					url: "/pages/training/online_training_list"
+				});
+			},goOnlineTrainingDetail(item) {//跳转线上详情
+				getApp().globalData.item = item;
+				updateOnlineTrainingReading(item).then(response => {
+				})
+				uni.navigateTo({
+					url: "/pages/training/online_training_detail"
 				})
 			},
 		}

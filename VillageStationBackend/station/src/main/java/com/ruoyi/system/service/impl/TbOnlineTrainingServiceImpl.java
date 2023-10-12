@@ -93,4 +93,29 @@ public class TbOnlineTrainingServiceImpl implements ITbOnlineTrainingService
     {
         return tbOnlineTrainingMapper.deleteTbOnlineTrainingByNewsId(newsId);
     }
+
+    @Override
+    public int updateReading(TbOnlineTraining tbOnlineTraining) {
+        return tbOnlineTrainingMapper.updateReading(tbOnlineTraining);
+    }
+
+    @Override
+    public int addLikes(TbOnlineTraining tbOnlineTraining) {
+        return tbOnlineTrainingMapper.addLikes(tbOnlineTraining);
+    }
+
+    @Override
+    public int subLikes(TbOnlineTraining tbOnlineTraining) {
+        return tbOnlineTrainingMapper.subLikes(tbOnlineTraining);
+    }
+
+    @Override
+    public int addCollect(TbOnlineTraining tbOnlineTraining) {
+        return tbOnlineTrainingMapper.addCollect(tbOnlineTraining);
+    }
+
+    @Override
+    public int subCollect(TbOnlineTraining tbOnlineTraining) {
+        return tbOnlineTrainingMapper.subCollect(tbOnlineTraining);
+    }
 }

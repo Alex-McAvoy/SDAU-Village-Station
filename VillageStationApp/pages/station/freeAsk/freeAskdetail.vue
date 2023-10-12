@@ -69,15 +69,15 @@
 							{{item.createTime}}
 						</view>
 					</view>
-					
+
 				</view>
 			</view>
 		</div>
 
-		<!-- <view>
+		<view>
 			<u-modal :showCancelButton='true' :show="show" :title="title" @cancel="cancel" @confirm="confirm">
 				<div style="width: 90%;">
-					<u--input placeholder="请输入内容" style="margin-top: 20px; " v-model=""></u--input>
+					<u--input placeholder="请输入内容" style="margin-top: 20px; " v-model="reviews.query"></u--input>
 				</div>
 			</u-modal>
 		</view>
@@ -86,7 +86,7 @@
 			<u-button class="custom-style" color="#00ae67 " type="primary" shape="circle"
 				style="  width: 80px; height: 80px; position: fixed;bottom: 80px;right: 30px; font-size: 20px;">评论
 			</u-button>
-		</view> -->
+		</view>
 	</view>
 </template>
 
@@ -111,7 +111,9 @@
 					content: '',
 					createTime: ''
 				},
-				reviews: []
+				reviews: {
+					content: '',
+				}
 			};
 		},
 		created() {
@@ -146,7 +148,15 @@
 				this.show = false;
 			},
 			confirm() {
-
+				var temp = {
+					"content": this.reviews.query,
+					"parentId": this.questionId,
+				}
+				addFreeAsk(temp).then(response => {
+					this.getReview(this.questionId);
+					this.loading = false;
+					this.show = false;
+				});
 			},
 		},
 	}

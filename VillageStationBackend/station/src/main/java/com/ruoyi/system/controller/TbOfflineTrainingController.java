@@ -176,6 +176,11 @@ public class TbOfflineTrainingController extends BaseController
     {
         return toAjax(tbOfflineTrainingService.addLikes(tbOfflineTraining));
     }
+    @PutMapping("/subLikes")
+    public AjaxResult subLikes(@RequestBody TbOfflineTraining tbOfflineTraining)
+    {
+        return toAjax(tbOfflineTrainingService.subLikes(tbOfflineTraining));
+    }
 
     /**
      * 收藏量
@@ -187,5 +192,10 @@ public class TbOfflineTrainingController extends BaseController
     public AjaxResult addCollect(@RequestBody TbOfflineTraining tbOfflineTraining)
     {
         return toAjax(tbOfflineTrainingService.addCollect(tbOfflineTraining));
+    }
+    @PutMapping("/subCollect")
+    public AjaxResult subCollect(@RequestBody TbOfflineTraining tbOfflineTraining)
+    {
+        return toAjax(tbOfflineTrainingService.subCollect(tbOfflineTraining));
     }
 }

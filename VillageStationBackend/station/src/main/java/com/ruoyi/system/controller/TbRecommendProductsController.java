@@ -172,6 +172,11 @@ public class TbRecommendProductsController extends BaseController {
     {
         return toAjax(tbRecommendProductsService.addLikes(tbRecommendProducts));
     }
+    @PutMapping("/subLikes")
+    public AjaxResult subLikes(@RequestBody TbRecommendProducts tbRecommendProducts)
+    {
+        return toAjax(tbRecommendProductsService.subLikes(tbRecommendProducts));
+    }
 
     /**
      * 收藏量
@@ -183,5 +188,10 @@ public class TbRecommendProductsController extends BaseController {
     public AjaxResult addCollect(@RequestBody TbRecommendProducts tbRecommendProducts)
     {
         return toAjax(tbRecommendProductsService.addCollect(tbRecommendProducts));
+    }
+    @PutMapping("/subCollect")
+    public AjaxResult subCollect(@RequestBody TbRecommendProducts tbRecommendProducts)
+    {
+        return toAjax(tbRecommendProductsService.subCollect(tbRecommendProducts));
     }
 }

@@ -9,22 +9,34 @@
 			<view class="sub_content"><u-parse :content="item.content"></u-parse></view>
 		</view>
 		<u-tabbar :fixed="true" :placeholder="true" :safeAreaInsetBottom="true">
-			<u-tabbar-item :text="reading" icon="eye"></u-tabbar-item>
-			<u-tabbar-item text="点赞" icon="thumb-up"></u-tabbar-item>
-			<u-tabbar-item text="收藏" icon="star"></u-tabbar-item>
-			<!-- <u-tabbar-item text="分享" icon="share-square"></u-tabbar-item> -->
+			<u-tabbar-item :text="reading" :icon="eye"></u-tabbar-item>
+			<u-tabbar-item :text="likes" :icon="thumbup" @click="clickLikes"></u-tabbar-item>
+			<u-tabbar-item :text="collect" :icon="star" @click="clickCollect"></u-tabbar-item>
 		</u-tabbar>
 	</view>
 </template>
 
 <script>
-	import {getInfoDetail} from "@/api/station/station"
+	import {
+		getInfoDetail,
+		addInfoLikes,
+		subInfoLikes,
+		addInfoCollect,
+		subInfoCollect
+	} from "@/api/station/station"
 	export default {
 		data() {
 			return {
 				loading: false,
 				item: '',
-				reading: ''
+				reading: '',
+				likes: '',
+				collect: '',
+				eye: '/static/images/tabbar/eye.png',
+				thumbup: '/static/images/tabbar/unlikes.png',
+				star: '/static/images/tabbar/uncollect.png',
+				likesClickCount: 0,
+				collectClickCount: 0
 			}
 		},
 		created() {
@@ -36,11 +48,37 @@
 				var id = getApp().globalData.item.newsId
 				getInfoDetail(id).then(response => {
 					this.item = response.data;
-					this.reading = response.data.reading.toString()
+					this.reading = (response.data.reading + 1).toString()
+					this.likes = response.data.likes.toString()
+					this.collect = response.data.collect.toString()
 					this.loading = false;
 				});
 				this.loading = false;
 			},
+			clickLikes() {
+				if (this.likesClickCount % 2 == 0) { // 点赞
+					this.thumbup = '/static/images/tabbar/likes.png'
+					this.likes = (parseInt(this.likes) + 1).toString()
+					addInfoLikes(this.item).then(response => {})
+				} else { // 取消点赞
+					this.thumbup = '/static/images/tabbar/unlikes.png'
+					this.likes = (parseInt(this.likes) - 1).toString()
+					subInfoLikes(this.item).then(response => {})
+				}
+				this.likesClickCount += 1
+			},
+			clickCollect() {
+				if (this.collectClickCount % 2 == 0) { // 收藏
+					this.star = '/static/images/tabbar/collect.png'
+					this.collect = (parseInt(this.collect) + 1).toString()
+					addInfoCollect(this.item).then(response => {})
+				} else { // 取消收藏
+					this.star = '/static/images/tabbar/uncollect.png'
+					this.collect = (parseInt(this.collect) - 1).toString()
+					subInfoCollect(this.item).then(response => {})
+				}
+				this.collectClickCount += 1
+			}
 		}
 	}
 </script>

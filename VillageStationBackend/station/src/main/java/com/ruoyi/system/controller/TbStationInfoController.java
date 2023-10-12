@@ -176,6 +176,11 @@ public class TbStationInfoController extends BaseController
     {
         return toAjax(tbStationInfoService.addLikes(tbStationInfo));
     }
+    @PutMapping("/subLikes")
+    public AjaxResult subLikes(@RequestBody TbStationInfo tbStationInfo)
+    {
+        return toAjax(tbStationInfoService.subLikes(tbStationInfo));
+    }
 
     /**
      * 收藏量
@@ -187,6 +192,11 @@ public class TbStationInfoController extends BaseController
     public AjaxResult addCollect(@RequestBody TbStationInfo tbStationInfo)
     {
         return toAjax(tbStationInfoService.addCollect(tbStationInfo));
+    }
+    @PutMapping("/subCollect")
+    public AjaxResult subCollect(@RequestBody TbStationInfo tbStationInfo)
+    {
+        return toAjax(tbStationInfoService.subCollect(tbStationInfo));
     }
 
 }

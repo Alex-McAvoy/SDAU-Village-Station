@@ -174,6 +174,11 @@ public class TbLearnTechController extends BaseController {
     {
         return toAjax(tbLearnTechService.addLikes(tbLearnTech));
     }
+    @PutMapping("/subLikes")
+    public AjaxResult subLikes(@RequestBody TbLearnTech tbLearnTech)
+    {
+        return toAjax(tbLearnTechService.subLikes(tbLearnTech));
+    }
 
     /**
      * 收藏量
@@ -185,5 +190,10 @@ public class TbLearnTechController extends BaseController {
     public AjaxResult addCollect(@RequestBody TbLearnTech tbLearnTech)
     {
         return toAjax(tbLearnTechService.addCollect(tbLearnTech));
+    }
+    @PutMapping("/subCollect")
+    public AjaxResult subCollect(@RequestBody TbLearnTech tbLearnTech)
+    {
+        return toAjax(tbLearnTechService.subCollect(tbLearnTech));
     }
 }

@@ -32,11 +32,25 @@ export function addSpeciesLikes(data) {
 		data: data
 	})
 }
+export function subSpeciesLikes(data) {
+	return request({
+		url: '/system/species/subLikes',
+		method: 'put',
+		data: data
+	})
+}
 
 // 更新收藏量
 export function addSpeciesCollect(data) {
 	return request({
 		url: '/system/species/addCollect',
+		method: 'put',
+		data: data
+	})
+}
+export function subSpeciesCollect(data) {
+	return request({
+		url: '/system/species/subCollect',
 		method: 'put',
 		data: data
 	})

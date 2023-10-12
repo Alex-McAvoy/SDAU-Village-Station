@@ -69,5 +69,9 @@ public interface ITbFindChannelService
 
     public int addLikes(TbFindChannel tbFindChannel);
 
+    public int subLikes(TbFindChannel tbFindChannel);
+
     public int addCollect(TbFindChannel tbFindChannel);
+
+    public int subCollect(TbFindChannel tbFindChannel);
 }

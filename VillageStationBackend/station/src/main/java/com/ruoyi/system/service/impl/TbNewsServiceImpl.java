@@ -88,7 +88,17 @@ public class TbNewsServiceImpl implements ITbNewsService {
     }
 
     @Override
+    public int subLikes(TbNews tbNews) {
+        return tbNewsMapper.subLikes(tbNews);
+    }
+
+    @Override
     public int addCollect(TbNews tbNews) {
         return tbNewsMapper.addCollect(tbNews);
+    }
+
+    @Override
+    public int subCollect(TbNews tbNews) {
+        return tbNewsMapper.subCollect(tbNews);
     }
 }

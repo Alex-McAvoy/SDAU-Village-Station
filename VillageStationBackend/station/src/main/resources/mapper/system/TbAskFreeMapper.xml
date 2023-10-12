@@ -50,6 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="remark != null">remark,</if>
             <if test="parentId != null">parent_id,</if>
             <if test="userId != null">user_id,</if>
+            <if test="firstColumn != null">first_column,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="title != null">#{title},</if>
@@ -62,7 +63,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="remark != null">#{remark},</if>
             <if test="parentId != null">#{parentId},</if>
             <if test="userId != null">#{userId},</if>
-         </trim>
+            <if test="firstColumn != null">#{firstColumn},</if>
+
+        </trim>
     </insert>
 
     <update id="updateTbAskFree" parameterType="TbAskFree">

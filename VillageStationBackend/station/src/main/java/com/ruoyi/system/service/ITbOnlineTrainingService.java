@@ -58,4 +58,15 @@ public interface ITbOnlineTrainingService
      * @return 结果
      */
     public int deleteTbOnlineTrainingByNewsId(Long newsId);
+
+
+    public int updateReading(TbOnlineTraining tbOnlineTraining);
+
+    public int addLikes(TbOnlineTraining tbOnlineTraining);
+
+    public int subLikes(TbOnlineTraining tbOnlineTraining);
+
+    public int addCollect(TbOnlineTraining tbOnlineTraining);
+
+    public int subCollect(TbOnlineTraining tbOnlineTraining);
 }

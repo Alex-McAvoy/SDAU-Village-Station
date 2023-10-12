@@ -69,5 +69,9 @@ public interface ITbRecommendProductsService
 
     public int addLikes(TbRecommendProducts tbRecommendProducts);
 
+    public int subLikes(TbRecommendProducts tbRecommendProducts);
+
     public int addCollect(TbRecommendProducts tbRecommendProducts);
+
+    public int subCollect(TbRecommendProducts tbRecommendProducts);
 }

@@ -66,6 +66,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="userId != null">user_id,</if>
             <if test="direction != null">direction,</if>
             <if test="researchIntroduction != null">research_introduction,</if>
+            <if test="firstColumn != null">first_column,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="expertName != null">#{expertName},</if>
@@ -80,6 +81,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="userId != null">#{userId},</if>
             <if test="direction != null">#{direction},</if>
             <if test="researchIntroduction != null">#{researchIntroduction},</if>
+            <if test="firstColumn != null">#{firstColumn},</if>
          </trim>
     </insert>
 

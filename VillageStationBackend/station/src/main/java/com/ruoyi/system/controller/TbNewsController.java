@@ -217,6 +217,11 @@ public class TbNewsController extends BaseController
     {
         return toAjax(tbNewsService.addLikes(tbNews));
     }
+    @PutMapping("/subLikes")
+    public AjaxResult subLikes(@RequestBody TbNews tbNews)
+    {
+        return toAjax(tbNewsService.subLikes(tbNews));
+    }
 
     /**
      * 收藏量
@@ -228,5 +233,10 @@ public class TbNewsController extends BaseController
     public AjaxResult addCollect(@RequestBody TbNews tbNews)
     {
         return toAjax(tbNewsService.addCollect(tbNews));
+    }
+    @PutMapping("/subCollect")
+    public AjaxResult subCollect(@RequestBody TbNews tbNews)
+    {
+        return toAjax(tbNewsService.subCollect(tbNews));
     }
 }

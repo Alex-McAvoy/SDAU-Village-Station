@@ -115,7 +115,17 @@ public class TbRecommendProductsServiceImpl implements ITbRecommendProductsServi
     }
 
     @Override
+    public int subLikes(TbRecommendProducts tbRecommendProducts) {
+        return tbRecommendProductsMapper.subLikes(tbRecommendProducts);
+    }
+
+    @Override
     public int addCollect(TbRecommendProducts tbRecommendProducts) {
         return tbRecommendProductsMapper.addCollect(tbRecommendProducts);
+    }
+
+    @Override
+    public int subCollect(TbRecommendProducts tbRecommendProducts) {
+        return tbRecommendProductsMapper.subCollect(tbRecommendProducts);
     }
 }

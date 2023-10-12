@@ -171,6 +171,11 @@ public class TbNewSpeciesController extends BaseController {
     {
         return toAjax(tbNewSpeciesService.addLikes(tbNewSpecies));
     }
+    @PutMapping("/subLikes")
+    public AjaxResult subLikes(@RequestBody TbNewSpecies tbNewSpecies)
+    {
+        return toAjax(tbNewSpeciesService.subLikes(tbNewSpecies));
+    }
 
     /**
      * 收藏量
@@ -182,5 +187,10 @@ public class TbNewSpeciesController extends BaseController {
     public AjaxResult addCollect(@RequestBody TbNewSpecies tbNewSpecies)
     {
         return toAjax(tbNewSpeciesService.addCollect(tbNewSpecies));
+    }
+    @PutMapping("/subCollect")
+    public AjaxResult subCollect(@RequestBody TbNewSpecies tbNewSpecies)
+    {
+        return toAjax(tbNewSpeciesService.subCollect(tbNewSpecies));
     }
 }

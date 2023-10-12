@@ -32,11 +32,25 @@ export function addProductsLikes(data) {
 		data: data
 	})
 }
+export function subProductsLikes(data) {
+	return request({
+		url: '/system/products/subLikes',
+		method: 'put',
+		data: data
+	})
+}
 
 // 更新收藏量
 export function addProductsCollect(data) {
 	return request({
 		url: '/system/products/addCollect',
+		method: 'put',
+		data: data
+	})
+}
+export function subProductsCollect(data) {
+	return request({
+		url: '/system/products/subCollect',
 		method: 'put',
 		data: data
 	})

@@ -123,8 +123,18 @@ public class TbStationInfoServiceImpl implements ITbStationInfoService
     }
 
     @Override
+    public int subLikes(TbStationInfo tbStationInfo) {
+        return tbStationInfoMapper.subLikes(tbStationInfo);
+    }
+
+    @Override
     public int addCollect(TbStationInfo tbStationInfo) {
         return tbStationInfoMapper.addCollect(tbStationInfo);
+    }
+
+    @Override
+    public int subCollect(TbStationInfo tbStationInfo) {
+        return tbStationInfoMapper.subCollect(tbStationInfo);
     }
 
 }

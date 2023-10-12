@@ -141,10 +141,26 @@
         where news_id = #{newsId}
     </update>
 
+    <update id="subLikes" parameterType="TbFinance">
+        update tb_finance
+        <trim prefix="SET" suffixOverrides=",">
+            likes = likes - 1
+        </trim>
+        where news_id = #{newsId}
+    </update>
+
     <update id="addCollect" parameterType="TbFinance">
         update tb_finance
         <trim prefix="SET" suffixOverrides=",">
             collect = collect + 1
+        </trim>
+        where news_id = #{newsId}
+    </update>
+
+    <update id="subCollect" parameterType="TbFinance">
+        update tb_finance
+        <trim prefix="SET" suffixOverrides=",">
+            collect = collect - 1
         </trim>
         where news_id = #{newsId}
     </update>
