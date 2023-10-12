@@ -70,7 +70,8 @@
 	import {
 		getChannelListByColumns,
 		getChannel,
-		addChannel
+		addChannel,
+		updateChannelReading
 	} from "@/api/station/channel";
 	export default {
 		data() {
@@ -175,6 +176,8 @@
 			//跳转详情页
 			skip(item) {
 				getApp().globalData.item = item;
+				updateChannelReading(item).then(response => {
+				})
 				uni.navigateTo({
 					url: "channel_detail"
 				})

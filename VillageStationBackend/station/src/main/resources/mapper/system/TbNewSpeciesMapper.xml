@@ -17,10 +17,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="firstColumn"    column="first_column"    />
         <result property="secondColumn"    column="second_column"    />
         <result property="sort"    column="sort"    />
+        <result property="reading"    column="reading"    />
     </resultMap>
 
     <sql id="selectTbNewSpeciesVo">
-        select news_id, title, content, del_flag, create_by, create_time, update_by, update_time, remark, first_column, second_column, sort from tb_new_species
+        select news_id, title, content, del_flag, create_by, create_time, update_by, update_time, remark, first_column, second_column, sort,reading from tb_new_species
     </sql>
 
     <select id="selectTbNewSpeciesList" parameterType="TbNewSpecies" resultMap="TbNewSpeciesResult">
@@ -113,6 +114,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         update tb_new_species
         <trim prefix="SET" suffixOverrides=",">
             first_column = '1'
+        </trim>
+        where news_id = #{newsId}
+    </update>
+
+    <update id="updateReading" parameterType="TbNewSpecies">
+        update tb_new_species
+        <trim prefix="SET" suffixOverrides=",">
+            reading = reading + 1
         </trim>
         where news_id = #{newsId}
     </update>

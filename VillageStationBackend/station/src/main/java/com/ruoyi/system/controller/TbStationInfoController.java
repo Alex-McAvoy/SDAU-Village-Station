@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -76,6 +77,10 @@ public class TbStationInfoController extends BaseController
     @PostMapping
     public AjaxResult add(@RequestBody TbStationInfo tbStationInfo)
     {
+        String nickname = SecurityContextHolder.getContext().getAuthentication().getName();
+        tbStationInfo.setCreateBy(nickname);
+        tbStationInfo.setReading((long) 0);
+        tbStationInfo.setFirstColumn("0");
         return toAjax(tbStationInfoService.insertTbStationInfo(tbStationInfo));
     }
 
@@ -145,4 +150,17 @@ public class TbStationInfoController extends BaseController
     {
         return toAjax(tbStationInfoService.updateTbStationFirstColumns(tbStationInfo));
     }
+
+    /**
+     * 阅读量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/updateReading")
+    public AjaxResult updateReading(@RequestBody TbStationInfo tbStationInfo)
+    {
+        return toAjax(tbStationInfoService.updateReading(tbStationInfo));
+    }
+
 }

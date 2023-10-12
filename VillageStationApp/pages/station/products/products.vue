@@ -43,7 +43,8 @@
 <script>
 	import {
 		getProductById,
-		getProductsByColumns
+		getProductsByColumns,
+		updateProductsReading
 	} from "@/api/station/products";
 	export default {
 		name: "Products",
@@ -75,6 +76,8 @@
 			//跳转详情页
 			skip(item) {
 				getApp().globalData.item = item;
+				updateProductsReading(item).then(response => {
+				})
 				uni.navigateTo({
 					url: "products_detail"
 				})

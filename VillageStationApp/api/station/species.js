@@ -15,3 +15,11 @@ export function getSpeciesDetails(newsId) {
 		method: 'get'
 	})
 }
+
+export function updateSpeciesReading(data) {
+	return request({
+		url: '/system/species/updateReading',
+		method: 'put',
+		data: data
+	})
+}

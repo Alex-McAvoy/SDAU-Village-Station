@@ -35,7 +35,7 @@
 				</u-sticky>
 			</view>
 			<view v-for="item in newsList"><!-- 栏目内容 -->
-				<view class="news" @click="skipNewsItem(item)">
+				<view class="news" @click="goNewsDetail(item)">
 					<view class="new_img">
 						<img src="http://paper.people.com.cn/rmrb/images/2023-09/16/01/rmrb2023091601p27_b.jpg" alt=""
 							style="width:100%;height: auto;overflow: hidden">

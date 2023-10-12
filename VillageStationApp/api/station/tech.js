@@ -16,3 +16,11 @@ export function getTechDetail(articleId) {
     method: 'get',
   })
 }
+
+export function updateTechReading(data) {
+	return request({
+		url: '/system/tech/updateReading',
+		method: 'put',
+		data: data
+	})
+}

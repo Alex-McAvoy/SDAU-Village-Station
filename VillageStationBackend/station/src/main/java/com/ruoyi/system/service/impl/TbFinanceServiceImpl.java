@@ -111,4 +111,8 @@ public class TbFinanceServiceImpl implements ITbFinanceService
         tbFinance.setUpdateTime(DateUtils.getNowDate());
         return tbFinanceMapper.updateTbFinanceFirstColumns(tbFinance);
     }
+    @Override
+    public int updateReading(TbFinance tbFinance) {
+        return tbFinanceMapper.updateReading(tbFinance);
+    }
 }

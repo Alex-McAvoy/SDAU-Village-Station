@@ -17,10 +17,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="firstColumn"    column="first_column"    />
         <result property="secondColumn"    column="second_column"    />
         <result property="sort"    column="sort"    />
+        <result property="reading"    column="reading"    />
     </resultMap>
 
     <sql id="selectTbOfflineTrainingVo">
-        select news_id, title, content, del_flag, create_by, create_time, update_by, update_time, remark, first_column, second_column, sort from tb_offline_training
+        select news_id, title, content, del_flag, create_by, create_time, update_by, update_time, remark, first_column, second_column, sort,reading from tb_offline_training
     </sql>
 
     <select id="selectTbOfflineTrainingList" parameterType="TbOfflineTraining" resultMap="TbOfflineTrainingResult">
@@ -110,9 +111,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
 
     <update id="updateTbOfflineTrainingFirstColumns"  parameterType="TbLearnTech">
-        update tb_offine_training
+        update tb_offline_training
         <trim prefix="SET" suffixOverrides=",">
             first_column = 1
+        </trim>
+        where news_id = #{newsId}
+    </update>
+
+    <update id="updateReading" parameterType="TbLearnTech">
+        update tb_offline_training
+        <trim prefix="SET" suffixOverrides=",">
+            reading = reading + 1
         </trim>
         where news_id = #{newsId}
     </update>

@@ -109,4 +109,9 @@ public class TbPurchaseFarmServiceImpl implements ITbPurchaseFarmService
         tbPurchaseFarm.setUpdateTime(DateUtils.getNowDate());
         return tbPurchaseFarmMapper.updateTbPurchaseFarmFirstColumns(tbPurchaseFarm);
     }
+
+    @Override
+    public int updateReading(TbPurchaseFarm tbPurchaseFarm) {
+        return tbPurchaseFarmMapper.updateReading(tbPurchaseFarm);
+    }
 }

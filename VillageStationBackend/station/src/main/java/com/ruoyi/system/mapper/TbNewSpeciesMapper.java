@@ -65,4 +65,6 @@ public interface TbNewSpeciesMapper
     public List<TbNewSpecies> selectTbNewSpeciesFirstColumnsList(TbNewSpecies tbNewSpecies);
 
     public int updateTbNewSpeciesFirstColumns(TbNewSpecies tbNewSpecies);
+
+    public int updateReading(TbNewSpecies tbNewSpecies);
 }

@@ -28,10 +28,14 @@
 				<text class="text-grey1">没有账号？</text>
 				<text @click="handleUserRegister" class="text-blue">立即注册</text>
 			</view>
+
 			<view class="xieyi text-center">
 				<text class="text-grey1">登录即代表同意</text>
 				<text @click="handleUserAgrement" class="text-color">《用户协议》</text>
 				<text @click="handlePrivacy" class="text-color">《隐私协议》</text>
+			</view>
+			<view class="xieyi text-cente">
+				<text @click="back" class="text-color">返回主页</text>
 			</view>
 		</view>
 
@@ -60,7 +64,6 @@
 			}
 		},
 		created() {
-			//this.$tab.redirectTo('/pages/index/index')
 			this.getCode()
 		},
 		methods: {
@@ -116,7 +119,13 @@
 			loginSuccess(result) {
 				// 设置用户信息
 				this.$store.dispatch('GetInfo').then(res => {
-					this.$tab.reLaunch('/pages/station/station/station')
+					this.$tab.reLaunch('/pages/index/index')
+				})
+				uni.setStorageSync('isLogin', 1); //用于登录拦截判断
+			},
+			back() {
+				uni.switchTab({
+					url: "/pages/index/index"
 				})
 			}
 		}
@@ -127,11 +136,12 @@
 	page {
 		background-color: #ffffff;
 	}
-	
-	.bg-color{
+
+	.bg-color {
 		color: #ffffff;
 		background-color: #00ae67;
 	}
+
 	.text-color {
 		color: #00ae67;
 	}

@@ -4,6 +4,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -77,6 +78,11 @@ public class TbNewSpeciesController extends BaseController
     @PostMapping
     public AjaxResult add(@RequestBody TbNewSpecies tbNewSpecies)
     {
+
+        String nickname = SecurityContextHolder.getContext().getAuthentication().getName();
+        tbNewSpecies.setCreateBy(nickname);
+        tbNewSpecies.setReading((long) 0);
+        tbNewSpecies.setFirstColumn("0");
         return toAjax(tbNewSpeciesService.insertTbNewSpecies(tbNewSpecies));
     }
 
@@ -145,5 +151,15 @@ public class TbNewSpeciesController extends BaseController
     public AjaxResult eidtFirstColumns(@RequestBody TbNewSpecies tbNewSpecies)
     {
         return toAjax(tbNewSpeciesService.updateTbNewSpeciesFirstColumns(tbNewSpecies));
-    }
+    }    /**
+ * 阅读量
+ * @return com.ruoyi.common.core.domain.AjaxResult
+ * @author Alex McAvoy
+ * @date 2023/10/11 10:47:52
+ */
+@PutMapping("/updateReading")
+public AjaxResult updateReading(@RequestBody TbNewSpecies tbNewSpecies)
+{
+    return toAjax(tbNewSpeciesService.updateReading(tbNewSpecies));
+}
 }

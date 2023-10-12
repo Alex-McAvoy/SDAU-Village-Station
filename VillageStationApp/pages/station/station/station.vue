@@ -333,7 +333,8 @@
 		UIcon,
 	} from 'uview-ui';
 	import {
-		getStationListByColumn
+		getStationListByColumn,
+		updateInfoReading
 	} from "@/api/station/station.js";
 	import {
 		getExpertListByColumn
@@ -343,18 +344,23 @@
 	} from "@/api/station/freeAsk.js";
     import {
 		getTechListByColumns,
+		updateTechReading
 	} from "@/api/station/tech.js";
     import {
-		getFarmListByColumn
+		getFarmListByColumn,
+		updateFarmReading
 	} from "@/api/station/farm";
 	import {
-		getChannelListByColumns
+		getChannelListByColumns,
+		updateChannelReading
 	} from "@/api/station/channel";
 	import {
-		getProductsByColumns
+		getProductsByColumns,
+		updateProductsReading
 	} from "@/api/station/products";
 	import {
-		getSpeciesListByColumn
+		getSpeciesListByColumn,
+		updateSpeciesReading
 	} from "@/api/station/species";
 
 	export default {
@@ -412,11 +418,28 @@
 					content: '',
 					secondColumn: '',
 				},
-				experts: { // 专家
-					expertName: '',
-					introduction: '',
-					remark: '',
-				},
+				experts: [ // 专家
+					{	askExpertsId:'1',
+						dicValue:'2',
+						direction:'果树栽培生理研究，果树特色资源分子生物学研究',
+						firstColumn:'1',
+						researchIntroduction:'束怀瑞教授从事果树教学科研及推广60年。长期深入生产一线，熟悉我国果树生产和生产技能实际，提出了“沃土养根壮树，提高贮藏营养水平为主的优质丰产技术体系”。从五十年代开始研究苹果根系生物学，发现果树根系具有功能补偿结构特征，提出了“局部效应、界面效应、冗余节能、结构及周年补偿”的观点，开发了多项配套技术，其中发明的“地膜覆盖穴贮肥水技术”，被国家科委列为重点项目在17个省市推广470万亩。“平原地起垅沟草制”、“界面培养基质诱导生根” 等技术对解决果树的逆境早衰等效果极为显著。在国内较早开展果树栽培生理研究，对苹果碳氮营养物质运转、分配、贮藏再利用规律的研究1989年获国家教委科技进步二等奖，提出的“看碳施氮、以氮促碳、养根壮树、优质丰产”的论点对生产起到很大指导作用；提出的苹果三大主枝主干疏层形、枝类组成、枝组概念、优质丰产合理树体结构及调控措施等，成为苹果整形修剪的经典一直沿用至今。在学科建设中注重学科交叉借鉴，将数学、化学等引进果树学，开发果树优质丰产生物数学模型，组织开展果树特色资源分子生物学研究，建立了无融合生殖、矮化砧种子繁殖体系研究。主持的“山东省百万亩苹果幼树优质丰产综合技术研究”，开发108万亩，三年由亩产100公斤/亩提高到1010公斤，取得巨大经济效益，并深入研究根系生物学与根际环境，推广果园覆盖，起垅沟草制，苹果内源激素周年发生规律，农药残毒分析等专题。',
+						updateTime:'2023-19-12 17:50:49',
+						expertName: '束怀瑞',
+						introduction: '中国工程院院士，博士生导师，中国园艺学会常务理事',
+						remark: 'http://36.138.166.17:9000/test/species/shr_1696686150476.png',
+					},
+					{   askExpertsId:'272001',
+						dicValue:'0',
+						direction:'小麦生理生态与高产优质栽培技术',
+						firstColumn:'1',
+						researchIntroduction:'长期从事小麦栽培理论与技术的研究和实践，系统研究了小麦产量、品质生理和高产优质栽培技术，提出了以氮肥后移为关键技术的小麦高产优质栽培技术体系，被农业部定为我国小麦生产主推技术，在黄淮海麦区推广，经济效益和社会效益显著。注重理论与实践相结合，主持“小麦衰老生理与超高产栽培技术”课题获2001年国家科技进步二等奖（第1位完成人），“小麦品质生理与优质高产栽培技术”课题获2006年国家科技进步二等奖（第1位完成人），“优质小麦无公害标准化生产关键技术研究与示范推广” 课题获2010年山东省科学技术二等奖（第1位完成人），参加“冬小麦精播高产栽培的理论与技术”课题获1992年国家科技进步二等奖（第4位完成人）。在国内外学术刊物发表论文247篇，主编与参编了编著20部。',
+						updateTime:'2023-10-08 01:24:57',
+						expertName: '于振文',
+						introduction: '教授，中国工程院院士，博硕导师。兼任农业部小麦专家指导组组长，中国作物学会小麦栽培学组组长，山东省农业专家顾问团小麦分团团长，第九、十、十一届全国政协委员。',
+						remark: 'http://36.138.166.17:9000/test/species/yuzhenwen_1696699468500.jpg',
+						},
+				],
 				askQuestions: { // 随时问
 					title: '',
 					content: '',
@@ -506,7 +529,7 @@
 		},
 		created() {
 			this.getStationList();
-			this.getExpertList();
+			//this.getExpertList();
 			this.getFreeAskList();
 			this.getTechList({index:0});
 			this.getFarmList({index:0});
@@ -532,6 +555,8 @@
 			//跳转驿站信息详情页
 			goStationInfoDetail(item) {
 				getApp().globalData.item = item;
+				updateInfoReading(item).then(response => {
+				})
 				uni.navigateTo({
 					url: "/pages/station/station/station_info_detail"
 				})
@@ -593,6 +618,8 @@
 			//跳转学农技详情页
 			goTechDetail(item) {
 				getApp().globalData.techItem = item;
+				updateTechReading(item).then(response => {
+				})
 				uni.navigateTo({
 					url: "/pages/station/learningTechnology/tech_detail"
 				});
@@ -613,6 +640,8 @@
 			},
 			//跳转买农资详情页
 			goFarmDetail(id) {
+				updateFarmReading({newsId: id}).then(response => {
+				})
 				uni.navigateTo({
 					url: "/pages/station/farm/farm_detail?id=" + id
 				});
@@ -634,6 +663,8 @@
 			//跳转到找渠道详情页
 			goChannelDetail(item) {
 				getApp().globalData.item = item;
+				updateChannelReading(item).then(response => {
+				})
 				uni.navigateTo({
 					url: "/pages/station/channel/channel_detail"
 				})
@@ -654,6 +685,8 @@
 			//跳转到推优品详情页
 			goProductsDetail(item) {
 				getApp().globalData.item = item;
+				updateProductsReading(item).then(response => {
+				})
 				uni.navigateTo({
 					url: "/pages/station/products/products_detail"
 				})
@@ -676,6 +709,8 @@
 			//跳转到新品种详情页
 			goNewspeciesDetail(item) {
 				getApp().globalData.item = item;
+				updateSpeciesReading(item).then(response => {
+				})
 				uni.navigateTo({
 					url: "/pages/station/newsSpecies/species_detail"
 				})

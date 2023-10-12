@@ -1,23 +1,26 @@
 <template>
 	<view>
 		<view style="  border-radius: 5px;  background-color: white; height: 100vh; margin: 15px;">
-			<view :model="techDetails">
-				<div class="sub_title">{{techDetails.title}}</div>
+			<view>
+				<div class="sub_title">{{item.title}}</div>
 			</view>
-			<view :model="techDetails">
+			<view>
 				<div class="sub_note">
-					{{techDetails.updateTime}}
+					{{item.createTime}}
 				</div>
 			</view>
-			
-			<image :src="techDetails.remark"
-				style="width: 350px;height: 180px; padding-left: 5vh; padding-right: 5vh; ">
+			<image :src="item.remark" style="width: 350px;height: 180px; padding-left: 5vh; padding-right: 5vh; ">
 			</image>
-			<view :model="techDetails">
+			<view>
 				<div class="sub_content">
-					{{techDetails.content}}
+					{{item.content}}
 				</div>
 			</view>
+			<u-tabbar :fixed="true" :placeholder="true" :safeAreaInsetBottom="true">
+				<u-tabbar-item :text="reading" icon="eye"></u-tabbar-item>
+				<u-tabbar-item text="点赞" icon="thumb-up"></u-tabbar-item>
+				<u-tabbar-item text="收藏" icon="star"></u-tabbar-item>
+			</u-tabbar>
 		</view>
 	</view>
 </template>
@@ -25,35 +28,30 @@
 <script>
 	import {
 		getTechDetail
-	} from "@/api/station/tech.js";
-
+	} from "@/api/station/tech.js"
 	export default {
 		data() {
 			return {
-				//问题id
-				articleId: '',
-				techItem: '',
-				techDetails: {
-					content: '',
-					secondColumn: '',
-					updateTime: ''
-				}
+				loading: false,
+				item: '',
+				reading: ''
 			}
 		},
 		created() {
-			this.getDetail(this.articleId)
-		},
-		onLoad(options) {
-			this.articleId = getApp().globalData.techItem.articleId
+			this.getList();
 		},
 		methods: {
-			//根据问题id获取问题
-			getDetail(index) {
+			getList() {
 				this.loading = true;
-				getTechDetail(index).then(response => {
-					this.techDetails = response.data;
+				var id = getApp().globalData.item.articleId
+				getTechDetail(id).then(response => {
+					this.item = response.data;
+					this.reading = response.data.reading.toString()
+					this.loading = false;
 				});
-			}
+				
+				this.loading = false;
+			},
 		}
 	}
 </script>

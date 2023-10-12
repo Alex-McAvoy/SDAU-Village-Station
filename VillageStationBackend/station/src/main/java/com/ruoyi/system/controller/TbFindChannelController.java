@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -74,6 +75,11 @@ public class TbFindChannelController extends BaseController {
     @Log(title = "找渠道", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody TbFindChannel tbFindChannel) {
+
+        String nickname = SecurityContextHolder.getContext().getAuthentication().getName();
+        tbFindChannel.setCreateBy(nickname);
+        tbFindChannel.setReading((long) 0);
+        tbFindChannel.setFirstColumn("0");
         return toAjax(tbFindChannelService.insertTbFindChannel(tbFindChannel));
     }
 
@@ -142,5 +148,17 @@ public class TbFindChannelController extends BaseController {
     @PutMapping("/check")
     public AjaxResult eidtFirstColumns(@RequestBody TbFindChannel tbFindChannel) {
         return toAjax(tbFindChannelService.updateTbFindChannelFirstColumns(tbFindChannel));
+    }
+
+    /**
+     * 阅读量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/updateReading")
+    public AjaxResult updateReading(@RequestBody TbFindChannel tbFindChannel)
+    {
+        return toAjax(tbFindChannelService.updateReading(tbFindChannel));
     }
 }

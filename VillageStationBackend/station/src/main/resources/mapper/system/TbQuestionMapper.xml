@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectTbQuestionVo">
-        select question_id, question, del_flag, create_by, create_time, table_name, parent_id, expert_id,question_title from tb_question
+        select question_id, question, del_flag, create_by, create_time, table_name, parent_id, expert_id,question_title,first_column from tb_question
     </sql>
 
     <select id="selectTbQuestionList" parameterType="TbQuestion" resultMap="TbQuestionResult">
@@ -106,7 +106,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <update id="updateTbQuestionFirstColumns"  parameterType="TbRecommendProducts">
         update tb_question
         <trim prefix="SET" suffixOverrides=",">
-            <if test="firstColumn != null">firstColumn = '1',</if>
+            <if test="firstColumn != null">first_column = '1',</if>
         </trim>
+        where question_id = #{questionId}
     </update>
 </mapper>

@@ -67,4 +67,5 @@ public interface ITbStationInfoService
 
     public int updateTbStationFirstColumns(TbStationInfo tbStationInfo);
 
+    public int updateReading(TbStationInfo tbStationInfo);
 }

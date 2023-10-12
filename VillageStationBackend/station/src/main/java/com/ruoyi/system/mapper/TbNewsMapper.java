@@ -39,4 +39,6 @@ public interface TbNewsMapper
 
     public int updateTbNewsFirstColumns(TbNews tbNews);
 
+    public int updateReading(TbNews tbNews);
+
 }

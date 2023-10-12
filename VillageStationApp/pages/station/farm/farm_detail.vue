@@ -1,7 +1,7 @@
 <template>
 	<view style="border-radius: 10px; background-color: white; margin:8px 15px; height: 100vh;" :model="farms">
 		<view class="sub_title">{{ farms.title }}</view>
-		<view class="sub_note">管理员 | 2023-10-06 16:57</view>
+		<view class="sub_note">管理员 | {{farms.createTime}}</view>
 		<view class="news">
 			<view class="new_img">
 				<image :src="farms.remark" alt=""
@@ -9,6 +9,12 @@
 			</view>
 			<view class="sub_content"><u-parse :model="farms">{{ farms.content }}</u-parse></view>
 		</view>
+		<u-tabbar :fixed="true" :placeholder="true" :safeAreaInsetBottom="true">
+			<u-tabbar-item :text="reading" icon="eye"></u-tabbar-item>
+			<u-tabbar-item text="点赞" icon="thumb-up"></u-tabbar-item>
+			<u-tabbar-item text="收藏" icon="star"></u-tabbar-item>
+			<!-- <u-tabbar-item text="分享" icon="share-square"></u-tabbar-item> -->
+		</u-tabbar>
 	</view>
 </template>
 
@@ -27,6 +33,7 @@
 					remark: ''
 				},
 				newsId: '',
+				reading: ''
 			}
 		},
 		created() {
@@ -41,6 +48,7 @@
 				this.loading = true;
 				getFarm(newsId).then(response => {
 					this.farms = response.data;
+					this.reading = response.data.reading.toString()
 					this.loading = false;
 				});
 			},

@@ -17,3 +17,11 @@ export function getFarm(newsId) {
   })
 }
 
+export function updateFarmReading(data) {
+	return request({
+		url: '/system/farm/updateReading',
+		method: 'put',
+		data: data
+	})
+}
+

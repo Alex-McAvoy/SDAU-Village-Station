@@ -65,4 +65,6 @@ public interface TbFindChannelMapper {
     public List<TbFindChannel> selectTbFindChannelFirstColumnsList(TbFindChannel tbFindChannel);
 
     public int updateTbFindChannelFirstColumns(TbFindChannel tbFindChannel);
+
+    public int updateReading(TbFindChannel tbFindChannel);
 }

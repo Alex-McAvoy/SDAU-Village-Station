@@ -64,4 +64,7 @@ public interface TbFinanceMapper
     public List<TbFinance> selectTbFinanceFirstColumnsList(TbFinance tbFinance);
 
     public int updateTbFinanceFirstColumns(TbFinance tbFinance);
+
+    public int updateReading(TbFinance tbFinance);
+
 }

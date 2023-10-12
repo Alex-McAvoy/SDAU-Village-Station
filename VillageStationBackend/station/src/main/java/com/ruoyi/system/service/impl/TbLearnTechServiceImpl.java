@@ -109,4 +109,9 @@ public class TbLearnTechServiceImpl implements ITbLearnTechService
         tbLearnTech.setUpdateTime(DateUtils.getNowDate());
         return tbLearnTechMapper.updateTbLearnTechFirstColumns(tbLearnTech);
     }
+
+    @Override
+    public int updateReading(TbLearnTech tbLearnTech) {
+        return tbLearnTechMapper.updateReading(tbLearnTech);
+    }
 }

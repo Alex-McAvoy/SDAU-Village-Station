@@ -4,6 +4,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -77,6 +78,11 @@ public class TbOfflineTrainingController extends BaseController
     @PostMapping
     public AjaxResult add(@RequestBody TbOfflineTraining tbOfflineTraining)
     {
+
+        String nickname = SecurityContextHolder.getContext().getAuthentication().getName();
+        tbOfflineTraining.setCreateBy(nickname);
+        tbOfflineTraining.setReading((long) 0);
+        tbOfflineTraining.setFirstColumn("0");
         return toAjax(tbOfflineTrainingService.insertTbOfflineTraining(tbOfflineTraining));
     }
 
@@ -144,5 +150,16 @@ public class TbOfflineTrainingController extends BaseController
     @PutMapping("/check")
     public AjaxResult eidtFirstColumns(@RequestBody TbOfflineTraining tbOfflineTraining) {
         return toAjax(tbOfflineTrainingService.updateTbOfflineTrainingFirstColumns(tbOfflineTraining));
+    }
+    /**
+     * 阅读量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/updateReading")
+    public AjaxResult updateReading(@RequestBody TbOfflineTraining tbOfflineTraining)
+    {
+        return toAjax(tbOfflineTrainingService.updateReading(tbOfflineTraining));
     }
 }

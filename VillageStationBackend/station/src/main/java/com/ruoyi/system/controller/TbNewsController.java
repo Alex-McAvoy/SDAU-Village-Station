@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.ruoyi.system.service.ITbNewsService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -95,6 +96,17 @@ public class TbNewsController extends BaseController
     @PostMapping
     public AjaxResult add(@RequestBody TbNews tbNews)
     {
+
+        String nickname = SecurityContextHolder.getContext().getAuthentication().getName();
+        tbNews.setCreateBy(nickname);
+        tbNews.setReading((long) 0);
+        tbNews.setFirstColumn("0");
+
+        String content = tbNews.getContent();
+        content = content.replace("&lt;", "<");
+        content = content.replace("&gt;", ">");
+        tbNews.setContent(content);
+
         return toAjax(tbNewsService.insertTbOtherColumns(tbNews));
     }
 
@@ -110,6 +122,10 @@ public class TbNewsController extends BaseController
     @PutMapping
     public AjaxResult edit(@RequestBody TbNews tbNews)
     {
+        String content = tbNews.getContent();
+        content = content.replace("&lt;", "<");
+        content = content.replace("&gt;", ">");
+        tbNews.setContent(content);
         return toAjax(tbNewsService.updateTbOtherColumns(tbNews));
     }
 
@@ -176,4 +192,15 @@ public class TbNewsController extends BaseController
         return toAjax(tbNewsService.updateTbNewsFirstColumns(tbNews));
     }
 
+    /**
+     * 阅读量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/updateReading")
+    public AjaxResult updateReading(@RequestBody TbNews tbNews)
+    {
+        return toAjax(tbNewsService.updateReading(tbNews));
+    }
 }

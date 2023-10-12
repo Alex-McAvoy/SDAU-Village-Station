@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -73,6 +74,11 @@ public class TbRecommendProductsController extends BaseController {
     @Log(title = "推优品", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody TbRecommendProducts tbRecommendProducts) {
+
+        String nickname = SecurityContextHolder.getContext().getAuthentication().getName();
+        tbRecommendProducts.setCreateBy(nickname);
+        tbRecommendProducts.setReading((long) 0);
+        tbRecommendProducts.setFirstColumn("0");
         return toAjax(tbRecommendProductsService.insertTbRecommendProducts(tbRecommendProducts));
     }
 
@@ -139,5 +145,17 @@ public class TbRecommendProductsController extends BaseController {
     @PutMapping("/check")
     public AjaxResult eidtFirstColumns(@RequestBody TbRecommendProducts tbRecommendProducts) {
         return toAjax(tbRecommendProductsService.updateTbRecommendProductsFirstColumns(tbRecommendProducts));
+    }
+
+    /**
+     * 阅读量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/updateReading")
+    public AjaxResult updateReading(@RequestBody TbRecommendProducts tbRecommendProducts)
+    {
+        return toAjax(tbRecommendProductsService.updateReading(tbRecommendProducts));
     }
 }

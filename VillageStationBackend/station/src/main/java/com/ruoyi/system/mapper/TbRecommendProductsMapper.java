@@ -66,4 +66,6 @@ public interface TbRecommendProductsMapper
     public List<TbRecommendProducts> selectTbRecommendProductsFirstColumnsList(TbRecommendProducts tbRecommendProducts);
 
     public int updateTbRecommendProductsFirstColumns(TbRecommendProducts tbRecommendProducts);
+
+    public int updateReading(TbRecommendProducts tbRecommendProducts);
 }

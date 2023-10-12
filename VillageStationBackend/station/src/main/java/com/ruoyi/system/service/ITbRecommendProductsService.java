@@ -64,4 +64,6 @@ public interface ITbRecommendProductsService
     List<TbRecommendProducts> selectTbRecommendProductsFirstColumnsList(TbRecommendProducts tbRecommendProducts);
 
     public int updateTbRecommendProductsFirstColumns(TbRecommendProducts tbRecommendProducts);
+
+    public int updateReading(TbRecommendProducts tbRecommendProducts);
 }

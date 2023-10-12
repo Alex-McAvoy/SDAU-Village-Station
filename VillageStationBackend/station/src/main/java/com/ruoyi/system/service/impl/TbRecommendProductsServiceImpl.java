@@ -103,4 +103,9 @@ public class TbRecommendProductsServiceImpl implements ITbRecommendProductsServi
         tbRecommendProducts.setUpdateTime(DateUtils.getNowDate());
         return tbRecommendProductsMapper.updateTbRecommendProductsFirstColumns(tbRecommendProducts);
     }
+
+    @Override
+    public int updateReading(TbRecommendProducts tbRecommendProducts) {
+        return tbRecommendProductsMapper.updateReading(tbRecommendProducts);
+    }
 }

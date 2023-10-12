@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -78,6 +79,10 @@ public class TbFinanceController extends BaseController
     @PostMapping
     public AjaxResult add(@RequestBody TbFinance tbFinance)
     {
+        String nickname = SecurityContextHolder.getContext().getAuthentication().getName();
+        tbFinance.setCreateBy(nickname);
+        tbFinance.setReading((long) 0);
+        tbFinance.setFirstColumn("0");
         return toAjax(tbFinanceService.insertTbFinance(tbFinance));
     }
 
@@ -147,6 +152,17 @@ public class TbFinanceController extends BaseController
     public AjaxResult eidtFirstColumns(@RequestBody TbFinance tbFinance)
     {
         return toAjax(tbFinanceService.updateTbFinanceFirstColumns(tbFinance));
+    }
+    /**
+     * 阅读量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/updateReading")
+    public AjaxResult updateReading(@RequestBody TbFinance tbFinance)
+    {
+        return toAjax(tbFinanceService.updateReading(tbFinance));
     }
 }
 

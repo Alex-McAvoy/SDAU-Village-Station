@@ -229,4 +229,29 @@ public class MinIoUtil {
         Iterable<Result<DeleteError>> results = minioClient.removeObjects(RemoveObjectsArgs.builder().bucket(bucketName).objects(dos).build());
         return results;
     }
+
+    /**
+     * 上传本地视频到服务器
+     * @param fileName 文件名
+     * @param filePath 本地文件路径
+     * @return java.lang.String
+     * @author Alex McAvoy
+     * @date 2023/10/12 20:16:05
+     */
+    public String uploadVideo(String fileName,String filePath) {
+        String newFileName = fileName.split("\\.")[0]+RenameUntil.generatePrefix()+"."+filePath.split("\\.")[1];
+        System.out.println(newFileName);
+        try {
+            minioClient.uploadObject(
+                    UploadObjectArgs.builder()
+                            .bucket(bucketName)
+                            .object(newFileName)
+                            .filename(filePath)
+                            .build());
+            return newFileName;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return newFileName;
+    }
 }

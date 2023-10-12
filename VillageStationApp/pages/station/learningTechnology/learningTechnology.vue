@@ -53,7 +53,8 @@
 
 <script>
 	import {
-		getTechListByColumns
+		getTechListByColumns,
+		updateTechReading
 	} from "@/api/station/tech.js"
 
 	export default {
@@ -113,7 +114,9 @@
 		},
 		methods: {
 			skip(item) {
-				getApp().globalData.techItem = item;
+				getApp().globalData.item = item;
+				updateTechReading(item).then(response => {
+				})
 				uni.navigateTo({
 					url: "tech_detail"
 				})

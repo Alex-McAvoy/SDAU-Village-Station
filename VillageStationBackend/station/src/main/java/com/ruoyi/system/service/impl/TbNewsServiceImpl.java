@@ -83,4 +83,9 @@ public class TbNewsServiceImpl implements ITbNewsService
         tbNews.setUpdateTime(DateUtils.getNowDate());
         return tbNewsMapper.updateTbNewsFirstColumns(tbNews);
     }
+
+    @Override
+    public int updateReading(TbNews tbNews) {
+        return tbNewsMapper.updateReading(tbNews);
+    }
 }

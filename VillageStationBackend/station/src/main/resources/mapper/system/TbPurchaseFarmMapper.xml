@@ -17,10 +17,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="firstColumn"    column="first_column"    />
         <result property="secondColumn"    column="second_column"    />
         <result property="sort"    column="sort"    />
+        <result property="reading"    column="reading"    />
     </resultMap>
 
     <sql id="selectTbPurchaseFarmVo">
-        select news_id, title, content, del_flag, create_by, create_time, update_by, update_time, remark, first_column, second_column, sort from tb_purchase_farm
+        select news_id, title, content, del_flag, create_by, create_time, update_by, update_time, remark, first_column, second_column, sort,reading from tb_purchase_farm
     </sql>
 
     <select id="selectTbPurchaseFarmList" parameterType="TbPurchaseFarm" resultMap="TbPurchaseFarmResult">
@@ -118,4 +119,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where news_id = #{newsId}
     </update>
 
+    <update id="updateReading" parameterType="TbPurchaseFarm">
+        update tb_purchase_farm
+        <trim prefix="SET" suffixOverrides=",">
+            reading = reading + 1
+        </trim>
+        where news_id = #{newsId}
+    </update>
 </mapper>

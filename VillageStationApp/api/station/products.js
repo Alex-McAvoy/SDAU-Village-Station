@@ -14,3 +14,11 @@ export function getProductsByColumns(firstColumn,secondColumn) {
     method: 'get'
   })
 }
+
+export function updateProductsReading(data) {
+	return request({
+		url: '/system/products/updateReading',
+		method: 'put',
+		data: data
+	})
+}

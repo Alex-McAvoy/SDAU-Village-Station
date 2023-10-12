@@ -24,7 +24,8 @@
 <script>
 	import {
 		getFarm,
-		getFarmListByColumn
+		getFarmListByColumn,
+		updateFarmReading
 	} from "@/api/station/farm";
 	export default {
 		name: "Farm",
@@ -59,6 +60,8 @@
 		methods: {
 			//跳转详情页
 			goToDetailPage(id) {
+				updateFarmReading({newsId: id}).then(response => {
+				})
 				uni.navigateTo({
 					url: "/pages/station/farm/farm_detail?id=" + id
 				});

@@ -109,4 +109,9 @@ public class TbOfflineTrainingServiceImpl implements ITbOfflineTrainingService
         tbOfflineTraining.setUpdateTime(DateUtils.getNowDate());
         return tbOfflineTrainingMapper.updateTbOfflineTrainingFirstColumns(tbOfflineTraining);
     }
+
+    @Override
+    public int updateReading(TbOfflineTraining tbOfflineTraining) {
+        return tbOfflineTrainingMapper.updateReading(tbOfflineTraining);
+    }
 }

@@ -64,4 +64,6 @@ public interface ITbLearnTechService
     List<TbLearnTech> selectTbLearnTechFirstColumnsList(TbLearnTech tbLearnTech);
 
     public int updateTbLearnTechFirstColumns(TbLearnTech tbLearnTech);
+
+    public int updateReading(TbLearnTech tbLearnTech);
 }

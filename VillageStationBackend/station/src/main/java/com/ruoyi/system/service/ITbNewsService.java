@@ -39,4 +39,6 @@ public interface ITbNewsService
 
     public int updateTbNewsFirstColumns(TbNews tbNews);
 
+    public int updateReading(TbNews tbNews);
+
 }

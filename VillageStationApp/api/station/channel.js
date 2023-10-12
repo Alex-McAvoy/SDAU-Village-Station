@@ -42,3 +42,11 @@ export function delChannel(newsId) {
     method: 'delete'
   })
 }
+
+export function updateChannelReading(data) {
+	return request({
+		url: '/system/channel/updateReading',
+		method: 'put',
+		data: data
+	})
+}

@@ -61,9 +61,9 @@ public interface ITbFindChannelService
 
     List<TbFindChannel> selectTbFindChannelListByColumn(String firstColumn, String secondColumn);
 
-    //获取全部未审核
     List<TbFindChannel> selectTbFindChannelFirstColumnsList(TbFindChannel tbFindChannel);
 
-    //修改remark
     public int updateTbFindChannelFirstColumns(TbFindChannel tbFindChannel);
+
+    public int updateReading(TbFindChannel tbFindChannel);
 }

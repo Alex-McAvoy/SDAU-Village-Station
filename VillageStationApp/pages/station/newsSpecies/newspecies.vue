@@ -29,7 +29,8 @@
 
 <script>
 	import {
-		getSpeciesListByColumn
+		getSpeciesListByColumn,
+		updateSpeciesReading
 	} from "@/api/station/species";
 
 	export default {
@@ -68,6 +69,8 @@
 			//跳转详情页
 			skip(item) {
 				getApp().globalData.item = item;
+				updateSpeciesReading(item).then(response => {
+				})
 				uni.navigateTo({
 					url: "species_detail"
 				})

@@ -109,4 +109,8 @@ public class TbFindChannelServiceImpl implements ITbFindChannelService
         tbFindChannel.setUpdateTime(DateUtils.getNowDate());
         return tbFindChannelMapper.updateTbFindChannelFirstColumns(tbFindChannel);
     }
+    @Override
+    public int updateReading(TbFindChannel tbFindChannel) {
+        return tbFindChannelMapper.updateReading(tbFindChannel);
+    }
 }

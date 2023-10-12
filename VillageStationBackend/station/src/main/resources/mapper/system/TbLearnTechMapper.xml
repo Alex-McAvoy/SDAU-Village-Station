@@ -18,10 +18,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="secondColumn"    column="second_column"    />
         <result property="sort"    column="sort"    />
         <result property="source"    column="source"    />
+        <result property="reading"    column="reading"    />
     </resultMap>
 
     <sql id="selectTbLearnTechVo">
-        select article_id, title, content, del_flag, create_by, create_time, update_by, update_time, remark, first_column, second_column, sort, source from tb_learn_tech
+        select article_id, title, content, del_flag, create_by, create_time, update_by, update_time, remark, first_column, second_column, sort, source,reading from tb_learn_tech
     </sql>
 
     <select id="selectTbLearnTechList" parameterType="TbLearnTech" resultMap="TbLearnTechResult">
@@ -118,6 +119,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         update tb_learn_tech
         <trim prefix="SET" suffixOverrides=",">
             first_column = 1
+        </trim>
+        where article_id = #{articleId}
+    </update>
+
+    <update id="updateReading" parameterType="TbLearnTech">
+        update tb_learn_tech
+        <trim prefix="SET" suffixOverrides=",">
+            reading = reading + 1
         </trim>
         where article_id = #{articleId}
     </update>

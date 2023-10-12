@@ -3,7 +3,8 @@
 		<!-- 问题框 -->
 		<view>
 			<view style="background-color: white; margin: 15px; border-radius: 10px ;display: flex;" :model="question">
-				<image src="../../../static/images/index/index_query2.png" mode="" style="width: 20px;height: 20px; margin-top: 8px;margin-left: 10px;"></image>
+				<image src="../../../static/images/index/index_query2.png" mode=""
+					style="width: 20px;height: 20px; margin-top: 8px;margin-left: 10px;"></image>
 				<view label="标题">
 					<div class="ask_title">
 						{{question.title}}
@@ -12,20 +13,29 @@
 						{{question.content}}
 					</div>
 				</view>
+				<view>
+					<u-row justify="flex-end" gutter="15">
+						<u-col span="5"></u-col>
+						<u-col span="6" style="color:#D3D3D3;font-size: 10px;">
+							{{question.createTime}}</u-col>
+					</u-row>
+				</view>
 			</view>
 		</view>
-		
-		
+
+
 		<!-- 回答框 -->
-		<view >
-			<view style="background-color: white; margin: 15px; display: flex; padding-bottom: 20px; border-radius: 5px;" >
-				<image src="../../../static/images/index/index_query1.png" mode="" style="width: 20px;height: 20px; margin-top: 2px;margin-left: 10px;"></image>
-				<view style="font-size: 20px;margin-left: 15px;color: gray;" >
+		<view>
+			<view
+				style="background-color: white; margin: 15px; display: flex; padding-bottom: 20px; border-radius: 5px;">
+				<image src="../../../static/images/index/index_query1.png" mode=""
+					style="width: 20px;height: 20px; margin-top: 2px;margin-left: 10px;"></image>
+				<view style="font-size: 20px;margin-left: 15px;color: gray;">
 					回复
 				</view>
 			</view>
 		</view>
-		
+
 		<div v-for="item in reviews" :key="item.id">
 			<view style=" margin: 15px; border-radius: 5px;  background-color: white;display: flex;margin-top: -8px;">
 				<view class="u-page">
@@ -35,9 +45,10 @@
 								<!-- 头像 -->
 								<view class="album__avatar" style="margin-top: 2px;display: flex;">
 									<image src="/static/images/icon.jpg" mode=""
-										style="width: 36px;height: 36px; margin: 5px;margin-left: 15px; border-radius: 100px;"></image>
+										style="width: 36px;height: 36px; margin: 5px;margin-left: 15px; border-radius: 100px;">
+									</image>
 								</view>
-			
+
 								<div style="margin-top: 15px; ">
 									<view style="background-color: white;border-radius: 10px; ">
 										<view>
@@ -49,17 +60,20 @@
 											</div>
 										</view>
 									</view>
-									<view style="margin-left: 10px;">
-										<span style="color:#D3D3D3;font-size: 10px;">{{item.createTime}}</span>
-									</view>
 								</div>
 							</view>
 						</view>
 					</view>
+					<view>
+						<view style="color:#D3D3D3;font-size: 13px;">
+							{{item.createTime}}
+						</view>
+					</view>
+					
 				</view>
 			</view>
 		</div>
-		
+
 		<!-- <view>
 			<u-modal :showCancelButton='true' :show="show" :title="title" @cancel="cancel" @confirm="confirm">
 				<div style="width: 90%;">
@@ -132,7 +146,7 @@
 				this.show = false;
 			},
 			confirm() {
-				
+
 			},
 		},
 	}

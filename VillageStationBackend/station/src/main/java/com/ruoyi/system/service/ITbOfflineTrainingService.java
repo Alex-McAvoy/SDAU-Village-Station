@@ -64,4 +64,7 @@ public interface ITbOfflineTrainingService
     public List<TbOfflineTraining> selectTbOfflineTrainingFirstColumnsList(TbOfflineTraining tbOfflineTraining);
 
     public int updateTbOfflineTrainingFirstColumns(TbOfflineTraining tbOfflineTraining);
+
+    public int updateReading(TbOfflineTraining tbOfflineTraining);
+
 }

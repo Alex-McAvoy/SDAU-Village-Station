@@ -65,4 +65,6 @@ public interface ITbPurchaseFarmService
     public List<TbPurchaseFarm> selectTbPurchaseFarmFirstColumnsList(TbPurchaseFarm tbPurchaseFarm);
 
     public int updateTbPurchaseFarmFirstColumns(TbPurchaseFarm tbPurchaseFarm);
+
+    public int updateReading(TbPurchaseFarm tbPurchaseFarm);
 }

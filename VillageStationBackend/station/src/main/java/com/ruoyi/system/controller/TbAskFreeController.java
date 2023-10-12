@@ -10,6 +10,7 @@ import com.ruoyi.system.domain.TbAskFree;
 import com.ruoyi.system.service.ITbAskFreeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -71,7 +72,10 @@ public class TbAskFreeController extends BaseController
     @PostMapping
     public AjaxResult add(@RequestBody TbAskFree tbAskFree)
     {
-        System.out.println(tbAskFree);
+
+        String nickname = SecurityContextHolder.getContext().getAuthentication().getName();
+        tbAskFree.setCreateBy(nickname);
+        tbAskFree.setFirstColumn("0");
         return toAjax(tbAskFreeService.insertTbAskFree(tbAskFree));
     }
 

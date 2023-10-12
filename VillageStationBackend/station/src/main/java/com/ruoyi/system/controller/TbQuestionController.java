@@ -11,6 +11,7 @@ import com.ruoyi.system.service.ITbQuestionService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -68,6 +69,9 @@ public class TbQuestionController extends BaseController {
     @Log(title = "评论/问答", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody TbQuestion tbQuestion) {
+        String nickname = SecurityContextHolder.getContext().getAuthentication().getName();
+        tbQuestion.setCreateBy(nickname);
+        tbQuestion.setFirstColumn("0");
         return toAjax(tbQuestionService.insertTbQuestion(tbQuestion));
     }
 
@@ -140,7 +144,7 @@ public class TbQuestionController extends BaseController {
      * @date 2023/10/11 10:47:52
      */
     @PreAuthorize("@ss.hasPermi('system:question:check')")
-    @PutMapping("/")
+    @PutMapping("/check")
     public AjaxResult eidtFirstColumns(@RequestBody TbQuestion tbQuestion) {
         return toAjax(tbQuestionService.updateTbQuestionFirstColumns(tbQuestion));
     }

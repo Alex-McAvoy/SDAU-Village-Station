@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -73,6 +74,11 @@ public class TbPurchaseFarmController extends BaseController {
     @Log(title = "买农资", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody TbPurchaseFarm tbPurchaseFarm) {
+
+        String nickname = SecurityContextHolder.getContext().getAuthentication().getName();
+        tbPurchaseFarm.setCreateBy(nickname);
+        tbPurchaseFarm.setReading((long) 0);
+        tbPurchaseFarm.setFirstColumn("0");
         return toAjax(tbPurchaseFarmService.insertTbPurchaseFarm(tbPurchaseFarm));
     }
 
@@ -139,5 +145,17 @@ public class TbPurchaseFarmController extends BaseController {
     @PutMapping("/check")
     public AjaxResult eidtFirstColumns(@RequestBody TbPurchaseFarm tbPurchaseFarm) {
         return toAjax(tbPurchaseFarmService.updateTbPurchaseFarmFirstColumns(tbPurchaseFarm));
+    }
+
+    /**
+     * 阅读量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/updateReading")
+    public AjaxResult updateReading(@RequestBody TbPurchaseFarm tbPurchaseFarm)
+    {
+        return toAjax(tbPurchaseFarmService.updateReading(tbPurchaseFarm));
     }
 }

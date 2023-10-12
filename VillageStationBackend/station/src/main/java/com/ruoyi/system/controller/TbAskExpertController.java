@@ -1,9 +1,13 @@
 package com.ruoyi.system.controller;
 
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -79,9 +83,6 @@ public class TbAskExpertController extends BaseController
         return success(tbAskExpertService.selectTbAskExpertByDictValue(dictValue));
     }
 
-
-
-
     /**
      * 新增问专家
      */
@@ -90,6 +91,9 @@ public class TbAskExpertController extends BaseController
     @PostMapping
     public AjaxResult add(@RequestBody TbAskExpert tbAskExpert)
     {
+        String nickname = SecurityContextHolder.getContext().getAuthentication().getName();
+        tbAskExpert.setCreateBy(nickname);
+        tbAskExpert.setFirstColumn("0");
         return toAjax(tbAskExpertService.insertTbAskExpert(tbAskExpert));
     }
     /**

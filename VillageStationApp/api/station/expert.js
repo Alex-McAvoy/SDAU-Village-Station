@@ -16,3 +16,11 @@ export function getExpertListByColumn(firstColumn, dictValue) {
     method: 'get'
   })
 }
+
+export function updateInfoReading(data) {
+	return request({
+		url: '/system/expert/updateReading',
+		method: 'put',
+		data: data
+	})
+}

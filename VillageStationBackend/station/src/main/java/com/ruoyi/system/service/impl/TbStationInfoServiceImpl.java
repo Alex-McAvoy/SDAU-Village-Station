@@ -112,5 +112,9 @@ public class TbStationInfoServiceImpl implements ITbStationInfoService
         return tbStationInfoMapper.updateTbStationFirstColumns(tbStationInfo);
     }
 
+    @Override
+    public int updateReading(TbStationInfo tbStationInfo) {
+        return tbStationInfoMapper.updateReading(tbStationInfo);
+    }
 
 }

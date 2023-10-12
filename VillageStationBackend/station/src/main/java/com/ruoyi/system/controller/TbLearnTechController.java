@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -73,6 +74,11 @@ public class TbLearnTechController extends BaseController {
     @Log(title = "学农技", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody TbLearnTech tbLearnTech) {
+
+        String nickname = SecurityContextHolder.getContext().getAuthentication().getName();
+        tbLearnTech.setCreateBy(nickname);
+        tbLearnTech.setReading((long) 0);
+        tbLearnTech.setFirstColumn("0");
         return toAjax(tbLearnTechService.insertTbLearnTech(tbLearnTech));
     }
 
@@ -142,4 +148,16 @@ public class TbLearnTechController extends BaseController {
         return toAjax(tbLearnTechService.updateTbLearnTechFirstColumns(tbLearnTech));
     }
 
+
+    /**
+     * 阅读量
+     * @return com.ruoyi.common.core.domain.AjaxResult
+     * @author Alex McAvoy
+     * @date 2023/10/11 10:47:52
+     */
+    @PutMapping("/updateReading")
+    public AjaxResult updateReading(@RequestBody TbLearnTech tbLearnTech)
+    {
+        return toAjax(tbLearnTechService.updateReading(tbLearnTech));
+    }
 }

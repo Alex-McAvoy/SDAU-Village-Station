@@ -109,4 +109,9 @@ public class TbNewSpeciesServiceImpl implements ITbNewSpeciesService
         tbNewSpecies.setUpdateTime(DateUtils.getNowDate());
         return tbNewSpeciesMapper.updateTbNewSpeciesFirstColumns(tbNewSpecies);
     }
+
+    @Override
+    public int updateReading(TbNewSpecies tbNewSpecies) {
+        return tbNewSpeciesMapper.updateReading(tbNewSpecies);
+    }
 }
