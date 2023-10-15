@@ -1,0 +1,329 @@
+{
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			// uview-ui
+			"^u-(.*)": "@/node_modules/uview-ui/components/u-$1/u-$1.vue"
+		}
+	},
+	"pages": [{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/index/query_result",
+			"style": {
+				"navigationBarTitleText": "搜索结果"
+			}
+		}, {
+			"path": "pages/login",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		}, {
+			"path": "pages/register",
+			"style": {
+				"navigationBarTitleText": "注册"
+			}
+		}, {
+			"path": "pages/station/station/station",
+			"style": {
+				"navigationBarTitleText": "驿站",
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/onlinestation",
+			"style": {
+				"navigationBarTitleText": "加入驿站"
+			}
+		}, {
+			"path": "pages/station/station/station_info_list",
+			"style": {
+				"navigationBarTitleText": "驿站信息"
+			}
+		}, {
+			"path": "pages/station/station/station_info_detail",
+			"style": {
+				"navigationBarTitleText": "信息详情"
+			}
+		}, {
+			"path": "pages/station/askExperts/askExpert",
+			"style": {
+				"navigationBarTitleText": "问专家"
+			}
+		}, {
+			"path": "pages/station/askExperts/expert_detail",
+			"style": {
+				"navigationBarTitleText": "专家答疑"
+			}
+		}, {
+			"path": "pages/station/askExperts/detail",
+			"style": {
+				"navigationBarTitleText": "答疑详情"
+			}
+		}, {
+			"path": "pages/station/freeAsk/freeAsk",
+			"style": {
+				"navigationBarTitleText": "随时问",
+				"enablePullDownRefresh": false
+			}
+		}, {
+			"path": "pages/station/freeAsk/freeAskDetail",
+			"style": {
+				"navigationBarTitleText": "问题详情"
+			}
+		}, {
+			"path": "pages/station/learningTechnology/learningTechnology",
+			"style": {
+				"navigationBarTitleText": "学农技",
+				"enablePullDownRefresh": false
+			}
+		}, {
+			"path": "pages/station/learningTechnology/tech_detail",
+			"style": {
+				"navigationBarTitleText": "农技详情"
+			}
+		}, {
+			"path": "pages/station/channel/channel",
+			"style": {
+				"navigationBarTitleText": "找渠道"
+			}
+		}, {
+			"path": "pages/station/channel/channel_detail",
+			"style": {
+				"navigationBarTitleText": "渠道详情"
+			}
+		}, {
+			"path": "pages/station/farm/purchaseFarm",
+			"style": {
+				"navigationBarTitleText": "买农资"
+			}
+		}, {
+			"path": "pages/station/farm/farm_detail",
+			"style": {
+				"navigationBarTitleText": "农资详情"
+			}
+		}, {
+			"path": "pages/station/products/products",
+			"style": {
+				"navigationBarTitleText": "推优品"
+			}
+		},
+		{
+			"path": "pages/station/products/products_detail",
+			"style": {
+				"navigationBarTitleText": "优品详情"
+			}
+		}, {
+			"path": "pages/station/newsSpecies/newspecies",
+			"style": {
+				"navigationBarTitleText": "新品种"
+			}
+		}, {
+			"path": "pages/station/newsSpecies/species_detail",
+			"style": {
+				"navigationBarTitleText": "品种详情"
+			}
+		}, {
+			"path": "pages/station/onlinebase/onlinebase",
+			"style": {
+				"navigationBarTitleText": "寻基地"
+			}
+		}, {
+			"path": "pages/station/onlinebase/onlinebase_detail",
+			"style": {
+				"navigationBarTitleText": "基地详情"
+			}
+		},
+		{
+			"path": "pages/station/query_result",
+			"style": {
+				"navigationBarTitleText": "搜索结果"
+			}
+		},
+		{
+			"path": "pages/index/news/news_list",
+			"style": {
+				"navigationBarTitleText": "新闻资讯"
+			}
+		}, {
+			"path": "pages/index/news/news_detail",
+			"style": {
+				"navigationBarTitleText": "详细新闻"
+			}
+		},
+		{
+			"path": "pages/training/training",
+			"style": {
+				"navigationBarTitleText": "培训",
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/training/offline_training_detail",
+			"style": {
+				"navigationBarTitleText": "线下培训详情"
+			}
+		},
+		{
+			"path": "pages/training/offline_training_list",
+			"style": {
+				"navigationBarTitleText": "线下培训列表"
+			}
+		}, {
+			"path": "pages/training/online_training_detail",
+			"style": {
+				"navigationBarTitleText": "线上培训详情"
+			}
+		}, {
+			"path": "pages/training/online_training_list",
+			"style": {
+				"navigationBarTitleText": "线上培训列表"
+			}
+		},
+		{
+			"path": "pages/finance/finance",
+			"style": {
+				"navigationBarTitleText": "金融",
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/finance/finance_list",
+			"style": {
+				"navigationBarTitleText": "金融信息"
+			}
+		}, {
+			"path": "pages/finance/finance_detail",
+			"style": {
+				"navigationBarTitleText": "金融详情"
+			}
+		}, {
+			"path": "pages/expert/expert",
+			"style": {
+				"navigationBarTitleText": "专家",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/expert/expert_detail",
+			"style": {
+				"navigationBarTitleText": "专家详情"
+			}
+		}, {
+			"path": "pages/product/product",
+			"style": {
+				"navigationBarTitleText": "优品",
+				"navigationStyle": "custom"
+			}
+		},
+
+
+
+		{
+			"path": "pages/work/index",
+			"style": {
+				"navigationBarTitleText": "工作台"
+			}
+		}, {
+			"path": "pages/mine/index",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/mine/avatar/index",
+			"style": {
+				"navigationBarTitleText": "修改头像"
+			}
+		}, {
+			"path": "pages/mine/info/index",
+			"style": {
+				"navigationBarTitleText": "个人信息"
+			}
+		}, {
+			"path": "pages/mine/info/edit",
+			"style": {
+				"navigationBarTitleText": "编辑资料"
+			}
+		}, {
+			"path": "pages/mine/pwd/index",
+			"style": {
+				"navigationBarTitleText": "修改密码"
+			}
+		}, {
+			"path": "pages/mine/setting/index",
+			"style": {
+				"navigationBarTitleText": "应用设置"
+			}
+		},  {
+			"path": "pages/common/webview/index",
+			"style": {
+				"navigationBarTitleText": "浏览网页"
+			}
+		}, {
+			"path": "pages/common/textview/index",
+			"style": {
+				"navigationBarTitleText": "浏览文本"
+			}
+		},{
+			"path": "pages/mine/collect/collect",
+			"style": {
+				"navigationBarTitleText": "收藏夹"
+			}
+		},{
+			"path": "pages/mine/likes/likes",
+			"style": {
+				"navigationBarTitleText": "点赞记录"
+			}
+		}
+	],
+	"tabBar": {
+		"color": "#000000",
+		"selectedColor": "#000000",
+		"borderStyle": "white",
+		"backgroundColor": "#ffffff",
+		"list": [{
+			"pagePath": "pages/index/index",
+			"iconPath": "static/images/tabbar/home.png",
+			"selectedIconPath": "static/images/tabbar/home_.png",
+			"text": "首页"
+		}, {
+			"pagePath": "pages/training/training",
+			"iconPath": "static/images/tabbar/education.png",
+			"selectedIconPath": "static/images/tabbar/education_.png",
+			"text": "培训"
+		}, {
+			"pagePath": "pages/finance/finance",
+			"iconPath": "static/images/tabbar/finance.png",
+			"selectedIconPath": "static/images/tabbar/finance_.png",
+			"text": "金融"
+		}, {
+			"pagePath": "pages/station/station/station",
+			"iconPath": "static/images/tabbar/station_.png",
+			"selectedIconPath": "static/images/tabbar/station_.png",
+			"iconWidth": "60px"
+		}, {
+			"pagePath": "pages/expert/expert",
+			"iconPath": "static/images/tabbar/expert.png",
+			"selectedIconPath": "static/images/tabbar/expert_.png",
+			"text": "专家"
+		}, {
+			"pagePath": "pages/product/product",
+			"iconPath": "static/images/tabbar/product.png",
+			"selectedIconPath": "static/images/tabbar/product_.png",
+			"text": "优品"
+		}, {
+			"pagePath": "pages/mine/index",
+			"iconPath": "static/images/tabbar/mine.png",
+			"selectedIconPath": "static/images/tabbar/mine_.png",
+			"text": "我的"
+		}]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "RuoYi",
+		"navigationBarBackgroundColor": "#FFFFFF"
+	}
+}
