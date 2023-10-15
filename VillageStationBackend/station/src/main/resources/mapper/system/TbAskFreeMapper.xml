@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.TbAskFreeMapper">
+    
+    <resultMap type="TbAskFree" id="TbAskFreeResult">
+        <result property="askFreeId"    column="ask_free_id"    />
+        <result property="title"    column="title"    />
+        <result property="content"    column="content"    />
+        <result property="delFlag"    column="del_flag"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"    column="remark"    />
+        <result property="parentId"    column="parent_id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="firstColumn"    column="first_column"    />
+        <result property="sort"    column="sort"    />
+    </resultMap>
+
+    <sql id="selectTbAskFreeVo">
+        select ask_free_id, title, content, del_flag, create_by, create_time, update_by, update_time, remark,parent_id,user_id,first_column,sort from tb_ask_free
+    </sql>
+
+    <select id="selectTbAskFreeList" parameterType="TbAskFree" resultMap="TbAskFreeResult">
+        <include refid="selectTbAskFreeVo"/>
+        <where>
+            <if test="title != null  and title != ''"> and title = #{title}</if>
+            <if test="content != null  and content != ''"> and content = #{content}</if>
+            parent_id is NULL
+        </where>
+    </select>
+    
+    <select id="selectTbAskFreeByAskFreeId" parameterType="Long" resultMap="TbAskFreeResult">
+        <include refid="selectTbAskFreeVo"/>
+        where ask_free_id = #{askFreeId}
+    </select>
+
+    <insert id="insertTbAskFree" parameterType="TbAskFree" useGeneratedKeys="true" keyProperty="askFreeId">
+        insert into tb_ask_free
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null">title,</if>
+            <if test="content != null">content,</if>
+            <if test="delFlag != null">del_flag,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+            <if test="parentId != null">parent_id,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="firstColumn != null">first_column,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="title != null">#{title},</if>
+            <if test="content != null">#{content},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="parentId != null">#{parentId},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="firstColumn != null">#{firstColumn},</if>
+
+        </trim>
+    </insert>
+
+    <update id="updateTbAskFree" parameterType="TbAskFree">
+        update tb_ask_free
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="title != null">title = #{title},</if>
+            <if test="content != null">content = #{content},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where ask_free_id = #{askFreeId}
+    </update>
+
+    <delete id="deleteTbAskFreeByAskFreeId" parameterType="Long">
+        delete from tb_ask_free where ask_free_id = #{askFreeId}
+    </delete>
+
+    <delete id="deleteTbAskFreeByAskFreeIds" parameterType="String">
+        delete from tb_ask_free where ask_free_id in 
+        <foreach item="askFreeId" collection="array" open="(" separator="," close=")">
+            #{askFreeId}
+        </foreach>
+    </delete>
+
+    <select id="selectTbAskFreeByParentId" parameterType="Long" resultMap="TbAskFreeResult">
+        <include refid="selectTbAskFreeVo"/>
+        where parent_id = #{askFreeId} AND first_column = 1
+    </select>
+
+    <select id="selectTbAskFreeByColumn"  resultMap="TbAskFreeResult">
+        <include refid="selectTbAskFreeVo"/>
+        where first_column = #{firstColumn} AND parent_id is null
+    </select>
+
+    <select id="selectTbAskFreeBySort"  resultMap="TbAskFreeResult">
+        <include refid="selectTbAskFreeVo"/>
+        where first_column = #{firstColumn} AND sort = #{sort} AND parent_id is null
+    </select>
+
+    <select id="selectTbAskFreeFirstColumnsList" parameterType="String"
+            resultMap="TbAskFreeResult">
+        <include refid="selectTbAskFreeVo"/>
+        where first_column = 0
+    </select>
+
+    <update id="updateTbAskFreeFirstColumns"  parameterType="TbAskFree">
+        update tb_ask_free
+        <trim prefix="SET" suffixOverrides=",">
+            first_column = '1'
+        </trim>
+        where ask_free_id = #{askFreeId}
+    </update>
+
+    <select id="selectTbAskFreeByLike" parameterType="String" resultMap="TbAskFreeResult">
+        <include refid="selectTbAskFreeVo"/>
+        <where>
+            content like '%${query}%' or title like '%${query}%'
+        </where>
+    </select>
+</mapper>

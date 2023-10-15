@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.TbLearnTechMapper">
+    
+    <resultMap type="TbLearnTech" id="TbLearnTechResult">
+        <result property="articleId"    column="article_id"    />
+        <result property="title"    column="title"    />
+        <result property="content"    column="content"    />
+        <result property="delFlag"    column="del_flag"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"    column="remark"    />
+        <result property="firstColumn"    column="first_column"    />
+        <result property="secondColumn"    column="second_column"    />
+        <result property="sort"    column="sort"    />
+        <result property="source"    column="source"    />
+        <result property="reading"    column="reading"    />
+        <result property="collect"    column="collect"    />
+        <result property="likes"    column="likes"    />
+    </resultMap>
+
+    <sql id="selectTbLearnTechVo">
+        select article_id, title, content, del_flag, create_by, create_time, update_by, update_time, remark, first_column, second_column, sort, source,reading,collect,likes from tb_learn_tech
+    </sql>
+
+    <select id="selectTbLearnTechList" parameterType="TbLearnTech" resultMap="TbLearnTechResult">
+        <include refid="selectTbLearnTechVo"/>
+        <where>  
+            <if test="title != null  and title != ''"> and title = #{title}</if>
+            <if test="content != null  and content != ''"> and content = #{content}</if>
+            <if test="firstColumn != null  and firstColumn != ''"> and first_column = #{firstColumn}</if>
+            <if test="secondColumn != null  and secondColumn != ''"> and second_column = #{secondColumn}</if>
+            <if test="sort != null  and sort != ''"> and sort = #{sort}</if>
+            <if test="source != null  and source != ''"> and source = #{source}</if>
+        </where>
+    </select>
+
+    <select id="selectTbLearnTechByArticleId" parameterType="Long" resultMap="TbLearnTechResult">
+        <include refid="selectTbLearnTechVo"/>
+        where article_id = #{articleId}
+    </select>
+        
+    <insert id="insertTbLearnTech" parameterType="TbLearnTech" useGeneratedKeys="true" keyProperty="articleId">
+        insert into tb_learn_tech
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null">title,</if>
+            <if test="content != null">content,</if>
+            <if test="delFlag != null">del_flag,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+            <if test="firstColumn != null">first_column,</if>
+            <if test="secondColumn != null">second_column,</if>
+            <if test="sort != null">sort,</if>
+            <if test="source != null">source,</if>
+            <if test="reading != null">reading,</if>
+            <if test="collect != null">collect,</if>
+            <if test="likes != null">likes,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="title != null">#{title},</if>
+            <if test="content != null">#{content},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="firstColumn != null">#{firstColumn},</if>
+            <if test="secondColumn != null">#{secondColumn},</if>
+            <if test="sort != null">#{sort},</if>
+            <if test="source != null">#{source},</if>
+            <if test="reading != null">#{reading},</if>
+            <if test="collect != null">#{collect},</if>
+            <if test="likes != null">#{likes},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTbLearnTech" parameterType="TbLearnTech">
+        update tb_learn_tech
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="title != null">title = #{title},</if>
+            <if test="content != null">content = #{content},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="firstColumn != null">first_column = #{firstColumn},</if>
+            <if test="secondColumn != null">second_column = #{secondColumn},</if>
+            <if test="sort != null">sort = #{sort},</if>
+            <if test="source != null">source = #{source},</if>
+        </trim>
+        where article_id = #{articleId}
+    </update>
+
+    <delete id="deleteTbLearnTechByArticleId" parameterType="Long">
+        delete from tb_learn_tech where article_id = #{articleId}
+    </delete>
+
+    <delete id="deleteTbLearnTechByArticleIds" parameterType="String">
+        delete from tb_learn_tech where article_id in 
+        <foreach item="articleId" collection="array" open="(" separator="," close=")">
+            #{articleId}
+        </foreach>
+    </delete>
+
+    <select id="selectTbLearnTechByColumn"  resultMap="TbLearnTechResult">
+        <include refid="selectTbLearnTechVo"/>
+        where first_column = #{firstColumn} AND second_column = #{secondColumn}
+    </select>
+
+    <select id="selectTbLearnTechBySort"  resultMap="TbLearnTechResult">
+        <include refid="selectTbLearnTechVo"/>
+        where first_column = #{firstColumn} AND second_column = #{secondColumn} AND sort = #{sort}
+    </select>
+
+    <select id="selectTbLearnTechFirstColumnsList" parameterType="String"
+            resultMap="TbLearnTechResult">
+        <include refid="selectTbLearnTechVo"/>
+        where first_column = 0
+    </select>
+
+    <update id="updateTbLearnTechFirstColumns"  parameterType="TbLearnTech">
+        update tb_learn_tech
+        <trim prefix="SET" suffixOverrides=",">
+            first_column = 1
+        </trim>
+        where article_id = #{articleId}
+    </update>
+
+    <update id="updateReading" parameterType="TbLearnTech">
+        update tb_learn_tech
+        <trim prefix="SET" suffixOverrides=",">
+            reading = reading + 1
+        </trim>
+        where article_id = #{articleId}
+    </update>
+
+    <update id="addLikes" parameterType="TbLearnTech">
+        update tb_learn_tech
+        <trim prefix="SET" suffixOverrides=",">
+            likes = likes + 1
+        </trim>
+        where article_id = #{articleId}
+    </update>
+
+    <update id="subLikes" parameterType="TbLearnTech">
+        update tb_learn_tech
+        <trim prefix="SET" suffixOverrides=",">
+            likes = likes - 1
+        </trim>
+        where article_id = #{articleId}
+    </update>
+
+    <update id="addCollect" parameterType="TbLearnTech">
+        update tb_learn_tech
+        <trim prefix="SET" suffixOverrides=",">
+            collect = collect + 1
+        </trim>
+        where article_id = #{articleId}
+    </update>
+
+    <update id="subCollect" parameterType="TbLearnTech">
+        update tb_learn_tech
+        <trim prefix="SET" suffixOverrides=",">
+            collect = collect - 1
+        </trim>
+        where article_id = #{articleId}
+    </update>
+
+    <select id="selectTbLearnTechByLike" parameterType="String" resultMap="TbLearnTechResult">
+        <include refid="selectTbLearnTechVo"/>
+        <where>
+            content like '%${query}%' or title like '%${query}%'
+        </where>
+    </select>
+
+    <!--  根据收藏列表获取新闻-->
+    <select id="selectTbLearnTechByIdList" parameterType="java.util.List" resultMap="TbLearnTechResult">
+        SELECT  article_id, title, content, del_flag, create_by, create_time, update_by, update_time, remark, first_column, second_column, sort
+        from tb_learn_tech
+        WHERE first_column = '1' AND article_id IN
+        <foreach item="item" collection="idList" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+</mapper>

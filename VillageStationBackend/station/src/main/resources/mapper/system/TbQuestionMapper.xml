@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.TbQuestionMapper">
+    
+    <resultMap type="TbQuestion" id="TbQuestionResult">
+        <result property="questionId"    column="question_id"    />
+        <result property="question"    column="question"    />
+        <result property="delFlag"    column="del_flag"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="tableName"    column="table_name"    />
+        <result property="parentId"    column="parent_id"    />
+        <result property="expertId"    column="expert_id"    />
+        <result property="questionTitle"    column="question_title"    />
+        <result property="firstColumn"    column="first_column"    />
+        <result property="sort"    column="sort"    />
+    </resultMap>
+
+    <sql id="selectTbQuestionVo">
+        select question_id, question, del_flag, create_by, create_time, table_name, parent_id, expert_id,question_title,first_column,sort from tb_question
+    </sql>
+
+    <select id="selectTbQuestionList" parameterType="TbQuestion" resultMap="TbQuestionResult">
+        <include refid="selectTbQuestionVo"/>
+        <where>  
+            <if test="question != null  and question != ''"> and question = #{question}</if>
+            <if test="tableName != null  and tableName != ''"> and table_name like concat('%', #{tableName}, '%')</if>
+        </where>
+    </select>
+
+    <select id="selectTbQuestionByQuestionId" parameterType="Long" resultMap="TbQuestionResult">
+        <include refid="selectTbQuestionVo"/>
+        where question_id = #{questionId}
+    </select>
+
+    <select id="selectTbQuestionByExpertId" parameterType="Long" resultMap="TbQuestionResult">
+        <include refid="selectTbQuestionVo"/>
+        where expert_id = #{expertId} and parent_id is NULL
+    </select>
+
+    <insert id="insertTbQuestion" parameterType="TbQuestion" useGeneratedKeys="true" keyProperty="questionId">
+        insert into tb_question
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="question != null">question,</if>
+            <if test="delFlag != null">del_flag,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="tableName != null">table_name,</if>
+            <if test="parentId != null">parent_id,</if>
+            <if test="expertId != null">expert_id,</if>
+            <if test="questionTitle != null">question_title,</if>
+            <if test="firstColumn != null">first_column,</if>
+            <if test="sort != null">sort,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="question != null">#{question},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="tableName != null">#{tableName},</if>
+            <if test="parentId != null">#{parentId},</if>
+            <if test="expertId != null">#{expertId},</if>
+            <if test="questionTitle != null">#{questionTitle},</if>
+            <if test="firstColumn != null">#{firstColumn},</if>
+            <if test="sort != null">#{sort},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTbQuestion" parameterType="TbQuestion">
+        update tb_question
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="question != null">question = #{question},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="tableName != null">table_name = #{tableName},</if>
+            <if test="parentId != null">parent_id = #{parentId},</if>
+        </trim>
+        where question_id = #{questionId}
+    </update>
+
+    <delete id="deleteTbQuestionByQuestionId" parameterType="Long">
+        delete from tb_question where question_id = #{questionId}
+    </delete>
+
+    <delete id="deleteTbQuestionByQuestionIds" parameterType="String">
+        delete from tb_question where question_id in 
+        <foreach item="questionId" collection="array" open="(" separator="," close=")">
+            #{questionId}
+        </foreach>
+    </delete>
+
+    <select id="selectTbQuestionByParentId" resultMap="TbQuestionResult">
+        <include refid="selectTbQuestionVo"/>
+        WHERE parent_id = #{parentId} AND first_column = #{firstColumn}
+    </select>
+
+    <select id="selectTbQuestionByColumn"  resultMap="TbQuestionResult">
+        <include refid="selectTbQuestionVo"/>
+        where expert_id = #{expertId} AND first_column = #{firstColumn} AND parent_id is null
+    </select>
+
+    <select id="selectTbQuestionBySort"  resultMap="TbQuestionResult">
+        <include refid="selectTbQuestionVo"/>
+        where expert_id = #{expertId} AND first_column = #{firstColumn} AND sort = #{sort} AND parent_id is null
+    </select>
+
+    <select id="selectTbQuestionFirstColumnsList" parameterType="String"
+            resultMap="TbQuestionResult">
+        <include refid="selectTbQuestionVo"/>
+        where first_column = 0
+    </select>
+
+    <update id="updateTbQuestionFirstColumns"  parameterType="TbRecommendProducts">
+        update tb_question
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="firstColumn != null">first_column = '1',</if>
+        </trim>
+        where question_id = #{questionId}
+    </update>
+</mapper>
