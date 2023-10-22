@@ -58,7 +58,7 @@ spring:
       master:
         url: jdbc:mysql://localhost:3306/village_station_app?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
         username: root
-        password: 1QAZ_2wsx
+        password: 123456
       # 从库数据源
       slave:
         # 从数据源开关/默认关闭
@@ -134,9 +134,9 @@ spring:
 
 # MinIO 配置
 minio:
-  endpoint: http://202.194.131.202:9000
-  accessKey: admin
-  secretKey: Sdau:123
+  endpoint: http://localhost:9000
+  accessKey: minioadmin
+  secretKey: minioadmin
   bucketName: village-station
 
 ffmpeg:
