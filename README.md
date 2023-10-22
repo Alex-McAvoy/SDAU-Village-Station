@@ -1,6 +1,6 @@
 # SDAU-Village-Station
 
-原始版本，该版本暂时弃用，新版本见 1.0 分支
+原始版本，该版本暂时弃用，新版本见 Alpha 1.0 分支
 
 SDAU 乡村驿站，基于 ruoyi，文件服务器采用 MinIO
 
