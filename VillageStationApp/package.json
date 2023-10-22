@@ -1,0 +1,11 @@
+{
+	"devDependencies": {
+		"sass": "^1.67.0",
+		"sass-loader": "^10.4.1"
+	},
+	"dependencies": {
+		"echarts": "^5.4.3",
+		"node-sass": "^8.0.0",
+		"uview-ui": "^2.0.36"
+	}
+}
