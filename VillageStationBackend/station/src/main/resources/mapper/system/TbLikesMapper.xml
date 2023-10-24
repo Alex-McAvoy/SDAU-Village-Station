@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.TbLikesMapper">
+    
+    <resultMap type="TbLikes" id="TbLikesResult">
+        <result property="id"    column="id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="tableName"    column="table_name"    />
+        <result property="articleId"    column="article_id"    />
+        <result property="status"    column="status"    />
+    </resultMap>
+
+    <sql id="selectTbLikesVo">
+        select id, user_id, table_name, article_id, status
+        from tb_likes
+    </sql>
+
+    <!-- 根据用户id查询点赞列表 -->
+    <select id="selectTbLikesByUserId" parameterType="Long" resultMap="TbLikesResult">
+        SELECT table_name, article_id
+        FROM tb_likes
+        WHERE user_id = #{userId}
+        ORDER BY table_name DESC
+    </select>
+
+    <!-- 通过 userid、table_name、article_id 查询点赞 -->
+    <select id="selectLikes" resultMap="TbLikesResult">
+        <include refid="selectTbLikesVo"/>
+        WHERE user_id = #{userId} AND table_name = #{tableName} AND article_id = #{articleId}
+    </select>
+
+    <!-- 点赞 -->
+    <insert id="insertTbLikes" parameterType="TbLikes" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_likes
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">user_id,</if>
+            <if test="tableName != null">table_name,</if>
+            <if test="articleId != null">article_id,</if>
+            <if test="status != null">status,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">#{userId},</if>
+            <if test="tableName != null">#{tableName},</if>
+            <if test="articleId != null">#{articleId},</if>
+            <if test="status != null">#{status},</if>
+         </trim>
+    </insert>
+
+    <!-- 通过 userid、table_name、article_id 取消点赞 -->
+    <delete id="deleteTbLikes" >
+        delete from tb_likes
+        WHERE user_id = #{userId} AND table_name = #{tableName} AND article_id = #{articleId}
+    </delete>
+
+</mapper>
