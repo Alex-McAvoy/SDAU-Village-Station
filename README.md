@@ -8,3 +8,5 @@
 - VillageStationAdmin：App 管理端
 - VillageStationBackend：App 后端
 - VillageStationDownload：App 下载页
+- deployment：服务器部署 shell 文件
+- sql：数据库 sql 文件
