@@ -17,4 +17,4 @@ SDAU 乡村振兴驿站 Alpha 1.1 版，主要在 Alpha 1.0 的的基础上进�
 - VillageStationBackend：App 后端
 - VillageStationDownload：App 下载页
 - deployment：服务器部署 shell 文件
-- sql：数据库 sql 文件
+- sql：数据库 sql 文件（用户信息已删除）
