@@ -24,4 +24,8 @@ public class RenameUntil {
         return new StringBuffer().append(formatDate).append(
                 random).toString();
     }
+
+    public static String generateSuffix(String filename) {
+        return filename.substring(filename.lastIndexOf("."));
+    }
 }
