@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.TbNewsMapper">
+
+    <resultMap type="TbNews" id="TbNewsResult">
+        <result property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="audit" column="audit"/>
+        <result property="category" column="category"/>
+        <result property="reading" column="reading"/>
+        <result property="collect" column="collect"/>
+        <result property="likes" column="likes"/>
+        <result property="sort" column="sort"/>
+        <result property="remark" column="remark"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <sql id="selectTbNewsVo">
+         select id, title, content, audit, category,
+               reading, likes, collect,sort,
+               remark, create_by, create_time, update_by, update_time
+        FROM tb_news
+    </sql>
+
+    <!-- 查询新闻列表 -->
+    <select id="selectTbNewsList" resultMap="TbNewsResult">
+        <include refid="selectTbNewsVo"/>
+    </select>
+
+    <!-- 查询已审核新闻列表 -->
+    <select id="selectTbNewsAuditList" resultMap="TbNewsResult">
+        <include refid="selectTbNewsVo"/>
+        WHERE audit = 1
+    </select>
+
+    <!-- 查询未审核新闻列表 -->
+    <select id="selectTbNewsUnauditedList" parameterType="String"
+            resultMap="TbNewsResult">
+        <include refid="selectTbNewsVo"/>
+        where audit = 0
+    </select>
+
+    <!-- 获取已审核的分类新闻信息 -->
+    <select id="selectTbNewsCategoryList" parameterType="String" resultMap="TbNewsResult">
+        <include refid="selectTbNewsVo"/>
+        where audit = 1 AND category = #{category}
+    </select>
+
+    <!-- 获取已审核的分类、标签信息 -->
+    <select id="selectTbNewsCategoryAndSortList" parameterType="String" resultMap="TbNewsResult">
+        <include refid="selectTbNewsVo"/>
+        where audit = 1 AND category = #{category}
+        AND sort in
+        <foreach item="id" collection="sort" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <!-- 获取num条已审核的分类新闻信息 -->
+    <select id="selectTbNewsCategoryListLimit" resultMap="TbNewsResult">
+        <include refid="selectTbNewsVo"/>
+        where audit = 1 AND category = #{category}
+        limit #{num}
+    </select>
+
+    <!-- 获取num条已审核的分类、标签信息 -->
+    <select id="selectTbNewsCategorySortListLimit" resultMap="TbNewsResult">
+        <include refid="selectTbNewsVo"/>
+        where audit = 1 AND category = #{category}
+        AND sort in
+        <foreach item="id" collection="sort" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+        limit #{num}
+    </select>
+
+    <!-- 获取驿站id为sort的已审核的分类新闻信息 -->
+    <select id="selectTbNewsCategorySortList" parameterType="String" resultMap="TbNewsResult">
+        <include refid="selectTbNewsVo"/>
+        where audit = 1 AND category = #{category} AND sort = #{sort}
+    </select>
+
+    <!-- 根据id审核新闻对象 -->
+    <update id="updateTbNewsAudit" parameterType="TbNews">
+        update tb_news
+        <trim prefix="SET" suffixOverrides=",">
+            audit = #{audit}
+        </trim>
+        where id = #{id}
+    </update>
+
+    <!-- 通过id获取新闻详细信息 -->
+    <select id="selectTbNewsById" parameterType="Long" resultMap="TbNewsResult">
+        <include refid="selectTbNewsVo"/>
+        where id = #{id}
+    </select>
+
+    <!-- 新增新闻信息 -->
+    <insert id="insertTbNews" parameterType="TbNews" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_news
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null">title,</if>
+            <if test="content != null">content,</if>
+            <if test="audit != null">audit,</if>
+            <if test="category != null">category,</if>
+            <if test="reading != null">reading,</if>
+            <if test="likes != null">likes,</if>
+            <if test="collect != null">collect,</if>
+            <if test="sort != null">sort,</if>
+            <if test="remark != null">remark,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="title != null">#{title},</if>
+            <if test="content != null">#{content},</if>
+            <if test="audit != null">#{audit},</if>
+            <if test="category != null">#{category},</if>
+            <if test="reading != null">#{reading},</if>
+            <if test="likes != null">#{likes},</if>
+            <if test="collect != null">#{collect},</if>
+            <if test="sort != null">#{sort},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+        </trim>
+    </insert>
+
+    <!-- 修改新闻信息 -->
+    <update id="updateNews" parameterType="TbNews">
+        update tb_news
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="title != null">title = #{title},</if>
+            <if test="content != null">content = #{content},</if>
+            <if test="audit != null">audit = #{audit},</if>
+            <if test="category != null">category = #{category},</if>
+            <if test="sort != null">sort = #{sort},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <!-- 通过id删除新闻信息 -->
+    <delete id="deleteTbNewsByNewsId" parameterType="Long">
+        delete from tb_news where id = #{id}
+    </delete>
+
+    <!-- 通过id列表删除新闻信息 -->
+    <delete id="deleteTbNewsByNewsIds" parameterType="String">
+        delete from tb_news
+        where id in
+        <foreach item="id" collection="ids" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 根据id增加阅读量 -->
+    <update id="updateReading" parameterType="TbNews">
+        update tb_news
+        <trim prefix="SET" suffixOverrides=",">
+            reading = reading + 1
+        </trim>
+        where id = #{id}
+    </update>
+
+    <!-- 根据id增加点赞量 -->
+    <update id="addLikes" parameterType="TbNews">
+        update tb_news
+        <trim prefix="SET" suffixOverrides=",">
+            likes = likes + 1
+        </trim>
+        where id = #{id}
+    </update>
+
+    <!-- 根据id减少点赞量 -->
+    <update id="subLikes" parameterType="TbNews">
+        update tb_news
+        <trim prefix="SET" suffixOverrides=",">
+            likes = likes - 1
+        </trim>
+        where id = #{id}
+    </update>
+
+    <!-- 根据id增加收藏量 -->
+    <update id="addCollect" parameterType="TbNews">
+        update tb_news
+        <trim prefix="SET" suffixOverrides=",">
+            collect = collect + 1
+        </trim>
+        where id = #{id}
+    </update>
+
+    <!-- 根据id减少收藏量 -->
+    <update id="subCollect" parameterType="TbNews">
+        update tb_news
+        <trim prefix="SET" suffixOverrides=",">
+            collect = collect - 1
+        </trim>
+        where id = #{id}
+    </update>
+
+    <!-- 模糊查询已审核数据 -->
+    <select id="selectNewsByLike" parameterType="String" resultMap="TbNewsResult">
+        <include refid="selectTbNewsVo"/>
+        WHERE audit = 1 AND ( title LIKE '%${query}%' OR content LIKE '%${query}%' )
+    </select>
+
+    <!-- 通过id列表查询对应数据 -->
+    <select id="selectNewsListByIds" parameterType="java.util.List" resultMap="TbNewsResult">
+        <include refid="selectTbNewsVo"/>
+        WHERE id IN
+        <foreach item="item" collection="ids" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+</mapper>

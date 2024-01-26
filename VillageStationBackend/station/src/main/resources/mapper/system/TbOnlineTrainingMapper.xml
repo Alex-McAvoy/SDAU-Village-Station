@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.TbOnlineTrainingMapper">
+    
+    <resultMap type="TbOnlineTraining" id="TbOnlineTrainingResult">
+        <result property="id"    column="id"    />
+        <result property="title"    column="title"    />
+        <result property="content"    column="content"    />
+        <result property="audit"    column="audit"    />
+        <result property="category"    column="category"    />
+        <result property="video"    column="video"    />
+        <result property="reading"    column="reading"    />
+        <result property="collect"    column="collect"    />
+        <result property="likes"    column="likes"    />
+        <result property="sort"    column="sort"    />
+        <result property="remark"    column="remark"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectTbOnlineTrainingVo">
+        SELECT id, title, content, audit, category,
+               video, reading, likes, collect, sort,
+               remark, create_by, create_time, update_by, update_time
+        FROM tb_online_training
+    </sql>
+
+    <!-- 查询线上培训列表 -->
+    <select id="selectTbOnlineTrainingList" resultMap="TbOnlineTrainingResult">
+        <include refid="selectTbOnlineTrainingVo"/>
+    </select>
+
+    <!-- 查询已审核线上培训列表 -->
+    <select id="selectTbOnlineTrainingAuditList" resultMap="TbOnlineTrainingResult">
+        <include refid="selectTbOnlineTrainingVo"/>
+        WHERE audit = 1
+    </select>
+
+    <!-- 获取已审核的标签信息 -->
+    <select id="selectTbOnlineTrainingSortAuditList" resultMap="TbOnlineTrainingResult">
+        <include refid="selectTbOnlineTrainingVo"/>
+        WHERE audit = 1
+        AND sort in
+        <foreach item="id" collection="sort" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+
+    <!-- 获取num个已审核的线下培训信息 -->
+    <select id="selectTbOnlineTrainingListLimit" resultMap="TbOnlineTrainingResult">
+        <include refid="selectTbOnlineTrainingVo"/>
+        where audit = 1
+        limit #{num}
+    </select>
+
+    <!-- 获取num条已审核的分类、标签信息 -->
+    <select id="selectTbOnlineTrainingSortListLimit" resultMap="TbOnlineTrainingResult">
+        <include refid="selectTbOnlineTrainingVo"/>
+        where audit = 1
+        AND sort in
+        <foreach item="id" collection="sort" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+        limit #{num}
+    </select>
+
+    <!-- 查询未审核线上培训列表 -->
+    <select id="selectTbOnlineTrainingUnauditedList" resultMap="TbOnlineTrainingResult">
+        <include refid="selectTbOnlineTrainingVo"/>
+        WHERE audit = 0
+    </select>
+
+    <!-- 获取已审核的分类金融信息 -->
+    <select id="selectTbOnlineTrainingCategoryList" parameterType="String" resultMap="TbOnlineTrainingResult">
+        <include refid="selectTbOnlineTrainingVo"/>
+        where audit = 1 AND category = #{category}
+    </select>
+
+    <!-- 获取驿站id为sort的已审核的分类金融信息 -->
+    <select id="selectTbOnlineTrainingCategorySortList" parameterType="String" resultMap="TbOnlineTrainingResult">
+        <include refid="selectTbOnlineTrainingVo"/>
+        where audit = 1 AND category = #{category} AND sort = #{sort}
+    </select>
+
+
+    <!-- 根据id审核线上培训对象 -->
+    <update id="updateTbOnlineTrainingAudit"  parameterType="TbOnlineTraining">
+        UPDATE tb_online_training
+        <trim prefix="SET" suffixOverrides=",">
+            audit = #{audit}
+        </trim>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 通过id获取线上培训详细信息 -->
+    <select id="selectTbOnlineTrainingById" parameterType="Long" resultMap="TbOnlineTrainingResult">
+        <include refid="selectTbOnlineTrainingVo"/>
+        WHERE id = #{id}
+    </select>
+
+    <!-- 新增线上培训信息 -->
+    <insert id="insertTbOnlineTraining" parameterType="TbOnlineTraining" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO tb_online_training
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null">title,</if>
+            <if test="content != null">content,</if>
+            <if test="audit != null">audit,</if>
+            <if test="category != null">category,</if>
+            <if test="video != null">video,</if>
+            <if test="reading != null">reading,</if>
+            <if test="likes != null">likes,</if>
+            <if test="collect != null">collect,</if>
+            <if test="sort != null">sort,</if>
+            <if test="remark != null">remark,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="title != null">#{title},</if>
+            <if test="content != null">#{content},</if>
+            <if test="audit != null">#{audit},</if>
+            <if test="category != null">#{category},</if>
+            <if test="video != null">#{video},</if>
+            <if test="reading != null">#{reading},</if>
+            <if test="likes != null">#{likes},</if>
+            <if test="collect != null">#{collect},</if>
+            <if test="sort != null">#{sort},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <!-- 修改线上培训信息 -->
+    <update id="updateTbOnlineTraining" parameterType="TbOnlineTraining">
+        UPDATE tb_online_training
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="title != null">title = #{title},</if>
+            <if test="content != null">content = #{content},</if>
+            <if test="audit != null">audit = #{audit},</if>
+            <if test="category != null">category = #{category},</if>
+            <if test="video != null">video = #{video},</if>
+            <if test="sort != null">sort = #{sort},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 通过id删除线上培训信息 -->
+    <delete id="deleteTbOnlineTrainingById" parameterType="Long">
+        DELETE FROM tb_online_training WHERE id = #{id}
+    </delete>
+
+    <!-- 通过id列表删除线上培训信息 -->
+    <delete id="deleteTbOnlineTrainingByIds" parameterType="String">
+        DELETE FROM tb_online_training WHERE id IN
+        <foreach item="id" collection="ids" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 根据id增加阅读量 -->
+    <update id="updateReading" parameterType="TbOnlineTraining">
+        UPDATE tb_online_training
+        <trim prefix="SET" suffixOverrides=",">
+            reading = reading + 1
+        </trim>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 根据id增加点赞量 -->
+    <update id="addLikes" parameterType="TbOnlineTraining">
+        UPDATE tb_online_training
+        <trim prefix="SET" suffixOverrides=",">
+            likes = likes + 1
+        </trim>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 根据id减少点赞量 -->
+    <update id="subLikes" parameterType="TbOnlineTraining">
+        UPDATE tb_online_training
+        <trim prefix="SET" suffixOverrides=",">
+            likes = likes - 1
+        </trim>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 根据id增加收藏量 -->
+    <update id="addCollect" parameterType="TbOnlineTraining">
+        UPDATE tb_online_training
+        <trim prefix="SET" suffixOverrides=",">
+            collect = collect + 1
+        </trim>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 根据id减少收藏量 -->
+    <update id="subCollect" parameterType="TbOnlineTraining">
+        UPDATE tb_online_training
+        <trim prefix="SET" suffixOverrides=",">
+            collect = collect - 1
+        </trim>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 模糊查询已审核数据 -->
+    <select id="selectTbOnlineTrainingByLike" parameterType="String" resultMap="TbOnlineTrainingResult">
+        <include refid="selectTbOnlineTrainingVo"/>
+        WHERE audit = 1 AND ( title LIKE '%${query}%' OR content LIKE '%${query}%' )
+    </select>
+
+    <!-- 通过id列表查询对应数据 -->
+    <select id="selectTbOnlineTrainingListByIds" parameterType="java.util.List" resultMap="TbOnlineTrainingResult">
+        <include refid="selectTbOnlineTrainingVo"/>
+        WHERE id IN
+        <foreach item="item" collection="ids" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+</mapper>
