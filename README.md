@@ -1,5 +1,7 @@
 # SDAU-Village-Station
 
+下载页：http://202.194.131.202/
+
 SDAU 乡村振兴驿站 Alpha 1.1 版，主要在 Alpha 1.0 的的基础上进行了如下改进：
 1. 更新了用户角色：信息发布管理员、信息审核管理员、金融发布管理员、金融审核管理员、驿站站长、科技专员、科技服务专员、金融专员、信息专员、普通用户
 2. 新增了驿站标签，以用于总信息发布个性化
@@ -17,4 +19,4 @@ SDAU 乡村振兴驿站 Alpha 1.1 版，主要在 Alpha 1.0 的的基础上进�
 - VillageStationBackend：App 后端
 - VillageStationDownload：App 下载页
 - deployment：服务器部署 shell 文件
-- sql：数据库 sql 文件（用户信息已删除）
+- sql：数据库 sql 文件（用户相关信息已删除）
